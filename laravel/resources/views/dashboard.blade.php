@@ -1,4 +1,4 @@
-@extends('template.master')
+@extends('layouts.template')
 
 @section('title')
     Restaurant Booking App
