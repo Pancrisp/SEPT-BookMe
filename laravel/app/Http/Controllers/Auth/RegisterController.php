@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -45,15 +46,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    private function validator(array $data)
+    protected function validator(array $data)
     {
         return Validator::make($data, [
-            'fullname'          => 'required|max:255',
-            'username'          => 'required|max:255',
-            'password'          => 'required|min:6|confirmed',
-            'email'             => 'required|email|max:255|unique:users',
-            'mobile_number'     => 'required|digits:10',
-            'address'           => 'required'
+            'fullname'  => 'required|max:255',
+            'username'  => 'required|max:255',
+            'password'  => 'required|min:6|confirmed',
+            'email'     => 'required|email|max:255|unique:users',
+            'phone'     => 'required|digits:10',
+            'address'   => 'required'
         ]);
     }
 
@@ -63,12 +64,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
-    private function create(array $data)
+    protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        return Customer::create([
+            'customer_name' => $data['fullname'],
+            'username'      => $data['username'],
+            'password'      => bcrypt($data['password']),
+            'email_address' => $data['email'],
+            'mobile_phone'  => $data['phone'],
+            'address'       => $data['address']
         ]);
     }
 }
