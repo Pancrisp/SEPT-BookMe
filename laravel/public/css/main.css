@@ -49,6 +49,7 @@ button {
     background-color: #ff8754;
 }
 
-.registration {
+.registration,
+.login {
     margin-top: 3rem;
 }
