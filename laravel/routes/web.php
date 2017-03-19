@@ -24,3 +24,4 @@ Route::get('/dashboard', function () {
 });
 
 Route::post('/register', 'RegistrationController@register');
+Route::post('/authenticate', 'AuthenticationController@login');

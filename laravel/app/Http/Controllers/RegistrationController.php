@@ -22,11 +22,6 @@ class RegistrationController
         if($this->create($request->all())){
             return redirect('/');
         }
-        else{
-            return Redirect::back()
-                ->withInput()
-                ->withErrors(array('username' => 'Username already exists'));
-        }
     }
 
     /**
@@ -39,9 +34,9 @@ class RegistrationController
     {
         return Validator::make($data, [
             'fullname'  => 'required|max:255',
-            'username'  => 'required|max:255',
+            'username'  => 'required|max:255|unique:customers',
             'password'  => 'required|min:6|confirmed',
-            'email'     => 'required|email|max:255|unique:users',
+            'email'     => 'required|email|max:255|unique:customers,email_address',
             'phone'     => 'required|digits:10',
             'address'   => 'required'
         ]);
@@ -51,15 +46,11 @@ class RegistrationController
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return boolean
+     * @return Customer
      */
     private function create(array $data)
     {
-        $usernames = Customer::select('username')->get()->toArray();
-
-        if(!in_array(['username' => $data['username']], $usernames))
-        {
-            Customer::create([
+        return Customer::create([
                 'customer_name' => $data['fullname'],
                 'username'      => $data['username'],
                 'password'      => bcrypt($data['password']),
@@ -67,12 +58,5 @@ class RegistrationController
                 'mobile_phone'  => $data['phone'],
                 'address'       => $data['address']
             ]);
-
-            return true;
-        }
-
-        else{
-            return false;
-        }
     }
 }
