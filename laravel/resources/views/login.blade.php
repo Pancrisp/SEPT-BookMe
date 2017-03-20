@@ -1,33 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Restaurant Booking App</title>
+@extends('layouts.template')
 
-        <!-- Font Awesome -->
-        <link href="vendor/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=|Open+Sans|Lato" rel="stylesheet">
+@section('title')
+    Restaurant Booking App
+@endsection
 
-        <!-- Custom CSS -->
-        <link href="css/main.css" type="text/css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <div class="form-wrapper">
-                <h1>App Name</h1>
-                <h3>Sign in to access your dashboard</h3>
-                <form action="" method="post">
-                    <input type="text" name="email" placeholder="Email" required>
-                    <input type="password" name="pwd" placeholder="Password" required>
-                    <div class="form-group">
-                        <a href="/dashboard"><button type="button" name="login">Login</button></a>
-                    </div>
-                </form>
-                <div class="registration">
-                    <p>Don't have an account? <a href="/signup">Sign up here</a></p>
-                </div>
+@section('content')
+    <div class="form-wrapper">
+        <h1>App Name</h1>
+        <h3>Sign in to access your dashboard</h3>
+        <form action="authenticate" method="post">
+            {{ csrf_field() }}
+            <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <div class="form-group">
+                <button type="submit" name="login">Login</button>
             </div>
+        </form>
+        <div class="registration">
+            <p>Don't have an account? <a href="/signup">Sign up here</a></p>
         </div>
-    </body>
-</html>
+    </div>
+    <div class="col-lg-4">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+@endsection

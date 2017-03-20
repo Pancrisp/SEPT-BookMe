@@ -22,3 +22,6 @@ Route::get('/signup', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::post('/register', 'RegistrationController@register');
+Route::post('/authenticate', 'AuthenticationController@login');

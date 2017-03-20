@@ -1,31 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Restaurant Booking App</title>
+@extends('layouts.template')
 
-        <!-- Font Awesome -->
-        <link href="vendor/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
+@section('title')
+    Restaurant Booking App
+@endsection
 
-        <!-- Custom CSS -->
-        <link href="css/main.css" type="text/css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <form action="index.html" method="post">
-                <label><input type="text" name="fullname" placeholder="Your Name"></label>
-                <label><input type="text" name="username" placeholder="Username"></label>
-                <label><input type="password" name="password" placeholder="Password"></label>
-                <label><input type="text" name="address" placeholder="Address"></label>
-                <label><input type="text" name="zipcode" placeholder="ZIP"></label>
-                <label><input type="text" name="contact" placeholder="Contact No"></label>
-                <a href="/dashboard"><button type="button" name="signup">Sign Up</button></a>
-            </form>
-            <div class="login">
-                <p>Already have an account? <a href="/">Sign in here</a></p>
+@section('content')
+
+    <form action="/register" method="post">
+        {{ csrf_field() }}
+        <label><input type="text" name="fullname" placeholder="Your Name" value="{!! old('fullname') !!}"></label>
+        <label><input type="text" name="username" placeholder="Username" value="{!! old('username') !!}"></label>
+        <label><input type="password" name="password" placeholder="Password"></label>
+        <label><input type="password" name="password_confirmation" placeholder="Confirm Password"></label>
+        <label><input type="text" name="email" placeholder="Email" value="{!! old('email') !!}"></label>
+        <label><input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}"></label>
+        <label><input type="text" name="address" placeholder="Address" value="{!! old('address') !!}"></label>
+        <button type="submit">Sign Up</button>
+    </form>
+    <div class="login">
+        <p>Already have an account? <a href="/">Sign in here</a></p>
+    </div>
+    <div class="col-lg-4">
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </div>
-    </body>
+        @endif
+    </div>
 
-</html>
+@endsection
