@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="form-wrapper">
-        <h1>App Name</h1>
+        <h1>Restaurant Booking App</h1>
         <h3>Sign in to access your dashboard</h3>
         <form action="authenticate" method="post">
             {{ csrf_field() }}

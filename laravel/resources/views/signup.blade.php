@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-
-    <form action="/register" method="post">
+    <h1>Restaurant Booking App</h1>
+    <form action="/register" method="post">    
         {{ csrf_field() }}
         <label><input type="text" name="fullname" placeholder="Your Name" value="{!! old('fullname') !!}"></label>
         <label><input type="text" name="username" placeholder="Username" value="{!! old('username') !!}"></label>

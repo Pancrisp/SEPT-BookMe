@@ -6,6 +6,7 @@
 
 @section('content')
     @include('includes.header')
-
-    <span>This is your dashboard</span>
+    <div class="">
+        Welcome, {{ $names->customer_name }}. This is your dashboard.
+    </div>
 @endsection
