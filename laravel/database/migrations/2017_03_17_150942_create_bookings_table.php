@@ -22,7 +22,7 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('booking_id');
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
