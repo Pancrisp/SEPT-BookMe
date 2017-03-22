@@ -1,9 +1,6 @@
 html, head, body {
     margin: 0;
     padding: 0;
-}
-
-h1, h3, p, span {
     font-family: 'Lato', sans-serif;
 }
 
@@ -47,9 +44,18 @@ button {
     background-color: #ff8754;
 }
 
+input[type="radio"] {
+    width: 8%;
+    margin-left: 2rem;
+}
+
 .registration,
 .login {
     margin-top: 3rem;
+}
+
+.picker {
+    display: inline;
 }
 
 #circle {
@@ -59,4 +65,8 @@ button {
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
 	border-radius: 50px;
+}
+
+#left {
+    margin-left: 0;
 }
