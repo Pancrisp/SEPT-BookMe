@@ -1,21 +1,12 @@
 
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
-// Variables
-@import "variables";
-
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-$font-body: Open Sans, sans-serif;
-$font-header: Lato, sans-serif;
+$font-body: 'Open Sans', sans-serif;
+$font-header: 'Lato', sans-serif;
 $primary-colour: #333;
 
 html, head, body {
     margin: 0;
     padding: 0;
-    font: $font-header;
+    font-family: $font-header;
 }
 
 form {
@@ -27,7 +18,7 @@ input {
     margin: 0.8rem 0;
     padding: 15px;
     width: 100%;
-    font: $font-body;
+    font-family: $font-body;
     font-size: 0.9rem;
     background-color: #f9f9f9;
     border: 2px solid #d9d9d9;
@@ -41,7 +32,7 @@ button {
     background-color: #6699ff;
     border: none;
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-body;
     font-weight: 700;
     font-size: 15px;
     color: #ffffff;
