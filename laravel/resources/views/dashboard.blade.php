@@ -6,7 +6,18 @@
 
 @section('content')
     @include('includes.header')
-    <div class="">
-        Welcome, {{ $names->customer_name }}. This is your dashboard.
+
+    <div class="dashboard">
+        <div class="overview-bookings">
+            <h1>Bookings Overview</h1>
+        </div>
+
+        <div>
+            <h1>Staff Roster</h1>
+            <a href="/newstaff">+ Add new staff</a>
+        </div>
+
+
     </div>
+
 @endsection
