@@ -29,17 +29,10 @@ input[type="radio"] {
 }
 
 select {
-  padding: 10px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 0.9rem;
-}
-
-#date {
-    width: 200px;
-}
-
-#time {
-    width: 100px;
+    width: 150px;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
 }
 
 button {
@@ -61,17 +54,25 @@ button {
 .container {
   margin: 10em auto;
   padding: 20px 0;
-  text-align: center;
   background-color: #ff8754;
+}
+
+.box {
+    text-align: center;
+}
+
+.dashboard {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.form-booking {
+    margin: 0;
 }
 
 .registration,
 .login {
   margin-top: 3rem;
-}
-
-.date {
-  width: 300px;
 }
 
 .picker {
