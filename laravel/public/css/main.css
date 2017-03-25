@@ -1,1 +1,90 @@
-body,head,html{margin:0;padding:0;font-family:Lato,sans-serif}button,input{width:100%;font-family:"Open Sans",sans-serif}form{margin:0 auto;width:320px}input{margin:.8rem 0;padding:15px;font-size:.9rem;background-color:#f9f9f9;border:2px solid #d9d9d9;border-radius:5px;box-sizing:border-box}button{margin-top:20px;background-color:#69f;border:none;border-radius:4px;font-weight:700;font-size:15px;color:#fff;letter-spacing:1px;line-height:3em;text-transform:uppercase;cursor:pointer}.container{margin:10em auto;padding:20px 0;text-align:center;background-color:#ff8754}input[type=radio]{width:8%;margin-left:2rem}.login,.registration{margin-top:3rem}.picker{display:inline}#circle{width:48px;height:48px;background:red;border-radius:50px}#left{margin-left:0}
+html,
+head,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+form {
+  margin: 0 auto;
+  width: 320px;
+}
+
+input {
+  margin: 0.8rem 0;
+  padding: 15px;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  background-color: #f9f9f9;
+  border: 2px solid #d9d9d9;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="radio"] {
+  width: 8%;
+  margin-left: 2rem;
+}
+
+select {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+}
+
+#date {
+    width: 200px;
+}
+
+#time {
+    width: 100px;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #6699ff;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  line-height: 3em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.container {
+  margin: 10em auto;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #ff8754;
+}
+
+.registration,
+.login {
+  margin-top: 3rem;
+}
+
+.date {
+  width: 300px;
+}
+
+.picker {
+  display: inline;
+}
+
+#circle {
+  width: 48px;
+  height: 48px;
+  background: red;
+  border-radius: 50px;
+}
+
+#left {
+  margin-left: 0;
+}

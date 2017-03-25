@@ -6,15 +6,12 @@
 
 @section('content')
     @include('includes.header')
-    <div class="">
-        {{-- Welcome, {{ $names->customer_name }}. This is your dashboard. --}}
-    </div>
 
     <div class="">
-        <h3>View currently available bookings</h3>
+        <h1>View available booking times on</h3>
         <form class="form-booking" action="" method="post">
             <div class="date picker">
-                <select class="" name="booking-date">
+                <select id='date' name="booking-date">
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
                     <option value="Wednesday">Wednesday</option>
@@ -23,7 +20,7 @@
                 </select>
             </div>
             <div class="timeslot picker">
-                <select class="" name="booking-time">
+                <select id='time' name="booking-time">
                     <option value="09:00">9:00 AM</option>
                     <option value="10:00">10:00 AM</option>
                     <option value="11:00">11:00 AM</option>

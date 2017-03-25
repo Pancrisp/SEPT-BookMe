@@ -20,10 +20,6 @@ Route::get('/signup', function () {
 });
 
 Route::get('/dashboard', function () {
-    // $names = DB::table('customers')->get();
-    //
-    // return view('dashboard', compact('names'));
-
     return view('dashboard');
 });
 

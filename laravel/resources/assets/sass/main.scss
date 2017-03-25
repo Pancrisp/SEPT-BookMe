@@ -26,6 +26,15 @@ input {
     box-sizing: border-box;
 }
 
+input[type="radio"] {
+    width: 8%;
+    margin-left: 2rem;
+}
+
+select {
+    padding: 20px;
+}
+
 button {
     width: 100%;
     margin-top: 20px;
@@ -49,14 +58,13 @@ button {
     background-color: #ff8754;
 }
 
-input[type="radio"] {
-    width: 8%;
-    margin-left: 2rem;
-}
-
 .registration,
 .login {
     margin-top: 3rem;
+}
+
+.date {
+    width: 300px;
 }
 
 .picker {
