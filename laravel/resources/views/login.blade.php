@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="form-wrapper">
+    <div class="box">
         <h1>Restaurant Booking App</h1>
         <h3>Sign in to access your dashboard</h3>
         <form action="authenticate" method="post">
@@ -22,7 +22,6 @@
             <p>Don't have an account? <a href="/signup">Sign up here</a></p>
         </div>
     </div>
-
     <div class="col-lg-4">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -34,4 +33,5 @@
             </div>
         @endif
     </div>
+
 @endsection

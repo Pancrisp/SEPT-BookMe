@@ -19,8 +19,16 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
+Route::get('/customer', function () {
+    return view('customer');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
+});
+
+Route::get('/newstaff', function () {
+    return view('newstaff');
 });
 
 Route::post('/register', 'RegistrationController@register');
