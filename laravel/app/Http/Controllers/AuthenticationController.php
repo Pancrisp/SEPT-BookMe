@@ -32,8 +32,6 @@ class AuthenticationController
             return redirect('/'.$type.'Dashboard');
 
         }
-
-
     }
 
     /**

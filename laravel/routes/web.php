@@ -33,3 +33,5 @@ Route::get('/newstaff', function () {
 
 Route::post('/register', 'RegistrationController@register');
 Route::post('/authenticate', 'AuthenticationController@login');
+
+Route::get('/getBookingsByDate', 'BookingController@getBookingsByDate');
