@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Business;
 use App\Customer;
 use Illuminate\Http\Request;
@@ -10,6 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class AuthenticationController
 {
+    private $user;
+
     public function login(Request $request)
     {
         $data = $request->all();
@@ -29,8 +30,8 @@ class AuthenticationController
         else
         {
             $type = $data['usertype'];
-            return redirect('/'.$type.'Dashboard');
-
+            $user = $this->user->toArray();
+            return view($type.'Dashboard', $user);
         }
     }
 
@@ -75,6 +76,8 @@ class AuthenticationController
                 ->orWhere('email_address', $data['username'])
                 ->first();
 
+            $this->user = $customer;
+
             return password_verify($data['password'], $customer->password);
         }
         else
@@ -82,6 +85,8 @@ class AuthenticationController
             $business = Business::where('username', $data['username'])
                 ->orWhere('email_address', $data['username'])
                 ->first();
+
+            $this->user = $business;
 
             return password_verify($data['password'], $business->password);
         }

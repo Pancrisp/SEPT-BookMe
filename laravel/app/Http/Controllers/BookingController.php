@@ -20,4 +20,13 @@ class BookingController
         return $bookings;
     }
 
+    public function getBookingsByBusiness(Request $request)
+    {
+        $businessID = 1; //atm there is only one business
+
+        $bookings = Booking::where('business_id', $businessID)->latest()->get();
+
+        return view('viewAllBookings', compact($bookings));
+    }
+
 }

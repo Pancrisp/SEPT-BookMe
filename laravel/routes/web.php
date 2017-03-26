@@ -19,19 +19,12 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
-Route::get('/customerDashboard', function () {
-    return view('customerDashboard');
-});
-
-Route::get('/businessDashboard', function () {
-    return view('businessOwnerDashboard');
-});
-
 Route::get('/newstaff', function () {
     return view('newstaff');
 });
 
 Route::post('/register', 'RegistrationController@register');
-Route::post('/authenticate', 'AuthenticationController@login');
+Route::post('/dashboard', 'AuthenticationController@login');
 
 Route::get('/bookings/getByDate', 'BookingController@getBookingsByDate');
+Route::get('/bookings/summary', 'BookingController@getBookingsByBusiness');

@@ -8,7 +8,7 @@
     <div class="box">
         <h1>Restaurant Booking App</h1>
         <h3>Sign in to access your dashboard</h3>
-        <form action="authenticate" method="post">
+        <form action="dashboard" method="post">
             {{ csrf_field() }}
             <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
             <input type="password" name="password" placeholder="Password" required>

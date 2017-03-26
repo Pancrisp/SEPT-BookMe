@@ -8,6 +8,7 @@
     @include('includes.header')
 
     <div class="dashboard">
+        <div>Hello, {{ $owner_name }} for {{ $business_name }}</div>
         <div class="overview-bookings">
             <h1>Bookings Overview</h1>
         </div>
