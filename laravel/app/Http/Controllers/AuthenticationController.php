@@ -31,7 +31,7 @@ class AuthenticationController
         {
             $type = $data['usertype'];
             $user = $this->user->toArray();
-            return view($type.'Dashboard', $user);
+            return view($type.'Dashboard', compact('user'));
         }
     }
 

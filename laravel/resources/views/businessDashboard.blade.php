@@ -8,7 +8,7 @@
     @include('includes.header')
 
     <div class="dashboard">
-        <div>Hello, {{ $owner_name }} for {{ $business_name }}</div>
+        <div>Hello, {{ $user['owner_name'] }} for {{ $user['business_name'] }}</div>
         <div class="overview-bookings">
             <a href="/bookings/summary" >Bookings Overview</a>
         </div>
@@ -17,6 +17,7 @@
             <h1>Staff Roster</h1>
             <a href="/newstaff">+ Add new staff</a>
         </div>
+        <div>Add staff working time</div>
 
 
     </div>

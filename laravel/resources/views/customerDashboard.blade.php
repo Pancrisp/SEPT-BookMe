@@ -7,7 +7,7 @@
 @section('content')
     @include('includes.header')
     <div class="dashboard">
-        <div>Hello, {{ $customer_name }}</div>
+        <div>Hello, {{ $user['customer_name'] }}</div>
         <h1>View available booking times on</h1>
         <form class="form-booking" action="" method="post">
             <div class="date picker">

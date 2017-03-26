@@ -26,8 +26,6 @@ class BookingController
 
         $bookings = Booking::where('business_id', $businessID)->latest()->get();
 
-//        dd($bookings);
-
         return view('bookingSummary', compact('bookings'));
     }
 
