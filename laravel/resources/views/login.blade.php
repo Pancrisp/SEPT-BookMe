@@ -13,8 +13,8 @@
             <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
             <input type="password" name="password" placeholder="Password" required>
             <div class="user-type">
-                <input id="left" type="radio" name="type" value="customer">Customer
-                <input type="radio" name="type" value="business">Business Owner
+                <input id="left" type="radio" name="usertype" value="customer" required>Customer
+                <input type="radio" name="usertype" value="business">Business Owner
             </div>
             <button type="submit" name="login">Login</button>
         </form>
