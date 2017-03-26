@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Source+Sans+Pro" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="{{ asset('css/main.cs') }}s" type="text/css" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
     </head>
     <body>
         <div class="container">

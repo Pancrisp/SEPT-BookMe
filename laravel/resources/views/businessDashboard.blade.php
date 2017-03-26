@@ -10,7 +10,7 @@
     <div class="dashboard">
         <div>Hello, {{ $owner_name }} for {{ $business_name }}</div>
         <div class="overview-bookings">
-            <h1>Bookings Overview</h1>
+            <a href="/bookings/summary" >Bookings Overview</a>
         </div>
 
         <div>
