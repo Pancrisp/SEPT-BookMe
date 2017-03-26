@@ -23,7 +23,7 @@ Route::get('/customerDashboard', function () {
     return view('customerDashboard');
 });
 
-Route::get('/businessOwnerDashboard', function () {
+Route::get('/businessDashboard', function () {
     return view('businessOwnerDashboard');
 });
 

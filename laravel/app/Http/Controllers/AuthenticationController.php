@@ -29,11 +29,7 @@ class AuthenticationController
         else
         {
             $type = $data['usertype'];
-
-            if($type == 'customer')
-                return redirect('customerDashboard');
-            else
-                return redirect('businessOwnerDashboard');
+            return redirect('/'.$type.'Dashboard');
 
         }
 
