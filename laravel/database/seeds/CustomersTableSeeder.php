@@ -14,18 +14,31 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<3; $i++)
-        {
-            Customer::create([
-                'customer_name' => str_random(10),
-                'username' => str_random(10),
-                'password' => bcrypt('secret'),
-                'email_address' => str_random(10).'@gmail.com',
-                'mobile_phone' => '04'.rand(0, 99999999),
-                'address' => str_random(20),
-            ])->save();
-        }
+        Customer::create([
+            'customer_name' => 'Grace',
+            'username' => 'gracezzz',
+            'password' => bcrypt('secret'),
+            'email_address' => 's3558319@gmail.com',
+            'mobile_phone' => '0411111111',
+            'address' => '124 La Trobe St, Melbourne VIC 3000',
+        ])->save();
 
+        Customer::create([
+            'customer_name' => 'Ervin',
+            'username' => 'pancrisp',
+            'password' => bcrypt('secret'),
+            'email_address' => 's3577844@gmail.com',
+            'mobile_phone' => '0422222222',
+            'address' => '124 La Trobe St, Melbourne VIC 3000',
+        ])->save();
 
+        Customer::create([
+            'customer_name' => 'Paulo',
+            'username' => 'paulozf',
+            'password' => bcrypt('secret'),
+            'email_address' => 's3568672@gmail.com',
+            'mobile_phone' => '0433333333',
+            'address' => '124 La Trobe St, Melbourne VIC 3000',
+        ])->save();
     }
 }
