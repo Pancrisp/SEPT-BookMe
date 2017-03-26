@@ -20,9 +20,9 @@ class BookingController
         return $bookings;
     }
 
-    public function getBookingsByBusiness(Request $request)
+    public function getBookingsByBusiness(Request $request, $id)
     {
-        $businessID = 1; //atm there is only one business
+        $businessID = $id;
 
         $bookings = Booking::where('business_id', $businessID)->latest()->get();
 

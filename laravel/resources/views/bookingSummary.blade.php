@@ -8,6 +8,8 @@
     @include('includes.header')
 
         <h1>Booking Summary</h1>
+
+    @if(count($bookings))
         <table>
             <thead>
             <tr>
@@ -30,5 +32,8 @@
             @endforeach
             </tbody>
         </table>
+    @else
+        <div>Currently no booking.</div>
+    @endif
 
 @endsection

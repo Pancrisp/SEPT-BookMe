@@ -10,7 +10,7 @@
     <div class="dashboard">
         <div>Hello, {{ $user['owner_name'] }} for {{ $user['business_name'] }}</div>
         <div class="overview-bookings">
-            <a href="/bookings/summary" >Bookings Overview</a>
+            <a href="/bookings/summary/{{ $user['business_id'] }}" >Bookings Overview</a>
         </div>
 
         <div>
