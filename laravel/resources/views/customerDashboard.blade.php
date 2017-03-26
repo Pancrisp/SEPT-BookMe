@@ -7,7 +7,7 @@
 @section('content')
     @include('includes.header')
     <div class="dashboard">
-        <h1>View available booking times on</h3>
+        <h1>View available booking times on</h1>
         <form class="form-booking" action="" method="post">
             <div class="date picker">
                 <select id='date' name="booking-date">
@@ -38,4 +38,8 @@
         </form>
     </div>
 
+@endsection
+
+@section('pageSpecificJs')
+    <script src="{{ asset('js/view-slots.js') }}"></script>
 @endsection

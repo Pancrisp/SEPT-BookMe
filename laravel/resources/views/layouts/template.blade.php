@@ -17,4 +17,7 @@
             @yield('content')
         </div>
     </body>
+    <footer>
+        @yield('pageSpecificJs')
+    </footer>
 </html>
