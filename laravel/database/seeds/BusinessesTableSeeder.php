@@ -1,21 +1,20 @@
 <?php
 
-use App\Customer;
+use App\Business;
 use Illuminate\Database\Seeder;
 
-class CustomersTableSeeder extends Seeder
+class BusinessesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * create 3 random entries for testing purposes
      *
      * @return void
      */
     public function run()
     {
-        Customer::create([
-            'customer_name' => 'Grace',
+        Business::create([
+            'business_name' => 'Katsu King',
+            'owner_name' => 'Grace',
             'username' => 'gracezzz',
             'password' => bcrypt('secret'),
             'email_address' => 's3558319@gmail.com',
@@ -23,8 +22,9 @@ class CustomersTableSeeder extends Seeder
             'address' => '124 La Trobe St, Melbourne VIC 3000',
         ])->save();
 
-        Customer::create([
-            'customer_name' => 'Ervin',
+        Business::create([
+            'business_name' => 'No.1 Delicious',
+            'owner_name' => 'Ervin',
             'username' => 'pancrisp',
             'password' => bcrypt('secret'),
             'email_address' => 's3577844@gmail.com',
@@ -32,8 +32,9 @@ class CustomersTableSeeder extends Seeder
             'address' => '124 La Trobe St, Melbourne VIC 3000',
         ])->save();
 
-        Customer::create([
-            'customer_name' => 'Paulo',
+        Business::create([
+            'business_name' => 'Sushi Sushi',
+            'owner_name' => 'Paulo',
             'username' => 'paulozf',
             'password' => bcrypt('secret'),
             'email_address' => 's3568672@gmail.com',

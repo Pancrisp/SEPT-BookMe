@@ -8,14 +8,16 @@
     @include('includes.header')
 
     <div class="dashboard">
+        <div>Hello, {{ $user['owner_name'] }} for {{ $user['business_name'] }}</div>
         <div class="overview-bookings">
-            <h1>Bookings Overview</h1>
+            <a href="/bookings/summary/{{ $user['business_id'] }}" >Bookings Overview</a>
         </div>
 
         <div>
             <h1>Staff Roster</h1>
             <a href="/newstaff">+ Add new staff</a>
         </div>
+        <div>Add staff working time</div>
 
 
     </div>
