@@ -6,26 +6,29 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Laracasts\Integrated\Extensions\Laravel as IntegrationTest;
 
 class LoginTest extends TestCase
 {
     /**
-     * Unit test for a successful user log in.
+     * @test 
+     *	Unit test for a successful user log in.
      *
      * @return void
      */
-    public function loginSuccessful()
+    public function testLoginSuccessful()
     {
-        $user = factory(App\User::class)->create([
-             'email' => 'copsicus@sept.com', 
+        $user = factory(\App\Customer::class)->make([
+	     'username' => 'copsicus', 
              'password' => bcrypt('copsicus123')
         ]);
 
         $this->visit(route('login'))
-            ->type('copsicus@sept.com', 'email')
+            ->type('copsiccus', 'username')
             ->type('copsicus123', 'password')
-            ->press('Login')
-            ->see('Successfully logged in')
+	    ->select('customer', 'usertype')
+            ->press('login')
+            ->see('Hello, '.$user->name)
             ->onPage('/dashboard');
     }
 
@@ -34,9 +37,9 @@ class LoginTest extends TestCase
      * The password for the account is incorrect.
      * @return void
      */
-    public function loginIncorrectPassword()
+    public function testLoginIncorrectPassword()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(\App\User::class)->create([
              'email' => 'copsicus@sept.com', 
              'password' => bcrypt('copsicus123')
         ]);
@@ -54,7 +57,7 @@ class LoginTest extends TestCase
      * The emai/username account is misspelled 
      * @return void
      */
-    public function loginIMisspelledUsername()
+    public function testLoginMisspelledUsername()
     {
         $user = factory(App\User::class)->create([
              'email' => 'copsicus@sept.com', 
@@ -74,7 +77,7 @@ class LoginTest extends TestCase
      * The emai/username account does not exist
      * @return void
      */
-    public function loginUnexistingUsername()
+    public function testLoginUnexistingUsername()
     {
         $user = factory(App\User::class)->make([
              'email' => str_random(10), 
@@ -94,7 +97,7 @@ class LoginTest extends TestCase
      * The password for the account is incorrect.
      * @return void
      */
-    public function loginForgottenPassword()
+    public function testLoginForgottenPassword()
     {
         $user = factory(App\User::class)->create([
              'email' => 'copsicus@sept.com', 
