@@ -21,7 +21,7 @@
             <input type="text" name="email" placeholder="Email" value="{!! old('email') !!}">
             <div class="error">{{ $errors->first('phone') }}</div>
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}">
-            <div class="erorr">{{ $errors->first('address') }}</div>
+            <div class="error">{{ $errors->first('address') }}</div>
             <input type="text" name="address" placeholder="Address" value="{!! old('address') !!}">
             <button type="submit">Sign Up</button>
         </form>

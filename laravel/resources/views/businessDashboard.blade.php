@@ -18,8 +18,6 @@
             <a href="/newstaff">+ Add new staff</a>
         </div>
         <div>Add staff working time</div>
-
-
     </div>
 
 @endsection

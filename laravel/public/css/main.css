@@ -72,11 +72,15 @@ button {
 
 .registration,
 .login {
-  margin-top: 3rem;
+    margin-top: 3rem;
 }
 
 .picker {
-  display: inline;
+    display: inline;
+}
+
+.error {
+    color: #333;
 }
 
 #circle {

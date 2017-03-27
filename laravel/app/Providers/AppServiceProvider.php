@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function registerTestProvider()
     {
         // Adding Dusk service provider
 	if($this->app->environment('local','testing')){
