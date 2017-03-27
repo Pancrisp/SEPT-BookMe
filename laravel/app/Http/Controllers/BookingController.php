@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class BookingController
 {
