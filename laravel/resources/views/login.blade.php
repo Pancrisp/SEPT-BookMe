@@ -5,13 +5,16 @@
 @endsection
 
 @section('content')
+
     <div class="box">
         <h1>Restaurant Booking App</h1>
         <h3>Sign in to access your dashboard</h3>
         <form action="dashboard" method="post">
             {{ csrf_field() }}
+            <div>{{ $errors->first('username') }}</div>
             <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
             <input type="password" name="password" placeholder="Password" required>
+            <div>{{ $errors->first('password') }}</div>
             <div class="user-type">
                 <input id="left" type="radio" name="usertype" value="customer" required>Customer
                 <input type="radio" name="usertype" value="business">Business Owner
@@ -21,17 +24,6 @@
         <div class="registration">
             <p>Don't have an account? <a href="/signup">Sign up here</a></p>
         </div>
-    </div>
-    <div class="col-lg-4">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </div>
 
 @endsection

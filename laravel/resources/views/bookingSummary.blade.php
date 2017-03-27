@@ -17,7 +17,9 @@
                 <th>Date</th>
                 <th>Start Time</th>
                 <th>End Time</th>
-                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Customer Contact</th>
+                <th>Custoner Email</th>
             </tr>
             </thead>
             <tbody>
@@ -27,7 +29,9 @@
                 <td>{{ $booking['date'] }}</td>
                 <td>{{ $booking['start_time'] }}</td>
                 <td>{{ $booking['end_time'] }}</td>
-                <td>{{ $booking['customer_id'] }}</td>
+                <td>{{ $booking['customer_name'] }}</td>
+                <td>{{ $booking['mobile_phone'] }}</td>
+                <td>{{ $booking['email_address'] }}</td>
             </tr>
             @endforeach
             </tbody>

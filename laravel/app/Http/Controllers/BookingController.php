@@ -24,7 +24,9 @@ class BookingController
     {
         $businessID = $id;
 
-        $bookings = Booking::where('business_id', $businessID)->latest()->get();
+        $bookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->where('bookings.business_id', $businessID)
+            ->get();
 
         return view('bookingSummary', compact('bookings'));
     }
