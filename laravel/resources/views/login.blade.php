@@ -11,8 +11,8 @@
         <h3>Sign in to access your dashboard</h3>
         <form action="dashboard" method="post">
             {{ csrf_field() }}
-            <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
             <div>{{ $errors->first('username') }}</div>
+            <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
             <input type="password" name="password" placeholder="Password" required>
             <div>{{ $errors->first('password') }}</div>
             <div class="user-type">
