@@ -10,18 +10,18 @@
         <form action="/register" method="post">
             {{ csrf_field() }}
 
-            <div>{{ $errors->first('fullname') }}</div>
+            <div class="error">{{ $errors->first('fullname') }}</div>
             <input type="text" name="fullname" placeholder="Your Name" value="{!! old('fullname') !!}">
-            <div>{{ $errors->first('username') }}</div>
+            <div class="error">{{ $errors->first('username') }}</div>
             <input type="text" name="username" placeholder="Username" value="{!! old('username') !!}">
-            <div>{{ $errors->first('password') }}</div>
+            <div class="error">{{ $errors->first('password') }}</div>
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="password_confirmation" placeholder="Confirm Password">
-            <div>{{ $errors->first('email') }}</div>
+            <div class="error">{{ $errors->first('email') }}</div>
             <input type="text" name="email" placeholder="Email" value="{!! old('email') !!}">
-            <div>{{ $errors->first('phone') }}</div>
+            <div class="error">{{ $errors->first('phone') }}</div>
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}">
-            <div>{{ $errors->first('address') }}</div>
+            <div class="erorr">{{ $errors->first('address') }}</div>
             <input type="text" name="address" placeholder="Address" value="{!! old('address') !!}">
             <button type="submit">Sign Up</button>
         </form>
