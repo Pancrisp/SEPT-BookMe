@@ -1,6 +1,6 @@
-$('#whatever').click(function(){
+$('#search-button').click(function() {
 
-    $date = '2017-03-26'; //eg only, please input the date selected by customer
+    $date = document.querySelector('#date').value;
 
     $.ajax({
         url: '/bookings/getByDate',
@@ -14,6 +14,6 @@ $('#whatever').click(function(){
         }
     })
         .error(function(response) {
-            alert("Fail to get the bookings");
+            alert("Unable to retrieve bookings");
         });
 });
