@@ -12,7 +12,8 @@ class RegistrationTest extends DuskTestCase
 	use DatabaseTransactions;
 	
 	/**
-	*  @test 
+	*  @test
+	*  @group registration
 	*  @group accepted
 	*	
 	*  Unit test for a successful user registration.
@@ -52,6 +53,7 @@ class RegistrationTest extends DuskTestCase
 	/**
 	*  @test 
 	*  @group accepted
+	*  @group registration
 	*	
 	*  Unit test for checking whether a username is unique.
 	*
@@ -82,6 +84,7 @@ class RegistrationTest extends DuskTestCase
 	/**
 	*  @test 
 	*  @group accepted
+	*  @group registration
 	*	
 	*  Unit test for checking missing registration details.
 	*
@@ -107,6 +110,7 @@ class RegistrationTest extends DuskTestCase
 	/**
 	*  @test 
 	*  @group accepted
+	*  @group registration
 	*	
 	*  Unit test for checking whether password length is met.
 	*
@@ -134,6 +138,7 @@ class RegistrationTest extends DuskTestCase
 	/**
 	*  @test 
 	*  @group accepted
+	*  @group registration
 	*	
 	*  Unit test for checking whether password confirmation is met.
 	*
@@ -161,6 +166,7 @@ class RegistrationTest extends DuskTestCase
 	/**
 	*  @test 
 	*  @group accepted
+	*  @group registration
 	*	
 	*  Unit test for checking whether phone length is met.
 	*

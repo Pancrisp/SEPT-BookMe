@@ -19,6 +19,7 @@ class LoginTest extends DuskTestCase
     /**
      *  @test 
      *  @group accepted
+     *  @group login
      *	Unit test for a successful user log in.
      *
      *  @return void
@@ -41,6 +42,7 @@ class LoginTest extends DuskTestCase
 
    /**
      * @group accepted
+     * @group login
      * Unit test for an  unsuccessful user log in.
      * The password for the account is incorrect.
      * @return void
@@ -65,6 +67,7 @@ class LoginTest extends DuskTestCase
 
     /**
      * @group accepted
+     * @group login
      * Unit test for an  unsuccessful user log in.
      * The emai/username account is misspelled 
      * @return void
@@ -88,6 +91,7 @@ class LoginTest extends DuskTestCase
 
     /**
      * @group accepted
+     * @group login
      * Unit test for an  unsuccessful user log in.
      * The emai/username account does not exist
      * @return void
@@ -107,6 +111,7 @@ class LoginTest extends DuskTestCase
     }
 
     /**
+     * @group login
      * Unit test for a user that forgets its password.
      * The password for the account is incorrect.
      * @return void
