@@ -15,7 +15,7 @@
 
         <div>
             <h1>Staff Roster</h1>
-            <a href="/newstaff">+ Add new staff</a>
+            <a href="/newstaff?id={{ $user['business_id'] }}">+ Add new staff</a>
         </div>
         <div>Add staff working time</div>
     </div>
