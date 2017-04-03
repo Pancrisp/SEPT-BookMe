@@ -34,9 +34,9 @@ class RegistrationController
     {
         return Validator::make($data, [
             'fullname'  => 'required|max:255',
-            'username'  => 'required|max:255|unique:customers',
+            'username'  => 'required|max:255|unique:customers|unique:businesses',
             'password'  => 'required|min:6|confirmed',
-            'email'     => 'required|email|max:255|unique:customers,email_address',
+            'email'     => 'required|email|max:255|unique:customers,email_address|unique:businesses,email_address',
             'phone'     => 'required|digits:10',
             'address'   => 'required'
         ]);
