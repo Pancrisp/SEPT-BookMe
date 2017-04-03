@@ -28,12 +28,12 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-	'customer_id' => $faker->randomNumber(4),
+	'customer_id' => $faker->unique()->randomNumber(5),
         'customer_name' => $faker->name,
 	'username' => $faker->unique()->userName,
         'password' => $password ?: $password = bcrypt('secret'),
-        'mobile_phone' => $faker->e164PhoneNumber,
+        'mobile_phone' => 1234567890,
         'email_address' => $faker->unique()->safeEmail,
-	'address' => $faker->address,
+	'address' => $faker->streetAddress,
     ];
 });
