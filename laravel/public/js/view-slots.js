@@ -11,8 +11,20 @@ $(document).ready(function() {
 });
 
 $(function () {
-    $('#date').datepicker({ minDate: 0, maxDate: '+3M', dateFormat: 'd M, yy' });
+    $('#date').datepicker({ minDate: 0, maxDate: '+1M', dateFormat: 'd M, yy' });
+    $('#date').attr("data-date", 'yy-mm-dd');
 });
+
+// obtains the date value when user selects a date from the calendar
+$('#date').datepicker({
+    onSelect: function() {
+        var dateObject = $(this).datepicker('getDate');
+        console.log(dateObject);
+    }
+});
+
+
+$('#date').datepicker('getDate');
 
 $('#search-button').click(function() {
 

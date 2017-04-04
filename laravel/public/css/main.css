@@ -15,7 +15,11 @@ h3 {
 }
 
 h4 {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+ul {
+    list-style-type: none;
 }
 
 form {
@@ -37,13 +41,12 @@ input[type="password"] {
   font-size: 0.9rem;
   background-color: #f9f9f9;
   border: 2px solid #d9d9d9;
-  border-radius: 5px;
   box-sizing: border-box;
 }
 
 input[type="radio"] {
   width: 8%;
-  margin-left: 2rem;
+  margin-right: 0.5rem;
 }
 
 input[type="checkbox"] {
@@ -58,7 +61,6 @@ select {
     font-size: 0.9rem;
     background-color: #f9f9f9;
     border: 2px solid #d9d9d9;
-    border-radius: 5px;
     box-sizing: border-box;
 }
 
@@ -71,7 +73,7 @@ button {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 15px;
-  color: #ffffff;
+  color: #fff;
   letter-spacing: 1px;
   line-height: 3em;
   text-transform: uppercase;
@@ -79,20 +81,23 @@ button {
 }
 
 table, th, tr, td {
-    border: 1px solid #d9d9d9;
+    border: 1px solid black;
 }
 
-th, td {
+td {
     padding: 5px;
     text-align: left;
+    background-color: #e5e5e5;
+}
+
+th {
+    padding: 5px;
+    text-align: left;
+    background-color: #adadad;
 }
 
 table {
     width: 100%;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2
 }
 
 .container {
@@ -135,12 +140,25 @@ tr:nth-child(even) {
     display: block;
 }
 
-.days-selection {
+.flex-container {
     display: flex;
 }
 
-.days {
+.flex {
     flex: 1;
+}
+
+.block-btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 3px;
+    background: #6699ff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+.timeslot:hover {
+    background: #4280ff;
 }
 
 #circle {
@@ -159,8 +177,8 @@ tr:nth-child(even) {
 }
 
 #date {
-    max-width: 25%;
-    border-radius: 0;
+    width: 320px;
+    box-sizing: border-box;
 }
 
 #search-button {

@@ -11,16 +11,23 @@
         <h1>Add Employee Working Times</h1>
         <form action="/addroster" method="post">
             {{ csrf_field() }}
-            <select class="" name="employee_id">
+            <select name="employee_id">
                 <option value="" selected disabled>Select employee</option>
                 @foreach($employees as $employee)
                     <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
             </select>
+            <h4>Choose available working dates</h4>
             <input id="date" type="text" placeholder="Select date">
-            <input type="radio" name="shift" value="Day">Day
-            <input type="radio" name="shift" value="Night">Night
-
+            <h4>Shift</h4>
+            <div class="flex-container">
+                <div class="flex">
+                    <input type="radio" name="shift" value="Day">Day
+                </div>
+                <div class="flex">
+                    <input type="radio" name="shift" value="Night">Night
+                </div>
+            </div>
             <button type="submit" name="submit">Add</button>
         </form>
     </div>
@@ -37,23 +44,8 @@
         @endif
     </div>
 
-    <script>
-        var currentDate = new Date();
-        var months = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+@endsection
 
-        var day = currentDate.getDate();
-        var month = months[currentDate.getMonth()];
-        var year = currentDate.getFullYear();
-        var currentDate = day + " " + month + ", " + year;
-
-        $(document).ready(function() {
-            $('#date').attr("placeholder", currentDate);
-        });
-
-        $(function () {
-            $('#date').datepicker({ minDate: 0, maxDate: '+1M', dateFormat: 'd M, yy' });
-            $('#date').attr("data-date", 'yy-mm-dd');
-        });
-    </script>
-
+@section('pageSpecificJs')
+    <script src="{{ asset('js/view-slots.js') }}"></script>
 @endsection
