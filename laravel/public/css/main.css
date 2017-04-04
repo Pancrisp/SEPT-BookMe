@@ -128,7 +128,7 @@ tr:nth-child(even) {
 }
 
 .error {
-    color: #333;
+    color: red;
 }
 
 .block {

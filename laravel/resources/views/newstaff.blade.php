@@ -11,14 +11,20 @@
         <h1>New Employee Registration</h1>
         <form action="/addstaff" method="post">
             {{ csrf_field() }}
+
             <input type="text" name="business_id" value="{{ $data['id'] }}" hidden>
+            <div class="error">{{ $errors->first('fullname') }}</div>
             <input type="text" name="fullname" placeholder="Full Name" value="{!! old('fullname') !!}" required>
+            <div class="error">{{ $errors->first('taxfileno') }}</div>
             <input type="text" name="taxfileno" placeholder="TFN" value="{!! old('TFN') !!}" required>
+            <div class="error">{{ $errors->first('phone') }}</div>
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}" required>
+            <div class="error">{{ $errors->first('role') }}</div>
             <select name="role" placeholder="Role" required>
                 <option value="" selected disabled>Select role</option>
                 <option value="Waiter">Waiter</option>
             </select>
+            <div class="error">{{ $errors->first('availability') }}</div>
             <h4>Available working days</h4>
             <div class="days-selection">
                 <div class="days">
@@ -34,20 +40,9 @@
                 </div>
             </div>
 
+            <div class="error">{{ $errors->first('result') }}</div>
             <button type="submit" name="submit">Submit</button>
         </form>
-    </div>
-
-    <div class="col-lg-4">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     </div>
 
 @endsection
