@@ -15,21 +15,25 @@
             <input type="text" name="fullname" placeholder="Full Name" value="{!! old('fullname') !!}">
             <input type="text" name="taxfileno" placeholder="TFN" value="{!! old('TFN') !!}">
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}">
-            <input type="text" name="role" placeholder="Role" value="{!! old('role') !!}">
-            <input type="checkbox" id="box-1" name="" value="1">
-            <label for="box-1">Monday</label>
-            <input type="checkbox" id="box-2" name="" value="2">
-            <label for="box-2">Tuesday</label>
-            <input type="checkbox" id="box-3" name="" value="3">
-            <label for="box-3">Wednesday</label>
-            <input type="checkbox" id="box-4" name="" value="4">
-            <label for="box-4">Thursday</label>
-            <input type="checkbox" id="box-5" name="" value="5">
-            <label for="box-5">Friday</label>
-            <input type="checkbox" id="box-6" name="" value="6">
-            <label for="box-6">Saturday</label>
-            <input type="checkbox" id="box-7" name="" value="7">
-            <label for="box-7">Sunday</label>
+            <select name="role" placeholder="Role">
+                <option value="" selected disabled>Select role</option>
+                <option value="{!! old('role') !!}">Waiter</option>
+            </select>
+            <h4>Available working days</h4>
+            <div class="days-selection">
+                <div class="days">
+                    <label><input type="checkbox" name="Monday" value="Mon">Monday</label>
+                    <label><input type="checkbox" name="Tuesday" value="Tue">Tuesday</label>
+                    <label><input type="checkbox" name="Wednesday" value="wed">Wednesday</label>
+                    <label><input type="checkbox" name="Thursday" value="Thu">Thursday</label>
+                </div>
+                <div class="days">
+                    <label><input type="checkbox" name="Friday" value="Fri">Friday</label>
+                    <label><input type="checkbox" name="Saturday" value="Sat">Saturday</label>
+                    <label><input type="checkbox" name="Sunday" value="Sun">Sunday</label>
+                </div>
+            </div>
+
 
             <button type="submit" name="submit">Submit</button>
         </form>

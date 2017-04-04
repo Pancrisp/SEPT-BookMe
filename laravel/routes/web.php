@@ -19,6 +19,10 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
+Route::get('/addworktime', function () {
+    return view('addWorkTime');
+});
+
 Route::get('/newstaff', 'EmployeeController@newStaff');
 Route::post('/addstaff', 'EmployeeController@addStaff');
 
