@@ -9,10 +9,12 @@
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
         <h2>View available booking times on</h2>
-        <input id="date" type="text" placeholder="Select date">
-        <button id="search-button">
-            <img id="search-icon" src="./img/search.png" alt="search icon">
-        </button>
+        <div class="search">
+            <input id="date" type="text" placeholder="Select date">
+            <button id="search-button">
+                <img id="search-icon" src="./img/search.png" alt="search icon">
+            </button>
+        </div>
     </div>
 @endsection
 
