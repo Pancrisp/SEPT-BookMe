@@ -8,7 +8,7 @@ class CustomersTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * create 3 random entries for testing purposes
+     * create 5 random entries for testing purposes
      *
      * @return void
      */
@@ -17,7 +17,7 @@ class CustomersTableSeeder extends Seeder
         for($i=0;$i<5;$i++)
         {
             $customer = factory(\App\Customer::class)->make([
-                'password' => bcrypt('secret')
+                'password'      => bcrypt('secret')
             ]);
 
             Customer::create([

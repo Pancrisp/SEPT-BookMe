@@ -25,8 +25,8 @@ $('#search-button').click(function() {
             'date': $date
         },
         success: function(response) {
-            var res = JSON.parse(response);
-            console.log(res); // this will help u to see what is in the res
+            // var res = JSON.parse(response);
+            console.log(response); // this will help u to see what is in the res
         }
     })
         .error(function(response) {

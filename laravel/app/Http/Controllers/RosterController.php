@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Roster;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -25,6 +26,33 @@ class RosterController
         }
     }
 
+    public function showRoster(Request $request)
+    {
+        $businessID = $request['business_id'];
+
+        $today = Carbon::now()->toDateString();
+        $aWeeklater = $today->addWeek();
+
+        $rosters = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+            ->select(
+                'employees.employee_name AS name',
+                'rosters.date AS date',
+                'rosters.shift AS shift'
+                )
+            ->where('employees.business_id', $businessID)
+            ->whereBetween('date', array($today, $aWeeklater))
+            ->orderBy('date', 'asc')
+            ->get();
+
+        foreach ($rosters as $roster)
+        {
+            $date = Carbon::parse($roster['date']);
+            $roster['day'] = $date->format('l');
+        }
+
+        return view('showRoster', compact('rosters'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -34,10 +62,9 @@ class RosterController
     private function validator(array $data)
     {
         return Validator::make($data, [
-            'fullname'  => 'required|max:255',
-            'role'      => 'required',
-            'date'      => 'required|date|after:today|before:'.Carbon::now()->addDays(30),
-            'shift'     => 'required'
+            'date'          => 'required|date|after:today|before:'.Carbon::now()->addDays(30),
+            'shift'         => 'required',
+            'employee_id'   => 'required|numeric'
         ]);
     }
 

@@ -45,7 +45,7 @@ class EmployeeController
             'taxfileno'     => 'required|digits:9|unique:employees,TFN',
             'phone'         => 'required|digits:10',
             'role'          => 'required',
-            'availability'  => 'required|between:1,7'
+            'availability'  => 'required'
         ]);
     }
 
