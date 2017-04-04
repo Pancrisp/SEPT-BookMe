@@ -61,7 +61,7 @@ class EmployeeController
 
         foreach ($data['availability'] as $day)
         {
-            $availability = $availability . " ". $data[$day];
+            $availability = $availability . " ". $day;
         }
 
         return Employee::create([
@@ -69,7 +69,7 @@ class EmployeeController
             'TFN'               => $data['taxfileno'],
             'mobile_phone'      => $data['phone'],
             'role'              => $data['role'],
-            'available_days'    => $data['availability'],
+            'available_days'    => $availability,
             'business_id'       => $data['business_id']
         ]);
     }
