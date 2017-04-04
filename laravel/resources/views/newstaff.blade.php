@@ -17,7 +17,7 @@
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}" required>
             <select name="role" placeholder="Role" required>
                 <option value="" selected disabled>Select role</option>
-                <option value="{!! old('role') !!}">Waiter</option>
+                <option value="Waiter">Waiter</option>
             </select>
             <h4>Available working days</h4>
             <div class="days-selection">

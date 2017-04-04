@@ -45,7 +45,7 @@ class EmployeeController
             'taxfileno'     => 'required|digits:9|unique:employees,TFN',
             'phone'         => 'required|digits:10',
             'role'          => 'required',
-            'availability'  => 'required|between:1,7'
+            'availability'  => 'required'
         ]);
     }
 
@@ -57,12 +57,19 @@ class EmployeeController
      */
     private function create(array $data)
     {
+        $availability = "";
+
+        foreach ($data['availability'] as $day)
+        {
+            $availability = $availability . " ". $day;
+        }
+
         return Employee::create([
             'employee_name'     => $data['fullname'],
             'TFN'               => $data['taxfileno'],
             'mobile_phone'      => $data['phone'],
             'role'              => $data['role'],
-            'available_days'    => $data['availability'],
+            'available_days'    => $availability,
             'business_id'       => $data['business_id']
         ]);
     }

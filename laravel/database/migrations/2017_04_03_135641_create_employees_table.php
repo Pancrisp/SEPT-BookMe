@@ -14,7 +14,7 @@ class CreateEmployeesTable extends Migration
      * TFN (unique)
      * mobile_phone
      * role
-     * available_days (possible values: 1234567)
+     * available_days
      * business_id (fk)
      *
      * @return void
