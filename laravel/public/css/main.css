@@ -6,12 +6,30 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+h1 {
+    margin-top: 0;
+}
+
+h3 {
+    margin: 2rem 0 0.5rem 0;
+}
+
+h4 {
+    margin-top: 0.5rem;
+}
+
 form {
   margin: 0 auto;
   width: 320px;
 }
 
-input {
+label {
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
   margin: 0.8rem 0;
   padding: 15px;
   width: 100%;
@@ -28,16 +46,20 @@ input[type="radio"] {
   margin-left: 2rem;
 }
 
-input::-webkit-input-placeholder {
-    color: black;
-    opacity: 1;
+input[type="checkbox"] {
+    margin-right: 0.5rem;
 }
 
 select {
-    width: 150px;
-    padding: 10px;
+    width: inherit;
+    margin: 0.8rem 0;
+    padding: 15px;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.9rem;
+    background-color: #f9f9f9;
+    border: 2px solid #d9d9d9;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
@@ -56,9 +78,26 @@ button {
   cursor: pointer;
 }
 
+table, th, tr, td {
+    border: 1px solid #d9d9d9;
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
 .container {
-  margin: 10em auto;
-  padding: 20px 0;
+  margin: 5rem auto;
+  padding: 40px 0;
   background-color: #ff8754;
 }
 
@@ -89,7 +128,19 @@ button {
 }
 
 .error {
-    color: #333;
+    color: red;
+}
+
+.block {
+    display: block;
+}
+
+.days-selection {
+    display: flex;
+}
+
+.days {
+    flex: 1;
 }
 
 #circle {
@@ -108,17 +159,18 @@ button {
 }
 
 #date {
+    max-width: 25%;
     border-radius: 0;
 }
 
 #search-button {
-    width: 20%;
+    width: 6%;
     margin: 0.8rem 0;
     border-radius: 0;
 }
 
 #search-icon {
-    max-width: 50%;
+    max-width: 60%;
     height: auto;
     vertical-align: middle;
     padding: 8px;

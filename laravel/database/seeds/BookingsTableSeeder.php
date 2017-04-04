@@ -14,10 +14,10 @@ class BookingsTableSeeder extends Seeder
     public function run()
     {
         $today = Carbon::today();
-        $hour = 9;
+        $hour = rand(9, 13);
 
         for($i=0; $i<3; $i++){
-            $customer = rand(0, 4);
+            $customer = rand(1, 3);
 
             Booking::create([
                 'date' => $today->toDateString(),
@@ -27,7 +27,7 @@ class BookingsTableSeeder extends Seeder
                 'business_id' => 1,
             ])->save();
 
-            $hour += 2;
+            $hour += rand(1, 2);
         }
 
     }

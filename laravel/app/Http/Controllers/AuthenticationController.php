@@ -14,8 +14,9 @@ class AuthenticationController
     public function login(Request $request)
     {
         $data = $request->all();
+        $data['usertype'] = $this->getUserType($data);
 
-        if(!$this->accountExists($data))
+        if($data["usertype"]==null)
         {
             return Redirect::back()
                 ->withInput()
@@ -36,28 +37,35 @@ class AuthenticationController
     }
 
     /**
-     * Check if the username entered exists in the database
+     * Get user type based on te username entered
      *
      * @param  array  $data
-     * @return boolean
+     * @return string
      */
-    private function accountExists(array $data)
+    private function getUserType(array $data)
     {
-        $type = $data['usertype'];
+        $customerUsernames  = Customer::select('username')->get()->toArray();
+        $customerEmails     = Customer::select('email_address')->get()->toArray();
 
-        if($type == 'customer')
+        $businessUsernames  = Business::select('username')->get()->toArray();
+        $businessEmails     = Business::select('email_address')->get()->toArray();
+
+        if  (   in_array(['username' => $data['username']], $customerUsernames)
+            ||  in_array(['email_address' => $data['username']], $customerEmails)
+            )
         {
-            $usernames  = Customer::select('username')->get()->toArray();
-            $emails     = Customer::select('email_address')->get()->toArray();
+            return "customer";
+        }
+        else if (   in_array(['username' => $data['username']], $businessUsernames)
+                ||  in_array(['email_address' => $data['username']], $businessEmails)
+                )
+        {
+            return "business";
         }
         else
         {
-            $usernames  = Business::select('username')->get()->toArray();
-            $emails     = Business::select('email_address')->get()->toArray();
+            return null;
         }
-
-        return ( in_array(['username' => $data['username']], $usernames)
-            ||   in_array(['email_address' => $data['username']], $emails) );
     }
 
     /**

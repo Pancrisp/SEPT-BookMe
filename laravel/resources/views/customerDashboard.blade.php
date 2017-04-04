@@ -9,15 +9,15 @@
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
         <h2>View available booking times on</h2>
-        <form class="form-booking" action="" method="post">
-            <div class="search">
-                <input id="date" type="text" placeholder="Select date">
-                <button id="search-button" type="submit" name="search">
-                    <img id="search-icon" src="./img/search.png" alt="search icon">
-                </button>
-            </div>
-        </form>
+        <input id="date" type="text" placeholder="Select date" value="2017-04-03">
+        <button id="search-button">
+            <img id="search-icon" src="./img/search.png" alt="search icon">
+        </button>
     </div>
+@endsection
+
+@section('pageSpecificJs')
+    <script src="{{ asset('js/view-slots.js') }}"></script>
 
     <script>
         var currentDate = new Date();
@@ -36,9 +36,4 @@
             $('#date').datepicker({ minDate: 0, maxDate: '+3M', dateFormat: 'd M, yy' });
         });
     </script>
-
-@endsection
-
-@section('pageSpecificJs')
-    <script src="{{ asset('js/view-slots.js') }}"></script>
 @endsection

@@ -19,12 +19,14 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
-Route::get('/newstaff', function () {
-    return view('newstaff');
-});
-
 Route::post('/register', 'RegistrationController@register');
 Route::post('/dashboard', 'AuthenticationController@login');
 
 Route::get('/bookings/getByDate', 'BookingController@getBookingsByDate');
 Route::get('/bookings/summary/{id}', 'BookingController@getBookingsByBusiness');
+
+Route::get('/newstaff', 'EmployeeController@newStaff');
+Route::post('/addstaff', 'EmployeeController@addStaff');
+
+Route::get('/newroster', 'RosterController@newRoster');
+Route::post('/addroster', 'RosterController@addRoster');
