@@ -57,6 +57,13 @@ class EmployeeController
      */
     private function create(array $data)
     {
+        $availability = "";
+
+        foreach ($data['availability'] as $day)
+        {
+            $availability = $availability . " ". $data[$day];
+        }
+
         return Employee::create([
             'employee_name'     => $data['fullname'],
             'TFN'               => $data['taxfileno'],
