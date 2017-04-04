@@ -16,15 +16,18 @@ class BookingsTableSeeder extends Seeder
         $today = Carbon::today();
         $hour = rand(9, 13);
 
-        for($i=0; $i<3; $i++){
-            $customer = rand(1, 3);
+        $noOfCustomers = \App\Customer::count();
+
+        for($i=0; $i<10; $i++){
+            $customer = rand(1, $noOfCustomers);
+            $business = rand(1,3);
 
             Booking::create([
                 'date' => $today->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
                 'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
                 'customer_id' => $customer,
-                'business_id' => 1,
+                'business_id' => $business,
             ])->save();
 
             $hour += rand(1, 2);
