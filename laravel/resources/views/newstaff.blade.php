@@ -26,9 +26,9 @@
                     <label><input type="checkbox" name="Tuesday" value="Tue">Tuesday</label>
                     <label><input type="checkbox" name="Wednesday" value="wed">Wednesday</label>
                     <label><input type="checkbox" name="Thursday" value="Thu">Thursday</label>
+                    <label><input type="checkbox" name="Friday" value="Fri">Friday</label>
                 </div>
                 <div class="days">
-                    <label><input type="checkbox" name="Friday" value="Fri">Friday</label>
                     <label><input type="checkbox" name="Saturday" value="Sat">Saturday</label>
                     <label><input type="checkbox" name="Sunday" value="Sun">Sunday</label>
                 </div>

@@ -17,8 +17,8 @@
 
         <div class="overview">
             <h3>Staff Management</h3>
-            <a class="block" href="/newstaff">Add new employee</a>
-            <a class="block" href="#">Add employee working time</a>
+            <a class="block" href="/newstaff?id={{ $user['business_id'] }}">Add new employee</a>
+            <a class="block" href="/addworktime">Add employee working time</a>
             <a class="block" href="#">Show all employees' availability for next 7 days</a>
         </div>
     </div>
