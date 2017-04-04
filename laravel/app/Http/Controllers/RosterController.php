@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use App\Roster;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,6 +11,13 @@ use Illuminate\Support\Facades\Validator;
 
 class RosterController
 {
+    public function newRoster(Request $request)
+    {
+        $businessID = $request['id'];
+        $employees = Employee::where('business_id', $businessID)->get();
+        return view('newRoster', compact('employees'));
+    }
+
     public function addRoster(Request $request)
     {
         $validator = $this->validator($request->all());
