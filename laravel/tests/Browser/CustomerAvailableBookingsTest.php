@@ -13,7 +13,7 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 
     /**
 	*  @test 
-	*  @group accepted 
+	*  @group pending 
 	*  @group customerAvailableBooking
 	*	
 	*  Test for checking whether not authenticated customers
@@ -37,7 +37,7 @@ class CustomerAvailableBookingsTest extends DuskTestCase
     
 	/**
 	*  @test 
-	*  @group accepted
+	*  @group pending
 	*  @group customerAvailableBooking
 	*	
 	*  Unit test for checking whether authenticated customers

@@ -64,20 +64,22 @@ class CheckBookingSummariesTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group current
+	*  @group accepted
 	*  @group bookingSummary
 	*	
-	*  Unit test for a successful display of booking summaries
-	*  compared to the dababase.
+	*  Unit test that checks the count of bookings for a given business 		*  and asserts according. 
 	*
 	*  @return void
 	*/
 	public function bookingSummaryCount()
 	{
+		$business_id = 3; 		
 		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
+		$owner = \App\Business::where('business_id',$business_id)->first();
+		// Retrieving bookings count of a specific business		
+		$bookingCount = \App\Booking::where('business_id',$business_id)->count();
 
-		$this->browse(function ($browser) use ($owner) {
+		$this->browse(function ($browser) use ($owner,$bookingCount) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
@@ -86,9 +88,12 @@ class CheckBookingSummariesTest extends DuskTestCase
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
 			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/bookings/summary/'.$owner->business_id)
-			    
- 				;
+			    ->assertPathIs('/bookings/summary/'.$owner->business_id);
+			if ($bookingCount == 0){
+				$browser->assertSee('Currently no booking.');
+			}else if ($bookingCount > 0){
+				$browser->assertVisible('table');
+			}
 		});
 	}
     
