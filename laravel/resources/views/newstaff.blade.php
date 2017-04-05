@@ -16,7 +16,7 @@
             <div class="error">{{ $errors->first('fullname') }}</div>
             <input type="text" name="fullname" placeholder="Full Name" value="{!! old('fullname') !!}" required>
             <div class="error">{{ $errors->first('taxfileno') }}</div>
-            <input type="text" name="taxfileno" placeholder="TFN" value="{!! old('TFN') !!}" required>
+            <input type="text" name="taxfileno" placeholder="TFN" value="{!! old('taxfileno') !!}" required>
             <div class="error">{{ $errors->first('phone') }}</div>
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}" required>
             <div class="error">{{ $errors->first('role') }}</div>
