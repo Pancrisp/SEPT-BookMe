@@ -10,11 +10,12 @@ $(document).ready(function() {
 
 // sets date value for roster date input field
 $("#roster-date").datepicker({
+    minDate: 0,
+    maxDate: '+1M',
     dateFormat: 'yy-mm-dd',
     onSelect: function() {
-        var date = document.querySelector('#dateHidden');
-        date.value = $(this).datepicker('getDate');
-        console.log(date.value);
+        var date = document.querySelector('#roster-date').value;
+        console.log(date);
     }
 });
 
@@ -31,11 +32,12 @@ $('#search-button').click(function() {
             'date': date
         },
         success: function(response) {
-            for (var i = 0; i < response.length; i++) {
-                console.log(response[i].start_time);
-                document.querySelector('.flex-container').innerHTML += ('<li class="flex"><a class="timeslot block-btn" href="#"></a></li>');
-                $('.timeslot').html(response[i].start_time);
-            }
+            console.log(response)
+            // for (var i = 0; i < response.length; i++) {
+            //     console.log(response[i].start_time);
+            //     document.querySelector('.flex-container').innerHTML += ('<li class="flex"><a class="timeslot block-btn" href="#"></a></li>');
+            //     $('.timeslot').html(response[i].start_time);
+            // }
         }
     })
         .error(function(response) {
