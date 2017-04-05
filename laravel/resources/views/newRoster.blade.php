@@ -21,7 +21,8 @@
 
             <!-- error message for date field needs to be put here, but the name 'date' can't be found -->
 
-            <input id="date" type="text" placeholder="Select date">
+            <input id="roster-date" type="text" placeholder="Select date" value="">
+            <input id="dateHidden" type="hidden" name="dateHidden" value="">
             <h4>Shift</h4>
             <div class="error">{{ $errors->first('shift') }}</div>
             <div class="flex-container">
@@ -51,5 +52,5 @@
 @endsection
 
 @section('pageSpecificJs')
-    <script src="{{ asset('js/view-slots.js') }}"></script>
+    <script src="{{ asset('js/dates.js') }}"></script>
 @endsection
