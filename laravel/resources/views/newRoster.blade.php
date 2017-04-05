@@ -18,8 +18,12 @@
                 @endforeach
             </select>
             <h4>Choose available working dates</h4>
+
+            <!-- error message for date field needs to be put here, but the name 'date' can't be found -->
+
             <input id="date" type="text" placeholder="Select date">
             <h4>Shift</h4>
+            <div class="error">{{ $errors->first('shift') }}</div>
             <div class="flex-container">
                 <div class="flex">
                     <input type="radio" name="shift" value="Day">Day

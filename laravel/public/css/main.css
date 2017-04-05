@@ -132,6 +132,11 @@ table {
     display: inline;
 }
 
+.head {
+    width: 10rem;
+    text-align: center;
+}
+
 .error {
     color: red;
 }
