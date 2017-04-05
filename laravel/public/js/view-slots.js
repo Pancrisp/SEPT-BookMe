@@ -8,27 +8,16 @@ var currentDate = day + " " + month + ", " + year;
 
 $(document).ready(function() {
     $('#date').attr("placeholder", currentDate);
+
+    $(function() {
+        $('#date').datepicker({ minDate: 0, maxDate: '+1M', dateFormat: 'd M, yy' });
+    });
 });
 
-$(function () {
-    $('#date').datepicker({ minDate: 0, maxDate: '+1M', dateFormat: 'd M, yy' });
-    $('#date').attr("data-date", 'yy-mm-dd');
-});
-
-// obtains the date value when user selects a date from the calendar
-$('#date').datepicker({
-    onSelect: function() {
-        var dateObject = $(this).datepicker('getDate');
-        console.log(dateObject);
-    }
-});
-
-
-$('#date').datepicker('getDate');
-
+// AJAX for viewing available booking slots
 $('#search-button').click(function() {
 
-    $date = document.querySelector('#date').attr("data-date");
+    $date = document.querySelector('#date').value;
 
     $.ajax({
         url: '/bookings/getByDate',
@@ -38,7 +27,8 @@ $('#search-button').click(function() {
         },
         success: function(response) {
             // var res = JSON.parse(response);
-            console.log(response); // this will help u to see what is in the res
+            console.log(response);
+            $('.timeslot').html(response);
         }
     })
         .error(function(response) {
