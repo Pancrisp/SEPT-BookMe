@@ -70,7 +70,7 @@ class RosterController
     private function validator(array $data)
     {
         return Validator::make($data, [
-            'date'          => 'required|date|after:today|before:'.Carbon::now()->addDays(30),
+            'date'          => 'required|date|after:today',
             'shift'         => 'required',
             'employee_id'   => 'required|numeric'
         ]);

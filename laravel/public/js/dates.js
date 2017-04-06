@@ -9,13 +9,14 @@ $(document).ready(function() {
 });
 
 // sets date value for roster date input field
-$("#roster-date").datepicker({
+$('#roster-date').datepicker({
     minDate: 0,
     maxDate: '+1M',
     dateFormat: 'yy-mm-dd',
     onSelect: function() {
         var date = document.querySelector('#roster-date').value;
         console.log(date);
+        $('#dateHidden').val(date);
     }
 });
 

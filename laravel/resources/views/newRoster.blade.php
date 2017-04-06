@@ -21,7 +21,7 @@
             <h4>Choose available working dates</h4>
             <div class="error">{{ $errors->first('date') }}</div>
             <input id="roster-date" type="text" placeholder="Select date" value="">
-            <input id="dateHidden" type="hidden" name="dateHidden" value="">
+            <input id="dateHidden" type="hidden" name="date" value="">
             <h4>Shift</h4>
             <div class="error">{{ $errors->first('shift') }}</div>
             <div class="flex-container">
