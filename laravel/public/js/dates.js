@@ -19,11 +19,18 @@ $("#roster-date").datepicker({
     }
 });
 
-// AJAX for viewing available booking slots
-$('#search-button').click(function() {
-
+// appends the user's selected date onto the current bookings section
+$('#date').change(function() {
     var date = document.querySelector('#date').value;
     console.log(date);
+    $('#date-selected').html('');
+    $('#date-selected').append(date);
+});
+
+// AJAX request for viewing available booking slots
+$('#date').change(function() {
+
+    var date = document.querySelector('#date').value;
 
     $.ajax({
         url: '/bookings/getByDate',

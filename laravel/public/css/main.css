@@ -29,11 +29,13 @@ form {
 
 label {
     display: flex;
-    margin-bottom: 0.5rem;
+    margin: 1rem 0 0 0;
+    font-weight: 600;
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="time"] {
   margin: 0.8rem 0;
   padding: 15px;
   width: 100%;
@@ -124,10 +126,6 @@ table {
     margin-top: 3rem;
 }
 
-.search {
-    display: flex;
-}
-
 .picker {
     display: inline;
 }
@@ -181,9 +179,9 @@ table {
     font-size: 2.5rem;
 }
 
-#date {
+#date,
+#time {
     width: 320px;
-    box-sizing: border-box;
 }
 
 #roster-date {
