@@ -6,7 +6,6 @@
         <title>@yield('title')</title>
 
         <!-- Font Awesome -->
-        <link href="vendor/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Source+Sans+Pro" rel="stylesheet">
 
         <!-- Custom CSS -->

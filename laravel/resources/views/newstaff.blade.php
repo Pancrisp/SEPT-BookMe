@@ -26,15 +26,15 @@
             </select>
             <div class="error">{{ $errors->first('availability') }}</div>
             <h4>Available working days</h4>
-            <div class="days-selection">
-                <div class="days">
+            <div class="flex-container">
+                <div class="flex">
                     <label><input type="checkbox" name="availability[]" value="Mon">Monday</label>
                     <label><input type="checkbox" name="availability[]" value="Tue">Tuesday</label>
                     <label><input type="checkbox" name="availability[]" value="Wed">Wednesday</label>
                     <label><input type="checkbox" name="availability[]" value="Thu">Thursday</label>
                     <label><input type="checkbox" name="availability[]" value="Fri">Friday</label>
                 </div>
-                <div class="days">
+                <div class="flex">
                     <label><input type="checkbox" name="availability[]" value="Sat">Saturday</label>
                     <label><input type="checkbox" name="availability[]" value="Sun">Sunday</label>
                 </div>

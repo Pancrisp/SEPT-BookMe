@@ -19,6 +19,10 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
+Route::get('/viewroster', function () {
+    return view('roster');
+});
+
 Route::post('/register', 'RegistrationController@register');
 Route::post('/dashboard', 'AuthenticationController@login');
 
