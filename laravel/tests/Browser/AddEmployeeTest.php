@@ -13,34 +13,36 @@ class AddEmployeeTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group pending
+	*  @group accepted
 	*  @group addEmployee
 	*	
 	*  Unit test for a successful employee registration.
 	*
 	*  @return void
 	*/
-	public function addEmployeeSuccessful()
+	public function add_employee_successful()
 	{
 		// Retrieving an existing customer		
 		$owner = \App\Business::where('business_id',3)->first();
+		$employee = factory(\App\Employee::class)->make();
 
-		$this->browse(function ($browser) use ($owner) {
+		$this->browse(function ($browser) use ($owner, $employee) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
-			    ->type('password', 'secret')
-			    ->radio('usertype', 'business' )    
+			    ->type('password', 'secret')  
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('+ Add new staff')
+			    ->assertSee('Hello, '.$owner->owner_name)
+			    ->clickLink('Add new employee')
 			    ->assertPathIs('/newstaff')
-			    ->type('name','testEmployee')
-			    ->type('mobile',1234567890)
-		    	    ->type('employeeTFN', '12345678')
-		    	    ->type('role','waiter')
+			    ->type('fullname',$employee->employee_name)
+			    ->type('phone',$employee->mobile_phone)
+		    	    ->type('taxfileno', $employee->TFN)
+		    	    ->select('role','Waiter')
+			    ->check("input[name='availability[]'][value='Tue']")
+			    ->check("input[name='availability[]'][value='Fri']")
 			    ->press('submit')
-			    ->assertSee('Employee added successfully')
+			    ->assertSee('Staff added successfully')
  				;
 		});
 	}
@@ -55,7 +57,7 @@ class AddEmployeeTest extends DuskTestCase
 	*
 	*  @return void
 	*/
-	public function addEmployeeNotAuthenticated()
+	public function add_employee_not_authenticated()
 	{
 		// Retrieving an existing customer		
 		$owner = \App\Business::where('business_id',3)->first();
@@ -70,42 +72,117 @@ class AddEmployeeTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group pending
+	*  @group accepted
 	*  @group addEmployee
 	*	
 	*  Add employee not successfully, existing TFN
 	*
 	*  @return void
 	*/
-	public function addEmployeeExistingTFN()
+	public function add_employee_existing_TFN()
+	{
+		$business_id = 2;		
+		// Retrieving an existing customer		
+		$owner = \App\Business::where('business_id',$business_id)->first();
+		$employee = \App\Employee::where('business_id',$business_id)->first();
+		// If there is an employee
+		if (isset($employee)){
+			$this->browse(function ($browser) use ($owner, $employee) {
+		    	$browser->visit('/')    
+			    ->type('username',$owner->username)
+			    ->type('password', 'secret')  
+			    ->press('login')
+			    ->assertPathIs('/dashboard')   
+			    ->assertSee('Hello, '.$owner->owner_name)
+			    ->clickLink('Add new employee')
+			    ->assertPathIs('/newstaff')
+			    ->type('fullname','other_employee_name')
+			    ->type('phone',0410000111)
+		    	    ->type('taxfileno', $employee->TFN)
+		    	    ->select('role','Waiter')
+			    ->check("input[name='availability[]'][value='Tue']")
+			    ->check("input[name='availability[]'][value='Fri']")
+			    ->press('submit')
+			    ->assertPathIs('/newstaff')
+			    ->assertSee('The TFN you have entered is already registered')
+ 				;
+			});
+		}else { // If there is not an employee, create one and test it
+			$new_employee = factory(\App\Employee::class)->make();
+
+			$this->browse(function ($browser) use ($owner, $new_employee) {
+			    $browser->visit('/')    
+				    ->type('username',$owner->username)
+				    ->type('password', 'secret')  
+				    ->press('login')
+				    ->assertPathIs('/dashboard')   
+				    ->assertSee('Hello, '.$owner->owner_name)
+				    ->clickLink('Add new employee')
+				    ->assertPathIs('/newstaff')
+				    ->type('fullname',$new_employee->employee_name)
+				    ->type('phone',$new_employee->mobile_phone)
+			    	    ->type('taxfileno', $new_employee->TFN)
+			    	    ->select('role','Waiter')
+				    ->check("input[name='availability[]'][value='Fri']")
+				    ->press('submit')
+				    ->assertSee('Staff added successfully')
+				    // Attempting existing TFN
+				    ->type('fullname','other_employee_name')
+				    ->type('phone',0410000111)
+			    	    ->type('taxfileno', $new_employee->TFN)
+			    	    ->select('role','Waiter')
+				    ->check("input[name='availability[]'][value='Tue']")
+				    ->press('submit')
+				    ->assertPathIs('/newstaff')
+				    ->assertSee('The TFN you have entered is already registered')
+					;			
+			    });
+
+		}
+	}
+     
+	/**
+	*  @test 
+	*  @group accepted
+	*  @group addEmployee
+	*	
+	*  Unit test for mandatory fields in the add employee registration form.
+	*
+	*  @return void
+	*/
+	public function add_employee_mandatory_fields()
 	{
 		// Retrieving an existing customer		
 		$owner = \App\Business::where('business_id',3)->first();
-		//TODO factory for employee		
-		$employee = \App\Business::where('business_id',1)->first();
-		
+		$employee = factory(\App\Employee::class)->make();
 
 		$this->browse(function ($browser) use ($owner, $employee) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
-			    ->type('password', 'secret')
-			    ->radio('usertype', 'business' )    
+			    ->type('password', 'secret')  
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('+ Add new staff')
+			    ->assertSee('Hello, '.$owner->owner_name)
+			    ->clickLink('Add new employee')
 			    ->assertPathIs('/newstaff')
-			   /* ->type('name','testEmployee')
-			    ->type('mobile',1234567890)
-		    	    ->type('employeeTFN', '12345678')
-		    	    ->type('role','waiter')
+			    // passing blank mandatory fields
 			    ->press('submit')
- 			    ->press('add')
-            		    ->assertSee('Duplicate Employee TFN')*/
-			;
+			    ->assertDontSee('Staff added successfully')
+			    ->type('fullname',$employee->employee_name)
+			    ->press('submit')
+			    ->assertDontSee('Staff added successfully')
+			    ->type('phone',$employee->mobile_phone)
+			    ->press('submit')
+			    ->assertDontSee('Staff added successfully')
+		    	    ->type('taxfileno', $employee->TFN)
+			    ->press('submit')
+			    ->assertDontSee('Staff added successfully')
+		    	    ->select('role','Waiter')
+			    ->press('submit')
+			    ->assertDontSee('Staff added successfully')
+			    ->assertSee('The availability field is required')
+ 				;
 		});
 	}
-     
-
        
 }
