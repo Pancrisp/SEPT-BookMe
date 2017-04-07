@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <td>Night</td>
-                <!-- feed worker availability data here ->
+                <!-- feed worker availability data here -->
             </tr>
         </table>
     </div>

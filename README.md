@@ -1,15 +1,17 @@
 # SEPT-Copsicus
 
 ## Group Members
+- Lei Zheng (s3558319)
+- Paulo Flores (s3568672)
+- Hooi Loong Chua (s3577844)
 
-Lei Zheng (s3558319)
+*Tutor: Lawrence Cavedon (Tuesdays, 9:30am - 11:30am)*
 
-Paulo Flores (s3568672)
+### Collaboration Tools
+- Trello - https://trello.com/b/8ds7YfU7/part-one
+- Slack - https://sept-copsicus.slack.com
 
-Hooi Loong Chua (s3577844)
-
-
-## INSTALLATION 
+## INSTALLATION
 
 Note: commands run in this installation tutorial have been tested in Ubuntu 16.04 LTS
 To run the project there are a few installation requirements that need to be met:
@@ -20,7 +22,7 @@ To run the project there are a few installation requirements that need to be met
 ### INSTALLING PHP
 This project uses PHP version 7
 
-Updating package manager.	
+Updating package manager.
 `sudo apt-get update`
 
 Installing php 7
@@ -39,9 +41,9 @@ Installing requirements for composer
 Downloading and installing composer
 `curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer`
 
-Testing composer successful installation 
+Testing composer successful installation
 `composer`
- 
+
 Download Laravel installer using composer
 `composer global require "laravel/installer"`
 
@@ -59,7 +61,7 @@ Once Laravel is ready, we proceed to install and configure a database. By defaul
 
 Set a password for the mysql root user. This step will be necessary for later database setup.
 
-Create Project database, username and password 
+Create Project database, username and password
 Login to MySQL
 `mysql -u mysql_user -p`
 
@@ -90,7 +92,7 @@ Open laravel folder in the cloned project and setup project environment.
 Update composer dependencies
 `composer update`
 
-Set up environment for database connection. 
+Set up environment for database connection.
 Copy and rename .env.example
 `cp .env.example .env`
 
@@ -103,7 +105,7 @@ DB_DATABASE=SEPT
 DB_USERNAME=sept
 DB_PASSWORD=secret
 ```
-	
+
 Set up a key
 `php artisan key:generate`
 
@@ -128,7 +130,7 @@ Update the values for mysql db to match the ones already configured in the envir
 ```
 
 ### SETUP TESTING WITH DUSK
-To run the browser automated tests, dusk utilises Chrome Driver which is a server that implements WebDriver protocol. It works with Chrome or Chromium browser. 
+To run the browser automated tests, dusk utilises Chrome Driver which is a server that implements WebDriver protocol. It works with Chrome or Chromium browser.
 
 #### Installation requirements
 
@@ -136,7 +138,7 @@ Installing some dependencies
 `sudo apt-get install php-curl`
 
 Update .env located in laravel folder to include APP_URL.
-Since the tests are run locally serves by php, it is specified APP_URL as localhost. It is important to match the port as well. If you decide to serve on a different port, this value should be updated here. 
+Since the tests are run locally serves by php, it is specified APP_URL as localhost. It is important to match the port as well. If you decide to serve on a different port, this value should be updated here.
 
 `APP_URL = localhost:8000`
 
@@ -144,7 +146,7 @@ Since the tests are run locally serves by php, it is specified APP_URL as localh
 Make sure chrome is in the default location so later chrome driver can locate it.
 
 #### Installing Chrome Driver
-Download chrome driver for Linux from 
+Download chrome driver for Linux from
 [Chrome Driver](https://chromedriver.storage.googleapis.com/index.html?path=2.29/)
 
 Unzip the file in and take note of the folder in which you place it. This folder must be included in the $PATH. One of the ways of doing it is:
@@ -175,9 +177,8 @@ To run the tests first start the server
 Open a different terminal and run
 `php artisan dusk`
 
-In case all the tests return Error. Open a different terminal and start manually start chrome driver 
+In case all the tests return Error. Open a different terminal and start manually start chrome driver
 `chromedriver`
 
-Then run again 
+Then run again
 `php artisan dusk`
-
