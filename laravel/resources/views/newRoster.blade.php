@@ -11,6 +11,7 @@
         <h1>Add Employee Working Times</h1>
         <form action="/addroster" method="post">
             {{ csrf_field() }}
+            <div class="error">{{ $errors->first('employee_id') }}</div>
             <select name="employee_id">
                 <option value="" selected disabled>Select employee</option>
                 @foreach($employees as $employee)
@@ -18,11 +19,9 @@
                 @endforeach
             </select>
             <h4>Choose available working dates</h4>
-
-            <!-- error message for date field needs to be put here, but the name 'date' can't be found -->
-
+            <div class="error">{{ $errors->first('date') }}</div>
             <input id="roster-date" type="text" placeholder="Select date" value="">
-            <input id="dateHidden" type="hidden" name="dateHidden" value="">
+            <input id="dateHidden" type="hidden" name="date" value="">
             <h4>Shift</h4>
             <div class="error">{{ $errors->first('shift') }}</div>
             <div class="flex-container">
@@ -33,22 +32,11 @@
                     <input type="radio" name="shift" value="Night">Night
                 </div>
             </div>
+
+            <div class="error">{{ $errors->first('result') }}</div>
             <button type="submit" name="submit">Add</button>
         </form>
     </div>
-
-    <div class="col-lg-4">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
-
 @endsection
 
 @section('pageSpecificJs')
