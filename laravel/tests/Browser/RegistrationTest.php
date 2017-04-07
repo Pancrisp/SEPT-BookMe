@@ -21,7 +21,7 @@ class RegistrationTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function registrationSuccessful()
+	public function registration_successful()
 	{
 		$customer = factory(\App\Customer::class)->make([ 
 			'password' => bcrypt('copsic')
@@ -40,8 +40,7 @@ class RegistrationTest extends DuskTestCase
 			    ->press('signup')
 			    ->assertPathIs('/')
 			    ->type('username',$customer->username)
-			    ->type('password', 'copsic')
-			    ->radio('usertype', 'customer' )    
+			    ->type('password', 'copsic')  
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$customer->customer_name)
@@ -60,7 +59,7 @@ class RegistrationTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function registrationUniqueUsername()
+	public function registration_unique_username()
 	{
 		// Retrieving an existing customer		
 		$customer = \App\Customer::where('customer_id',1)->first();
@@ -91,7 +90,7 @@ class RegistrationTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function registrationMissingDetails()
+	public function registration_missing_details()
 	{
 		
 		$this->browse(function ($browser) {
@@ -117,7 +116,7 @@ class RegistrationTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function registrationPasswordLength()
+	public function registration_password_length()
 	{
 		$customer = factory(\App\Customer::class)->make([ 
 			'password' => bcrypt('copsicus123')
@@ -145,7 +144,7 @@ class RegistrationTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function registrationPasswordConfirmation()
+	public function registration_password_confirmation()
 	{
 		$customer = factory(\App\Customer::class)->make([ 
 			'password' => bcrypt('copsicus123')
@@ -155,11 +154,11 @@ class RegistrationTest extends DuskTestCase
 		    $browser->visit('/signup')  
 			    ->type('fullname',$customer->customer_name)  
 			    ->type('username',$customer->username)
-			    ->type('password','1234')
-			    ->type('password_confirmation','1234')
+			    ->type('password','1234567')
+			    ->type('password_confirmation','123456')
 			    ->press('signup')
 			    ->assertPathIs('/signup')   
-			   ->assertSee('The password must be at least 6 characters');
+			   ->assertSee('The password confirmation does not match');
 		});
 	}
  
@@ -173,7 +172,7 @@ class RegistrationTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function registrationPhoneLength()
+	public function registration_phone_length()
 	{
 		$customer = factory(\App\Customer::class)->make([ 
 			'password' => bcrypt('copsicus123')

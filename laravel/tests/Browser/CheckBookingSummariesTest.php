@@ -20,7 +20,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 	*
 	*  @return void
 	*/
-	public function bookingSummarySuccessful()
+	public function business_owner_booking_summary_successful()
 	{
 		// Retrieving an existing customer		
 		$owner = \App\Business::where('business_id',3)->first();
@@ -29,7 +29,6 @@ class CheckBookingSummariesTest extends DuskTestCase
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
-			    ->radio('usertype', 'business' )    
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
@@ -43,14 +42,14 @@ class CheckBookingSummariesTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group bug#3
+	*  @group bug#4
 	*  @group bookingSummary
 	*	
 	*  Unit test for unauthenticated business owner attempting to check 		*  booking Summaries.
 	*
 	*  @return void
 	*/
-	public function bookingSummaryNotAuthenticated()
+	public function business_owner_not_authenticated_booking_summary()
 	{
 		// Retrieving an existing customer		
 		$owner = \App\Business::where('business_id',3)->first();
@@ -71,7 +70,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 	*
 	*  @return void
 	*/
-	public function bookingSummaryCount()
+	public function business_owner_booking_summary_count()
 	{
 		$business_id = 3; 		
 		// Retrieving an existing customer		
@@ -82,8 +81,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 		$this->browse(function ($browser) use ($owner,$bookingCount) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
-			    ->type('password', 'secret')
-			    ->radio('usertype', 'business' )    
+			    ->type('password', 'secret')   
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
