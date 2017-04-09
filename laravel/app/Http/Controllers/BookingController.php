@@ -28,7 +28,7 @@ class BookingController
 
         $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->where('bookings.business_id', $businessID)
-            ->where('bookings.date', '>', $today)
+            ->where('bookings.date', '>=', $today)
             ->get();
 
         $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
