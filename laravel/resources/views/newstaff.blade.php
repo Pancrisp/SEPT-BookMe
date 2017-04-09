@@ -6,9 +6,11 @@
 
 @section('content')
     @include('includes.header')
+    @include('includes.return')
 
     <div class="box">
         <h1>New Employee Registration</h1>
+        <div class="success">{{ $errors->first('result') }}</div>
         <form action="/addstaff" method="post">
             {{ csrf_field() }}
 
@@ -40,7 +42,6 @@
                 </div>
             </div>
 
-            <div class="error">{{ $errors->first('result') }}</div>
             <button type="submit" name="submit">Submit</button>
         </form>
     </div>

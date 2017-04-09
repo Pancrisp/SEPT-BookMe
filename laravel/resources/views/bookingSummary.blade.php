@@ -6,6 +6,7 @@
 
 @section('content')
     @include('includes.header')
+    @include('includes.return')
 
     <div class="dashboard">
         <h2>New Bookings Today</h2>
