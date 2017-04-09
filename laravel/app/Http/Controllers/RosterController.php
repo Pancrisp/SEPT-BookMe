@@ -28,7 +28,7 @@ class RosterController
                 ->withErrors($validator);
         }
 
-        if($this->create($request->all())){
+        if($this->update($request->all()) || $this->create($request->all())){
             return Redirect::back()
                 ->withErrors(['result' => 'Roster added successfully!']);
         }
@@ -93,6 +93,32 @@ class RosterController
             'shift'         => 'required',
             'employee_id'   => 'required|numeric'
         ]);
+    }
+
+    /**
+     * Replace the employee_id if there was someone in the shift
+     *
+     * @return boolean
+     */
+    private function update(array $data)
+    {
+        $roster = Roster::where('date', $data['date'])
+            ->where('shift', $data['shift'])
+            ->first();
+
+
+
+        if($roster != null)
+        {
+            $roster->employee_id = $data['employee_id'];
+            $roster->save();
+
+
+
+            return true;
+        }
+        else
+            return false;
     }
 
     /**
