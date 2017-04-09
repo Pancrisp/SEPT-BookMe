@@ -8,37 +8,26 @@ class CustomersTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * create 3 random entries for testing purposes
+     * create 5 random entries for testing purposes
      *
      * @return void
      */
     public function run()
     {
-        Customer::create([
-            'customer_name' => 'Grace',
-            'username' => 'gracezzz',
-            'password' => bcrypt('secret'),
-            'email_address' => 's3558319@gmail.com',
-            'mobile_phone' => '0411111111',
-            'address' => '124 La Trobe St, Melbourne VIC 3000',
-        ])->save();
+        for($i=0;$i<5;$i++)
+        {
+            $customer = factory(\App\Customer::class)->make([
+                'password'      => bcrypt('secret')
+            ]);
 
-        Customer::create([
-            'customer_name' => 'Ervin',
-            'username' => 'pancrisp',
-            'password' => bcrypt('secret'),
-            'email_address' => 's3577844@gmail.com',
-            'mobile_phone' => '0422222222',
-            'address' => '124 La Trobe St, Melbourne VIC 3000',
-        ])->save();
-
-        Customer::create([
-            'customer_name' => 'Paulo',
-            'username' => 'paulozf',
-            'password' => bcrypt('secret'),
-            'email_address' => 's3568672@gmail.com',
-            'mobile_phone' => '0433333333',
-            'address' => '124 La Trobe St, Melbourne VIC 3000',
-        ])->save();
+            Customer::create([
+                'customer_name' => $customer->customer_name,
+                'username' => $customer->username,
+                'password' => $customer->password,
+                'email_address' => $customer->email_address,
+                'mobile_phone' => $customer->mobile_phone,
+                'address' => $customer->address,
+            ])->save();
+        }
     }
 }

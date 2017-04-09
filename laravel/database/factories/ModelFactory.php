@@ -23,17 +23,45 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-
 $factory->define(App\Customer::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-	'customer_id' => $faker->randomNumber(4),
         'customer_name' => $faker->name,
-	'username' => $faker->unique()->userName,
+	    'username' => $faker->unique()->userName,
         'password' => $password ?: $password = bcrypt('secret'),
-        'mobile_phone' => $faker->e164PhoneNumber,
+        'mobile_phone' => '04'.rand(10000000,99999999),
         'email_address' => $faker->unique()->safeEmail,
-	'address' => $faker->address,
+	    'address' => $faker->streetAddress,
+    ];
+});
+
+$factory->define(App\Employee::class, function (Faker\Generator $faker) {
+
+    $weekdays = array(
+        'Mon',
+        'Tue',
+        'Wed',
+        'Thu',
+        'Fri',
+        'Sat',
+        'Sun'
+    );
+
+    $noOfDays = rand(2,7);
+    $rand_key = array_rand($weekdays, $noOfDays);
+    $availability = "";
+    foreach ($rand_key as $key)
+    {
+        $availability = $availability . " " . $weekdays[$key];
+    }
+
+    return [
+        'employee_name' => $faker->name,
+        'TFN' => rand(100000000,999999999),
+        'mobile_phone' => '04'.rand(10000000,99999999),
+        'role' => 'Waiter',
+        'available_days'    => $availability,
+        'business_id' => 1
     ];
 });

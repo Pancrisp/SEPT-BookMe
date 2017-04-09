@@ -23,7 +23,7 @@
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}">
             <div class="error">{{ $errors->first('address') }}</div>
             <input type="text" name="address" placeholder="Address" value="{!! old('address') !!}">
-            <button type="submit">Sign Up</button>
+            <button type="submit" name="signup">Sign Up</button>
         </form>
         <div class="login">
             <p>Already have an account? <a href="/">Sign in here</a></p>

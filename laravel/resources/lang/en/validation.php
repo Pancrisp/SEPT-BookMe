@@ -104,6 +104,11 @@ return [
         'email' => [
             'unique' => 'The email address you have entered is already registered.',
         ],
+        'taxfileno' => [
+            'unique' => 'The TFN you have entered is already registered.',
+            'required' => 'The TFN file is required.',
+            'digits' => 'The TFN you have entered is not valid.'
+        ]
     ],
 
     /*

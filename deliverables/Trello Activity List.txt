@@ -1,0 +1,567 @@
+Ervin Chua moved Write up user documentation from In Progress to Completed (week 7 demo)7 minutes ago
+Grace Zheng (gracezzzz)Grace Zheng moved Integrate business owner functionalities from In Progress to Completed (week 7 demo)22 minutes ago
+Grace Zheng (gracezzzz)Grace Zheng completed if the shift already has someone on Integrate business owner functionalities22 minutes ago
+Grace Zheng (gracezzzz)Grace Zheng moved Integrate customer functionalities from In Progress to Completed (week 7 demo)an hour ago
+Grace Zheng (gracezzzz)Grace Zheng completed view available slots on Integrate customer functionalitiesan hour ago
+Grace Zheng (gracezzzz)Grace Zheng moved Implement go back to dashboard button for business owner from Sprint Backlog to Completed (week 7 demo)3 hours ago
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Implement go back to dashboard button for business owner3 hours ago
+Grace Zheng (gracezzzz)Grace Zheng joined Implement go back to dashboard button for business owner3 hours ago
+Grace Zheng (gracezzzz)Grace Zheng added Implement go back to dashboard button for business owner to Sprint Backlog3 hours ago
+Grace Zheng (gracezzzz)Grace Zheng removed Ervin Chua from Integrate customer functionalities4 hours ago
+Grace Zheng (gracezzzz)Grace Zheng removed Ervin Chua from Integrate business owner functionalities4 hours ago
+Grace Zheng (gracezzzz)Grace Zheng added Validation for add roster to Integrate business owner functionalities4 hours ago
+Grace Zheng (gracezzzz)Grace Zheng completed view roster on Integrate business owner functionalities4 hours ago
+Grace Zheng (gracezzzz)Grace Zheng completed new bookings made tody on Integrate business owner functionalities5 hours ago
+Grace Zheng (gracezzzz)Grace Zheng completed pull booking after today only on Integrate business owner functionalities5 hours ago
+Grace Zheng (gracezzzz)Grace Zheng added Improvements for booking summary to Integrate business owner functionalities5 hours ago
+PPaulo moved Update Roster Tests cases from In Progress to Completed (week 7 demo)8 hours ago
+PPaulo moved Set up project from clean install from In Progress to Completed (week 7 demo)8 hours ago
+PPaulo moved Design class diagram from In Progress to Completed (week 7 demo)8 hours ago
+P
+Paulo attached TestSuite_sept-part-a.csv.xlsx to tests  
+8 hours ago
+PPaulo added tests to Deliverables8 hours ago
+PPaulo moved Design class diagram from Sprint Backlog to In ProgressApr 7 at 10:21 PM
+Ervin Chua (ervinchua2)Ervin Chua deleted the Image uploaded from iOS.jpg attachment from Design view available slots page/section (customer)Apr 7 at 10:37 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design view available slots page/section (customer) from In Progress to Completed (week 7 demo)Apr 7 at 10:36 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Integrate business owner functionalities
+BOOKING SUMMARY
+
+pull booking after today only
+have a session called new bookings that pulls bookings made today only
+Apr 7 at 1:47 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Integrate customer functionalitiesApr 7 at 1:40 AM
+Grace Zheng (gracezzzz)Grace Zheng completed add new employee on Integrate business owner functionalitiesApr 7 at 1:39 AM
+Grace Zheng (gracezzzz)Grace Zheng completed add new working time on Integrate business owner functionalitiesApr 7 at 1:39 AM
+Grace Zheng (gracezzzz)Grace Zheng completed view booking summary on Integrate business owner functionalitiesApr 7 at 1:39 AM
+Grace Zheng (gracezzzz)Grace Zheng added Funtionalities to Integrate business owner functionalitiesApr 7 at 1:39 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Redirect to login page whenever try to access pages without logining from In Progress to Completed (week 7 demo)Apr 7 at 1:38 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Redirect to login page whenever try to access pages without logining from Sprint Backlog to In ProgressApr 7 at 1:21 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Present user stories in a PDF from Sprint Backlog to Completed (week 7 demo)Apr 6 at 11:59 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Present user stories in a PDFApr 6 at 11:01 PM
+Ervin Chua (ervinchua2)Ervin Chua added Present user stories in a PDF to Sprint BacklogApr 6 at 11:01 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Redirect to login page whenever try to access pages without loginingApr 6 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng added Redirect to login page whenever try to access pages without logining to Sprint BacklogApr 6 at 5:25 PM
+Ervin Chua (ervinchua2)
+Ervin Chua attached Image uploaded from iOS.jpg to Design view available slots page/section (customer)  
+Apr 6 at 1:17 PM
+P
+Paulo attached INSTALLATION_DOC.pdf to Project Installation  
+Apr 6 at 12:28 PM
+PPaulo added Project Installation to DocumentationApr 6 at 12:18 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design add staff working time page (business owner) from Blocked to Completed (week 7 demo)Apr 6 at 1:22 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design view roster page (business owner) from In Progress to Completed (week 7 demo)Apr 6 at 12:46 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design view roster page (business owner) from Sprint Backlog to In ProgressApr 5 at 9:48 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Write seeders for employees and rosters tables from In Progress to Completed (week 7 demo)Apr 5 at 1:16 AM
+Grace Zheng (gracezzzz)Grace Zheng completed rosters on Write seeders for employees and rosters tablesApr 5 at 1:16 AM
+Grace Zheng (gracezzzz)Grace Zheng disabled the Card Aging Power-UpApr 5 at 12:44 AM
+Grace Zheng (gracezzzz)Grace Zheng enabled the Card Aging Power-UpApr 5 at 12:44 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design add staff working time page (business owner)
+@ervinchua2 Cool. I was wondering why this card was in blocked lol
+Apr 5 at 12:40 AM
+Ervin Chua (ervinchua2)
+Ervin Chua on Design add staff working time page (business owner)
+@gracezzzz Design is done but I'll fix the date values tomorrow.
+Apr 5 at 12:39 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design add staff working time page (business owner) from In Progress to BlockedApr 5 at 12:39 AM
+Grace Zheng (gracezzzz)Grace Zheng archived Writing documentationApr 5 at 12:36 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Write up user documentation from Sprint Backlog to In ProgressApr 5 at 12:36 AM
+PPaulo joined Set up project from clean installApr 5 at 12:06 AM
+PPaulo added Set up project from clean install to In ProgressApr 5 at 12:06 AM
+PPaulo joined Update Roster Tests casesApr 5 at 12:05 AM
+PPaulo added Update Roster Tests cases to In ProgressApr 5 at 12:05 AM
+PPaulo joined Writing documentationApr 5 at 12:04 AM
+PPaulo added Writing documentation to In ProgressApr 5 at 12:04 AM
+PPaulo moved Fix testing framework. Adopt LeanTesting from In Progress to Completed (week 6 demo)Apr 5 at 12:03 AM
+PPaulo moved Tests for Employee related functions from In Progress to Completed (week 6 demo)Apr 5 at 12:03 AM
+P
+Paulo attached Class_diagram.pdf to class diagram  
+Apr 5 at 12:02 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design booking summary page (business owner) from In Progress to Completed (week 7 demo)Apr 4 at 11:20 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Integrate customer functionalities from Sprint Backlog to In ProgressApr 4 at 8:36 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Design booking summary page (business owner)
+Things to do:
+
+Change header background color
+Fix table formatting
+Apr 4 at 8:34 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Design view available slots page/section (customer)
+Things to do:
+
+Develop results view to feed backend data
+Time blocks will be displayed as individual links (for Part B)
+Apr 4 at 8:32 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Design add staff working time page (business owner)
+Things to do:
+
+No date value
+Fix form formatting
+Apr 4 at 8:30 PM (edited)
+Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from In Progress to Completed (week 7 demo)Apr 4 at 8:29 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design add staff working time page (business owner)
+No date value is submitted
+Apr 4 at 8:11 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design add staff working time page (business owner) from Sprint Backlog to In ProgressApr 4 at 8:10 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Integrate business owner functionalities from Sprint Backlog to In ProgressApr 4 at 7:51 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design add new staff page (business owner) from Sprint Backlog to Completed (week 7 demo)Apr 4 at 7:51 PM
+Grace Zheng (gracezzzz)Grace Zheng completed employees on Write seeders for employees and rosters tablesApr 4 at 7:29 PM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Write seeders for employees and rosters tablesApr 4 at 7:29 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Write seeders for employees and rosters tablesApr 4 at 6:13 PM
+Grace Zheng (gracezzzz)Grace Zheng added Write seeders for employees and rosters tables to In ProgressApr 4 at 6:13 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement showing all workers’ availability for the next 7 days (view by business owner) from In Progress to Completed (week 7 demo)Apr 4 at 6:11 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Write up user documentationApr 4 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng added Write up user documentation to Sprint BacklogApr 4 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design view available slots page/section (customer) from Blocked to In ProgressApr 4 at 5:24 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement showing all workers’ availability for the next 7 days (view by business owner) from Sprint Backlog to In ProgressApr 4 at 5:23 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Integrate business owner functionalitiesApr 4 at 5:19 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Integrate customer functionalitiesApr 4 at 5:18 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Integrate business owner functionalitiesApr 4 at 5:16 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Integrate customer functionalitiesApr 4 at 5:16 PM
+Grace Zheng (gracezzzz)Grace Zheng added Integrate business owner functionalities to Sprint BacklogApr 4 at 5:16 PM
+Grace Zheng (gracezzzz)Grace Zheng added Integrate customer functionalities to Sprint BacklogApr 4 at 5:16 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design add new staff page (business owner)Apr 4 at 5:15 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design view roster page (business owner)Apr 4 at 5:15 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design add staff working time page (business owner)Apr 4 at 5:15 PM
+Grace Zheng (gracezzzz)Grace Zheng added Design add new staff page (business owner) to Sprint BacklogApr 4 at 5:15 PM
+Grace Zheng (gracezzzz)Grace Zheng added Design view roster page (business owner) to Sprint BacklogApr 4 at 5:14 PM
+Grace Zheng (gracezzzz)Grace Zheng added Design add staff working time page (business owner) to Sprint BacklogApr 4 at 5:14 PM
+Grace Zheng (gracezzzz)Grace Zheng added Completed (week 7 demo milestone1) to this boardApr 4 at 5:05 PM
+P
+Paulo attached DB_diagram.pdf to database diagram  
+Apr 4 at 10:49 AM
+PPaulo added database diagram to DeliverablesApr 4 at 10:48 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement adding working time/dates for employee for the next month (by business owner) -> rostering from In Progress to Completed (week 6 demo)Apr 4 at 2:51 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement adding working time/dates for employee for the next month (by business owner) -> rostering from Sprint Backlog to In ProgressApr 4 at 2:31 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement adding new employee (by business owner) from In Progress to Completed (week 6 demo)Apr 4 at 2:31 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement adding new employee (by business owner) from Sprint Backlog to In ProgressApr 4 at 12:08 AM
+Grace Zheng (gracezzzz)Grace Zheng archived Implement Employee related functionsApr 4 at 12:08 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for employee and its working time/dates from In Progress to Completed (week 6 demo)Apr 4 at 12:08 AM
+Grace Zheng (gracezzzz)Grace Zheng removed Checklist from Design and implement database for employee and its working time/datesApr 4 at 12:08 AM
+Grace Zheng (gracezzzz)Grace Zheng completed Migration on Design and implement database for employee and its working time/datesApr 4 at 12:07 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Design view available slots page/section (customer)Apr 3 at 11:35 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design view available slots page/section (customer) from Completed (week 6 demo) to BlockedApr 3 at 11:35 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Modify user-type to be determined by account name or email from In Progress to Completed (week 6 demo)Apr 3 at 11:11 PM
+Grace Zheng (gracezzzz)Grace Zheng completed login check both tables on Modify user-type to be determined by account name or emailApr 3 at 11:11 PM
+Grace Zheng (gracezzzz)Grace Zheng completed registration check both tables on Modify user-type to be determined by account name or emailApr 3 at 10:51 PM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Modify user-type to be determined by account name or emailApr 3 at 10:44 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Modify user-type to be determined by account name or email from Sprint Backlog to In ProgressApr 3 at 10:44 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Modify user-type to be determined by account name or emailApr 3 at 10:36 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement adding working time/dates for employee for the next month (by business owner) -> rosteringApr 3 at 10:36 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement showing all workers’ availability for the next 7 days (view by business owner)Apr 3 at 10:36 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement adding new employee (by business owner)Apr 3 at 10:36 PM
+Grace Zheng (gracezzzz)Grace Zheng added Modify user-type to be determined by account name or email to Sprint BacklogApr 3 at 10:35 PM
+Grace Zheng (gracezzzz)Grace Zheng added Implement adding working time/dates for employee for the next month (by business owner) -> rostering to Sprint BacklogApr 3 at 10:35 PM
+Grace Zheng (gracezzzz)Grace Zheng added Implement showing all workers’ availability for the next 7 days (view by business owner) to Sprint BacklogApr 3 at 10:35 PM
+Grace Zheng (gracezzzz)Grace Zheng added Implement adding new employee (by business owner) to Sprint BacklogApr 3 at 10:35 PM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Design and implement database for employee and its working time/datesApr 3 at 2:07 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from Sprint Backlog to In ProgressApr 3 at 11:53 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from Sprint Backlog to Completed (week 6 demo)Apr 3 at 11:53 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design view available slots page/section (customer) from In Progress to Completed (week 6 demo)Apr 3 at 11:53 AM
+Grace Zheng (gracezzzz)Grace Zheng archived list TestingApr 2 at 11:50 PM
+Grace Zheng (gracezzzz)Grace Zheng added Completed (week 6 demo) to this boardApr 2 at 11:50 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement Employee related functions from Sprint Backlog to In ProgressApr 2 at 11:49 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for employee and its working time/dates from Sprint Backlog to In ProgressApr 2 at 11:49 PM
+PPaulo added Dusk on Laravel 5.4 to DocumentationMar 31 at 2:04 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from In Progress to Sprint BacklogMar 28 at 10:59 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from In Progress to Sprint BacklogMar 28 at 10:59 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design booking summary page (business owner) from Sprint Backlog to In ProgressMar 28 at 10:59 AM
+PPaulo moved Fix testing framework. Adopt LeanTesting from Sprint Backlog to In ProgressMar 28 at 9:45 AM
+PPaulo moved Tests for Employee related functions from Sprint Backlog to In ProgressMar 28 at 9:45 AM
+PPaulo joined Business owner checks employee's availability for the next 7 daysMar 28 at 7:12 AM
+PPaulo joined Business owner checks booking summariesMar 28 at 7:12 AM
+PPaulo joined Business owner rosters employeesMar 28 at 7:12 AM
+PPaulo added Business owner checks employee's availability for the next 7 days to User StoriesMar 28 at 7:12 AM
+PPaulo added Business owner checks booking summaries to User StoriesMar 28 at 7:01 AM
+PPaulo added Business owner rosters employees to User StoriesMar 28 at 6:50 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Move login error messages to appropriate places from In Progress to Completed (week 5 demo)Mar 28 at 1:53 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Build UI for login/registration page from Completed (week 5 demo) to Completed (week 4 demo)Mar 27 at 10:46 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Move login error messages to appropriate places from Sprint Backlog to In ProgressMar 27 at 10:43 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Move login error messages to appropriate placesMar 27 at 10:27 PM
+Grace Zheng (gracezzzz)Grace Zheng added Move login error messages to appropriate places to Sprint BacklogMar 27 at 10:27 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add customer details to booking summary page from In Progress to Completed (week 5 demo)Mar 27 at 10:24 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from Blocked to In ProgressMar 27 at 9:36 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from Blocked to In ProgressMar 27 at 9:36 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design view available slots page/section (customer) from Sprint Backlog to In ProgressMar 27 at 9:36 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add customer details to booking summary page from Sprint Backlog to In ProgressMar 27 at 9:34 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add seeders needed for demo wk5 from Sprint Backlog to Completed (week 5 demo)Mar 27 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng completed BookingsTableSeeder on Add seeders needed for demo wk5Mar 27 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng completed BusinessesTableSeeder on Add seeders needed for demo wk5Mar 27 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng completed CustomersTableSeeder on Add seeders needed for demo wk5Mar 27 at 5:25 PM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Add seeders needed for demo wk5Mar 27 at 5:22 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Add seeders needed for demo wk5Mar 27 at 5:22 PM
+Grace Zheng (gracezzzz)Grace Zheng added Add seeders needed for demo wk5 to Sprint BacklogMar 27 at 5:22 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement Booking related functions from Testing to Completed (week 5 demo)Mar 27 at 5:21 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design view available slots page/section (customer)
+The ajax needed has been built in view-slots.js
+Info needed has been passed there.
+Mar 27 at 5:20 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design view available slots page/section (customer)Mar 27 at 5:19 PM
+Grace Zheng (gracezzzz)Grace Zheng added Design view available slots page/section (customer) to Sprint BacklogMar 27 at 5:19 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Add customer details to booking summary pageMar 27 at 5:18 PM
+Grace Zheng (gracezzzz)Grace Zheng added Add customer details to booking summary page to Sprint BacklogMar 27 at 5:18 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design booking summary page (business owner)
+The page blade has been set up with data needed.
+Mar 27 at 5:17 PM
+PPaulo joined Design class diagramMar 27 at 5:16 PM
+PPaulo added Design class diagram to Sprint BacklogMar 27 at 5:16 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design booking summary page (business owner)Mar 27 at 5:15 PM
+Grace Zheng (gracezzzz)Grace Zheng added Design booking summary page (business owner) to Sprint BacklogMar 27 at 5:15 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Improve authentication according to channel from Sprint Backlog to Completed (week 5 demo)Mar 27 at 5:12 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Improve authentication according to channelMar 27 at 5:11 PM
+Grace Zheng (gracezzzz)Grace Zheng added Improve authentication according to channel to Sprint BacklogMar 27 at 5:11 PM
+PPaulo joined Fix testing framework. Adopt LeanTestingMar 27 at 5:10 PM
+PPaulo added Fix testing framework. Adopt LeanTesting to Sprint BacklogMar 27 at 5:10 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Tests for Employee related functionsMar 27 at 5:09 PM
+PPaulo added Tests for Employee related functions to Sprint BacklogMar 27 at 5:09 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement OperatingHours related functions from In Progress to Sprint BacklogMar 26 at 11:01 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for employee and its working time/dates from In Progress to Sprint BacklogMar 26 at 11:01 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for customers, business owners and bookings from Testing to Completed (week 4 demo)Mar 26 at 10:25 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement user authentication from Testing to Completed (week 4 demo)Mar 26 at 10:24 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement user registration from Testing to Completed (week 4 demo)Mar 26 at 10:24 PM
+Grace Zheng (gracezzzz)Grace Zheng added Completed (week 4 demo) to this boardMar 26 at 10:24 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement Booking related functions from In Progress to TestingMar 26 at 10:24 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design customer dashboard
+Please put date down with the day. Cheers
+Mar 26 at 9:35 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Build UI for login/registration page
+@ervinchua2 As discussed in slack earlier on
+
+Each error message has a name
+You can call them by eg error['username']
+The name of the error would be the same as the name of the input field
+Hope this helps in solving inability to use for each loop
+
+At the moment, the error messages still appear at the bottom, but the task is marked as completed?
+Mar 26 at 7:09 PM (edited)
+Grace Zheng (gracezzzz)Grace Zheng moved Implement OperatingHours related functions from Sprint Backlog to In ProgressMar 26 at 6:55 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement Booking related functions from Sprint Backlog to In ProgressMar 26 at 6:55 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from In Progress to BlockedMar 26 at 4:00 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from In Progress to BlockedMar 25 at 6:04 PM
+Ervin Chua (ervinchua2)Ervin Chua marked the due date on Create prototypes for customer and business dashboards completeMar 24 at 9:55 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Create prototypes for customer and business dashboards from In Progress to Completed (week 5 demo)Mar 24 at 8:05 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from Sprint Backlog to In ProgressMar 24 at 7:15 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from Sprint Backlog to In ProgressMar 24 at 7:15 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Build UI for login/registration page from In Progress to Completed (week 5 demo)Mar 23 at 12:00 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Build UI for login/registration page from Sprint Backlog to In ProgressMar 22 at 11:23 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Add radio buttons for selecting between customer or business accounts on sign in form from Sprint Backlog to Completed (week 5 demo)Mar 22 at 11:22 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Create brief that denotes user flow between pages from In Progress to Completed (week 5 demo)Mar 22 at 11:08 PM
+Ervin Chua (ervinchua2)Ervin Chua added Completed to this boardMar 22 at 11:07 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Build UI for login/registration page
+@gracezzzz We can no longer use a foreach loop for the error messages if we want to display them next to / above their respective input fields.
+Mar 22 at 10:45 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Create prototypes for customer and business dashboards from Sprint Backlog to In ProgressMar 22 at 1:37 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from In Progress to Sprint BacklogMar 22 at 1:37 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for employee and its working time/dates from Sprint Backlog to In ProgressMar 22 at 1:34 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design business owner dashboardMar 22 at 1:32 AM
+Grace Zheng (gracezzzz)Grace Zheng added Design business owner dashboard to Sprint BacklogMar 22 at 1:32 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Design customer dashboardMar 22 at 1:32 AM
+Grace Zheng (gracezzzz)Grace Zheng added Design customer dashboard to In ProgressMar 22 at 1:32 AM
+Grace Zheng (gracezzzz)Grace Zheng removed Ervin Chua from Dashboard (Customer)Mar 22 at 1:32 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Dashboard (Customer) from In Progress to Product BacklogMar 22 at 1:31 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Dashboard (Business Owner) from Sprint Backlog to Product BacklogMar 22 at 1:31 AM
+Grace Zheng (gracezzzz)Grace Zheng added User Registration to Product BacklogMar 22 at 1:30 AM
+Grace Zheng (gracezzzz)Grace Zheng added Database Design to Product BacklogMar 22 at 1:28 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for customers, business owners and bookings from Product Backlog to TestingMar 22 at 1:27 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Dashboard (Customer) from Product Backlog to In ProgressMar 22 at 1:26 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Dashboard (Business Owner) from Product Backlog to Sprint BacklogMar 22 at 1:26 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for customers, business owners and bookings from Testing to Product BacklogMar 22 at 1:25 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Dashboard (Customer) from In Progress to Product BacklogMar 22 at 1:25 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Dashboard (Business Owner) from Sprint Backlog to Product BacklogMar 22 at 1:24 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement OperatingHours related functionsMar 22 at 1:20 AM
+Grace Zheng (gracezzzz)Grace Zheng added Implement OperatingHours related functions to Sprint BacklogMar 22 at 1:20 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Design and implement database for employee and its working time/datesMar 22 at 1:19 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Design and implement database for employee and its working time/datesMar 22 at 1:19 AM
+Grace Zheng (gracezzzz)Grace Zheng added Design and implement database for employee and its working time/dates to Sprint BacklogMar 22 at 1:19 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement Booking related functionsMar 22 at 1:11 AM
+Grace Zheng (gracezzzz)Grace Zheng added Implement Booking related functions to Sprint BacklogMar 22 at 1:10 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Build UI for login/registration page
+Hi Ervin, I've moved this card here for improvement of error message in these pages.
+Mar 22 at 1:04 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Build UI for login/registration page from Completed to Sprint BacklogMar 22 at 1:03 AM
+Ervin Chua (ervinchua2)Ervin Chua joined LeanTesting.comMar 21 at 9:35 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Add radio buttons for selecting between customer or business accounts on sign in form from In Progress to Sprint BacklogMar 21 at 9:34 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Create brief that denotes user flow between pages from Sprint Backlog to In ProgressMar 21 at 9:34 PM
+Ervin Chua (ervinchua2)Ervin Chua archived Design brief for customer and business dashboardsMar 21 at 9:34 PM
+Ervin Chua (ervinchua2)Ervin Chua changed the due date of Create prototypes for customer and business dashboards to Mar 24 at 12:00 PMMar 21 at 9:33 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Create brief that denotes user flow between pagesMar 21 at 9:33 PM
+Ervin Chua (ervinchua2)Ervin Chua added Create brief that denotes user flow between pages to Sprint BacklogMar 21 at 9:33 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Create prototypes for customer and business dashboardsMar 21 at 9:27 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Design brief for customer and business dashboardsMar 21 at 9:27 PM
+Ervin Chua (ervinchua2)Ervin Chua added Create prototypes for customer and business dashboards to Sprint BacklogMar 21 at 9:27 PM
+Ervin Chua (ervinchua2)Ervin Chua added Design brief for customer and business dashboards to Sprint BacklogMar 21 at 9:26 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Dashboard (Business Owner) from Product Backlog to Sprint BacklogMar 21 at 9:26 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Add radio buttons for selecting between customer or business accounts on sign in formMar 21 at 9:25 PM
+Ervin Chua (ervinchua2)Ervin Chua added Add radio buttons for selecting between customer or business accounts on sign in form to In ProgressMar 21 at 9:25 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Dashboard (Customer) from Testing to In ProgressMar 21 at 1:56 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on LeanTesting.com
+I've added you guys to our organisation in LeanTesting. You should receive an invitation in your student email.
+Mar 21 at 1:55 PM
+Ervin Chua (ervinchua2)Ervin Chua added Paulo to LeanTesting.comMar 21 at 1:55 PM
+Ervin Chua (ervinchua2)Ervin Chua added Grace Zheng to LeanTesting.comMar 21 at 1:55 PM
+Ervin Chua (ervinchua2)Ervin Chua added LeanTesting.com to DocumentationMar 21 at 1:54 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Dashboard (Customer) from In Progress to TestingMar 20 at 10:53 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Dashboard (Customer) from Sprint Backlog to In ProgressMar 20 at 9:22 PM
+PPaulo joined Business owner adds a new employeeMar 20 at 11:00 AM
+PPaulo added Business owner adds a new employee to User StoriesMar 20 at 10:59 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement user authentication from Sprint Backlog to TestingMar 20 at 1:11 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement user authenticationMar 20 at 1:11 AM
+Grace Zheng (gracezzzz)Grace Zheng removed Paulo from Implement user authenticationMar 20 at 1:11 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Design and implement database for customers, business owners and bookings from Sprint Backlog to TestingMar 19 at 11:26 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design and implement database for customers, business owners and bookings
+please run following :
+
+php artisan migrate
+php artisan db:seed --class=CustomersTableSeeder
+Mar 19 at 11:26 PM (edited)
+Grace Zheng (gracezzzz)Grace Zheng completed create seeder for sample entries on Design and implement database for customers, business owners and bookingsMar 19 at 11:26 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Customer wants to view available slotsMar 19 at 11:13 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Customer wants to make bookingsMar 19 at 11:13 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement user registration from Sprint Backlog to TestingMar 19 at 10:49 PM
+Grace Zheng (gracezzzz)Grace Zheng completed Backend controller on Implement user registrationMar 19 at 10:49 PM
+Grace Zheng (gracezzzz)Grace Zheng completed Info saved in database on Implement user registrationMar 19 at 10:49 PM
+Grace Zheng (gracezzzz)Grace Zheng completed php artisan migrate on Design and implement database for customers, business owners and bookingsMar 18 at 3:36 AM
+Grace Zheng (gracezzzz)Grace Zheng completed create tables on Design and implement database for customers, business owners and bookingsMar 18 at 3:36 AM
+Grace Zheng (gracezzzz)Grace Zheng completed create modals on Design and implement database for customers, business owners and bookingsMar 18 at 3:36 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Design and implement database for customers, business owners and bookingsMar 18 at 3:35 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Build UI for login/registration page
+Hi Ervin, as I'm implementing registration, may I request some changes to the signup form?
+
+as our CUSTOMERS database is as followed:
+
+id (primary key)
+customer_name
+username
+password
+mobile_phone
+email_address
+address
+We might need to replace ZIP with email_address.
+
+Also, do you think if it'd be a good idea to have password confirmation (so user has to enter the same password again to prevent mistakes)?
+Mar 18 at 3:33 AM (edited)
+Ervin Chua (ervinchua2)
+Ervin Chua on SETTING UP HOMESTEAD
+@gracezzzz That's probably the latest version for your box version 0.3.0, latest stable release box version is 2.0.0 which comes with Homestead 5.1.0
+Mar 16 at 5:02 PM (edited)
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+@ervinchua2 homestead_update.png hmmmmm....
+Mar 16 at 4:54 PM
+Grace Zheng (gracezzzz)
+Grace Zheng attached homestead_update.png to SETTING UP HOMESTEAD 
+Mar 16 at 4:54 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+@ervinchua2 Hmm... I can run homestead update, but not sure if that'd break anything... I'll let you know. Thanks Ervin anyway
+Mar 16 at 4:50 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on SETTING UP HOMESTEAD
+@gracezzzz Yeah, it's on v5.1.0 now.
+Mar 16 at 4:38 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+@ervinchua2 homestead_version.png Haha, just homestead -v, v2.2.1 sunglasses
+Mar 16 at 4:00 PM
+Grace Zheng (gracezzzz)
+Grace Zheng attached homestead_version.png to SETTING UP HOMESTEAD 
+Mar 16 at 3:59 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on SETTING UP HOMESTEAD
+@gracezzzz Is that Homestead version 2.0 or Homestead box version 2.0, they're different things.
+Mar 16 at 3:22 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on SETTING UP HOMESTEAD
+Homestead comes with Composer pre-installed so we can remove step 2.
+Mar 16 at 3:21 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+@ervinchua2 reading from the checklist Installing Homestead, I assume it'd be 2.0?
+Mar 14 at 9:51 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on SETTING UP HOMESTEAD
+@gracezzzz You're linking the old documentation for Laravel 5.1
+
+Here's an updated one based on Laravel 5.4
+https://laravel.com/docs/5.4/homestead
+Mar 14 at 9:20 PM (edited)
+Ervin Chua (ervinchua2)
+Ervin Chua on SETTING UP HOMESTEAD
+@gracezzzz No, I just need your Homestead version number, that way I can tell what software (and their respective versions) and being bundled together.
+Mar 14 at 9:18 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+Homestead_Setup.png Not sure if this is the Homestead Setup that you guys were talking about? @ervinchua2
+Mar 14 at 8:57 PM (edited)
+Grace Zheng (gracezzzz)
+Grace Zheng attached Homestead_Setup.png to SETTING UP HOMESTEAD 
+Mar 14 at 8:57 PM
+Grace Zheng (gracezzzz)Grace Zheng added Homestead to SETTING UP HOMESTEADMar 14 at 8:50 PM
+Grace Zheng (gracezzzz)Grace Zheng added Installing Homestead to SETTING UP HOMESTEADMar 14 at 8:48 PM
+Grace Zheng (gracezzzz)Grace Zheng added Installing Composer to SETTING UP HOMESTEADMar 14 at 8:48 PM
+Grace Zheng (gracezzzz)Grace Zheng added Pre Installtion Steps to SETTING UP HOMESTEADMar 14 at 8:47 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+For reference: https://laravel.com/docs/5.1/homestead
+Mar 14 at 8:42 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on SETTING UP HOMESTEAD
+Thanks Ervin @ervinchua2 thumbsup
+Mar 14 at 8:40 PM
+Grace Zheng (gracezzzz)Grace Zheng joined User wants to login to the systemMar 14 at 8:39 PM
+Grace Zheng (gracezzzz)Grace Zheng added Customer wants to view available slots to User StoriesMar 14 at 8:39 PM
+Grace Zheng (gracezzzz)Grace Zheng added Customer wants to make bookings to User StoriesMar 14 at 8:38 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Implement user authenticationMar 14 at 8:34 PM
+Grace Zheng (gracezzzz)Grace Zheng added Implement user authentication to Sprint BacklogMar 14 at 8:34 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Implement user registrationMar 14 at 8:34 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement user registrationMar 14 at 8:33 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement user registration from Product Backlog to Sprint BacklogMar 14 at 8:33 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Design and implement database for customers, business owners and bookingsMar 14 at 8:33 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Dashboard (Customer)Mar 14 at 8:33 PM
+Ervin Chua (ervinchua2)Ervin Chua added SETTING UP HOMESTEAD to DocumentationMar 14 at 3:54 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design and implement database for customers, business owners and bookings from Product Backlog to Sprint BacklogMar 14 at 2:02 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Dashboard (Customer) from Product Backlog to Sprint BacklogMar 14 at 2:02 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Design and implement database for customers, business owners and bookings
+@ervinchua2 MySQL with Homestead
+Mar 14 at 11:19 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Build UI for login/registration page from Sprint Backlog to CompletedMar 14 at 8:11 AM
+Ervin Chua (ervinchua2)Ervin Chua moved set up Laravel environment from In Progress to CompletedMar 13 at 4:01 PM
+Ervin Chua (ervinchua2)Ervin Chua completed Paulo on set up Laravel environmentMar 13 at 4:01 PM
+Ervin Chua (ervinchua2)Ervin Chua moved set up git environment from In Progress to CompletedMar 13 at 4:00 PM
+Ervin Chua (ervinchua2)Ervin Chua completed Paulo on set up git environmentMar 13 at 4:00 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Design and implement database for customers, business owners and bookings
+Which database are we using?
+
+Laravel has native support for:
+
+MySQL
+Postgres
+SQLite
+SQL Server
+Mar 13 at 12:03 PM (edited)
+Ervin Chua (ervinchua2)Ervin Chua completed Sign up form on Implement user registrationMar 13 at 12:01 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Build test units based on user story "user wants to login to the system" from Sprint Backlog to CompletedMar 13 at 12:01 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Build test units based on user story "Customer wants to register for an account" from In Progress to CompletedMar 13 at 1:35 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Build test units based on user story "Customer wants to register for an account" from Sprint Backlog to In ProgressMar 13 at 12:17 AM
+Grace Zheng (gracezzzz)Grace Zheng added RESOURCES to DocumentationMar 12 at 10:21 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Build test units based on user story "Customer wants to register for an account"
+https://semaphoreci.com/community/tutorials/getting-started-with-phpunit-in-laravel
+Mar 12 at 10:16 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on User wants to login to the system
+@paulo795 Added thumbsup
+Mar 11 at 10:42 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Build test units based on user story "Customer wants to register for an account"Mar 11 at 10:38 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Build UI for login/registration pageMar 11 at 10:38 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Build test units based on user story "user wants to login to the system"Mar 11 at 10:38 PM
+Grace Zheng (gracezzzz)Grace Zheng added Build test units based on user story "Customer wants to register for an account" to Sprint BacklogMar 11 at 10:38 PM
+Grace Zheng (gracezzzz)Grace Zheng added Build test units based on user story "user wants to login to the system" to Sprint BacklogMar 11 at 10:37 PM
+Grace Zheng (gracezzzz)Grace Zheng added Build UI for login/registration page to Sprint BacklogMar 11 at 10:36 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Customer wants to register an accountMar 11 at 10:35 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to User wants to login to the systemMar 11 at 10:35 PM
+Ervin Chua (ervinchua2)Ervin Chua completed Ervin on set up git environmentMar 11 at 2:52 PM
+P
+Paulo on User wants to login to the system
+**Instead of the last one
+- When an existing user accidentally types in wrong its username, system should return a username does not exist exception.
+- When an existing user accidentally types in wrong its password, system should return an incorrect password exception.
+
+**Should we also consider this?
+- When an existing user forgets its password, system should allow reset it through its email account.
+Mar 11 at 8:54 AM
+Grace Zheng (gracezzzz)Grace Zheng archived User wants to create an accountMar 8 at 11:24 PM
+Grace Zheng (gracezzzz)Grace Zheng added Customer wants to register an account to User StoriesMar 8 at 11:24 PM
+Grace Zheng (gracezzzz)Grace Zheng added User wants to login to the system to User StoriesMar 8 at 11:23 PM
+Ervin Chua (ervinchua2)Ervin Chua added User wants to create an account to User StoriesMar 7 at 10:59 AM
+Ervin Chua (ervinchua2)Ervin Chua added Checklist to Implement user registrationMar 7 at 10:43 AM
+Grace Zheng (gracezzzz)Grace Zheng moved basic user documentation from Product Backlogs to DeliverablesMar 7 at 10:27 AM
+Grace Zheng (gracezzzz)Grace Zheng moved class diagram from Product Backlogs to DeliverablesMar 7 at 10:27 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Define a series of Acceptance Tests from Product Backlogs to DeliverablesMar 7 at 10:27 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Identify User Stories from Product Backlogs to DeliverablesMar 7 at 10:27 AM
+Grace Zheng (gracezzzz)Grace Zheng sent list Sprint 2 (Week 4 - 5) to the boardMar 7 at 10:27 AM
+Ervin Chua (ervinchua2)Ervin Chua added Lawrence Cavedon to this boardMar 7 at 10:24 AM
+Grace Zheng (gracezzzz)Grace Zheng sent list User Stories to the boardMar 7 at 10:22 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Define a series of Acceptance Tests from Sprint Backlogs to Product BacklogsMar 7 at 10:16 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Identify User Stories from Sprint Backlogs to Product BacklogsMar 7 at 10:16 AM
+Grace Zheng (gracezzzz)Grace Zheng archived list User StoriesMar 7 at 10:15 AM
+Grace Zheng (gracezzzz)Grace Zheng archived list Sprint 2 (Week 4 - 5)Mar 7 at 10:14 AM
+Grace Zheng (gracezzzz)Grace Zheng moved set up Laravel environment from Sprint 1 (Week 2 - 3) to In ProgressMar 7 at 10:14 AM
+Grace Zheng (gracezzzz)Grace Zheng moved set up git environment from Sprint 1 (Week 2 - 3) to In ProgressMar 7 at 10:14 AM
+Grace Zheng (gracezzzz)Grace Zheng deleted card #16 from DoneMar 7 at 10:14 AM
+Grace Zheng (gracezzzz)Grace Zheng added Done to this boardMar 7 at 10:12 AM
+Grace Zheng (gracezzzz)Grace Zheng added Blocked to this boardMar 7 at 10:12 AM
+Grace Zheng (gracezzzz)Grace Zheng sent list In Progress to the boardMar 7 at 10:12 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Define a series of Acceptance Tests from Product Backlogs to Sprint 1 (Week 2 - 3)Mar 7 at 2:57 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Identify User Stories from Product Backlogs to Sprint 1 (Week 2 - 3)Mar 7 at 2:57 AM
+Grace Zheng (gracezzzz)Grace Zheng added Design and implement database for customers, business owners and bookings to Product BacklogsMar 7 at 2:45 AM
+Grace Zheng (gracezzzz)Grace Zheng added Dashboard (Customer) to Product BacklogsMar 7 at 2:45 AM
+Grace Zheng (gracezzzz)Grace Zheng added Dashboard (Business Owner) to Product BacklogsMar 7 at 2:45 AM
+Grace Zheng (gracezzzz)Grace Zheng added Implement user registration to Product BacklogsMar 7 at 2:44 AM
+Grace Zheng (gracezzzz)Grace Zheng added Landing Page to Product BacklogsMar 7 at 2:43 AM
+Grace Zheng (gracezzzz)Grace Zheng added Define a series of Acceptance Tests to Product BacklogsMar 7 at 2:39 AM
+Grace Zheng (gracezzzz)Grace Zheng added Identify User Stories to Product BacklogsMar 7 at 2:39 AM
+Grace Zheng (gracezzzz)Grace Zheng completed Grace on set up git environmentMar 7 at 12:15 AM
+Grace Zheng (gracezzzz)Grace Zheng completed Grace on set up Laravel environmentMar 7 at 12:15 AM
+Ervin Chua (ervinchua2)Ervin Chua archived list In ProgressMar 6 at 7:17 PM
+Ervin Chua (ervinchua2)Ervin Chua moved set up Laravel environment from In Progress to Sprint 1 (Week 2 - 3)Mar 6 at 7:17 PM
+Ervin Chua (ervinchua2)Ervin Chua moved set up git environment from In Progress to Sprint 1 (Week 2 - 3)Mar 6 at 7:17 PM
+Ervin Chua (ervinchua2)Ervin Chua added User Stories to this boardMar 6 at 7:10 PM
+Ervin Chua (ervinchua2)Ervin Chua deleted card #8 from DocumentationMar 6 at 2:26 PM
+Ervin Chua (ervinchua2)Ervin Chua deleted card #7 from DocumentationMar 6 at 2:26 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to MEETING arrangementsMar 6 at 2:16 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to MEETING arrangementsMar 6 at 2:16 PM
+Grace Zheng (gracezzzz)Grace Zheng joined MEETING arrangementsMar 6 at 2:16 PM
+Grace Zheng (gracezzzz)Grace Zheng added MEETING arrangements to DocumentationMar 6 at 2:15 PM
+Grace Zheng (gracezzzz)Grace Zheng transferred MEETING minutes from another boardMar 6 at 2:14 PM
+Grace Zheng (gracezzzz)Grace Zheng added Documentation to this boardMar 6 at 2:14 PM
+Ervin Chua (ervinchua2)Ervin Chua completed Ervin on set up Laravel environmentMar 6 at 10:26 AM
+Grace Zheng (gracezzzz)Grace Zheng moved set up Laravel environment from Current TODO to In ProgressMar 6 at 2:16 AM
+Grace Zheng (gracezzzz)Grace Zheng moved set up git environment from Current TODO to In ProgressMar 6 at 2:16 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to set up git environmentMar 6 at 2:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to set up git environmentMar 6 at 2:02 AM
+Grace Zheng (gracezzzz)Grace Zheng joined set up git environmentMar 6 at 2:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to set up git environmentMar 6 at 2:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to set up Laravel environmentMar 6 at 2:01 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to set up Laravel environmentMar 6 at 2:01 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to set up Laravel environmentMar 6 at 2:01 AM
+Grace Zheng (gracezzzz)Grace Zheng joined set up Laravel environmentMar 6 at 2:01 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to this boardMar 6 at 2:00 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to this boardMar 6 at 2:00 AM
+Grace Zheng (gracezzzz)Grace Zheng added set up git environment to Current TODOMar 6 at 1:58 AM
+Grace Zheng (gracezzzz)Grace Zheng added set up Laravel environment to Current TODOMar 6 at 1:58 AM
+Grace Zheng (gracezzzz)Grace Zheng added Testing to this boardMar 6 at 1:13 AM
+Grace Zheng (gracezzzz)Grace Zheng added basic user documentation to BacklogsMar 6 at 1:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added class diagram to BacklogsMar 6 at 1:08 AM
+Grace Zheng (gracezzzz)Grace Zheng changed the background of this boardMar 6 at 1:05 AM
+Grace Zheng (gracezzzz)Grace Zheng made this board visible to members of its teamMar 6 at 12:52 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to MEETING minutesMar 6 at 12:50 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to MEETING minutesMar 6 at 12:50 AM
+Grace Zheng (gracezzzz)Grace Zheng joined MEETING minutesMar 6 at 12:50 AM
+Ervin Chua (ervinchua2)Ervin Chua added MEETING minutes to another boardMar 4 at 10:19 PM
+Grace Zheng (gracezzzz)Grace Zheng changed the background of this boardFeb 28 at 10:42 AM
+Grace Zheng (gracezzzz)Grace Zheng made this board visible to its membersFeb 28 at 10:39 AM
+Grace Zheng (gracezzzz)Grace Zheng made this board visible to members of its teamFeb 28 at 10:39 AM
+Grace Zheng (gracezzzz)Grace Zheng made this board visible to its membersFeb 28 at 10:39 AM
+Grace Zheng (gracezzzz)Grace Zheng added Completed to this boardFeb 28 at 10:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added In Progress to this boardFeb 28 at 10:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added Current TODO to this boardFeb 28 at 10:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added Backlogs to this boardFeb 28 at 10:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added this board to SEPT_TEAMFeb 28 at 10:09 AM
+Grace Zheng (gracezzzz)Grace Zheng created this boardFeb 28 at 10:09 AM

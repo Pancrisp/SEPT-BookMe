@@ -4,31 +4,37 @@ namespace App\Http\Controllers;
 
 
 use App\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookingController
 {
-    /*
+    /**
      * return all bookings for a selected date
      */
     public function getBookingsByDate(Request $request)
     {
-        $data = $request->all();
+        $bookings = Booking::where('date', $request['date'])->get();
 
-        $bookings = Booking::where('date', $data['date'])->get();
-
-        return $bookings;
+        print_r(json_encode($bookings));
     }
 
-    public function getBookingsByBusiness(Request $request, $id)
+    public function getBookingsByBusiness(Request $request)
     {
-        $businessID = $id;
+        $businessID = $request['id'];
+        $today = Carbon::now()->toDateString();
 
-        $bookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+        $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->where('bookings.business_id', $businessID)
+            ->where('bookings.date', '>=', $today)
             ->get();
 
-        return view('bookingSummary', compact('bookings'));
+        $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->where('bookings.business_id', $businessID)
+            ->whereDate('bookings.created_at', $today)
+            ->get();
+
+        return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
     }
 
 }

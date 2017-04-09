@@ -19,8 +19,5 @@ class ExampleTest extends DuskTestCase
             $browser->visit('/')
                     ->assertSee('Laravel');
         });
-    	
-	RenoteWebDriver::create(
-		'http://localhost:8888', DesiredCapabilities::chrome());
     }
 }

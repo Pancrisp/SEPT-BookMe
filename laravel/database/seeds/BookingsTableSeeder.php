@@ -13,21 +13,41 @@ class BookingsTableSeeder extends Seeder
      */
     public function run()
     {
-        $today = Carbon::today();
-        $hour = 9;
+        $date = Carbon::today();
 
-        for($i=0; $i<3; $i++){
-            $customer = rand(0, 4);
+        $noOfCustomers = \App\Customer::count();
+
+        for($i=0; $i<5; $i++){
+            $hour = rand(9, 13);
+            $date = $date->addDay();
 
             Booking::create([
-                'date' => $today->toDateString(),
+                'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
                 'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
-                'customer_id' => $customer,
-                'business_id' => 1,
+                'customer_id' => rand(1, $noOfCustomers),
+                'business_id' => rand(1,3),
             ])->save();
 
-            $hour += 2;
+            $hour += rand(1, 2);
+
+            Booking::create([
+                'date' => $date->toDateString(),
+                'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
+                'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
+                'customer_id' => rand(1, $noOfCustomers),
+                'business_id' => rand(1,3),
+            ])->save();
+
+            $hour += rand(1, 2);
+
+            Booking::create([
+                'date' => $date->toDateString(),
+                'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
+                'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
+                'customer_id' => rand(1, $noOfCustomers),
+                'business_id' => rand(1,3),
+            ])->save();
         }
 
     }
