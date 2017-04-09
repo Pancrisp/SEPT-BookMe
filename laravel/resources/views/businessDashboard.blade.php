@@ -19,7 +19,7 @@
             <h3>Staff Management</h3>
             <a class="block" href="/newstaff?id={{ $user['business_id'] }}">Add new employee</a>
             <a class="block" href="/newroster?id={{ $user['business_id'] }}">Add employee working time</a>
-            <a class="block" href="/viewroster">Show all employees' availability for next 7 days</a>
+            <a class="block" href="/viewroster?id={{ $user['business_id'] }}">Show all employees' availability for next 7 days</a>
         </div>
     </div>
 
