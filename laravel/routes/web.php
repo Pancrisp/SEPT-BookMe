@@ -27,7 +27,7 @@ Route::post('/register', 'RegistrationController@register');
 Route::post('/dashboard', 'AuthenticationController@login');
 
 Route::get('/bookings/getByDate', 'BookingController@getBookingsByDate');
-Route::get('/bookings/summary/{id}', 'BookingController@getBookingsByBusiness');
+Route::get('/bookings/summary', 'BookingController@getBookingsByBusiness');
 
 Route::get('/newstaff', 'EmployeeController@newStaff');
 Route::post('/addstaff', 'EmployeeController@addStaff');

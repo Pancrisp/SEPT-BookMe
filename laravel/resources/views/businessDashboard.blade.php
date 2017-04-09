@@ -12,7 +12,7 @@
 
         <div class="overview">
             <h3>Manage your bookings</h3>
-            <a href="/bookings/summary/{{ $user['business_id'] }}" >Bookings Overview</a>
+            <a href="/bookings/summary?id={{ $user['business_id'] }}" >Bookings Overview</a>
         </div>
 
         <div class="overview">
