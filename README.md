@@ -23,6 +23,9 @@ These include:
 - Snapshot of our Trello board
 - Full activity list of our Trello board
 - Snapshot of chat logs on our Slack channel
+- Tests documentation
+- Class diagram based on our app
+- Database diagram based on our app's database
 
 ## APP INSTALLATION
 
