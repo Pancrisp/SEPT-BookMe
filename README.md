@@ -5,13 +5,28 @@
 - Paulo Flores (s3568672)
 - Hooi Loong Chua (s3577844)
 
+## Peer Review
+Even contribution from all members, 33.3% to each:
+- Lei Zheng (s3558319)
+- Paulo Zeballos Flores (s3568672)
+- Hooi Loong Chua (s3577844)
+
 *Tutor: Lawrence Cavedon (Tuesdays, 9:30am - 11:30am)*
 
 ### Collaboration Tools
-- Trello - https://trello.com/b/8ds7YfU7/part-one
-- Slack - https://sept-copsicus.slack.com
+- Trello - https://trello.com/b/8ds7YfU7/part-one (tutor is already invited)
+- Slack - https://sept-copsicus.slack.com (anyone with an RMIT email can join)
 
-## INSTALLATION
+### Project Deliverables
+Deliverables can all be found in the *deliverables* folder in the project's root directory.
+These include:
+- PDF copy of all our user stories
+- PDF copy of all our meeting minutes
+- Snapshot of our Trello board
+- Full activity list of our Trello board
+- Snapshot of chat logs on our Slack channel
+
+## APP INSTALLATION
 
 Note: commands run in this installation tutorial have been tested in Ubuntu 16.04 LTS
 To run the project there are a few installation requirements that need to be met:
