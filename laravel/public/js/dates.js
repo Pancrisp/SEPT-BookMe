@@ -17,6 +17,11 @@ $('#roster-date').datepicker({
         var date = document.querySelector('#roster-date').value;
         console.log(date);
         $('#dateHidden').val(date);
+    },
+    onClose: function() {
+        var date = document.querySelector('#roster-date').value;
+        console.log(date);
+        $('#dateHidden').val(date);
     }
 });
 
