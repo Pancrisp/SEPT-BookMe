@@ -32,7 +32,11 @@ class AuthenticationController
         {
             $type = $data['usertype'];
             $user = $this->user;
-            return view($type.'Dashboard', compact('user'));
+
+            if($type == 'business')
+                return view($type.'Dashboard', compact('user'));
+            else
+                return $this->customerDashboard($user);
         }
     }
 
@@ -108,5 +112,33 @@ class AuthenticationController
 
             return password_verify($data['password'], $business->password);
         }
+    }
+
+    /**
+     * Build data needed for customer dashboard and return view
+     */
+    private function customerDashboard($user){
+
+        $timeSlots = [
+            '09:00',
+            '09:30',
+            '10:00',
+            '10:30',
+            '11:00',
+            '11:30',
+            '12:00',
+            '12:30',
+            '13:00',
+            '13:30',
+            '14:00',
+            '14:30',
+            '15:00',
+            '15:30',
+            '16:00',
+            '16:30'
+        ];
+
+        return view('customerDashboard', compact('user', 'timeSlots'));
+
     }
 }

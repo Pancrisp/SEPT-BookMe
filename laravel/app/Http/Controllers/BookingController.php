@@ -14,11 +14,9 @@ class BookingController
      */
     public function getBookingsByDate(Request $request)
     {
-        $data = $request->all();
+        $bookings = Booking::where('date', $request['date'])->get();
 
-        $bookings = Booking::where('date', $data['date'])->get();
-
-        return $bookings;
+        print_r(json_encode($bookings));
     }
 
     public function getBookingsByBusiness(Request $request)
