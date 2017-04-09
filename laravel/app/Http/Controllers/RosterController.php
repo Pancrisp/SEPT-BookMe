@@ -38,8 +38,8 @@ class RosterController
     {
         $businessID = $request['id'];
 
-        $today = Carbon::now();
-        $aWeeklater = Carbon::now()->addDays(6);
+        $tomorrow = Carbon::now()->addDay();
+        $aWeeklater = Carbon::now()->addWeek();
 
         $dayShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
             ->select(
@@ -48,7 +48,7 @@ class RosterController
                 'rosters.shift AS shift'
             )
             ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($today->toDateString(), $aWeeklater->toDateString()))
+            ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
             ->orderBy('date', 'asc')
             ->where('shift', 'Day')
             ->get();
@@ -66,7 +66,7 @@ class RosterController
                 'rosters.shift AS shift'
             )
             ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($today->toDateString(), $aWeeklater->toDateString()))
+            ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
             ->orderBy('date', 'asc')
             ->where('shift', 'Night')
             ->get();
