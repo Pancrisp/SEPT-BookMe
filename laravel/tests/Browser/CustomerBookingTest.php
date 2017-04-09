@@ -53,7 +53,6 @@ class CustomerBookingTest extends DuskTestCase
 		    $browser->visit('/')    
 			    ->type('username',$customer->username)
 			    ->type('password', 'secret')
-			    ->radio('usertype', 'customer' )    
 			    ->press('login')
 			    ->assertPathIs('/dashboard') ;
 		});
@@ -61,7 +60,7 @@ class CustomerBookingTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group error
+	*  @group pending
 	*  @group customerBooking
 	*
 	* Session is considered as an authenticated user
@@ -78,8 +77,7 @@ class CustomerBookingTest extends DuskTestCase
         $this->browse(function ($browser) use ($customer) {
 		$browser->visit('/')   
 		    ->type('username',$customer->username)
-		    ->type('password', 'secret')
-		    ->radio('usertype', 'customer' )    
+		    ->type('password', 'secret')  
 		    ->press('login')
 		    ->type(date("Y-m-d"),'date')
 		    ->press('search')
@@ -94,7 +92,7 @@ class CustomerBookingTest extends DuskTestCase
 
     	/**
 	*  @test 
-	*  @group error
+	*  @group pending
 	*  @group customerBooking
 	*
 	* Test for an invalid customer attempt to make 
@@ -112,7 +110,6 @@ class CustomerBookingTest extends DuskTestCase
 		$browser->visit('/')   
 		    ->type('username',$customer->username)
 		    ->type('password', 'secret')
-		    ->radio('usertype', 'customer' )    
 		    ->press('login')
 	    	    ->type(date("Y-m-d"),'date')
 		    ->press('search')
@@ -129,7 +126,6 @@ class CustomerBookingTest extends DuskTestCase
 		$browser->visit('/')   
 		    ->type('username',$customer->username)
 		    ->type('password', 'secret')
-		    ->radio('usertype', 'customer' )    
 		    ->press('login')
 	    	    ->type(date("Y-m-d"),'date')
 		    ->press('search')
