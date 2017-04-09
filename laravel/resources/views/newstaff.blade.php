@@ -14,7 +14,7 @@
         <form action="/addstaff" method="post">
             {{ csrf_field() }}
 
-            <input type="text" name="business_id" value="{{ $data['id'] }}" hidden>
+            <input type="text" name="business_id" value="{{ $businessID }}" hidden>
             <div class="error">{{ $errors->first('fullname') }}</div>
             <input type="text" name="fullname" placeholder="Full Name" value="{!! old('fullname') !!}" required>
             <div class="error">{{ $errors->first('taxfileno') }}</div>

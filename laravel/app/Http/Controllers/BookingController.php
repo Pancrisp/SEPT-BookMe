@@ -36,7 +36,7 @@ class BookingController
             ->whereDate('bookings.created_at', $today)
             ->get();
 
-        return view('bookingSummary', compact('allBookings', 'newBookings'));
+        return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
     }
 
 }

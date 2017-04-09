@@ -31,9 +31,19 @@ class AuthenticationController
         else
         {
             $type = $data['usertype'];
-            $user = $this->user->toArray();
+            $user = $this->user;
             return view($type.'Dashboard', compact('user'));
         }
+    }
+
+    public function backToDashboard(Request $request)
+    {
+        $businessID = $request['id'];
+
+        $user = Business::where('business_id', $businessID)
+            ->first();
+
+        return view('businessDashboard', compact('user'));
     }
 
     /**
@@ -98,7 +108,5 @@ class AuthenticationController
 
             return password_verify($data['password'], $business->password);
         }
-
-
     }
 }

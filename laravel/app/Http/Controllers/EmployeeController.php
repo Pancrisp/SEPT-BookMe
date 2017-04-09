@@ -12,8 +12,8 @@ class EmployeeController
 {
     public function newStaff(Request $request)
     {
-        $data = $request->all();
-        return view('newstaff', compact('data'));
+        $businessID = $request['id'];
+        return view('newstaff', compact('businessID'));
     }
 
     public function addStaff(Request $request)

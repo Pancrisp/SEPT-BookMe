@@ -15,7 +15,7 @@ class RosterController
     {
         $businessID = $request['id'];
         $employees = Employee::where('business_id', $businessID)->get();
-        return view('newRoster', compact('employees'));
+        return view('newRoster', compact('employees', 'businessID'));
     }
 
     public function addRoster(Request $request)
@@ -77,7 +77,7 @@ class RosterController
             $roster['day'] = $date->format('l');
         }
 
-        return view('showRoster', compact('dayShifts', 'nightShifts'));
+        return view('showRoster', compact('dayShifts', 'nightShifts', 'businessID'));
     }
 
     /**
