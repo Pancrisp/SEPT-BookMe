@@ -36,29 +36,48 @@ class RosterController
 
     public function showRoster(Request $request)
     {
-        $businessID = $request['business_id'];
+        $businessID = $request['id'];
 
-        $today = Carbon::now()->toDateString();
-        $aWeeklater = $today->addWeek();
+        $today = Carbon::now();
+        $aWeeklater = Carbon::now()->addDays(6);
 
-        $rosters = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+        $dayShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
             ->select(
                 'employees.employee_name AS name',
                 'rosters.date AS date',
                 'rosters.shift AS shift'
-                )
+            )
             ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($today, $aWeeklater))
+            ->whereBetween('date', array($today->toDateString(), $aWeeklater->toDateString()))
             ->orderBy('date', 'asc')
+            ->where('shift', 'Day')
             ->get();
 
-        foreach ($rosters as $roster)
+        foreach ($dayShifts as $roster)
         {
             $date = Carbon::parse($roster['date']);
             $roster['day'] = $date->format('l');
         }
 
-        return view('showRoster', compact('rosters'));
+        $nightShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+            ->select(
+                'employees.employee_name AS name',
+                'rosters.date AS date',
+                'rosters.shift AS shift'
+            )
+            ->where('employees.business_id', $businessID)
+            ->whereBetween('date', array($today->toDateString(), $aWeeklater->toDateString()))
+            ->orderBy('date', 'asc')
+            ->where('shift', 'Night')
+            ->get();
+
+        foreach ($nightShifts as $roster)
+        {
+            $date = Carbon::parse($roster['date']);
+            $roster['day'] = $date->format('l');
+        }
+
+        return view('showRoster', compact('dayShifts', 'nightShifts'));
     }
 
     /**
