@@ -10,6 +10,7 @@
 
     <div class="box">
         <h1>Add Employee Working Times</h1>
+        <div class="success">{{ $errors->first('result') }}</div>
         <form action="/addroster" method="post">
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('employee_id') }}</div>
@@ -34,7 +35,6 @@
                 </div>
             </div>
 
-            <div class="error">{{ $errors->first('result') }}</div>
             <button type="submit" name="submit">Add</button>
         </form>
     </div>

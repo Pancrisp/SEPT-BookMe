@@ -33,12 +33,13 @@
                 <tr>
                     <td>Availability</td>
                     @foreach($timeSlots as $slot)
-                        <td>
+                        <td class="marker">
                             <span id="slot-{{ $slot }}:00" class="slot"></span>
                         </td>
                     @endforeach
                 </tr>
             </table>
+            <div id="note">[X] = slot unavailable</div>
         </div>
     </div>
 

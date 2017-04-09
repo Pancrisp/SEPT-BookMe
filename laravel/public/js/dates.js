@@ -61,7 +61,7 @@ function getBookingsByDate(date){
             res.forEach(function(booking){
                 var id = 'slot-'+booking['start_time'];
                 var slot = document.querySelector('[id="'+id+'"]');
-                slot.innerHTML = 'x';
+                slot.innerHTML = '[X]';
             });
         }
     })

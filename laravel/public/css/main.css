@@ -150,6 +150,10 @@ table {
     font-size: 24px;
 }
 
+.marker {
+    text-align: center;
+}
+
 .block {
     display: block;
 }
@@ -211,4 +215,8 @@ table {
     height: auto;
     vertical-align: middle;
     padding: 8px;
+}
+
+#note {
+    margin-top: 16px;
 }
