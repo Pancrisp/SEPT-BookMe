@@ -42,8 +42,9 @@ class AuthenticationController
 
     public function backToDashboard(Request $request)
     {
-        $businessID = $request['id'];
+        if(! isset($request['id'])) { return Redirect::to('/'); }
 
+        $businessID = $request['id'];
         $user = Business::where('business_id', $businessID)
             ->first();
 
