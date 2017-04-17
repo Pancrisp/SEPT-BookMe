@@ -10,19 +10,22 @@
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
         <h2>Choose your booking date and time</h2>
-        <div>
-            <label for="date">Date</label>
+
+        <form action="booking/customer" method="post">
+            {{ csrf_field() }}
+            <select id="business" name="business" placeholder="Business" required>
+                <option value="" selected disabled>Find a Place</option>
+                @foreach($businesses as $business)
+                    <option value="{{ $business['business_id'] }}">{{ $business['business_name'] }}</option>
+                @endforeach
+            </select>
             <input id="date" type="text" name="date">
-        </div>
-
-        <div class="time">
-            <label for="time">Time</label>
             <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00">
-        </div>
+            <button type="submit">Make Booking</button>
+        </form>
 
-        <div class="booked-slots">
+        <div class="booked-slots" hidden>
             <h3>Current Bookings on <span id="date-selected"></span></h3>
-
             <table>
                 <tr>
                     <th class="head"></th>

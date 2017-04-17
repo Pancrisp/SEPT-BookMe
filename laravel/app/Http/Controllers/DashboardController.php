@@ -7,7 +7,7 @@ use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class AuthenticationController
+class DashboardController
 {
     private $user;
 
@@ -139,7 +139,9 @@ class AuthenticationController
             '16:30'
         ];
 
-        return view('customerDashboard', compact('user', 'timeSlots'));
+        $businesses = Business::all();
+
+        return view('customerDashboard', compact('user', 'timeSlots', 'businesses'));
 
     }
 }
