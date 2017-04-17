@@ -20,6 +20,7 @@ class BusinessesTableSeeder extends Seeder
             'email_address' => 's3558319@gmail.com',
             'mobile_phone' => '0411111111',
             'address' => '124 La Trobe St, Melbourne VIC 3000',
+            'slot_period' => 30
         ])->save();
 
         Business::create([
@@ -30,6 +31,7 @@ class BusinessesTableSeeder extends Seeder
             'email_address' => 's3577844@gmail.com',
             'mobile_phone' => '0422222222',
             'address' => '124 La Trobe St, Melbourne VIC 3000',
+            'slot_period' => 45
         ])->save();
 
         Business::create([
@@ -40,6 +42,7 @@ class BusinessesTableSeeder extends Seeder
             'email_address' => 's3568672@gmail.com',
             'mobile_phone' => '0433333333',
             'address' => '124 La Trobe St, Melbourne VIC 3000',
+            'slot_period' => 60
         ])->save();
     }
 }

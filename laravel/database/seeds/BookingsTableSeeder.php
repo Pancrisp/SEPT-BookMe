@@ -15,7 +15,9 @@ class BookingsTableSeeder extends Seeder
     {
         $date = Carbon::today();
 
-        $noOfCustomers = \App\Customer::count();
+        $numOfCustomers = \App\Customer::count();
+        $numOfBuinesses = \App\Business::count();
+        $numOfEmployees = \App\Employee::count();
 
         for($i=0; $i<5; $i++){
             $hour = rand(9, 13);
@@ -24,9 +26,10 @@ class BookingsTableSeeder extends Seeder
             Booking::create([
                 'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
-                'customer_id' => rand(1, $noOfCustomers),
-                'business_id' => rand(1,3),
+                'num_of_period' => 2,
+                'customer_id' => rand(1, $numOfCustomers),
+                'business_id' => rand(1, $numOfBuinesses),
+                'employee_id' => rand(1, $numOfEmployees),
             ])->save();
 
             $hour += rand(1, 2);
@@ -34,9 +37,10 @@ class BookingsTableSeeder extends Seeder
             Booking::create([
                 'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
-                'customer_id' => rand(1, $noOfCustomers),
-                'business_id' => rand(1,3),
+                'num_of_period' => 1,
+                'customer_id' => rand(1, $numOfCustomers),
+                'business_id' => rand(1, $numOfBuinesses),
+                'employee_id' => rand(1, $numOfEmployees),
             ])->save();
 
             $hour += rand(1, 2);
@@ -44,9 +48,10 @@ class BookingsTableSeeder extends Seeder
             Booking::create([
                 'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'end_time' => Carbon::createFromTime($hour, 30)->toTimeString(),
-                'customer_id' => rand(1, $noOfCustomers),
-                'business_id' => rand(1,3),
+                'num_of_period' => 4,
+                'customer_id' => rand(1, $numOfCustomers),
+                'business_id' => rand(1, $numOfBuinesses),
+                'employee_id' => rand(1, $numOfEmployees),
             ])->save();
         }
 
