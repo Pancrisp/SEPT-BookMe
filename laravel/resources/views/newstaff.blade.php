@@ -21,10 +21,12 @@
             <input type="text" name="taxfileno" placeholder="TFN" value="{!! old('taxfileno') !!}" required>
             <div class="error">{{ $errors->first('phone') }}</div>
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}" required>
-            <div class="error">{{ $errors->first('role') }}</div>
-            <select name="role" placeholder="Role" required>
-                <option value="" selected disabled>Select role</option>
-                <option value="Waiter">Waiter</option>
+            <div class="error">{{ $errors->first('activity') }}</div>
+            <select name="activity" placeholder="Activity" required>
+                <option value="" selected disabled>Select Activity in Charge</option>
+                @foreach($typeOfActivities as $activity)
+                <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
+                @endforeach
             </select>
             <div class="error">{{ $errors->first('availability') }}</div>
             <h4>Available working days</h4>

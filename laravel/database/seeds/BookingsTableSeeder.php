@@ -26,7 +26,7 @@ class BookingsTableSeeder extends Seeder
             Booking::create([
                 'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'num_of_period' => 2,
+                'num_of_slots' => 2,
                 'customer_id' => rand(1, $numOfCustomers),
                 'business_id' => rand(1, $numOfBuinesses),
                 'employee_id' => rand(1, $numOfEmployees),
@@ -37,7 +37,7 @@ class BookingsTableSeeder extends Seeder
             Booking::create([
                 'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'num_of_period' => 1,
+                'num_of_slots' => 1,
                 'customer_id' => rand(1, $numOfCustomers),
                 'business_id' => rand(1, $numOfBuinesses),
                 'employee_id' => rand(1, $numOfEmployees),
@@ -48,7 +48,7 @@ class BookingsTableSeeder extends Seeder
             Booking::create([
                 'date' => $date->toDateString(),
                 'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'num_of_period' => 4,
+                'num_of_slots' => 4,
                 'customer_id' => rand(1, $numOfCustomers),
                 'business_id' => rand(1, $numOfBuinesses),
                 'employee_id' => rand(1, $numOfEmployees),
