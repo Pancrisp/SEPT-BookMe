@@ -7,8 +7,6 @@ $(document).ready(function() {
     $(function() {
         $('#date').datepicker({ minDate: 0, maxDate: '+1M', dateFormat: 'yy-mm-dd' });
     });
-
-    getBookingsByDate(currentDate);
 });
 
 // sets date value for roster date input field
@@ -34,14 +32,13 @@ $('#date').change(function() {
 });
 
 $('#date').change(function() {
-
     var date = document.querySelector('#date').value;
-    getBookingsByDate(date);
-
+    var businessId = document.querySelector('#business').value;
+    getBookingsByDate(date, businessId);
 });
 
 // AJAX request for viewing available booking slots
-function getBookingsByDate(date){
+function getBookingsByDate(date, id){
 
     // To reset all the slots
     var allSlots = document.querySelectorAll('[class="slot"]');
@@ -49,11 +46,14 @@ function getBookingsByDate(date){
         slot.innerHTML = "";
     });
 
+    console.log(date, id);
+
     $.ajax({
         url: '/bookings/getByDate',
         type: 'get',
         data: {
-            'date': date
+            'date': date,
+            'id':   id
         },
         success: function(response) {
             var res = JSON.parse(response);
@@ -63,6 +63,7 @@ function getBookingsByDate(date){
                 var slot = document.querySelector('[id="'+id+'"]');
                 slot.innerHTML = '[X]';
             });
+            $('.booked-slots').show();
         }
     })
         .error(function(response) {

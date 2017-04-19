@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Activity;
 use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -13,7 +14,12 @@ class EmployeeController
     public function newStaff(Request $request)
     {
         $businessID = $request['id'];
-        return view('newstaff', compact('businessID'));
+
+        $typeOfActivities
+            = Activity::where('business_id', $businessID)
+            ->get();
+
+        return view('newstaff', compact('businessID', 'typeOfActivities'));
     }
 
     public function addStaff(Request $request)
@@ -44,7 +50,7 @@ class EmployeeController
             'fullname'      => 'required|max:255',
             'taxfileno'     => 'required|digits:9|unique:employees,TFN',
             'phone'         => 'required|digits:10',
-            'role'          => 'required',
+            'activity'      => 'required',
             'availability'  => 'required'
         ]);
     }
@@ -68,7 +74,7 @@ class EmployeeController
             'employee_name'     => $data['fullname'],
             'TFN'               => $data['taxfileno'],
             'mobile_phone'      => $data['phone'],
-            'role'              => $data['role'],
+            'activity_id'       => $data['activity'],
             'available_days'    => $availability,
             'business_id'       => $data['business_id']
         ]);

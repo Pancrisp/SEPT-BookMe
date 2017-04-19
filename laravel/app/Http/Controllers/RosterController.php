@@ -106,14 +106,10 @@ class RosterController
             ->where('shift', $data['shift'])
             ->first();
 
-
-
         if($roster != null)
         {
             $roster->employee_id = $data['employee_id'];
             $roster->save();
-
-
 
             return true;
         }

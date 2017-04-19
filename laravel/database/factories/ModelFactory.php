@@ -58,10 +58,10 @@ $factory->define(App\Employee::class, function (Faker\Generator $faker) {
 
     return [
         'employee_name' => $faker->name,
-        'TFN' => rand(100000000,999999999),
-        'mobile_phone' => '04'.rand(10000000,99999999),
-        'role' => 'Waiter',
-        'available_days'    => $availability,
-        'business_id' => 1
+        'TFN'           => rand(100000000,999999999),
+        'mobile_phone'  => '04'.rand(10000000,99999999),
+        'activity_id'   => rand(1,3),
+        'available_days' => $availability,
+        'business_id'   => 1
     ];
 });

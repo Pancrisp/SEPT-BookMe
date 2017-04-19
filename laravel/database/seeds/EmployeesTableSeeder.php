@@ -24,7 +24,7 @@ class EmployeesTableSeeder extends Seeder
                 'employee_name' => $employee->employee_name,
                 'TFN' => $employee->TFN,
                 'mobile_phone' => $employee->mobile_phone,
-                'role' => $employee->role,
+                'activity_id' => $employee->activity_id,
                 'available_days' => $employee->available_days,
                 'business_id' => $employee->business_id
             ])->save();

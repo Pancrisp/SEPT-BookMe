@@ -7,7 +7,7 @@ use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class AuthenticationController
+class DashboardController
 {
     private $user;
 
@@ -42,8 +42,9 @@ class AuthenticationController
 
     public function backToDashboard(Request $request)
     {
-        $businessID = $request['id'];
+        if(! isset($request['id'])) { return Redirect::to('/'); }
 
+        $businessID = $request['id'];
         $user = Business::where('business_id', $businessID)
             ->first();
 
@@ -138,7 +139,9 @@ class AuthenticationController
             '16:30'
         ];
 
-        return view('customerDashboard', compact('user', 'timeSlots'));
+        $businesses = Business::all();
+
+        return view('customerDashboard', compact('user', 'timeSlots', 'businesses'));
 
     }
 }

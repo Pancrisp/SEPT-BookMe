@@ -13,7 +13,7 @@ class CreateEmployeesTable extends Migration
      * employee_name
      * TFN (unique)
      * mobile_phone
-     * role
+     * activity_id (fk)
      * available_days
      * business_id (fk)
      *
@@ -24,9 +24,9 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('employee_id');
             $table->string('employee_name');
-            $table->integer('TFN')->unique();
+            $table->integer('TFN')->unsigned()->unique();
             $table->string('mobile_phone');
-            $table->string('role');
+            $table->integer('activity_id')->unsigned();
             $table->string('available_days');
             $table->integer('business_id')->unsigned();
             $table->timestamps();

@@ -17,7 +17,7 @@
                     <th>ID</th>
                     <th>Date</th>
                     <th>Start Time</th>
-                    <th>End Time</th>
+                    <th>Time Slots</th>
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
@@ -29,7 +29,7 @@
                         <td>{{ $booking['booking_id'] }}</td>
                         <td>{{ $booking['date'] }}</td>
                         <td>{{ $booking['start_time'] }}</td>
-                        <td>{{ $booking['end_time'] }}</td>
+                        <td>{{ $booking['num_of_slots'] }}</td>
                         <td>{{ $booking['customer_name'] }}</td>
                         <td>{{ $booking['mobile_phone'] }}</td>
                         <td>{{ $booking['email_address'] }}</td>
@@ -38,7 +38,7 @@
                 </tbody>
             </table>
         @else
-            <div>No booking made today.</div>
+            <div>No new booking today.</div>
         @endif
 
         <h2>Booking Summary</h2>
@@ -49,7 +49,7 @@
                     <th>ID</th>
                     <th>Date</th>
                     <th>Start Time</th>
-                    <th>End Time</th>
+                    <th>Time Slots</th>
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
@@ -61,7 +61,7 @@
                     <td>{{ $booking['booking_id'] }}</td>
                     <td>{{ $booking['date'] }}</td>
                     <td>{{ $booking['start_time'] }}</td>
-                    <td>{{ $booking['end_time'] }}</td>
+                    <td>{{ $booking['num_of_slots'] }}</td>
                     <td>{{ $booking['customer_name'] }}</td>
                     <td>{{ $booking['mobile_phone'] }}</td>
                     <td>{{ $booking['email_address'] }}</td>

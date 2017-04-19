@@ -14,7 +14,9 @@ class BookingController
      */
     public function getBookingsByDate(Request $request)
     {
-        $bookings = Booking::where('date', $request['date'])->get();
+        $bookings = Booking::where('business_id', $request['id'])
+            ->where('date', $request['date'])
+            ->get();
 
         print_r(json_encode($bookings));
     }
@@ -27,11 +29,15 @@ class BookingController
         $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->where('bookings.business_id', $businessID)
             ->where('bookings.date', '>=', $today)
+            ->orderBy('bookings.date')
+            ->orderBy('bookings.start_time')
             ->get();
 
         $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->where('bookings.business_id', $businessID)
             ->whereDate('bookings.created_at', $today)
+            ->orderBy('bookings.date')
+            ->orderBy('bookings.start_time')
             ->get();
 
         return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
