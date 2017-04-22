@@ -21,8 +21,6 @@
         <div class="container">
             @yield('content')
         </div>
-    </body>
-    <footer>
         @yield('pageSpecificJs')
-    </footer>
+    </body>
 </html>

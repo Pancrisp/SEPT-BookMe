@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    @include('includes.header')
 
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
