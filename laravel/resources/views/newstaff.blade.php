@@ -11,8 +11,8 @@
         <h1>New Employee Registration</h1>
         <div class="success">{{ $errors->first('result') }}</div>
         <form action="/addstaff" method="post">
-            {{ csrf_field() }}
 
+            {{ csrf_field() }}
             <input type="text" name="business_id" value="{{ $businessID }}" hidden>
             <div class="error">{{ $errors->first('fullname') }}</div>
             <input type="text" name="fullname" placeholder="Full Name" value="{!! old('fullname') !!}" required>
@@ -21,12 +21,14 @@
             <div class="error">{{ $errors->first('phone') }}</div>
             <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}" required>
             <div class="error">{{ $errors->first('activity') }}</div>
+
             <select name="activity" placeholder="Activity" required>
                 <option value="" selected disabled>Select Activity in Charge</option>
                 @foreach($typeOfActivities as $activity)
                 <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
                 @endforeach
             </select>
+
             <div class="error">{{ $errors->first('availability') }}</div>
             <h4>Available working days</h4>
             <div class="flex-container">
@@ -44,6 +46,7 @@
             </div>
 
             <button type="submit" name="submit">Submit</button>
+
         </form>
     </div>
 

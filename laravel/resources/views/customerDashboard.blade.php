@@ -48,5 +48,5 @@
 @endsection
 
 @section('pageSpecificJs')
-    <script src="{{ asset('js/dates.js') }}"></script>
+    <script src="{{ asset('js/form.js') }}"></script>
 @endsection

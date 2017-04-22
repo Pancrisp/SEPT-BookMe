@@ -1,11 +1,11 @@
-var currentDate = new Date().toISOString().slice(0,10);
+var currentDate = new Date().toISOString().slice(0, 10);
 
 $(document).ready(function() {
     $('#date').attr("placeholder", currentDate);
     $('#date-selected').html(currentDate);
 
     $(function() {
-        $('#date').datepicker({ minDate: 0, maxDate: '+1M', dateFormat: 'yy-mm-dd' });
+        $('#date').datepicker({minDate: 0, maxDate: '+1M', dateFormat: 'yy-mm-dd'});
     });
 });
 
@@ -38,11 +38,11 @@ $('#date').change(function() {
 });
 
 // AJAX request for viewing available booking slots
-function getBookingsByDate(date, id){
+function getBookingsByDate(date, id) {
 
     // To reset all the slots
     var allSlots = document.querySelectorAll('[class="slot"]');
-    allSlots.forEach(function(slot){
+    allSlots.forEach(function(slot) {
         slot.innerHTML = "";
     });
 
@@ -53,20 +53,19 @@ function getBookingsByDate(date, id){
         type: 'get',
         data: {
             'date': date,
-            'id':   id
+            'id': id
         },
         success: function(response) {
             var res = JSON.parse(response);
 
-            res.forEach(function(booking){
-                var id = 'slot-'+booking['start_time'];
-                var slot = document.querySelector('[id="'+id+'"]');
+            res.forEach(function(booking) {
+                var id = 'slot-' + booking['start_time'];
+                var slot = document.querySelector('[id="' + id + '"]');
                 slot.innerHTML = '[X]';
             });
             $('.booked-slots').show();
         }
-    })
-        .error(function(response) {
-            alert("Unable to retrieve bookings");
-        });
+    }).error(function(response) {
+        alert("Unable to retrieve bookings");
+    });
 }
