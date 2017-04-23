@@ -29,8 +29,7 @@ class EmployeeAvailabilityTest extends DuskTestCase
 		$this->browse(function ($browser) use ($owner) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
-			    ->type('password', 'secret')
-			    ->radio('usertype', 'business' )    
+			    ->type('password', 'secret')   
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
@@ -84,8 +83,7 @@ class EmployeeAvailabilityTest extends DuskTestCase
 		$this->browse(function ($browser) use ($owner) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
-			    ->type('password', 'secret')
-			    ->radio('usertype', 'business' )    
+			    ->type('password', 'secret') 
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)

@@ -33,7 +33,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
 			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/bookings/summary/'.$owner->business_id)
+			    ->assertPathIs('/bookings/summary')
 			    
  				;
 		});
@@ -86,7 +86,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
 			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/bookings/summary/'.$owner->business_id);
+			    ->assertPathIs('/bookings/summary');
 			if ($bookingCount == 0){
 				$browser->assertSee('Currently no booking.');
 			}else if ($bookingCount > 0){

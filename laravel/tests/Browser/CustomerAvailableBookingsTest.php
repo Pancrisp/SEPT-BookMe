@@ -56,7 +56,6 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 		    $browser->visit('/')    
 			    ->type('username',$customer->username)
 			    ->type('password', 'secret')
-			    ->radio('usertype', 'customer' )    
 			    ->press('login')
 			    ->type('1 Apr, 1990','date')
 			    ->press('search')
@@ -83,8 +82,7 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 		$this->browse(function ($browser) use ($customer) {
 			$browser->visit('/')   
 			    ->type('username',$customer->username)
-			    ->type('password', 'secret')
-			    ->radio('usertype', 'customer' )    
+			    ->type('password', 'secret')  
 			    ->press('login')
 			    ->type(date("Y-m-d"),'date')
 			    ->press('search')
