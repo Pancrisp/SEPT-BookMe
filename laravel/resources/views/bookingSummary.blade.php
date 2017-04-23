@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Restaurant Booking App
+    Booking App
 @endsection
 
 @section('content')

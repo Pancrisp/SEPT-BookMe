@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Restaurant Booking App
+    Booking App
 @endsection
 
 @section('content')
@@ -9,6 +9,7 @@
 
     <div class="dashboard">
         <h2>Weekly Roster</h2>
+
         <table>
             <tr>
                 <th class="head"></th>
@@ -36,6 +37,7 @@
                 @endforeach
             </tr>
         </table>
+        
     </div>
 
 @endsection

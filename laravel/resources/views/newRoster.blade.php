@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Restaurant Booking App
+    Booking App
 @endsection
 
 @section('content')
@@ -12,7 +12,6 @@
         <div class="success">{{ $errors->first('result') }}</div>
 
         <form action="/addroster" method="post">
-
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('employee_id') }}</div>
             <select name="employee_id">
@@ -39,9 +38,10 @@
             </div>
 
             <button type="submit" name="submit">Add</button>
-
         </form>
+
     </div>
+    
 @endsection
 
 @section('pageSpecificJs')
