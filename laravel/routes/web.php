@@ -20,7 +20,7 @@ Route::get('/signup', function () {
 });
 
 Route::get('/staffbooking', function () {
-    return view('newBooking')
+    return view('newBooking');
 });
 
 Route::post('/register', 'RegistrationController@register');
