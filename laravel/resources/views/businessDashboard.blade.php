@@ -13,6 +13,7 @@
         <div class="overview">
             <h3>Manage your bookings</h3>
             <a href="/bookings/summary?id={{ $user['business_id'] }}" >Bookings Overview</a>
+            <a class="block" href="/staffBooking">Make a new booking for customers</a>
         </div>
 
         <div class="overview">

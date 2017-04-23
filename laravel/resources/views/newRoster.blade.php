@@ -5,13 +5,14 @@
 @endsection
 
 @section('content')
-    @include('includes.header')
     @include('includes.return')
 
     <div class="box">
         <h1>Add Employee Working Times</h1>
         <div class="success">{{ $errors->first('result') }}</div>
+
         <form action="/addroster" method="post">
+
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('employee_id') }}</div>
             <select name="employee_id">
@@ -20,10 +21,12 @@
                     <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
             </select>
+
             <h4>Choose available working dates</h4>
             <div class="error">{{ $errors->first('date') }}</div>
             <input id="roster-date" type="text" placeholder="Select date" value="">
             <input id="dateHidden" type="hidden" name="date" value="">
+
             <h4>Shift</h4>
             <div class="error">{{ $errors->first('shift') }}</div>
             <div class="flex-container">
@@ -36,10 +39,11 @@
             </div>
 
             <button type="submit" name="submit">Add</button>
+
         </form>
     </div>
 @endsection
 
 @section('pageSpecificJs')
-    <script src="{{ asset('js/dates.js') }}"></script>
+    <script src="{{ asset('js/form.js') }}"></script>
 @endsection
