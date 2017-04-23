@@ -1,19 +1,18 @@
 @extends('layouts.template')
 
 @section('title')
-    Restaurant Booking App
+    Booking App
 @endsection
 
 @section('content')
-    @include('includes.header')
 
     <div class="dashboard">
         <h1>Hello, {{ $user['owner_name'] }} from {{ $user['business_name'] }}</h1>
 
         <div class="overview">
             <h3>Manage your bookings</h3>
-            <a href="/bookings/summary?id={{ $user['business_id'] }}" >Bookings Overview</a>
-            <a class="block" href="/staffBooking">Make a new booking for customers</a>
+            <a class="block" href="/bookings/summary?id={{ $user['business_id'] }}" >Bookings Overview</a>
+            <a class="block" href="/staffbooking">Make a new booking for customers</a>
         </div>
 
         <div class="overview">

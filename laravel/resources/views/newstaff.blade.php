@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Restaurant Booking App
+    Booking App
 @endsection
 
 @section('content')
@@ -9,9 +9,10 @@
 
     <div class="box">
         <h1>New Employee Registration</h1>
-        <div class="success">{{ $errors->first('result') }}</div>
-        <form action="/addstaff" method="post">
 
+        <div class="success">{{ $errors->first('result') }}</div>
+
+        <form action="/addstaff" method="post">
             {{ csrf_field() }}
             <input type="text" name="business_id" value="{{ $businessID }}" hidden>
             <div class="error">{{ $errors->first('fullname') }}</div>
@@ -30,6 +31,7 @@
             </select>
 
             <div class="error">{{ $errors->first('availability') }}</div>
+
             <h4>Available working days</h4>
             <div class="flex-container">
                 <div class="flex">
@@ -46,8 +48,8 @@
             </div>
 
             <button type="submit" name="submit">Submit</button>
-
         </form>
+
     </div>
 
 @endsection

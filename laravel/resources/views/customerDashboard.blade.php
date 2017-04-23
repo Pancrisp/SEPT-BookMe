@@ -1,14 +1,14 @@
 @extends('layouts.template')
 
 @section('title')
-    Restaurant Booking App
+    Booking App
 @endsection
 
 @section('content')
 
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
-        <h2>Choose your booking date and time</h2>
+        <h2>Please fill out the form below to make a booking with us</h2>
 
         <form action="booking/customer" method="post">
             {{ csrf_field() }}
@@ -18,8 +18,28 @@
                     <option value="{{ $business['business_id'] }}">{{ $business['business_name'] }}</option>
                 @endforeach
             </select>
+
+            <label for="date">Date</label>
             <input id="date" type="text" name="date">
+            <label for="time">Time</label>
             <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00">
+
+            <!-- displays a drop down list of available services by this business -->
+            <label for="services">Service required</label>
+            <select id="services" name="services">
+                <option value="" selected disabled>Choose service</option>
+            </select>
+
+            <!-- let me know if this works, couldn't seed the employees table so this isn't working for me -->
+            <div class="error">{{ $errors->first('employee_id') }}</div>
+            <select name="employee_id">
+                <!-- lists all available employees -->
+                <option value="" selected disabled>Select employee</option>
+                @foreach($employees as $employee)
+                    <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
+                @endforeach
+            </select>
+
             <button type="submit">Make Booking</button>
         </form>
 
