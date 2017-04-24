@@ -13,7 +13,7 @@ class CreateBookingsTable extends Migration
      * -id (primary key)
      * -date
      * -start_time
-     * -num_of_slots
+     * -activity
      * -customer_id (foreign key)
      * -business_id (foreign key)
      * -employee_id (foreign key)
@@ -26,7 +26,7 @@ class CreateBookingsTable extends Migration
             $table->increments('booking_id');
             $table->string('date');
             $table->string('start_time');
-            $table->integer('num_of_slots');
+            $table->string('activity');
             $table->integer('customer_id')->unsigned();
             $table->integer('business_id')->unsigned();
             $table->integer('employee_id')->unsigned();

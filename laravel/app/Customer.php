@@ -8,11 +8,10 @@ class Customer extends Model
 {
     public $primaryKey  = 'customer_id';
 
-    protected $fillable = [
-        'customer_name',
-        'username',
-        'password',
-        'email_address',
-        'mobile_phone',
-        'address'];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['customer_id'];
 }

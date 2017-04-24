@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Business;
 use App\Customer;
+use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -153,8 +154,9 @@ class DashboardController
         ];
 
         $businesses = Business::all();
+        $employees = Employee::all();
 
-        return view('customerDashboard', compact('user', 'timeSlots', 'businesses'));
+        return view('customerDashboard', compact('user', 'timeSlots', 'businesses', 'employees'));
 
     }
 }

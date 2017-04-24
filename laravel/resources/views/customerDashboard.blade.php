@@ -52,14 +52,16 @@
                         <th class="head">{{ $slot }}</th>
                     @endforeach
                 </tr>
-                <tr>
-                    <td>Availability</td>
-                    @foreach($timeSlots as $slot)
-                        <td class="marker">
-                            <span id="slot-{{ $slot }}:00" class="slot"></span>
-                        </td>
-                    @endforeach
-                </tr>
+                @foreach($employees as $employee)
+                    <tr id="employee-{{ $employee['employee_id'] }}">
+                        <td>{{ $employee['employee_name'] }}</td>
+                        @foreach($timeSlots as $slot)
+                            <td class="marker">
+                                <span id="slot-{{ $slot }}:00-{{ $employee['employee_id'] }}" class="slot"></span>
+                            </td>
+                        @endforeach
+                    </tr>
+                @endforeach
             </table>
             <div id="note">[X] = slot unavailable</div>
         </div>
