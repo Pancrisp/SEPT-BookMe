@@ -9,18 +9,6 @@ use Illuminate\Http\Request;
 
 class BookingController
 {
-    /**
-     * return all bookings for a selected date
-     */
-    public function getBookingsByDate(Request $request)
-    {
-        $bookings = Booking::where('business_id', $request['id'])
-            ->where('date', $request['date'])
-            ->get();
-
-        print_r(json_encode($bookings));
-    }
-
     public function getBookingsByBusiness(Request $request)
     {
         $businessID = $request['id'];

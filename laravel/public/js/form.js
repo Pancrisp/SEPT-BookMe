@@ -29,10 +29,6 @@ $('#date').change(function() {
     var date = document.querySelector('#date').value;
     $('#date-selected').html('');
     $('#date-selected').append(date);
-});
-
-$('#date').change(function() {
-    var date = document.querySelector('#date').value;
     var businessId = document.querySelector('#business').value;
     getBookingsByDate(date, businessId);
 });
@@ -46,8 +42,6 @@ function getBookingsByDate(date, id) {
         slot.innerHTML = "";
     });
 
-    console.log(date, id);
-
     $.ajax({
         url: '/bookings/getByDate',
         type: 'get',
@@ -58,9 +52,9 @@ function getBookingsByDate(date, id) {
         success: function(response) {
             var res = JSON.parse(response);
 
-            res.forEach(function(booking) {
-                var id = 'slot-' + booking['start_time'];
-                var slot = document.querySelector('[id="' + id + '"]');
+            res.forEach(function(booking){
+                var id = 'slot-'+booking['slot_time'];
+                var slot = document.querySelector('[id="'+id+'"]');
                 slot.innerHTML = '[X]';
             });
             $('.booked-slots').show();
