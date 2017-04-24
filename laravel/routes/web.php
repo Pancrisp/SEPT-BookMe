@@ -20,7 +20,11 @@ Route::get('/signup', function () {
 });
 
 Route::get('/staffbooking', function () {
-    return view('newBooking');
+	$value = session('user');
+	if (!isset($value))
+		return view('login');
+	else
+		return view('newBooking');
 });
 
 Route::post('/register', 'RegistrationController@register');

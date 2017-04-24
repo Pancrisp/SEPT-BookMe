@@ -32,6 +32,11 @@ class DashboardController
         {
             $type = $data['usertype'];
             $user = $this->user;
+	    
+	    // Flushing all existing session data
+	    $request->session()->flush();
+	    // Starting session
+	    $request->session()->put('user', $data['username']);
 
             if($type == 'business')
                 return view($type.'Dashboard', compact('user'));
@@ -42,13 +47,21 @@ class DashboardController
 
     public function backToDashboard(Request $request)
     {
-        if(! isset($request['id'])) { return Redirect::to('/'); }
+        
+	// Checking session existence
+	if ($request->session()->has('user')) { 
 
-        $businessID = $request['id'];
-        $user = Business::where('business_id', $businessID)
-            ->first();
+		//if(! isset($request['id'])) { return Redirect::to('/'); }
 
-        return view('businessDashboard', compact('user'));
+		$businessID = $request['id'];
+		$user = Business::where('business_id', $businessID)
+		    ->first();
+
+		return view('businessDashboard', compact('user'));
+	}
+	else{
+		return Redirect::to('/');
+	}
     }
 
     /**

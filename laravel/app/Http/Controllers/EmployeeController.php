@@ -13,13 +13,18 @@ class EmployeeController
 {
     public function newStaff(Request $request)
     {
-        $businessID = $request['id'];
+        // Checking session
+	if ($request->session()->has('user')) {
 
-        $typeOfActivities
-            = Activity::where('business_id', $businessID)
-            ->get();
+		$businessID = $request['id'];
 
-        return view('newstaff', compact('businessID', 'typeOfActivities'));
+		$typeOfActivities
+		    = Activity::where('business_id', $businessID)
+		    ->get();
+
+		return view('newstaff', compact('businessID', 'typeOfActivities'));
+	}else
+		return Redirect::to('/');
     }
 
     public function addStaff(Request $request)

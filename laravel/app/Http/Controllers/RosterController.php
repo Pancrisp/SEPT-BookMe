@@ -13,9 +13,13 @@ class RosterController
 {
     public function newRoster(Request $request)
     {
-        $businessID = $request['id'];
-        $employees = Employee::where('business_id', $businessID)->get();
-        return view('newRoster', compact('employees', 'businessID'));
+	// Checking if the session is set
+        if ($request->session()->has('user')) {
+		$businessID = $request['id'];
+		$employees = Employee::where('business_id', $businessID)->get();
+		return view('newRoster', compact('employees', 'businessID'));
+	}else
+		return Redirect::to('/');
     }
 
     public function addRoster(Request $request)
@@ -36,48 +40,53 @@ class RosterController
 
     public function showRoster(Request $request)
     {
-        $businessID = $request['id'];
+	
+	// Checking if the session is set
+        if ($request->session()->has('user')) {        
+		$businessID = $request['id'];
 
-        $tomorrow = Carbon::now()->addDay();
-        $aWeeklater = Carbon::now()->addWeek();
+		$tomorrow = Carbon::now()->addDay();
+		$aWeeklater = Carbon::now()->addWeek();
 
-        $dayShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
-            ->select(
-                'employees.employee_name AS name',
-                'rosters.date AS date',
-                'rosters.shift AS shift'
-            )
-            ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
-            ->orderBy('date', 'asc')
-            ->where('shift', 'Day')
-            ->get();
+		$dayShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+		    ->select(
+		        'employees.employee_name AS name',
+		        'rosters.date AS date',
+		        'rosters.shift AS shift'
+		    )
+		    ->where('employees.business_id', $businessID)
+		    ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
+		    ->orderBy('date', 'asc')
+		    ->where('shift', 'Day')
+		    ->get();
 
-        foreach ($dayShifts as $roster)
-        {
-            $date = Carbon::parse($roster['date']);
-            $roster['day'] = $date->format('l');
-        }
+		foreach ($dayShifts as $roster)
+		{
+		    $date = Carbon::parse($roster['date']);
+		    $roster['day'] = $date->format('l');
+		}
 
-        $nightShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
-            ->select(
-                'employees.employee_name AS name',
-                'rosters.date AS date',
-                'rosters.shift AS shift'
-            )
-            ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
-            ->orderBy('date', 'asc')
-            ->where('shift', 'Night')
-            ->get();
+		$nightShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+		    ->select(
+		        'employees.employee_name AS name',
+		        'rosters.date AS date',
+		        'rosters.shift AS shift'
+		    )
+		    ->where('employees.business_id', $businessID)
+		    ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
+		    ->orderBy('date', 'asc')
+		    ->where('shift', 'Night')
+		    ->get();
 
-        foreach ($nightShifts as $roster)
-        {
-            $date = Carbon::parse($roster['date']);
-            $roster['day'] = $date->format('l');
-        }
+		foreach ($nightShifts as $roster)
+		{
+		    $date = Carbon::parse($roster['date']);
+		    $roster['day'] = $date->format('l');
+		}
 
-        return view('showRoster', compact('dayShifts', 'nightShifts', 'businessID'));
+		return view('showRoster', compact('dayShifts', 'nightShifts', 'businessID'));
+	}else
+		return Redirect::to('/');
     }
 
     /**
