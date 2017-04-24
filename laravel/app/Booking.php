@@ -8,10 +8,10 @@ class Booking extends Model
 {
     public $primaryKey  = 'booking_id';
 
-    protected $fillable = [
-        'date',
-        'start_time',
-        'end_time',
-        'customer_id',
-        'business_id'];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['booking_id'];
 }

@@ -17,7 +17,7 @@ class CustomersTableSeeder extends Seeder
         for($i=0;$i<5;$i++)
         {
             $customer = factory(\App\Customer::class)->make([
-                'password'      => bcrypt('secret')
+                'password' => bcrypt('secret')
             ]);
 
             Customer::create([
@@ -27,7 +27,7 @@ class CustomersTableSeeder extends Seeder
                 'email_address' => $customer->email_address,
                 'mobile_phone' => $customer->mobile_phone,
                 'address' => $customer->address,
-            ])->save();
+            ]);
         }
     }
 }

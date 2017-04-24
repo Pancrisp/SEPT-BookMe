@@ -21,6 +21,6 @@ class BusinessesTableSeeder extends Seeder
             'mobile_phone' => '0411111111',
             'address' => '124 La Trobe St, Melbourne VIC 3000',
             'slot_period' => 30
-        ])->save();
+        ]);
     }
 }

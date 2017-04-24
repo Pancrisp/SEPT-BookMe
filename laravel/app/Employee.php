@@ -8,11 +8,10 @@ class Employee extends Model
 {
     public $primaryKey  = 'employee_id';
 
-    protected $fillable = [
-        'employee_name',
-        'TFN',
-        'activity_id',
-        'available_days',
-        'mobile_phone',
-        'business_id'];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['employee_id'];
 }

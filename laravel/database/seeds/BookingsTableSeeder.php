@@ -19,42 +19,50 @@ class BookingsTableSeeder extends Seeder
         $numOfBuinesses = \App\Business::count();
         $numOfEmployees = \App\Employee::count();
 
+        $typesOfSlots = [1,2,4];
+
         for($i=0; $i<5; $i++){
-            $hour = rand(9, 13);
+            $hour = rand(9, 11);
             $date = $date->addDay();
 
-            Booking::create([
-                'date' => $date->toDateString(),
-                'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'num_of_slots' => 2,
-                'customer_id' => rand(1, $numOfCustomers),
-                'business_id' => rand(1, $numOfBuinesses),
-                'employee_id' => rand(1, $numOfEmployees),
-            ])->save();
+            for($j=0; $j<3; $j++){
+                $empID = rand(1, $numOfEmployees);
+                $cusID = rand(1, $numOfCustomers);
+                $busID = rand(1, $numOfBuinesses);
+                $business = \App\Business::find($busID);
 
-            $hour += rand(1, 2);
+                $slotKey = array_rand($typesOfSlots);
+                $numOfSlots = $typesOfSlots[$slotKey];
+                $activity = \App\Activity::where('num_of_slots', $numOfSlots)
+                    ->where('business_id', $busID)
+                    ->first();
 
-            Booking::create([
-                'date' => $date->toDateString(),
-                'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'num_of_slots' => 1,
-                'customer_id' => rand(1, $numOfCustomers),
-                'business_id' => rand(1, $numOfBuinesses),
-                'employee_id' => rand(1, $numOfEmployees),
-            ])->save();
+                $startTime = Carbon::createFromTime($hour, 0);
 
-            $hour += rand(1, 2);
+                $booking = Booking::create([
+                    'date' => $date->toDateString(),
+                    'start_time' => $startTime->toTimeString(),
+                    'activity' => $activity->activity_name,
+                    'customer_id' => $cusID,
+                    'business_id' => $busID,
+                    'employee_id' => $empID,
+                ]);
 
-            Booking::create([
-                'date' => $date->toDateString(),
-                'start_time' => Carbon::createFromTime($hour, 0)->toTimeString(),
-                'num_of_slots' => 4,
-                'customer_id' => rand(1, $numOfCustomers),
-                'business_id' => rand(1, $numOfBuinesses),
-                'employee_id' => rand(1, $numOfEmployees),
-            ])->save();
+                for($k=0; $k<$numOfSlots; $k++)
+                {
+                    \App\Slot::create([
+                        'slot_time' => $startTime->toTimeString(),
+                        'booking_id' => $booking->booking_id
+                    ]);
+
+                    $startTime->addMinute($business->slot_period);
+                }
+
+                $hour += $numOfSlots;
+                if($hour > 16)
+                    break;
+            }
         }
-
     }
 
 }

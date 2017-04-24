@@ -8,8 +8,10 @@ class Roster extends Model
 {
     public $primaryKey  = 'roster_id';
 
-    protected $fillable = [
-        'date',
-        'shift',
-        'employee_id'];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['roster_id'];
 }

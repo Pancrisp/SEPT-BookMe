@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Activity extends Model
+class Slot extends Model
 {
-    public $primaryKey  = 'activity_id';
+    public $primaryKey  = 'slot_id';
 
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
-    protected $guarded = ['activity_id'];
+    protected $guarded = ['slot_id'];
 }

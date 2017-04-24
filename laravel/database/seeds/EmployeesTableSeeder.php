@@ -27,7 +27,7 @@ class EmployeesTableSeeder extends Seeder
                 'activity_id' => $employee->activity_id,
                 'available_days' => $employee->available_days,
                 'business_id' => $employee->business_id
-            ])->save();
+            ]);
         }
     }
 }

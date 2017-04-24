@@ -25,13 +25,13 @@ class RostersTableSeeder extends Seeder
                 'date' => $date->toDateString(),
                 'shift' => 'Day',
                 'employee_id' => $employee1
-            ])->save();
+            ]);
 
             \App\Roster::create([
                 'date' => $date->toDateString(),
                 'shift' => 'Night',
                 'employee_id' => $employee2
-            ])->save();
+            ]);
         }
     }
 }
