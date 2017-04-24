@@ -9,8 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class RegistrationTest extends DuskTestCase
 {
 	
-	use DatabaseTransactions;
-	
+
 	/**
 	*  @test
 	*  @group registration
@@ -39,14 +38,20 @@ class RegistrationTest extends DuskTestCase
 			    ->type('address',$customer->address)	   
 			    ->press('signup')
 			    ->assertPathIs('/')
-			    ->type('username',$customer->username)
-			    ->type('password', 'copsic')  
-			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$customer->customer_name)
 			    ;
 		});
+		
+		// Building criteria assert in database
+		$criteria = ['username' => $customer->username ];
+		
+		// Asserting existence of newly creted customer in the database
+		$this->assertDatabaseHas('customers', $criteria);
+		
+		// Delete newly creted customer from database
+		$toDelete = \App\Customer::where('username', $customer->username)->first();
+		\App\Customer::destroy($toDelete->customer_id);		
 
+		
 	}    
 
 	/**
