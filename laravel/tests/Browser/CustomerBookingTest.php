@@ -10,7 +10,7 @@ class CustomerBookingTest extends DuskTestCase
 {
 	/**
 	*  @test 
-	*  @group bug001
+	*  @group accepted
 	*  @group customerBooking
 	*	
 	*  Unit test for checking whether not authenticated customers
@@ -27,7 +27,7 @@ class CustomerBookingTest extends DuskTestCase
 	
 		$this->browse(function ($browser) use ($customer) {
 		    $browser->visit('/dashboard')
-			    ->on('/')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Sign in to access');
 		});
 	} 
@@ -45,8 +45,9 @@ class CustomerBookingTest extends DuskTestCase
     
 	public function bookingCustomerAuthenticated()
 	{
+		$customer_id = 1;
 		// Retrieving an existing customer		
-		$customer = \App\Customer::where('customer_id',2)->first();
+		$customer = \App\Customer::where('customer_id',$customer_id)->first();
 		
 	
 		$this->browse(function ($browser) use ($customer) {
@@ -69,9 +70,10 @@ class CustomerBookingTest extends DuskTestCase
 	* TODO Revise table and time selection. 
 	*/
     public function successfulBooking()
-    {
+    {	
+	$customer_id = 1;
         // Retrieving an existing customer		
-	$customer = \App\Customer::where('customer_id',2)->first();
+	$customer = \App\Customer::where('customer_id',$customer_id)->first();
 		
 
         $this->browse(function ($browser) use ($customer) {
@@ -85,7 +87,7 @@ class CustomerBookingTest extends DuskTestCase
 		    ->press('End Time')
 		    ->press('Book')
 		    ->assertSee('Table booked successfully')
-		    ->on('/dashboard');
+		    ->assertPathIs('/dashboard');
 		});
     }
     
@@ -102,8 +104,9 @@ class CustomerBookingTest extends DuskTestCase
     public function invalidBooking()
     {
 	
-	// Retrieving an existing customer		
-	$customer = \App\Customer::where('customer_id',2)->first();
+	$customer_id = 1;
+        // Retrieving an existing customer		
+	$customer = \App\Customer::where('customer_id',$customer_id)->first();
 		
 	/*First attempt a successful booking*/
         $this->browse(function ($browser) use ($customer) {
@@ -117,7 +120,7 @@ class CustomerBookingTest extends DuskTestCase
 		    ->press('End Time')
 		    ->press('Book')
 		    ->assertSee('Table booked successfully')
-		    ->on('/dashboard');
+		    ->assertPathIs('/dashboard');
 		});
 
 	/*Attempting to book the same table at the same time*/
@@ -133,7 +136,7 @@ class CustomerBookingTest extends DuskTestCase
 		    ->press('End Time')
 		    ->press('Book')
 		    ->assertSee('Table unavailable')
-		    ->on('/dashboard');
+		    ->assertPathIs('/dashboard');
 		});
     }
 }

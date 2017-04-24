@@ -15,6 +15,30 @@ class CheckBookingSummariesTest extends DuskTestCase
 	*  @group accepted
 	*  @group bookingSummary
 	*	
+	*  Unit test for unauthenticated business owner attempting to check 		*  booking Summaries.
+	*  Note: this test has to be run first, since the browser maintains the 
+	*  	session alive while opened. 
+	*
+	*  @return void
+	*/
+	public function business_owner_not_authenticated_booking_summary()
+	{
+		$business_id = 1;		
+		// Retrieving an existing business id		
+		$owner = \App\Business::where('business_id',$business_id)->first();
+
+		$this->browse(function ($browser) use ($owner) {
+		    $browser->visit('/bookings/summary')    
+			    ->assertPathIs('/')   
+			    ->assertSee('Sign in to access');
+		});
+	}
+
+	/**
+	*  @test 
+	*  @group accepted
+	*  @group bookingSummary
+	*	
 	*  Unit test for a successful display of booking summaries
 	*  done by an authenticated business owner.
 	*
@@ -22,8 +46,9 @@ class CheckBookingSummariesTest extends DuskTestCase
 	*/
 	public function business_owner_booking_summary_successful()
 	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
+		$business_id = 1;		
+		// Retrieving an existing business id		
+		$owner = \App\Business::where('business_id',$business_id)->first();
 
 		$this->browse(function ($browser) use ($owner) {
 		    $browser->visit('/')    
@@ -40,26 +65,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 	}
     
 
-	/**
-	*  @test 
-	*  @group bug#4
-	*  @group bookingSummary
-	*	
-	*  Unit test for unauthenticated business owner attempting to check 		*  booking Summaries.
-	*
-	*  @return void
-	*/
-	public function business_owner_not_authenticated_booking_summary()
-	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
 
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/bookings/summary/'.$owner->business_id)    
-			    ->assertPathIs('/')   
-			    ->assertSee('Sign in to access');
-		});
-	}
 
 	/**
 	*  @test 
@@ -72,8 +78,8 @@ class CheckBookingSummariesTest extends DuskTestCase
 	*/
 	public function business_owner_booking_summary_count()
 	{
-		$business_id = 3; 		
-		// Retrieving an existing customer		
+		$business_id = 1;		
+		// Retrieving an existing business id		
 		$owner = \App\Business::where('business_id',$business_id)->first();
 		// Retrieving bookings count of a specific business		
 		$bookingCount = \App\Booking::where('business_id',$business_id)->count();

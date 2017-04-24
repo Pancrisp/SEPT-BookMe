@@ -16,14 +16,37 @@ class AddEmployeeTest extends DuskTestCase
 	*  @group accepted
 	*  @group addEmployee
 	*	
+	*  Unit test for unauthenticated business owner attempting to add a 		*  new employee.
+	*
+	*  @return void
+	*/
+	public function add_employee_not_authenticated()
+	{
+		// Retrieving an existing customer		
+		$owner = \App\Business::where('business_id',3)->first();
+
+		$this->browse(function ($browser) use ($owner) {
+		    $browser->visit('/newstaff')    
+			    ->assertPathIs('/')     
+			    ->assertSee('Sign in to access');
+		});
+	}
+	/**
+	*  @test 
+	*  @group accepted
+	*  @group addEmployee
+	*	
 	*  Unit test for a successful employee registration.
 	*
 	*  @return void
 	*/
 	public function add_employee_successful()
 	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
+		$business_id = 1;		
+		// Retrieving an existing business owner 		
+		$owner = \App\Business::where('business_id',$business_id)->first();
+		
+		// Generating fake employee data		
 		$employee = factory(\App\Employee::class)->make();
 
 		$this->browse(function ($browser) use ($owner, $employee) {
@@ -38,7 +61,7 @@ class AddEmployeeTest extends DuskTestCase
 			    ->type('fullname',$employee->employee_name)
 			    ->type('phone',$employee->mobile_phone)
 		    	    ->type('taxfileno', $employee->TFN)
-		    	    ->select('role','Waiter')
+		    	    ->select('activity')
 			    ->check("input[name='availability[]'][value='Tue']")
 			    ->check("input[name='availability[]'][value='Fri']")
 			    ->press('submit')
@@ -47,28 +70,6 @@ class AddEmployeeTest extends DuskTestCase
 		});
 	}
     
-
-	/**
-	*  @test 
-	*  @group bug#1
-	*  @group addEmployee
-	*	
-	*  Unit test for unauthenticated business owner attempting to add a 		*  new employee.
-	*
-	*  @return void
-	*/
-	public function add_employee_not_authenticated()
-	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
-
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/newstaff')    
-			    ->assertPathIs('/')   
-			    //->on('/')   
-			    ->assertSee('Sign in to access');
-		});
-	}
 
 	/**
 	*  @test 
@@ -81,9 +82,11 @@ class AddEmployeeTest extends DuskTestCase
 	*/
 	public function add_employee_existing_TFN()
 	{
-		$business_id = 2;		
-		// Retrieving an existing customer		
+		$business_id = 1;		
+		// Retrieving an existing business owner 		
 		$owner = \App\Business::where('business_id',$business_id)->first();
+		
+		// Getting first employee 
 		$employee = \App\Employee::where('business_id',$business_id)->first();
 		// If there is an employee
 		if (isset($employee)){
@@ -99,7 +102,7 @@ class AddEmployeeTest extends DuskTestCase
 			    ->type('fullname','other_employee_name')
 			    ->type('phone',0410000111)
 		    	    ->type('taxfileno', $employee->TFN)
-		    	    ->select('role','Waiter')
+		    	    ->select('activity')
 			    ->check("input[name='availability[]'][value='Tue']")
 			    ->check("input[name='availability[]'][value='Fri']")
 			    ->press('submit')
@@ -122,7 +125,7 @@ class AddEmployeeTest extends DuskTestCase
 				    ->type('fullname',$new_employee->employee_name)
 				    ->type('phone',$new_employee->mobile_phone)
 			    	    ->type('taxfileno', $new_employee->TFN)
-			    	    ->select('role','Waiter')
+			    	    ->select('activity')
 				    ->check("input[name='availability[]'][value='Fri']")
 				    ->press('submit')
 				    ->assertSee('Staff added successfully')
@@ -130,7 +133,7 @@ class AddEmployeeTest extends DuskTestCase
 				    ->type('fullname','other_employee_name')
 				    ->type('phone',0410000111)
 			    	    ->type('taxfileno', $new_employee->TFN)
-			    	    ->select('role','Waiter')
+			    	    ->select('activity')
 				    ->check("input[name='availability[]'][value='Tue']")
 				    ->press('submit')
 				    ->assertPathIs('/newstaff')
@@ -152,8 +155,11 @@ class AddEmployeeTest extends DuskTestCase
 	*/
 	public function add_employee_mandatory_fields()
 	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
+		$business_id = 1;		
+		// Retrieving an existing business owner 		
+		$owner = \App\Business::where('business_id',$business_id)->first();
+		
+		// Generating fake employee data		
 		$employee = factory(\App\Employee::class)->make();
 
 		$this->browse(function ($browser) use ($owner, $employee) {
@@ -177,7 +183,7 @@ class AddEmployeeTest extends DuskTestCase
 		    	    ->type('taxfileno', $employee->TFN)
 			    ->press('submit')
 			    ->assertDontSee('Staff added successfully')
-		    	    ->select('role','Waiter')
+		    	    ->select('activity')
 			    ->press('submit')
 			    ->assertDontSee('Staff added successfully')
 			    ->assertSee('The availability field is required')

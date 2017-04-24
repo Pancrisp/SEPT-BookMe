@@ -13,7 +13,7 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 
     /**
 	*  @test 
-	*  @group pending 
+	*  @group accepted 
 	*  @group customerAvailableBooking
 	*	
 	*  Test for checking whether not authenticated customers
@@ -30,7 +30,7 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 	
 		$this->browse(function ($browser) use ($customer) {
 		    $browser->visit('/dashboard')
-			    ->on('/')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Sign in to access');
 		});
 	} 
@@ -65,7 +65,7 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group error
+	*  @group pending
 	*  @group customerAvailableBooking
 	*	
 	*  Test for checking whether valid dates are accepted when 
