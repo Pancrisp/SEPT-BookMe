@@ -30,11 +30,11 @@
                 <option value="" selected disabled>Choose service</option>
             </select>
 
-            <!-- let me know if this works, couldn't seed the employees table so this isn't working for me -->
             <div class="error">{{ $errors->first('employee_id') }}</div>
-            <select name="employee_id">
+            <label for="employee">Preferred staff</label>
+            <select id="employee" name="employee_id">
                 <!-- lists all available employees -->
-                <option value="" selected disabled>Select employee</option>
+                <option value="" selected disabled>Choose staff</option>
                 @foreach($employees as $employee)
                     <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
