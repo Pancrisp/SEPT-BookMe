@@ -5,9 +5,9 @@
 | homepage and registration related routes
 |--------------------------------------------------------------------------
  */
-Route::get('/', function () { return view('login'); });
-Route::get('/signup', function () { return view('signup'); });
-// Form submisstion
+Route::get('/', function(){ return view('login'); });
+Route::get('/signup', function(){ return view('signup'); });
+// Form submission
 Route::post('/register', 'RegistrationController@register');
 
 /*
@@ -23,7 +23,8 @@ Route::get('/dashboard', 'DashboardController@backToDashboard');
 | booking related routes
 |--------------------------------------------------------------------------
  */
-Route::get('/booking/summary', 'BookingController@getBookingsByBusiness');
+Route::get('/booking/summary', 'BookingController@showBookingSummary');
+Route::get('/booking/owner', function(){ return view('newBooking');});
 // AJAX
 Route::get('/booking/get/byDate', 'SlotController@getSlotsByDate');
 

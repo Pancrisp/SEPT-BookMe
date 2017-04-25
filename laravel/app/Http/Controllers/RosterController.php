@@ -13,8 +13,8 @@ class RosterController
 {
     public function addRosterForm(Request $request)
     {
-	    // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+	    // Checking if the session is set and business ID is set
+        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
 
         $businessID = $request['id'];
         $employees = Employee::where('business_id', $businessID)->get();
@@ -39,8 +39,8 @@ class RosterController
 
     public function showRoster(Request $request)
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // Checking if the session is set and business ID is set
+        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
 
         $businessID = $request['id'];
 

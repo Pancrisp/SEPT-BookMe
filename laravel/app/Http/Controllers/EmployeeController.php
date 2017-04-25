@@ -17,8 +17,8 @@ class EmployeeController
      */
     public function addStaffForm(Request $request)
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // Checking if the session is set and business ID is set
+        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
 
         $businessID = $request['id'];
 
@@ -58,8 +58,8 @@ class EmployeeController
      */
     public function viewStaffSummary(Request $request)
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // Checking if the session is set and business ID is set
+        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
 
         $businessID = $request['id'];
 
@@ -78,8 +78,8 @@ class EmployeeController
      */
     public function showStaffUpdateForm(Request $request)
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // Checking if the session is set and business ID is set
+        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
 
         $businessID = $request['id'];
 

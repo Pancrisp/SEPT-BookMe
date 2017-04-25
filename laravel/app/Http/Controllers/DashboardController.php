@@ -48,14 +48,22 @@ class DashboardController
 
     public function backToDashboard(Request $request)
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // Security check: if the session is set and business ID is set
+        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
 
-		$businessID = $request['id'];
-		$user = Business::where('business_id', $businessID)
-		    ->first();
+		$id = $request['id'];
+        $type = $request['type'];
 
-		return view('businessDashboard', compact('user'));
+        if($type == 'business')
+        {
+            $user = Business::find($id);
+        }
+        else
+        {
+            $user = Customer::find($id);
+        }
+
+		return view($type.'Dashboard', compact('user'));
     }
 
     /**

@@ -1,17 +1,24 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App - Make a New Booking for Customer
+    Booking App
 @endsection
 
 @section('content')
 
-    <div class="box">
-        <h1>Place an order for a customer</h1>
+    <div class="dashboard">
+        <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
+        <h2>Please fill out the form below to make a booking with us</h2>
 
-        <form action="" method="post">
-            <label for="">Customer username</label>
-            <input id="username" type="text" name="username">
+        <form action="booking/customer" method="post">
+            {{ csrf_field() }}
+            <select id="business" name="business" placeholder="Business" required>
+                <option value="" selected disabled>Find a Place</option>
+                @foreach($businesses as $business)
+                    <option value="{{ $business['business_id'] }}">{{ $business['business_name'] }}</option>
+                @endforeach
+            </select>
+
             <label for="date">Date</label>
             <input id="date" type="text" name="date">
             <label for="time">Time</label>
@@ -23,11 +30,11 @@
                 <option value="" selected disabled>Choose service</option>
             </select>
 
-            <!-- allows business owners or customers to select a preferred personnel -->
-            <label for="employee">Choose preferred employee</label>
+            <div class="error">{{ $errors->first('employee_id') }}</div>
+            <label for="employee">Preferred staff</label>
             <select id="employee" name="employee_id">
-                <option value="" selected disabled>Choose employee</option>
                 <!-- lists all available employees -->
+                <option value="" selected disabled>Choose staff</option>
                 @foreach($employees as $employee)
                     <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
@@ -35,6 +42,29 @@
 
             <button type="submit">Make Booking</button>
         </form>
+
+        <div class="booked-slots" hidden>
+            <h3>Current Bookings on <span id="date-selected"></span></h3>
+            <table>
+                <tr>
+                    <th class="head"></th>
+                    @foreach($timeSlots as $slot)
+                        <th class="head">{{ $slot }}</th>
+                    @endforeach
+                </tr>
+                @foreach($employees as $employee)
+                    <tr id="employee-{{ $employee['employee_id'] }}">
+                        <td>{{ $employee['employee_name'] }}</td>
+                        @foreach($timeSlots as $slot)
+                            <td class="marker">
+                                <span id="slot-{{ $slot }}:00-{{ $employee['employee_id'] }}" class="slot"></span>
+                            </td>
+                        @endforeach
+                    </tr>
+                @endforeach
+            </table>
+            <div id="note">[X] = slot unavailable</div>
+        </div>
     </div>
 
 @endsection
