@@ -31,13 +31,16 @@ Route::post('/register', 'RegistrationController@register');
 Route::post('/dashboard', 'DashboardController@login');
 Route::get('/dashboard', 'DashboardController@backToDashboard');
 
-Route::get('/bookings/getByDate', 'SlotController@getSlotsByDate');
-Route::get('/bookings/summary', 'BookingController@getBookingsByBusiness');
+Route::get('/booking/get/byDate', 'SlotController@getSlotsByDate');
+Route::get('/booking/summary', 'BookingController@getBookingsByBusiness');
 
-Route::get('/newstaff', 'EmployeeController@newStaff');
-Route::post('/addstaff', 'EmployeeController@addStaff');
-Route::get('/emp/availability/get', 'EmployeeController@getAvailability');
+Route::get('/staff/add', 'EmployeeController@addStaffForm');
+Route::post('/staff/add/submit', 'EmployeeController@addStaff');
+Route::get('/staff/availability/get', 'EmployeeController@getAvailability');
+Route::get('staff/summary', 'EmployeeController@viewStaffSummary');
+Route::get('staff/update', 'EmployeeController@showStaffUpdateForm');
+Route::post('staff/update/submit', 'EmployeeController@updateStaffAvailableDays');
 
-Route::get('/newroster', 'RosterController@newRoster');
-Route::post('/addroster', 'RosterController@addRoster');
-Route::get('/viewroster', 'RosterController@showRoster');
+Route::get('/roster/add', 'RosterController@addRosterForm');
+Route::post('/roster/add/submit', 'RosterController@addRoster');
+Route::get('/roster/summary', 'RosterController@showRoster');

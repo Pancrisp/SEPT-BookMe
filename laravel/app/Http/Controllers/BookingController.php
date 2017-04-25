@@ -12,32 +12,26 @@ class BookingController
 {
     public function getBookingsByBusiness(Request $request)
     {
-        // Checking session existence
-        if ($request->session()->has('user')) {
+        // Checking if the session is set
+        if (! $request->session()->has('user')) { return Redirect::to('/'); }
 
-            $businessID = $request['id'];
-            $today = Carbon::now()->toDateString();
+        $businessID = $request['id'];
+        $today = Carbon::now()->toDateString();
 
-            $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
-                ->where('bookings.business_id', $businessID)
-                ->where('bookings.date', '>=', $today)
-                ->orderBy('bookings.date')
-                ->orderBy('bookings.start_time')
-                ->get();
+        $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->where('bookings.business_id', $businessID)
+            ->where('bookings.date', '>=', $today)
+            ->orderBy('bookings.date')
+            ->orderBy('bookings.start_time')
+            ->get();
 
-            $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
-                ->where('bookings.business_id', $businessID)
-                ->whereDate('bookings.created_at', $today)
-                ->orderBy('bookings.date')
-                ->orderBy('bookings.start_time')
-                ->get();
+        $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->where('bookings.business_id', $businessID)
+            ->whereDate('bookings.created_at', $today)
+            ->orderBy('bookings.date')
+            ->orderBy('bookings.start_time')
+            ->get();
 
-            return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
-
-        }
-        else{
-            return Redirect::to('/');
-        }
+        return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
     }
-
 }

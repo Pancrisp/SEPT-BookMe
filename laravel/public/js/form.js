@@ -29,7 +29,7 @@ $('#roster-select-employee').on('change', function() {
     var empID = $(this).val();
 
     $.ajax({
-        url: '/emp/availability/get',
+        url: '/staff/availability/get',
         type: 'get',
         data: {
             'empID': empID
@@ -62,7 +62,7 @@ function getBookingsByDate(date, id) {
     });
 
     $.ajax({
-        url: '/bookings/getByDate',
+        url: '/booking/get/byDate',
         type: 'get',
         data: {
             'date': date,

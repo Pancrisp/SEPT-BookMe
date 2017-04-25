@@ -11,21 +11,22 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController
 {
-    public function newStaff(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addStaffForm(Request $request)
     {
-        // Checking session
-        if ($request->session()->has('user')) {
+        // Checking if the session is set
+        if (! $request->session()->has('user')) { return Redirect::to('/'); }
 
-            $businessID = $request['id'];
+        $businessID = $request['id'];
 
-            $typeOfActivities
-                = Activity::where('business_id', $businessID)
-                ->get();
+        $typeOfActivities
+            = Activity::where('business_id', $businessID)
+            ->get();
 
-            return view('newstaff', compact('businessID', 'typeOfActivities'));
-        }
-        else
-            return Redirect::to('/');
+        return view('newStaff', compact('businessID', 'typeOfActivities'));
     }
 
     /**
@@ -34,7 +35,7 @@ class EmployeeController
      */
     public function addStaff(Request $request)
     {
-        $validator = $this->validator($request->all());
+        $validator = $this->registrationValidator($request->all());
 
         if($validator->fails()) {
             return Redirect::back()
@@ -45,6 +46,69 @@ class EmployeeController
         if($this->create($request->all())){
             return Redirect::back()
                 ->withErrors(['result' => 'Staff added successfully!']);
+        }
+    }
+
+    /**
+     * view staff summary
+     * includes name, TFN, contact, activity, available days
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function viewStaffSummary(Request $request)
+    {
+        // Checking if the session is set
+        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+
+        $businessID = $request['id'];
+
+        $employees = Employee::join('activities', 'employees.activity_id', 'activities.activity_id')
+            ->where('employees.business_id', $businessID)
+            ->get();
+
+        return view('staffSummary', compact('businessID', 'employees'));
+    }
+
+    /**
+     * show staff update form
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showStaffUpdateForm(Request $request)
+    {
+        // Checking if the session is set
+        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+
+        $businessID = $request['id'];
+
+        $employees =
+            Employee::where('business_id', $businessID)
+            ->get();
+
+        return view('updateStaff', compact('businessID', 'employees'));
+    }
+
+    /**
+     * update staff working days
+     *
+     * @param Request $request
+     * @return Redirect
+     */
+    public function updateStaffAvailableDays(Request $request)
+    {
+        $validator = $this->updateValidator($request->all());
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        if($this->update($request->all())){
+            return Redirect::back()
+                ->withErrors(['result' => 'Staff working days updated successfully!']);
         }
     }
 
@@ -73,7 +137,7 @@ class EmployeeController
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    private function validator(array $data)
+    private function registrationValidator(array $data)
     {
         return Validator::make($data, [
             'fullname'      => 'required|max:255',
@@ -107,5 +171,39 @@ class EmployeeController
             'available_days'    => $availability,
             'business_id'       => $data['business_id']
         ]);
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function updateValidator(array $data)
+    {
+        return Validator::make($data, [
+            'employee_id'   => 'required',
+            'availability'  => 'required'
+        ]);
+    }
+
+    /**
+     * update staff working days by employee_id
+     *
+     * @param  array  $data
+     * @return Employee
+     */
+    private function update(array $data)
+    {
+        $employee = Employee::find($data['employee_id']);
+
+        $availability = "";
+        foreach ($data['availability'] as $day)
+        {
+            $availability = $availability . " ". $day;
+        }
+        $employee->available_days = $availability;
+
+        return $employee->save();
     }
 }

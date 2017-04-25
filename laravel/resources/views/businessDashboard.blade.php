@@ -10,16 +10,22 @@
         <h1>Hello, {{ $user['owner_name'] }} from {{ $user['business_name'] }}</h1>
 
         <div class="overview">
-            <h3>Manage your bookings</h3>
-            <a class="block" href="/bookings/summary?id={{ $user['business_id'] }}" >Bookings Overview</a>
-            <a class="block" href="/staffbooking">Make a new booking for customers</a>
+            <h3>BOOKINGS</h3>
+            <a class="block" href="/booking/owner?id={{ $user['business_id'] }}">Make a booking</a>
+            <a class="block" href="/booking/summary?id={{ $user['business_id'] }}" >Bookings Overview</a>
         </div>
 
         <div class="overview">
-            <h3>Staff Management</h3>
-            <a class="block" href="/newstaff?id={{ $user['business_id'] }}">Add new employee</a>
-            <a class="block" href="/newroster?id={{ $user['business_id'] }}">Add employee working time</a>
-            <a class="block" href="/viewroster?id={{ $user['business_id'] }}">Show all employees' availability for next 7 days</a>
+            <h3>STAFF</h3>
+            <a class="block" href="/staff/new?id={{ $user['business_id'] }}">Add new staff</a>
+            <a class="block" href="/staff/update?id={{ $user['business_id'] }}">Update staff working days</a>
+            <a class="block" href="/staff/summary?id={{ $user['business_id'] }}">Staff Summary</a>
+        </div>
+
+        <div class="overview">
+            <h3>ROSTER</h3>
+            <a class="block" href="/roster/new?id={{ $user['business_id'] }}">Add new roster</a>
+            <a class="block" href="/roster/summary?id={{ $user['business_id'] }}">Show roster (next week)</a>
         </div>
     </div>
 

@@ -8,25 +8,17 @@
     @include('includes.return')
 
     <div class="box">
-        <h1>New Employee Registration</h1>
+        <h1>Update Staff Available Days</h1>
 
         <div class="success">{{ $errors->first('result') }}</div>
 
-        <form action="/staff/add/submit" method="post">
+        <form action="/staff/update/submit" method="post">
             {{ csrf_field() }}
-            <input type="text" name="business_id" value="{{ $businessID }}" hidden>
-            <div class="error">{{ $errors->first('fullname') }}</div>
-            <input type="text" name="fullname" placeholder="Full Name" value="{!! old('fullname') !!}" required>
-            <div class="error">{{ $errors->first('taxfileno') }}</div>
-            <input type="text" name="taxfileno" placeholder="TFN" value="{!! old('taxfileno') !!}" required>
-            <div class="error">{{ $errors->first('phone') }}</div>
-            <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}" required>
-            <div class="error">{{ $errors->first('activity') }}</div>
-
-            <select name="activity" placeholder="Activity" required>
-                <option value="" selected disabled>Select Activity in Charge</option>
-                @foreach($typeOfActivities as $activity)
-                <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
+            <div class="error">{{ $errors->first('employee_id') }}</div>
+            <select id="roster-select-employee" name="employee_id">
+                <option value="" selected disabled>Select employee</option>
+                @foreach($employees as $employee)
+                    <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
             </select>
 
