@@ -125,7 +125,7 @@ DB_PASSWORD=secret
 Set up a key
 `php artisan key:generate`
 
-####Configuring the Database In Laravel
+#### Configuring the Database In Laravel
 
 Edit /config/database.php
 Update the values for mysql db to match the ones already configured in the environment.
@@ -145,7 +145,7 @@ Update the values for mysql db to match the ones already configured in the envir
         ],
 ```
 
-####Running the migrations
+#### Running the migrations
 
 Execute the following commands in the laravel folder of the cloned project. There is included some dummy data in the seeders for testing purposes.
 ```
