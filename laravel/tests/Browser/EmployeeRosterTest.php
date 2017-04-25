@@ -200,7 +200,7 @@ class EmployeeRosterTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group bug#5
+	*  @group bug#8
 	*  @group roster
 	*	
 	*  Unit test for a roster on an invalid day that is not 
