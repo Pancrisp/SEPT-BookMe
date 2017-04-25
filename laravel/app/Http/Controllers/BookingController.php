@@ -12,33 +12,32 @@ class BookingController
 {
     public function getBookingsByBusiness(Request $request)
     {
-        
-	// Checking session existence
-	if ($request->session()->has('user')) { 
-	
-		$businessID = $request['id'];
-		$today = Carbon::now()->toDateString();
+        // Checking session existence
+        if ($request->session()->has('user')) {
 
-		$allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
-		    ->where('bookings.business_id', $businessID)
-		    ->where('bookings.date', '>=', $today)
-		    ->orderBy('bookings.date')
-		    ->orderBy('bookings.start_time')
-		    ->get();
+            $businessID = $request['id'];
+            $today = Carbon::now()->toDateString();
 
-		$newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
-		    ->where('bookings.business_id', $businessID)
-		    ->whereDate('bookings.created_at', $today)
-		    ->orderBy('bookings.date')
-		    ->orderBy('bookings.start_time')
-		    ->get();
+            $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+                ->where('bookings.business_id', $businessID)
+                ->where('bookings.date', '>=', $today)
+                ->orderBy('bookings.date')
+                ->orderBy('bookings.start_time')
+                ->get();
 
-		return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
+            $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+                ->where('bookings.business_id', $businessID)
+                ->whereDate('bookings.created_at', $today)
+                ->orderBy('bookings.date')
+                ->orderBy('bookings.start_time')
+                ->get();
 
-	}
-	else{
-		return Redirect::to('/');
-	}
+            return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
+
+        }
+        else{
+            return Redirect::to('/');
+        }
     }
 
 }

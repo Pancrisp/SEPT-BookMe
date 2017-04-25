@@ -14,19 +14,24 @@ class EmployeeController
     public function newStaff(Request $request)
     {
         // Checking session
-	if ($request->session()->has('user')) {
+        if ($request->session()->has('user')) {
 
-		$businessID = $request['id'];
+            $businessID = $request['id'];
 
-		$typeOfActivities
-		    = Activity::where('business_id', $businessID)
-		    ->get();
+            $typeOfActivities
+                = Activity::where('business_id', $businessID)
+                ->get();
 
-		return view('newstaff', compact('businessID', 'typeOfActivities'));
-	}else
-		return Redirect::to('/');
+            return view('newstaff', compact('businessID', 'typeOfActivities'));
+        }
+        else
+            return Redirect::to('/');
     }
 
+    /**
+     * @param Request $request
+     * @return Redirect
+     */
     public function addStaff(Request $request)
     {
         $validator = $this->validator($request->all());
@@ -41,6 +46,25 @@ class EmployeeController
             return Redirect::back()
                 ->withErrors(['result' => 'Staff added successfully!']);
         }
+    }
+
+    /**
+     * called by ajax only
+     * to return availability of a certain employee by empID
+     *
+     * @param Request $request
+     */
+    Public function getAvailability(Request $request)
+    {
+        // defence 1st, make sure this is only accessible by AJAX request
+        if( ! $request->ajax() ) { die; }
+
+        // get employee from db by empID and get working days
+        $employee = Employee::find($request['empID']);
+        $availability = $employee->available_days;
+
+        // pass result back to ajax by json
+        print_r(json_encode($availability));
     }
 
     /**

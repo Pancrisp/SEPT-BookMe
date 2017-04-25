@@ -36,6 +36,7 @@ Route::get('/bookings/summary', 'BookingController@getBookingsByBusiness');
 
 Route::get('/newstaff', 'EmployeeController@newStaff');
 Route::post('/addstaff', 'EmployeeController@addStaff');
+Route::get('/emp/availability/get', 'EmployeeController@getAvailability');
 
 Route::get('/newroster', 'RosterController@newRoster');
 Route::post('/addroster', 'RosterController@addRoster');

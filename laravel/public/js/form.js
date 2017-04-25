@@ -24,6 +24,25 @@ $('#roster-date').datepicker({
     }
 });
 
+// AJAX request to get employee's availability
+$('#roster-select-employee').on('change', function() {
+    var empID = $(this).val();
+
+    $.ajax({
+        url: '/emp/availability/get',
+        type: 'get',
+        data: {
+            'empID': empID
+        },
+        success: function(response) {
+            var res = JSON.parse(response);
+            console.log(res);
+        }
+    }).error(function(res){
+       alert("Unable to retrieve employee availability");
+    });
+})
+
 // appends the user's selected date onto the current bookings section
 $('#date').change(function() {
     var date = document.querySelector('#date').value;

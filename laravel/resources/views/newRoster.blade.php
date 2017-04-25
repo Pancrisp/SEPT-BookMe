@@ -14,7 +14,7 @@
         <form action="/addroster" method="post">
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('employee_id') }}</div>
-            <select name="employee_id">
+            <select id="roster-select-employee" name="employee_id">
                 <option value="" selected disabled>Select employee</option>
                 @foreach($employees as $employee)
                     <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
@@ -26,16 +26,16 @@
             <input id="roster-date" type="text" placeholder="Select date" value="">
             <input id="dateHidden" type="hidden" name="date" value="">
 
-            <h4>Shift</h4>
-            <div class="error">{{ $errors->first('shift') }}</div>
-            <div class="flex-container">
-                <div class="flex">
-                    <input type="radio" name="shift" value="Day">Day
-                </div>
-                <div class="flex">
-                    <input type="radio" name="shift" value="Night">Night
-                </div>
-            </div>
+            {{--<h4>Shift</h4>--}}
+            {{--<div class="error">{{ $errors->first('shift') }}</div>--}}
+            {{--<div class="flex-container">--}}
+                {{--<div class="flex">--}}
+                    {{--<input type="radio" name="shift" value="Day">Day--}}
+                {{--</div>--}}
+                {{--<div class="flex">--}}
+                    {{--<input type="radio" name="shift" value="Night">Night--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <button type="submit" name="submit">Add</button>
         </form>
