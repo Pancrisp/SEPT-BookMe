@@ -22,7 +22,7 @@ class WeeklyRosterViewTest extends DuskTestCase
 	*
 	*  @return void
 	*/
-	public function business_owner_not_authenticated_view_roster()
+	public function business_owner_view_roster_not_authenticated()
 	{
 		$business_id = 1;		
 		// Retrieving an existing business id		
@@ -45,7 +45,7 @@ class WeeklyRosterViewTest extends DuskTestCase
 	*
 	*  @return void
 	*/
-	public function business_owner_booking_summary_successful()
+	public function business_owner_view_roster_successful()
 	{
 		$business_id = 1;		
 		// Retrieving an existing business id		
@@ -70,35 +70,39 @@ class WeeklyRosterViewTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group pending
-	*  @group viewRosterPending
+	*  @group accepted
+	*  @group viewRoster
 	*	
-	*  Unit test that checks the count of shifts for a given business 		*  and asserts according. 
+	*  Unit test that checks the first employee shift count for a given business 		*  and asserts the presence of table with the name of such employee if valid. 
 	*
 	*  @return void
 	*/
-	public function business_owner_weekly_roster_count()
+	public function business_owner_view_roster_count()
 	{
-		$business_id = 1;		
+		$business_id = 1;
+		$tomorrow = date('Y-m-d', strtotime('+1 day')); 
+		$weekAfter = date('Y-m-d', strtotime('+7 day'));	
 		// Retrieving an existing business id		
 		$owner = \App\Business::where('business_id',$business_id)->first();
+		$employee = \App\Employee::where('business_id', $business_id)->first();
 		
-		// Retrieving bookings count of a specific business		
-		$rosterCount = \App\Roster::where('business_id',$business_id)->count();
+		// Retrieving shifts count from the first employee for the next week
+		$rosterCount = \App\Roster::where('employee_id',$employee->employee_id)->whereBetween('date',array($tomorrow, $weekAfter))->count();
 
-		$this->browse(function ($browser) use ($owner,$rosterCount) {
+		$this->browse(function ($browser) use ($owner,$rosterCount,$employee) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')   
 			    ->press('login')
 			    ->assertPathIs('/dashboard')   
 			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/bookings/summary');
-			if ($rosterCount == 0){
-				$browser->assertSee('Currently no booking.');
-			}else if ($rosterCount > 0){
+			    ->clickLink('Show all employees')
+			    ->assertPathIs('/viewroster');
+			if ($rosterCount > 0){
 				$browser->assertVisible('table');
+				$browser->with('table', function ($table) use($employee) {
+    				$table->assertSee($employee->employee_name);
+				});
 			}
 		});
 	}
