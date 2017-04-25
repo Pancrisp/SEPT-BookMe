@@ -17,14 +17,14 @@
 
         <div class="overview">
             <h3>STAFF</h3>
-            <a class="block" href="/staff/new?id={{ $user['business_id'] }}">Add new staff</a>
+            <a class="block" href="/staff/add?id={{ $user['business_id'] }}">Add new staff</a>
             <a class="block" href="/staff/update?id={{ $user['business_id'] }}">Update staff working days</a>
             <a class="block" href="/staff/summary?id={{ $user['business_id'] }}">Staff Summary</a>
         </div>
 
         <div class="overview">
             <h3>ROSTER</h3>
-            <a class="block" href="/roster/new?id={{ $user['business_id'] }}">Add new roster</a>
+            <a class="block" href="/roster/add?id={{ $user['business_id'] }}">Add new roster</a>
             <a class="block" href="/roster/summary?id={{ $user['business_id'] }}">Show roster (next week)</a>
         </div>
     </div>
