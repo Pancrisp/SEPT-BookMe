@@ -35,7 +35,7 @@
         @else
             <div>
                 There is no staff.
-                <a class="block" href="/staff/new?id={{ $user['business_id'] }}">Add new staff</a>
+                <a class="block" href="/staff/add?id={{ $businessID }}">Add new staff</a>
             </div>
         @endif
     </div>
