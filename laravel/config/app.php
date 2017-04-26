@@ -124,7 +124,7 @@ return [
 
     'log_max_files' => 50,
 
-    'log_level' => env('APP_LOG_LEVEL', 'warning'),
+    'log_level' => env('APP_LOG_LEVEL', 'error'),
 
     /*
     |--------------------------------------------------------------------------
