@@ -25,7 +25,7 @@
 
             <select name="activity" placeholder="Activity" required>
                 <option value="" selected disabled>Select Activity in Charge</option>
-                @foreach($typeOfActivities as $activity)
+                @foreach($activities as $activity)
                 <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
                 @endforeach
             </select>

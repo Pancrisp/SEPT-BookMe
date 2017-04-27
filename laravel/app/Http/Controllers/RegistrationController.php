@@ -39,7 +39,7 @@ class RegistrationController
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * validate incoming data for creating a new account for customer
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -57,7 +57,8 @@ class RegistrationController
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * create a customer once validation passed
+     * and save to DB
      *
      * @param  array  $data
      * @return boolean

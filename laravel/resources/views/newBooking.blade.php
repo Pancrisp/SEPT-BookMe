@@ -6,65 +6,75 @@
 
 @section('content')
 
-    <div class="dashboard">
-        <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
-        <h2>Please fill out the form below to make a booking with us</h2>
+    <nav>
+        <a href="{{ URL::previous() }}">Pick another one</a>
+    </nav>
 
-        <form action="booking/customer" method="post">
+    <div class="dashboard">
+        <h1>Welcome to {{ $business['business_name'] }}</h1>
+        <div class="success">{{ $errors->first('result') }}</div>
+
+        <form action="booking/submit" method="post">
             {{ csrf_field() }}
-            <select id="business" name="business" placeholder="Business" required>
-                <option value="" selected disabled>Find a Place</option>
-                @foreach($businesses as $business)
-                    <option value="{{ $business['business_id'] }}">{{ $business['business_name'] }}</option>
+            <input id="business" name="business" value="{{ $request['business'] }}" hidden>
+            <input id="customer" name="customer" value="{{ $request['customer'] }}" hidden>
+            <input id="date" name="date" value="{{ $request['date'] }}" hidden>
+
+            <!-- displays a drop down list of available services by this business -->
+            <label for="service">Service required</label>
+            <div class="error">{{ $errors->first('service') }}</div>
+            <select id="service" name="service">
+                <option value="" selected disabled>Choose service</option>
+                @foreach($activities as $activity)
+                    <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
                 @endforeach
             </select>
 
-            <label for="date">Date</label>
-            <input id="date" type="text" name="date">
-            <label for="time">Time</label>
-            <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00">
-
-            <!-- displays a drop down list of available services by this business -->
-            <label for="services">Service required</label>
-            <select id="services" name="services">
-                <option value="" selected disabled>Choose service</option>
-            </select>
-
-            <div class="error">{{ $errors->first('employee_id') }}</div>
+            <!-- displays a drop down list of available employees of this business -->
             <label for="employee">Preferred staff</label>
-            <select id="employee" name="employee_id">
-                <!-- lists all available employees -->
+            <div class="error">{{ $errors->first('employee') }}</div>
+            <select id="employee" name="employee">
                 <option value="" selected disabled>Choose staff</option>
                 @foreach($employees as $employee)
                     <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
             </select>
 
+            <!-- input field to enter booking time -->
+            <label for="time">Time</label>
+            <div class="error">{{ $errors->first('time') }}</div>
+            <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00">
+
             <button type="submit">Make Booking</button>
         </form>
 
-        <div class="booked-slots" hidden>
-            <h3>Current Bookings on <span id="date-selected"></span></h3>
-            <table>
-                <tr>
-                    <th class="head"></th>
-                    @foreach($timeSlots as $slot)
-                        <th class="head">{{ $slot }}</th>
+        <!-- A table displaying current bookings on the date, group by activities -->
+        <h2>Current bookings on {{ $request['date'] }}</h2>
+        @foreach($activities as $activity)
+            <!-- to calculate the length of this activity -->
+            <?php $period = $business['slot_period'] * $activity['num_of_slots'] ?>
+            <h3>{{ $activity['activity_name'] }} ({{ $period }} minutes) Booked</h3>
+
+            <!-- When there is no this type of booking, return message -->
+            @if(!count($bookings[$activity['activity_id']]))
+                <div>There is no booking.</div>
+
+            <!-- return the table with details otherwise-->
+            @else
+                <table>
+                    <thead>
+                        <th>Time</th>
+                        <th>Staff</th>
+                    </thead>
+                    @foreach(($bookings[$activity['activity_id']]) as $booking)
+                        <tr>
+                            <td>{{ $booking['start_time'] }}</td>
+                            <td>{{ $booking['employee_name'] }}</td>
+                        </tr>
                     @endforeach
-                </tr>
-                @foreach($employees as $employee)
-                    <tr id="employee-{{ $employee['employee_id'] }}">
-                        <td>{{ $employee['employee_name'] }}</td>
-                        @foreach($timeSlots as $slot)
-                            <td class="marker">
-                                <span id="slot-{{ $slot }}:00-{{ $employee['employee_id'] }}" class="slot"></span>
-                            </td>
-                        @endforeach
-                    </tr>
-                @endforeach
-            </table>
-            <div id="note">[X] = slot unavailable</div>
-        </div>
+                </table>
+            @endif
+        @endforeach
     </div>
 
 @endsection

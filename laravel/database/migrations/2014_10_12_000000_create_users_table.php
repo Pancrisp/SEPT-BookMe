@@ -9,6 +9,13 @@ class CreateUsersTable extends Migration
     /**
      * Run the migrations.
      *
+     * create a user table
+     * -id (pk)
+     * -email (unique)
+     * -password
+     * -user_type (customer/business)
+     * -foreign_id (fk)
+     *
      * @return void
      */
     public function up()

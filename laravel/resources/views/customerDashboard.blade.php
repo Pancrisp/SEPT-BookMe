@@ -5,68 +5,31 @@
 @endsection
 
 @section('content')
-
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
         <h2>Please fill out the form below to make a booking with us</h2>
 
-        <form action="booking/customer" method="post">
+        <form action="book" method="post">
             {{ csrf_field() }}
-            <select id="business" name="business" placeholder="Business" required>
+            <input id="'customer" name="customer" value="{{ $user['customer_id'] }}" hidden>
+
+            <!-- displays a drop down list of businesses -->
+            <select id="business" name="business" required>
                 <option value="" selected disabled>Find a Place</option>
+                <div class="error">{{ $errors->first('business') }}</div>
                 @foreach($businesses as $business)
                     <option value="{{ $business['business_id'] }}">{{ $business['business_name'] }}</option>
                 @endforeach
             </select>
 
+            <!-- displays a calendar for date picking -->
             <label for="date">Date</label>
-            <input id="date" type="text" name="date">
-            <label for="time">Time</label>
-            <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00">
+            <input id="roster-date" type="text" placeholder="Select date" value="">
+            <input id="dateHidden" type="hidden" name="date" value="">
 
-            <!-- displays a drop down list of available services by this business -->
-            <label for="services">Service required</label>
-            <select id="services" name="services">
-                <option value="" selected disabled>Choose service</option>
-            </select>
-
-            <div class="error">{{ $errors->first('employee_id') }}</div>
-            <label for="employee">Preferred staff</label>
-            <select id="employee" name="employee_id">
-                <!-- lists all available employees -->
-                <option value="" selected disabled>Choose staff</option>
-                @foreach($employees as $employee)
-                    <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
-                @endforeach
-            </select>
-
-            <button type="submit">Make Booking</button>
+            <button type="submit">Next</button>
         </form>
-
-        <div class="booked-slots" hidden>
-            <h3>Current Bookings on <span id="date-selected"></span></h3>
-            <table>
-                <tr>
-                    <th class="head"></th>
-                    @foreach($timeSlots as $slot)
-                        <th class="head">{{ $slot }}</th>
-                    @endforeach
-                </tr>
-                @foreach($employees as $employee)
-                    <tr id="employee-{{ $employee['employee_id'] }}">
-                        <td>{{ $employee['employee_name'] }}</td>
-                        @foreach($timeSlots as $slot)
-                            <td class="marker">
-                                <span id="slot-{{ $slot }}:00-{{ $employee['employee_id'] }}" class="slot"></span>
-                            </td>
-                        @endforeach
-                    </tr>
-                @endforeach
-            </table>
-            <div id="note">[X] = slot unavailable</div>
-        </div>
     </div>
-
 @endsection
 
 @section('pageSpecificJs')

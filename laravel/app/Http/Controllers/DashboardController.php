@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Business;
 use App\Customer;
-use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -22,7 +21,7 @@ class DashboardController
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function login(Request $request)
+    public function loadDashboard(Request $request)
     {
         // get all data from request sent
         $data = $request->all();
@@ -45,20 +44,25 @@ class DashboardController
             // if successfully authenticated
             if(Auth::attempt(['email' => $email, 'password' => $data['password']]))
             {
-                // get the user and user_type
-                $user = Auth::user();
-                $type = $user['user_type'];
+                // get auth and user_type
+                $auth = Auth::user();
+                $id = $auth['foreign_id'];
+                $type = $auth['user_type'];
 
-                // redirect according to the type of user
+                // return view according to the type of user
                 if($type == 'business')
                 {
-                    $id = $user['foreign_id'];
-                    $business = Business::find($id);
+                    $user = Business::find($id);
 
-                    return view($type.'Dashboard', compact('business'));
+                    return view($type.'Dashboard', compact('user'));
                 }
                 else
-                    return $this->customerDashboard($user);
+                {
+                    $businesses = Business::all();
+                    $user = Customer::find($id);
+
+                    return view($type.'Dashboard', compact('user', 'businesses'));
+                }
             }
 
             // when authentication fails
@@ -72,24 +76,38 @@ class DashboardController
         }
     }
 
-    public function backToDashboard(Request $request)
+    /**
+     * This is called when the "return to dashboard" is clicked
+     * it's called by a get request
+     * only authenticated user can access
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function backToDashboard()
     {
-        // Security check: if the session is set and business ID is set
-        if (! $request->session()->has('user') || ! isset($request['id'])) { return Redirect::to('/'); }
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
+            return Redirect::to('/login');
 
-		$id = $request['id'];
-        $type = $request['type'];
+        // get auth and details
+        $auth = Auth::user();
+		$id = $auth['foreign_id'];
+        $type = $auth['user_type'];
 
+        // return view according to the type of user
         if($type == 'business')
         {
             $user = Business::find($id);
+
+            return view($type.'Dashboard', compact('user'));
         }
         else
         {
+            $businesses = Business::all();
             $user = Customer::find($id);
-        }
 
-		return view($type.'Dashboard', compact('user'));
+            return view($type.'Dashboard', compact('user', 'businesses'));
+        }
     }
 
     /**
@@ -127,35 +145,5 @@ class DashboardController
             $email = $business->email_address;
 
         return $email;
-    }
-
-    /**
-     * Build data needed for customer dashboard and return view
-     */
-    private function customerDashboard($user){
-
-        $timeSlots = [
-            '09:00',
-            '09:30',
-            '10:00',
-            '10:30',
-            '11:00',
-            '11:30',
-            '12:00',
-            '12:30',
-            '13:00',
-            '13:30',
-            '14:00',
-            '14:30',
-            '15:00',
-            '15:30',
-            '16:00',
-            '16:30'
-        ];
-
-        $businesses = Business::all();
-        $employees = Employee::all();
-
-        return view('customerDashboard', compact('user', 'timeSlots', 'businesses', 'employees'));
     }
 }
