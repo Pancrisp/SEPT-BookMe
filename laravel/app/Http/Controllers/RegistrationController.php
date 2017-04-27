@@ -78,7 +78,7 @@ class RegistrationController
             'email'     => $data['email'],
             'password'  => bcrypt($data['password']),
             'user_type' => 'customer',
-            'foreign_id' => $customer->id
+            'foreign_id' => $customer->customer_id
         ]);
 
         return true;

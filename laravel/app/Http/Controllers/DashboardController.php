@@ -11,8 +11,17 @@ use Illuminate\Support\Facades\Redirect;
 
 class DashboardController
 {
-    private $user;
-
+    /**
+     * This is called when login form is submitted
+     * It checks if the user exists
+     * Then check if password is correct
+     *
+     * when successfully authenticated, redirect to dashboard according to user type
+     * otherwise, redirect back with input and appropriate error message
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function login(Request $request)
     {
         // get all data from request sent
@@ -118,38 +127,6 @@ class DashboardController
             $email = $business->email_address;
 
         return $email;
-    }
-
-    /**
-     * Check if the username entered exists in the database
-     *
-     * @param  array  $data
-     * @return boolean
-     */
-    private function authenticated(array $data)
-    {
-        $type = $data['usertype'];
-
-        if($type == 'customer')
-        {
-            $customer = Customer::where('username', $data['username'])
-                ->orWhere('email_address', $data['username'])
-                ->first();
-
-            $this->user = $customer;
-
-            return password_verify($data['password'], $customer->password);
-        }
-        else
-        {
-            $business = Business::where('username', $data['username'])
-                ->orWhere('email_address', $data['username'])
-                ->first();
-
-            $this->user = $business;
-
-            return password_verify($data['password'], $business->password);
-        }
     }
 
     /**
