@@ -6,6 +6,7 @@ use App\Business;
 use App\Customer;
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class DashboardController
@@ -14,35 +15,51 @@ class DashboardController
 
     public function login(Request $request)
     {
+        // get all data from request sent
         $data = $request->all();
-        $data['usertype'] = $this->getUserType($data);
 
-        if($data["usertype"]==null)
+        // get the email of the user, for authentication later
+        $email = $this->getUserEmail($data);
+
+        // when user is not found, email will be empty string
+        if(!$email)
         {
+            // redirect back with input and error message
             return Redirect::back()
                 ->withInput()
                 ->withErrors(array('username' => 'Account not found.'));
         }
-        elseif(!$this->authenticated($data))
-        {
-            return Redirect::back()
-                ->withInput()
-                ->withErrors(array('password' => 'Incorrect password. Please try again!'));
-        }
+
+        // when user is found
         else
         {
-            $type = $data['usertype'];
-            $user = $this->user;
-	    
-            // Flushing all existing session data
-            $request->session()->flush();
-            // Starting session
-            $request->session()->put('user', $data['username']);
+            // if successfully authenticated
+            if(Auth::attempt(['email' => $email, 'password' => $data['password']]))
+            {
+                // get the user and user_type
+                $user = Auth::user();
+                $type = $user['user_type'];
 
-            if($type == 'business')
-                return view($type.'Dashboard', compact('user'));
+                // redirect according to the type of user
+                if($type == 'business')
+                {
+                    $id = $user['foreign_id'];
+                    $business = Business::find($id);
+
+                    return view($type.'Dashboard', compact('business'));
+                }
+                else
+                    return $this->customerDashboard($user);
+            }
+
+            // when authentication fails
             else
-                return $this->customerDashboard($user);
+            {
+                // redirect back with input and error message
+                return Redirect::back()
+                    ->withInput()
+                    ->withErrors(array('password' => 'Incorrect password. Please try again!'));
+            }
         }
     }
 
@@ -67,35 +84,40 @@ class DashboardController
     }
 
     /**
-     * Get user type based on te username entered
+     * Get user's email based on username entered
+     * username can be either username or email
+     * both are unique
      *
      * @param  array  $data
      * @return string
      */
-    private function getUserType(array $data)
+    private function getUserEmail(array $data)
     {
-        $customerUsernames  = Customer::select('username')->get()->toArray();
-        $customerEmails     = Customer::select('email_address')->get()->toArray();
+        // username can be username or email
+        $username = $data['username'];
 
-        $businessUsernames  = Business::select('username')->get()->toArray();
-        $businessEmails     = Business::select('email_address')->get()->toArray();
+        // use the input to find possible customer
+        $customer = Customer::where('username', $username)
+            ->OrWhere('email_address', $username)
+            ->first();
 
-        if  (   in_array(['username' => $data['username']], $customerUsernames)
-            ||  in_array(['email_address' => $data['username']], $customerEmails)
-            )
-        {
-            return "customer";
-        }
-        else if (   in_array(['username' => $data['username']], $businessUsernames)
-                ||  in_array(['email_address' => $data['username']], $businessEmails)
-                )
-        {
-            return "business";
-        }
-        else
-        {
-            return null;
-        }
+        // use the input to find possible business
+        $business = Business::where('username', $username)
+            ->OrWhere('email_address', $username)
+            ->first();
+
+        // initialise empty email
+        $email = '';
+
+        // when such customer found, get the email address
+        if($customer)
+            $email = $customer->email_address;
+
+        // when such business found, get the email address
+        elseif($business)
+            $email = $business->email_address;
+
+        return $email;
     }
 
     /**

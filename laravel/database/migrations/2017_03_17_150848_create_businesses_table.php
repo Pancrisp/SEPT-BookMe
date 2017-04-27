@@ -14,7 +14,6 @@ class CreateBusinessesTable extends Migration
      * -business_name
      * -owner_name
      * -username
-     * -password
      * -email_address
      * -mobile_phone
      * -address
@@ -29,7 +28,6 @@ class CreateBusinessesTable extends Migration
             $table->string('business_name');
             $table->string('owner_name');
             $table->string('username')->unique();
-            $table->string('password');
             $table->string('mobile_phone');
             $table->string('email_address');
             $table->text('address');
