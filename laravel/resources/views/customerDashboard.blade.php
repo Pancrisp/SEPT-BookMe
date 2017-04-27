@@ -9,7 +9,7 @@
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
         <h2>Please fill out the form below to make a booking with us</h2>
 
-        <form action="book" method="post">
+        <form action="/book" method="post">
             {{ csrf_field() }}
             <input id="'customer" name="customer" value="{{ $user['customer_id'] }}" hidden>
 

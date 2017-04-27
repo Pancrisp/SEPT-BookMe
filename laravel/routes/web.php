@@ -24,7 +24,7 @@ Route::post('/register', 'RegistrationController@register');
 |--------------------------------------------------------------------------
  */
 Route::get('/booking/summary', 'BookingController@showBookingSummary');
-Route::get('/booking/owner', function(){ return view('newBooking');});
+Route::get('/booking/owner', function(){ return view('businessBooking');});
 // Form submission
 Route::post('/book', 'BookingController@addBookingForm');
 Route::post('/booking/submit', 'BookingController@addBooking');
