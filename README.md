@@ -17,24 +17,26 @@ Even contribution from all members, 33.3% to each:
 *Tutor: Lawrence Cavedon (Tuesdays, 9:30am - 11:30am)*
 
 ### Application Structure
-A general overview of the file structure.
+A general overview of the file structure we use.
 Not all directories in the source code are listed below, only the ones we've used or modified for our needs.
 
+```
 laravel
-├── app <!-- application layer, business logic -->
-│   └── Http <!-- controllers and middleware -->
-├── config <!-- app configuration -->
-├── database <!-- database migrations and seeder tables -->
-├── public <!-- compiled assets - css, img, js, etc. -->
+├── app                   <!-- application layer, business logic -->
+│   └── Http              <!-- controllers and middleware -->
+├── config                <!-- app configuration -->
+├── database              <!-- database migrations and seeder tables -->
+├── public                <!-- compiled assets - css, img, js, etc. -->
 ├── resources
-│   └── views <!-- page templates -->
+│   └── views             <!-- page templates -->
 ├── routes
-│   └── web.php <!-- web routes -->
-├── storage <!-- miscellaneous project data -->
-│   └── logs <!-- error logging -->
+│   └── web.php           <!-- web routes -->
+├── storage               <!-- miscellaneous project data -->
+│   └── logs              <!-- error logging -->
 └── tests
-    ├── Browser <!-- test cases -->
-    └── DuskTestCase.php <!-- Laravel Dusk E2E testing setup -->
+    ├── Browser           <!-- test cases -->
+    └── DuskTestCase.php  <!-- Laravel Dusk E2E testing setup -->
+```
 
 ### Logs
 Logging information for errors are captured and time-stamped using Laravel's built-in Monolog library.
