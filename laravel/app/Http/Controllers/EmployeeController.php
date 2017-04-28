@@ -6,43 +6,61 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class EmployeeController
 {
     /**
-     * @param Request $request
+     * This display the add new staff form
+     * only accessible by business owner
+     *
+     * get activities from DB and pass to view
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function addStaffForm(Request $request)
+    public function addStaffForm()
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
-        $businessID = $request['id'];
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
 
-        $typeOfActivities
+        // get activities of this business
+        $activities
             = Activity::where('business_id', $businessID)
             ->get();
 
-        return view('newStaff', compact('businessID', 'typeOfActivities'));
+        return view('newStaff', compact('activities', 'businessID'));
     }
 
     /**
+     * This is called when submitting add new staff form
+     * it validates the data
+     *
+     * if validation fails, redirect back with input and error messages
+     * if validation passes, save to DB and redirect back with successful message
+     *
      * @param Request $request
      * @return Redirect
      */
     public function addStaff(Request $request)
     {
+        // this validates the data
         $validator = $this->registrationValidator($request->all());
 
+        // when validation fails, redirect back with input and error messages
         if($validator->fails()) {
             return Redirect::back()
                 ->withInput()
                 ->withErrors($validator);
         }
 
+        // when validation passes, save to DB and redirect back with successful message
         if($this->create($request->all())){
             return Redirect::back()
                 ->withErrors(['result' => 'Staff added successfully!']);
@@ -52,60 +70,80 @@ class EmployeeController
     /**
      * view staff summary
      * includes name, TFN, contact, activity, available days
+     * only accessible by business owner
      *
-     * @param Request $request
+     * get employees and their activities from DB and return to view
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function viewStaffSummary(Request $request)
+    public function viewStaffSummary()
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
-        $businessID = $request['id'];
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
 
+        // get employees and their activities of this business
         $employees = Employee::join('activities', 'employees.activity_id', 'activities.activity_id')
             ->where('employees.business_id', $businessID)
             ->get();
 
-        return view('staffSummary', compact('businessID', 'employees'));
+        return view('staffSummary', compact('employees'));
     }
 
     /**
      * show staff update form
+     * only accessible by business owner
      *
-     * @param Request $request
+     * get employees from DB and return to view
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showStaffUpdateForm(Request $request)
+    public function showStaffUpdateForm()
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
-        $businessID = $request['id'];
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
 
+        // get employees of this business
         $employees =
             Employee::where('business_id', $businessID)
             ->get();
 
-        return view('updateStaff', compact('businessID', 'employees'));
+        return view('updateStaff', compact('employees', 'businessID'));
     }
 
     /**
+     * This is called when submitting update staff info form
      * update staff working days
+     * only accessible by business owner
+     *
+     * if validation fails, redirect back with input and error messages
+     * if validation passes, save to DB and redirect back with successful message
      *
      * @param Request $request
      * @return Redirect
      */
     public function updateStaffAvailableDays(Request $request)
     {
+        // this validates the data
         $validator = $this->updateValidator($request->all());
 
+        // when validation fails, redirect back with input and error messages
         if($validator->fails()) {
             return Redirect::back()
                 ->withInput()
                 ->withErrors($validator);
         }
 
+        // when validation passes, save to DB and redirect back with successful message
         if($this->update($request->all())){
             return Redirect::back()
                 ->withErrors(['result' => 'Staff working days updated successfully!']);
@@ -114,7 +152,7 @@ class EmployeeController
 
     /**
      * called by ajax only
-     * to return availability of a certain employee by empID
+     * return availability of a certain employee by empID
      *
      * @param Request $request
      */
@@ -132,7 +170,7 @@ class EmployeeController
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * validate incoming data for adding new staff
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -149,7 +187,8 @@ class EmployeeController
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * create the employee once validation passed
+     * and save to DB
      *
      * @param  array  $data
      * @return Employee
@@ -174,7 +213,7 @@ class EmployeeController
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * validate incoming data for updating staff availability
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -189,6 +228,7 @@ class EmployeeController
 
     /**
      * update staff working days by employee_id
+     * and save to DB
      *
      * @param  array  $data
      * @return Employee

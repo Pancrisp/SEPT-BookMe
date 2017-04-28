@@ -10,7 +10,7 @@
         <h1>Booking App</h1>
         <h3>Sign in to access your dashboard</h3>
 
-        <form action="dashboard" method="post">
+        <form action="/" method="post">
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('username') }}</div>
             <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>

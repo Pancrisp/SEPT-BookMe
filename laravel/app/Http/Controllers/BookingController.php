@@ -3,21 +3,39 @@
 namespace App\Http\Controllers;
 
 
+use App\Activity;
 use App\Booking;
+use App\Business;
+use App\Customer;
+use App\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class BookingController
 {
-    public function getBookingsByBusiness(Request $request)
+    /**
+     * show booking summary for certain business
+     * only accessible when logged in
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showBookingSummary()
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
-        $businessID = $request['id'];
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+
+        // get today's date using Carbon
         $today = Carbon::now()->toDateString();
 
+        // get all bookings with customer details for this business from today onwards
         $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->where('bookings.business_id', $businessID)
             ->where('bookings.date', '>=', $today)
@@ -25,6 +43,7 @@ class BookingController
             ->orderBy('bookings.start_time')
             ->get();
 
+        // get new bookings with customer details for this business made today
         $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->where('bookings.business_id', $businessID)
             ->whereDate('bookings.created_at', $today)
@@ -32,6 +51,127 @@ class BookingController
             ->orderBy('bookings.start_time')
             ->get();
 
-        return view('bookingSummary', compact('allBookings', 'newBookings', 'businessID'));
+        // return the view with data required
+        return view('bookingSummary', compact('allBookings', 'newBookings'));
+    }
+
+    /**
+     * This is called when submitting view available booking form
+     * validates data
+     * only accessible authenticated user
+     *
+     * if validation fails, redirect back with input and error messages
+     * if validation passes, return the booking form view
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addBookingForm(Request $request)
+    {
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
+            return Redirect::to('/login');
+
+        // get auth and details
+        $auth = Auth::user();
+        $type = $auth['user_type'];
+
+        // this validates the data according to type
+        if($type == 'customer')
+            $validator = $this->customerBookingValidator($request->all());
+        else
+            $validator = $this->businessBookingValidator($request->all());
+
+        // when validation fails, redirect back with input and error messages
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        // get attributes from request
+        $businessID = $request['business'];
+        $date = $request['date'];
+
+        // get customer when submitting by business owner
+        if($type == 'business')
+        {
+            // get customer from DB
+            $customer
+                = Customer::where('username', $request['username'])
+                ->first();
+
+            // save customer_id into request
+            $request['customer'] = $customer->customer_id;
+        }
+
+        // get employees working on that day for this business
+        $employees = Employee::select('employees.employee_id', 'employees.employee_name')
+            ->join('rosters', 'rosters.employee_id', 'employees.employee_id')
+            ->where('employees.business_id', $businessID)
+            ->where('rosters.date', $date)
+            ->groupBy('employees.employee_id', 'employees.employee_name')
+            ->get();
+
+        // get activities of this business
+        $activities
+            = Activity::where('business_id', $businessID)
+            ->get();
+
+        // get current bookings of this business on that date, group by activities
+        $bookings = [];
+        foreach($activities as $activity)
+        {
+            $bookings[$activity['activity_id']]
+                = Booking::join('employees', 'bookings.employee_id', 'employees.employee_id')
+                ->where('bookings.business_id', $businessID)
+                ->where('bookings.activity', $activity['activity_name'])
+                ->where('bookings.date', $date)
+                ->orderBy('bookings.employee_id')
+                ->get();
+        }
+
+        // get the business
+        $business = Business::find($businessID);
+
+        return view('newBooking', compact('request', 'employees', 'activities', 'bookings', 'business'));
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function addBooking(Request $request)
+    {
+
+    }
+
+    /**
+     * validate incoming data for viewing available bookings by customer
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function customerBookingValidator(array $data)
+    {
+        return Validator::make($data, [
+            'customer'  => 'required',
+            'business'  => 'required',
+            'date'      => 'required|date|after:today'
+        ]);
+    }
+
+    /**
+     * validate incoming data for viewing available bookings by business owner
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function businessBookingValidator(array $data)
+    {
+        return Validator::make($data, [
+            'username'  => 'required|exists:customers',
+            'business'  => 'required',
+            'date'      => 'required|date|after:today'
+        ]);
     }
 }

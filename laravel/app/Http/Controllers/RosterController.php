@@ -6,41 +6,78 @@ use App\Employee;
 use App\Roster;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class RosterController
 {
-    public function addRosterForm(Request $request)
+    /**
+     * This is to display the add new roster form
+     * only accessible by business owner
+     *
+     * get the employees of this business and return to view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addRosterForm()
     {
-	    // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+	    // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
-        $businessID = $request['id'];
-        $employees = Employee::where('business_id', $businessID)->get();
-        return view('newRoster', compact('employees', 'businessID'));
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+
+        // get employees of this business
+        $employees
+            = Employee::where('business_id', $businessID)
+            ->get();
+
+        return view('newRoster', compact('employees'));
     }
 
+    /**
+     * This is called when submitting add new roster form
+     * it validates the data
+     *
+     * if validation fails, redirect back with input and error messages
+     * if validation passes, save to DB and redirect back with successful message
+     *
+     * @param Request $request
+     * @return Redirect
+     */
     public function addRoster(Request $request)
     {
+        // this validates the data
         $validator = $this->validator($request->all());
 
+        // when validation fails, redirect back with input and error messages
         if($validator->fails()) {
             return Redirect::back()
                 ->withInput()
                 ->withErrors($validator);
         }
 
+        // when validation passes, save to DB and redirect back with successful message
         if($this->update($request->all()) || $this->create($request->all())){
             return Redirect::back()
                 ->withErrors(['result' => 'Roster added successfully!']);
         }
     }
 
+    /**
+     * This is deprecated
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showRoster(Request $request)
     {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
         $businessID = $request['id'];
 
@@ -87,7 +124,7 @@ class RosterController
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * validate incoming data for creating a new roster
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -103,6 +140,7 @@ class RosterController
 
     /**
      * Replace the employee_id if there was someone in the shift
+     * this might be deprecated
      *
      * @return boolean
      */
@@ -124,7 +162,8 @@ class RosterController
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * create a new roster when validation passed
+     * and save to DB
      *
      * @param  array  $data
      * @return Roster

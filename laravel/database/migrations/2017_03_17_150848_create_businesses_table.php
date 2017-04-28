@@ -14,11 +14,10 @@ class CreateBusinessesTable extends Migration
      * -business_name
      * -owner_name
      * -username
-     * -password
      * -email_address
      * -mobile_phone
      * -address
-     * -slot_period
+     * -slot_period (in minutes)
      *
      * @return void
      */
@@ -29,9 +28,8 @@ class CreateBusinessesTable extends Migration
             $table->string('business_name');
             $table->string('owner_name');
             $table->string('username')->unique();
-            $table->string('password');
             $table->string('mobile_phone');
-            $table->string('email_address');
+            $table->string('email_address')->unique();
             $table->text('address');
             $table->integer('slot_period')->unsigned();
             $table->timestamps();

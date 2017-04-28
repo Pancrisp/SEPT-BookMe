@@ -4,151 +4,146 @@ namespace App\Http\Controllers;
 
 use App\Business;
 use App\Customer;
-use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class DashboardController
 {
-    private $user;
-
-    public function login(Request $request)
+    /**
+     * This is called when login form is submitted
+     * It checks if the user exists
+     * Then check if password is correct
+     *
+     * when successfully authenticated, redirect to dashboard according to user type
+     * otherwise, redirect back with input and appropriate error message
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function loadDashboard(Request $request)
     {
+        // get all data from request sent
         $data = $request->all();
-        $data['usertype'] = $this->getUserType($data);
 
-        if($data["usertype"]==null)
+        // get the email of the user, for authentication later
+        $email = $this->getUserEmail($data);
+
+        // when user is not found, email will be empty string
+        if(!$email)
         {
+            // redirect back with input and error message
             return Redirect::back()
                 ->withInput()
                 ->withErrors(array('username' => 'Account not found.'));
         }
-        elseif(!$this->authenticated($data))
-        {
-            return Redirect::back()
-                ->withInput()
-                ->withErrors(array('password' => 'Incorrect password. Please try again!'));
-        }
+
+        // when user is found
         else
         {
-            $type = $data['usertype'];
-            $user = $this->user;
-	    
-            // Flushing all existing session data
-            $request->session()->flush();
-            // Starting session
-            $request->session()->put('user', $data['username']);
+            // if successfully authenticated
+            if(Auth::attempt(['email' => $email, 'password' => $data['password']]))
+            {
+                // get auth and user_type
+                $auth = Auth::user();
+                $id = $auth['foreign_id'];
+                $type = $auth['user_type'];
 
-            if($type == 'business')
-                return view($type.'Dashboard', compact('user'));
+                // return view according to the type of user
+                if($type == 'business')
+                {
+                    $user = Business::find($id);
+
+                    return view($type.'Dashboard', compact('user'));
+                }
+                else
+                {
+                    $businesses = Business::all();
+                    $user = Customer::find($id);
+
+                    return view($type.'Dashboard', compact('user', 'businesses'));
+                }
+            }
+
+            // when authentication fails
             else
-                return $this->customerDashboard($user);
+            {
+                // redirect back with input and error message
+                return Redirect::back()
+                    ->withInput()
+                    ->withErrors(array('password' => 'Incorrect password. Please try again!'));
+            }
         }
-    }
-
-    public function backToDashboard(Request $request)
-    {
-        // Checking if the session is set
-        if (! $request->session()->has('user')) { return Redirect::to('/'); }
-
-		$businessID = $request['id'];
-		$user = Business::where('business_id', $businessID)
-		    ->first();
-
-		return view('businessDashboard', compact('user'));
     }
 
     /**
-     * Get user type based on te username entered
+     * This is called when the "return to dashboard" is clicked
+     * it's called by a get request
+     * only authenticated user can access
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function backToDashboard()
+    {
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
+            return Redirect::to('/login');
+
+        // get auth and details
+        $auth = Auth::user();
+		$id = $auth['foreign_id'];
+        $type = $auth['user_type'];
+
+        // return view according to the type of user
+        if($type == 'business')
+        {
+            $user = Business::find($id);
+
+            return view($type.'Dashboard', compact('user'));
+        }
+        else
+        {
+            $businesses = Business::all();
+            $user = Customer::find($id);
+
+            return view($type.'Dashboard', compact('user', 'businesses'));
+        }
+    }
+
+    /**
+     * Get user's email based on username entered
+     * username can be either username or email
+     * both are unique
      *
      * @param  array  $data
      * @return string
      */
-    private function getUserType(array $data)
+    private function getUserEmail(array $data)
     {
-        $customerUsernames  = Customer::select('username')->get()->toArray();
-        $customerEmails     = Customer::select('email_address')->get()->toArray();
+        // username can be username or email
+        $username = $data['username'];
 
-        $businessUsernames  = Business::select('username')->get()->toArray();
-        $businessEmails     = Business::select('email_address')->get()->toArray();
+        // use the input to find possible customer
+        $customer = Customer::where('username', $username)
+            ->OrWhere('email_address', $username)
+            ->first();
 
-        if  (   in_array(['username' => $data['username']], $customerUsernames)
-            ||  in_array(['email_address' => $data['username']], $customerEmails)
-            )
-        {
-            return "customer";
-        }
-        else if (   in_array(['username' => $data['username']], $businessUsernames)
-                ||  in_array(['email_address' => $data['username']], $businessEmails)
-                )
-        {
-            return "business";
-        }
-        else
-        {
-            return null;
-        }
-    }
+        // use the input to find possible business
+        $business = Business::where('username', $username)
+            ->OrWhere('email_address', $username)
+            ->first();
 
-    /**
-     * Check if the username entered exists in the database
-     *
-     * @param  array  $data
-     * @return boolean
-     */
-    private function authenticated(array $data)
-    {
-        $type = $data['usertype'];
+        // initialise empty email
+        $email = '';
 
-        if($type == 'customer')
-        {
-            $customer = Customer::where('username', $data['username'])
-                ->orWhere('email_address', $data['username'])
-                ->first();
+        // when such customer found, get the email address
+        if($customer)
+            $email = $customer->email_address;
 
-            $this->user = $customer;
+        // when such business found, get the email address
+        elseif($business)
+            $email = $business->email_address;
 
-            return password_verify($data['password'], $customer->password);
-        }
-        else
-        {
-            $business = Business::where('username', $data['username'])
-                ->orWhere('email_address', $data['username'])
-                ->first();
-
-            $this->user = $business;
-
-            return password_verify($data['password'], $business->password);
-        }
-    }
-
-    /**
-     * Build data needed for customer dashboard and return view
-     */
-    private function customerDashboard($user){
-
-        $timeSlots = [
-            '09:00',
-            '09:30',
-            '10:00',
-            '10:30',
-            '11:00',
-            '11:30',
-            '12:00',
-            '12:30',
-            '13:00',
-            '13:30',
-            '14:00',
-            '14:30',
-            '15:00',
-            '15:30',
-            '16:00',
-            '16:30'
-        ];
-
-        $businesses = Business::all();
-        $employees = Employee::all();
-
-        return view('customerDashboard', compact('user', 'timeSlots', 'businesses', 'employees'));
+        return $email;
     }
 }

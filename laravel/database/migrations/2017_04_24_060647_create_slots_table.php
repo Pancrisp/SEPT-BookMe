@@ -9,6 +9,12 @@ class CreateSlotsTable extends Migration
     /**
      * Run the migrations.
      *
+     * unit of each booking
+     *
+     * -id(pk)
+     * -slot_time
+     * -booking_id (fk)
+     *
      * @return void
      */
     public function up()

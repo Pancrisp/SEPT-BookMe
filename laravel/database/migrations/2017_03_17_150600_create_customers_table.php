@@ -13,7 +13,6 @@ class CreateCustomersTable extends Migration
      * -id (primary key)
      * -customer_name
      * -username
-     * -password
      * -mobile_phone
      * -email_address
      * -address
@@ -26,9 +25,8 @@ class CreateCustomersTable extends Migration
             $table->increments('customer_id');
             $table->string('customer_name');
             $table->string('username')->unique();
-            $table->string('password');
             $table->string('mobile_phone');
-            $table->string('email_address');
+            $table->string('email_address')->unique();
             $table->text('address');
             $table->timestamps();
         });
