@@ -1,42 +1,73 @@
-## Group Members
-- Lei Zheng (s3558319)
-- Paulo Flores (s3568672)
-- Hooi Loong Chua (s3577844)
+## Project Overview
 
-## Peer Review
+### Group Members
+* Lei Zheng (s3558319)
+* Paulo Flores (s3568672)
+* Hooi Loong Chua (s3577844)
+
+### Peer Review
 Even contribution from all members, 33.3% to each:
-- Lei Zheng (s3558319)
-- Paulo Zeballos Flores (s3568672)
-- Hooi Loong Chua (s3577844)
+* Lei Zheng (s3558319)
+    * back-end business logic in Laravel, application controllers and models
+* Paulo Zeballos Flores (s3568672)
+    * user stories, testing and installation documentation
+* Hooi Loong Chua (s3577844)
+    * front-end view layer, logging implementation and project documentation
 
 *Tutor: Lawrence Cavedon (Tuesdays, 9:30am - 11:30am)*
 
-### Collaboration Tools
-- Trello - https://trello.com/b/8ds7YfU7/part-one (tutor is already invited)
-- Slack - https://sept-copsicus.slack.com (anyone with an RMIT email can join)
+### Application Structure
+A general overview of the file structure.
+Not all directories in the source code are listed below, only the ones we've used or modified for our needs.
 
-### Project Deliverables
+laravel
+├── app <!-- application layer, business logic -->
+│   └── Http <!-- controllers and middleware -->
+├── config <!-- app configuration -->
+├── database <!-- database migrations and seeder tables -->
+├── public <!-- compiled assets - css, img, js, etc. -->
+├── resources
+│   └── views <!-- page templates -->
+├── routes
+│   └── web.php <!-- web routes -->
+├── storage <!-- miscellaneous project data -->
+│   └── logs <!-- error logging -->
+└── tests
+    ├── Browser <!-- test cases -->
+    └── DuskTestCase.php <!-- Laravel Dusk E2E testing setup -->
+
+### Logs
+Logging information for errors are captured and time-stamped using Laravel's built-in Monolog library.
+The error logs are generated and stored on a day-by-day basis.
+
+These can be found in `../laravel/storage/logs`
+
+### Deliverables
 Deliverables can all be found in the *deliverables* folder in the project's root directory.
 These include:
-- PDF copy of all our user stories
-- PDF copy of all our meeting minutes
-- Snapshot of our Trello board
-- Full activity list of our Trello board
-- Snapshot of chat logs on our Slack channel
-- Tests documentation
-- Class diagram based on our app
-- Database diagram based on our app's database
+* PDF copy of all our user stories
+* PDF copy of all our meeting minutes
+* Screenshots of Trello board
+* Full activity list of Trello board
+* Snapshot of chat logs on our Slack channel
+* Tests documentation
+* Class diagram
+* Database diagram
+
+### Collaboration Tools
+* Trello - https://trello.com/b/8ds7YfU7/part-one (tutor is already invited)
+* Slack - https://sept-copsicus.slack.com (anyone with an RMIT email can join)
 
 ## APP INSTALLATION
 
-Note: commands run in this installation tutorial have been tested in Ubuntu 16.04 LTS
-To run the project there are a few installation requirements that need to be met:
+Note: commands used in this installation tutorial have been tested in Ubuntu 16.04 LTS
+To run the project there are a few dependencies that need to be installed:
 * PHP
 * MYSQL
 * LARAVEL
 
 ### INSTALLING PHP
-This project uses PHP version 7
+This project requires PHP version 7
 
 Updating package manager.
 `sudo apt-get update`
@@ -125,7 +156,7 @@ DB_PASSWORD=secret
 Set up a key
 `php artisan key:generate`
 
-#### Configuring the Database In Laravel
+Configuring Database In Laravel
 
 Edit /config/database.php
 Update the values for mysql db to match the ones already configured in the environment.
@@ -144,24 +175,6 @@ Update the values for mysql db to match the ones already configured in the envir
             'engine' => null,
         ],
 ```
-
-#### Running the migrations
-
-Execute the following commands in the laravel folder of the cloned project. There is included some dummy data in the seeders for testing purposes.
-```
-php artisan migrate:reset
-php artisan migrate
-php artisan db:seed --class=CustomersTableSeeder
-php artisan db:seed --class=BusinessesTableSeeder
-php artisan db:seed --class=BookingsTableSeeder
-php artisan db:seed --class=EmployeesTableSeeder
-php artisan db:seed --class=RostersTableSeeder
-php artisan db:seed --class=ActivitiesTableSeeder
-
-```
-
-In case some class not found errors arise after executing the seeding, please run:
-`composer dump-autoload` and rerun the seeder commands.
 
 ### SETUP TESTING WITH DUSK
 To run the browser automated tests, dusk utilises Chrome Driver which is a server that implements WebDriver protocol. It works with Chrome or Chromium browser.
@@ -197,6 +210,7 @@ Only local connections are allowed.
 ```
 
 ### RUNNING THE PROJECT
+
 To run the project
 
 `php artisan serve --port=8000`
