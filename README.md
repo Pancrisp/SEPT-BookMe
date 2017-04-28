@@ -176,6 +176,22 @@ Update the values for mysql db to match the ones already configured in the envir
         ],
 ```
 
+#### Running the migrations
+Execute the following commands in the laravel folder of the cloned project. There is included some dummy data in the seeders for testing purposes.
+```
+php artisan migrate:reset
+php artisan migrate
+php artisan db:seed --class=CustomersTableSeeder
+php artisan db:seed --class=BusinessesTableSeeder
+php artisan db:seed --class=BookingsTableSeeder
+php artisan db:seed --class=EmployeesTableSeeder
+php artisan db:seed --class=RostersTableSeeder
+php artisan db:seed --class=ActivitiesTableSeeder
+```
+
+In case some class not found errors arise after executing the seeding, please run:
+`composer dump-autoload` and rerun the seeder commands.
+ 
 ### SETUP TESTING WITH DUSK
 To run the browser automated tests, dusk utilises Chrome Driver which is a server that implements WebDriver protocol. It works with Chrome or Chromium browser.
 
