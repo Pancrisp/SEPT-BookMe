@@ -16,7 +16,7 @@ class BookingsTableSeeder extends Seeder
         $date = Carbon::today();
 
         $numOfCustomers = \App\Customer::count();
-        $numOfBuinesses = \App\Business::count();
+        $numOfBusinesses = \App\Business::count();
         $numOfEmployees = \App\Employee::count();
 
         $typesOfSlots = [1,2,4];
@@ -28,7 +28,7 @@ class BookingsTableSeeder extends Seeder
             for($j=0; $j<3; $j++){
                 $empID = rand(1, $numOfEmployees);
                 $cusID = rand(1, $numOfCustomers);
-                $busID = rand(1, $numOfBuinesses);
+                $busID = rand(1, $numOfBusinesses);
                 $business = \App\Business::find($busID);
 
                 $slotKey = array_rand($typesOfSlots);
