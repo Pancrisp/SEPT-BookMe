@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('includes.return')
 
     <nav>
         <a href="{{ URL::previous() }}">Pick another one</a>
