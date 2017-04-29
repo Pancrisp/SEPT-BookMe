@@ -57,10 +57,3 @@ Route::get('/roster/summary', 'RosterController@showRoster');
 Route::post('/roster/add/submit', 'RosterController@addRoster');
 // AJAX
 Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity');
-
-
-
-Route::get('hi', function(){
-   $time = new \Carbon\Carbon('10:00:00');
-    dd($time->toTimeString());
-});
