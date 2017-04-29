@@ -14,7 +14,7 @@
         <h1>Welcome to {{ $business['business_name'] }}</h1>
         <div class="success">{{ $errors->first('result') }}</div>
 
-        <form action="booking/submit" method="post">
+        <form action="/booking/submit" method="post">
             {{ csrf_field() }}
             <input id="business" name="business" value="{{ $request['business'] }}" hidden>
             <input id="customer" name="customer" value="{{ $request['customer'] }}" hidden>
