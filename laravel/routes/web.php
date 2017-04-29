@@ -14,6 +14,7 @@ Route::get('/', 'DashboardController@backToDashboard');
 |--------------------------------------------------------------------------
  */
 Route::get('/login', function(){ return view('login'); });
+Route::get('/logout', 'AuthenticationController@logout');
 Route::get('/signup', function(){ return view('signup'); });
 // Form submission
 Route::post('/register', 'RegistrationController@register');
