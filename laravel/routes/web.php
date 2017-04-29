@@ -38,11 +38,11 @@ Route::get('/booking/get/byDate', 'SlotController@getSlotsByDate');
 |--------------------------------------------------------------------------
  */
 Route::get('/staff/add', 'EmployeeController@addStaffForm');
-Route::get('staff/summary', 'EmployeeController@viewStaffSummary');
-Route::get('staff/update', 'EmployeeController@showStaffUpdateForm');
+Route::get('/staff/summary', 'EmployeeController@viewStaffSummary');
+Route::get('/staff/update', 'EmployeeController@showStaffUpdateForm');
 // Form submission
 Route::post('/staff/add/submit', 'EmployeeController@addStaff');
-Route::post('staff/update/submit', 'EmployeeController@updateStaffAvailableDays');
+Route::post('/staff/update/submit', 'EmployeeController@updateStaffAvailableDays');
 // AJAX
 Route::get('/staff/availability/get', 'EmployeeController@getAvailability');
 
