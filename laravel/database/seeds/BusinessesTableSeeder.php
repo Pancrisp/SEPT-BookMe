@@ -8,13 +8,16 @@ class BusinessesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * seed sample business to DB
      *
      * @return void
      */
     public function run()
     {
+        // set user email
         $email = 'grace@gmail.com';
 
+        // create business and save to DB
         $business = Business::create([
             'business_name' => 'Katsu King',
             'owner_name' => 'Grace',
