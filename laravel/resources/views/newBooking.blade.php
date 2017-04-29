@@ -24,7 +24,7 @@
             <label for="service">Service required</label>
             <div class="error">{{ $errors->first('service') }}</div>
             <select id="service" name="service">
-                <option value="" selected disabled>Choose service</option>
+                <option value="0" selected disabled>Choose service</option>
                 @foreach($activities as $activity)
                     <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
                 @endforeach
@@ -34,10 +34,11 @@
             <label for="employee">Preferred staff</label>
             <div class="error">{{ $errors->first('employee') }}</div>
             <select id="employee" name="employee">
-                <option value="" selected disabled>Choose staff</option>
+                <option value="0" selected disabled>Choose staff</option>
                 @foreach($employees as $employee)
-                    <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
+                    <option class="employee-option" id="employee-{{ $employee['employee_id'] }}" value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                 @endforeach
+                <option value="-1" hidden disabled>No staff available</option>
             </select>
 
             <!-- input field to enter booking time -->

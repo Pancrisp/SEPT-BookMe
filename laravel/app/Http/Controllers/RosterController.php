@@ -68,6 +68,28 @@ class RosterController
     }
 
     /**
+     * called when activity is selected in making booking
+     * accessed by AJAX only
+     * activityID and date are passed in request
+     *
+     * @param Request $request
+     */
+    public function getStaffByActivity(Request $request)
+    {
+        // defence 1st, make sure this is only accessible by AJAX request
+        if( ! $request->ajax() )
+            die;
+
+        // get the roster on that date of this activity
+        $roster = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+            ->where('rosters.date', $request['date'])
+            ->where('employees.activity_id', $request['activityID'])
+            ->get();
+
+        print_r(json_encode($roster));
+    }
+
+    /**
      * This is deprecated
      *
      * @param Request $request

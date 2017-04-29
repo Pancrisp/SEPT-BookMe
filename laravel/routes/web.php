@@ -55,3 +55,5 @@ Route::get('/roster/add', 'RosterController@addRosterForm');
 Route::get('/roster/summary', 'RosterController@showRoster');
 // Form submission
 Route::post('/roster/add/submit', 'RosterController@addRoster');
+// AJAX
+Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity');

@@ -82,3 +82,46 @@ function getBookingsByDate(date, id) {
         alert("Unable to retrieve bookings");
     });
 }
+
+// AJAX to list staff according to activity selected
+$('#service').change(function(){
+    var activityID = $(this).val();
+    var date = $('#date').val();
+
+    $.ajax({
+        url: '/roster/staff/get/byActivity',
+        type: 'get',
+        data: {
+            'activityID': activityID,
+            'date': date
+        },
+        success: function(response) {
+            var res = JSON.parse(response);
+
+            // hide all staff
+            $('.employee-option').hide();
+
+            // when array returned is not empty
+            if(res.length > 0)
+            {
+                // reset staff selection
+                $('#employee').val('0');
+
+                // display available staff
+                res.forEach(function(staff, index, array) {
+                    var id = staff['employee_id'];
+                    $('#employee-'+id).show();
+                })
+            }
+            // if it's empty
+            else
+            {
+                // set to not available
+                $('#employee').val('-1');
+            }
+
+        }
+    }).error(function(res){
+        alert("Unable to retrieve roster");
+    });
+});
