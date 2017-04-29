@@ -7,19 +7,21 @@ class EmployeesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * create 5 random entries for testing purposes
+     * generate 10 random employees
      *
      * @return void
      */
     public function run()
     {
-        for($i=0;$i<5;$i++)
+        // generate 10 employees
+        for($i=0;$i<10;$i++)
         {
+            // generate employees using factory faker
             $employee = factory(\App\Employee::class)->make([
                 'TFN' => rand(100000000,999999999)
             ]);
 
+            // create employee and save to BD
             Employee::create([
                 'employee_name' => $employee->employee_name,
                 'TFN' => $employee->TFN,

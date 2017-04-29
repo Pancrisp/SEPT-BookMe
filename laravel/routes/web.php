@@ -26,11 +26,10 @@ Route::post('/register', 'RegistrationController@register');
  */
 Route::get('/booking/summary', 'BookingController@showBookingSummary');
 Route::get('/booking/owner', function(){ return view('businessBooking');});
+Route::get('/booking/availability', 'BookingController@showAvailability');
 // Form submission
 Route::post('/book', 'BookingController@addBookingForm');
 Route::post('/booking', 'BookingController@addBooking');
-// AJAX
-Route::get('/booking/get/byDate', 'SlotController@getSlotsByDate');
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +43,7 @@ Route::get('/staff/update', 'EmployeeController@showStaffUpdateForm');
 Route::post('/staff/add/submit', 'EmployeeController@addStaff');
 Route::post('/staff/update/submit', 'EmployeeController@updateStaffAvailableDays');
 // AJAX
-Route::get('/staff/availability/get', 'EmployeeController@getAvailability');
+Route::get('/staff/get', 'EmployeeController@getEmployeeDetails');
 
 /*
 |--------------------------------------------------------------------------

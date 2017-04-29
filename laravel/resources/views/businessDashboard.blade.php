@@ -12,21 +12,22 @@
 
         <div class="overview">
             <h3>BOOKINGS</h3>
-            <a class="block" href="/booking/owner">Make a booking</a>
+            <a class="block" href="/booking/owner">New Booking</a>
             <a class="block" href="/booking/summary" >Bookings Overview</a>
+            <a class="block" href="/booking/availability" >Availability</a>
         </div>
 
         <div class="overview">
             <h3>STAFF</h3>
-            <a class="block" href="/staff/add">Add new staff</a>
+            <a class="block" href="/staff/add">New Staff</a>
             <a class="block" href="/staff/update">Update staff working days</a>
             <a class="block" href="/staff/summary">Staff Summary</a>
         </div>
 
         <div class="overview">
             <h3>ROSTER</h3>
-            <a class="block" href="/roster/add">Add new roster</a>
-            <a class="block" href="/roster/summary">Show roster (next week)</a>
+            <a class="block" href="/roster/add">New Roster</a>
+            <a class="block" href="/roster/summary">Show roster</a>
         </div>
     </div>
 

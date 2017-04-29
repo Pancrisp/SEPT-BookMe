@@ -125,7 +125,7 @@ class BookingController
         $validator = $this->creatingBookingValidator($request->all());
 
         // when validation fails, load booking form with error
-        if($validator->fails() || !$this->slotBookedValidator($request->all())) {
+        if($validator->fails() || !$this->canBeBooked($request->all())) {
             $error = 'Slot selected is not valid';
             return $this->loadBookingForm($request, $error);
         }
@@ -136,6 +136,62 @@ class BookingController
         // when booking is successfully saved, return confirmation page
         if($booking)
             return $this->loadConfirmationPage($booking);
+    }
+
+    /**
+     * display bookings based on date and employee
+     * only accessible by business owner
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAvailability()
+    {
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
+
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+
+        // get start and end date of next 7 days
+        $tomorrow = Carbon::now()->addDay();
+        $aWeekLater = Carbon::now()->addWeek();
+
+        // get business
+        $business = Business::find($businessID);
+
+        // get dates of next 7 days from booking table of this business
+        $dates = Booking::select('date')
+            ->where('business_id', $businessID)
+            ->whereBetween('date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
+            ->orderBy('date', 'asc')
+            ->groupBy('date')
+            ->get();
+
+        // get employees of this business
+        $employees = Employee::join('activities', 'activities.activity_id', 'employees.activity_id')
+            ->where('employees.business_id', $businessID)
+            ->get();
+
+        // loop through each employee of each date to get bookings
+        $bookings = [];
+        foreach ($employees as $employee)
+        {
+            foreach ($dates as $date)
+            {
+                $bookings[$employee['employee_id']][$date['date']]
+                    = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
+                    ->join('activities', 'activities.activity_id', 'employees.activity_id')
+                    ->join('customers', 'customers.customer_id', 'bookings.customer_id')
+                    ->where('bookings.employee_id', $employee['employee_id'])
+                    ->where('bookings.date', $date['date'])
+                    ->orderBy('bookings.start_time', 'asc')
+                    ->get();
+            }
+        }
+
+        return view('availability', compact('bookings', 'employees', 'dates', 'business'));
     }
 
     /**
@@ -262,7 +318,7 @@ class BookingController
      * @param array $data
      * @return bool
      */
-    private function slotBookedValidator(array $data)
+    private function canBeBooked(array $data)
     {
         // get slot of same date, time, and employee, if exists
         $slot = Slot::join('bookings', 'bookings.booking_id', 'slots.booking_id')

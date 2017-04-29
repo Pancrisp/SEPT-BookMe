@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\Employee;
 use App\Roster;
 use Carbon\Carbon;
@@ -60,10 +61,17 @@ class RosterController
                 ->withErrors($validator);
         }
 
-        // when validation passes, save to DB and redirect back with successful message
-        if($this->update($request->all()) || $this->create($request->all())){
+        // if staff can't be rostered on the date, redirect back with input and error messages
+        if(!$this->canBeRostered($request->all())) {
             return Redirect::back()
-                ->withErrors(['result' => 'Roster added successfully!']);
+                ->withInput()
+                ->withErrors(['result' => 'Staff is not available on the date']);
+        }
+
+        // when validation passes, save to DB and redirect back with successful message
+        if($this->create($request->all())){
+            return Redirect::back()
+                ->withErrors(['result' => 'Staff rostered successfully!']);
         }
     }
 
@@ -86,63 +94,68 @@ class RosterController
             ->where('employees.activity_id', $request['activityID'])
             ->get();
 
+        // pass result back to ajax by json
         print_r(json_encode($roster));
     }
 
     /**
-     * This is deprecated
+     * show roster for the next 7 days
+     * display based on date and activity
+     * only accessible by business owner
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showRoster(Request $request)
+    public function showRoster()
     {
         // redirect to login page if not authenticated, or incorrect user type
         if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
             return Redirect::to('/login');
 
-        $businessID = $request['id'];
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
 
+        // get start and end date of next 7 days
         $tomorrow = Carbon::now()->addDay();
-        $aWeeklater = Carbon::now()->addWeek();
+        $aWeekLater = Carbon::now()->addWeek();
 
-        $dayShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
-            ->select(
-                'employees.employee_name AS name',
-                'rosters.date AS date',
-                'rosters.shift AS shift'
-            )
+        // get dates of next 7 days from roster table of this business
+        $dates = Roster::select('date')
+            ->join('employees', 'employees.employee_id', 'rosters.employee_id')
             ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
-            ->orderBy('date', 'asc')
-            ->where('shift', 'Day')
+            ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
+            ->orderBy('rosters.date', 'asc')
+            ->groupBy('date')
             ->get();
 
-        foreach ($dayShifts as $roster)
+        // get the day of each date and save to array
+        foreach ($dates as $date)
         {
-            $date = Carbon::parse($roster['date']);
-            $roster['day'] = $date->format('l');
+            $carbon = Carbon::parse($date['date']);
+            $date['day'] = $carbon->format('l');
         }
 
-        $nightShifts = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
-            ->select(
-                'employees.employee_name AS name',
-                'rosters.date AS date',
-                'rosters.shift AS shift'
-            )
-            ->where('employees.business_id', $businessID)
-            ->whereBetween('date', array($tomorrow->toDateString(), $aWeeklater->toDateString()))
-            ->orderBy('date', 'asc')
-            ->where('shift', 'Night')
+        // get activities of this business
+        $activities
+            = Activity::where('business_id', $businessID)
             ->get();
 
-        foreach ($nightShifts as $roster)
+        // loop through each activity of each date to get roster
+        $rosters = [];
+        foreach ($activities as $activity)
         {
-            $date = Carbon::parse($roster['date']);
-            $roster['day'] = $date->format('l');
+            foreach ($dates as $date)
+            {
+                $rosters[$activity['activity_id']][$date['date']]
+                    = Roster::join('employees', 'employees.employee_id', 'rosters.employee_id')
+                    ->join('activities', 'activities.activity_id', 'employees.activity_id')
+                    ->where('activities.activity_id', $activity['activity_id'])
+                    ->where('rosters.date', $date['date'])
+                    ->get();
+            }
         }
 
-        return view('showRoster', compact('dayShifts', 'nightShifts', 'businessID'));
+        return view('showRoster', compact('dates', 'activities', 'rosters'));
     }
 
     /**
@@ -155,32 +168,53 @@ class RosterController
     {
         return Validator::make($data, [
             'date'          => 'required|date|after:today',
-            'shift'         => 'required',
             'employee_id'   => 'required|numeric'
         ]);
     }
 
     /**
-     * Replace the employee_id if there was someone in the shift
-     * this might be deprecated
+     * check if the staff is available on that day
+     * also check if the staff has already been rostered on that date
      *
-     * @return boolean
+     * @param array $data
+     * @return bool
      */
-    private function update(array $data)
+    private function canBeRostered(array $data)
     {
-        $roster = Roster::where('date', $data['date'])
-            ->where('shift', $data['shift'])
-            ->first();
+        // get employee availability and convert to an array
+        $employee = Employee::find($data['employee_id']);
+        $availability = $employee->available_days;
+        $days = explode(' ', $availability);
 
-        if($roster != null)
+        // get the day of input date
+        $carbon = Carbon::parse($data['date']);
+        $data['day'] = $carbon->format('l');
+
+        // check if staff is available on that date
+        $valid = false;
+        foreach ($days as $day)
         {
-            $roster->employee_id = $data['employee_id'];
-            $roster->save();
-
-            return true;
+            if ($day != "" && strpos($data['day'], $day) !== false)
+            {
+                $valid = true;
+                break;
+            }
         }
-        else
-            return false;
+
+        // when available on that date
+        if($valid)
+        {
+            // check if staff has already been rostered
+            $roster = Roster::where('date', $data['date'])
+                ->where('employee_id', $data['employee_id'])
+                ->get();
+
+            // set valid to false if such roster exists
+            if(count($roster))
+                $valid = false;
+        }
+
+        return $valid;
     }
 
     /**
@@ -194,7 +228,6 @@ class RosterController
     {
         return Roster::create([
             'date'          => $data['date'],
-            'shift'         => $data['shift'],
             'employee_id'   => $data['employee_id']
         ]);
     }

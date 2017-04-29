@@ -13,31 +13,28 @@
         <table>
             <tr>
                 <th class="head"></th>
-                @foreach($dayShifts as $shift)
+                @foreach($dates as $date)
                     <th class="head">
-                        {{ $shift['day'] }} <br>
-                        {{ $shift['date'] }}
+                        {{ $date['day'] }} <br>
+                        {{ $date['date'] }}
                     </th>
                 @endforeach
             </tr>
-            <tr>
-                <th class="head">Day</th>
-                @foreach($dayShifts as $shift)
-                    <td>
-                        {{ $shift['name'] }}
-                    </td>
-                @endforeach
-            </tr>
-            <tr>
-                <th class="head">Night</th>
-                @foreach($nightShifts as $shift)
-                    <td>
-                        {{ $shift['name'] }}
-                    </td>
-                @endforeach
-            </tr>
+            @foreach($activities as $activity)
+                <tr>
+                    <th class="head">{{ $activity['activity_name'] }}</th>
+                    @foreach($dates as $date)
+                        <td>
+                            @foreach($rosters[$activity['activity_id']][$date['date']] as $roster)
+                            <p>
+                                {{ $roster['employee_name'] }}
+                            </p>
+                            @endforeach
+                        </td>
+                    @endforeach
+                </tr>
+            @endforeach
         </table>
-        
     </div>
 
 @endsection

@@ -9,6 +9,13 @@ $(document).ready(function() {
     });
 });
 
+// appends the user's selected date onto the current bookings section
+$('#date').change(function() {
+    var date = document.querySelector('#date').value;
+    $('#date-selected').html('');
+    $('#date-selected').append(date);
+});
+
 // sets date value for roster date input field
 $('#roster-date').datepicker({
     minDate: 0,
@@ -29,59 +36,23 @@ $('#roster-select-employee').on('change', function() {
     var empID = $(this).val();
 
     $.ajax({
-        url: '/staff/availability/get',
+        url: '/staff/get',
         type: 'get',
         data: {
             'empID': empID
         },
         success: function(response) {
             var res = JSON.parse(response);
-            console.log(res);
+
+            // put the message to place and show div
+            $('#available-days').text(res['available_days']);
+            $('#activity-in-charge').text(res['activity_name']);
+            $('#employee-details').show();
         }
     }).error(function(res){
        alert("Unable to retrieve employee availability");
     });
-})
-
-// appends the user's selected date onto the current bookings section
-$('#date').change(function() {
-    var date = document.querySelector('#date').value;
-    $('#date-selected').html('');
-    $('#date-selected').append(date);
-    var businessId = document.querySelector('#business').value;
-    getBookingsByDate(date, businessId);
 });
-
-// AJAX request for viewing available booking slots
-function getBookingsByDate(date, id) {
-
-    // To reset all the slots
-    var allSlots = document.querySelectorAll('[class="slot"]');
-    allSlots.forEach(function(slot) {
-        slot.innerHTML = "";
-    });
-
-    $.ajax({
-        url: '/booking/get/byDate',
-        type: 'get',
-        data: {
-            'date': date,
-            'id': id
-        },
-        success: function(response) {
-            var res = JSON.parse(response);
-
-            res.forEach(function(booking){
-                var id = 'slot-'+booking['slot_time'];
-                var slot = document.querySelector('[id="'+id+'"]');
-                slot.innerHTML = '[X]';
-            });
-            $('.booked-slots').show();
-        }
-    }).error(function(response) {
-        alert("Unable to retrieve bookings");
-    });
-}
 
 // AJAX to list staff according to activity selected
 $('#service').change(function(){
