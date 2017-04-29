@@ -6,7 +6,7 @@
 
 @section('content')
     @include('includes.return')
-    
+
     <div class="dashboard">
         <h1>Hello, {{ $user['owner_name'] }} from {{ $user['business_name'] }}</h1>
 

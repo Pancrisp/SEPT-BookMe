@@ -1,6 +1,11 @@
 <?php
 
+use App\Activity;
 use App\Booking;
+use App\Business;
+use App\Customer;
+use App\Employee;
+use App\Slot;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +20,10 @@ class BookingsTableSeeder extends Seeder
     {
         $date = Carbon::today();
 
-        $numOfCustomers = \App\Customer::count();
-        $numOfBusinesses = \App\Business::count();
-        $numOfEmployees = \App\Employee::count();
-
-        $typesOfSlots = [1,2,4];
+        $numOfCustomers = Customer::count();
+        $numOfBusinesses = Business::count();
+        $numOfEmployees = Employee::count();
+        $numOfActivities = Activity::count();
 
         for($i=0; $i<5; $i++){
             $hour = rand(9, 11);
@@ -29,20 +33,16 @@ class BookingsTableSeeder extends Seeder
                 $empID = rand(1, $numOfEmployees);
                 $cusID = rand(1, $numOfCustomers);
                 $busID = rand(1, $numOfBusinesses);
-                $business = \App\Business::find($busID);
-
-                $slotKey = array_rand($typesOfSlots);
-                $numOfSlots = $typesOfSlots[$slotKey];
-                $activity = \App\Activity::where('num_of_slots', $numOfSlots)
-                    ->where('business_id', $busID)
-                    ->first();
+                $actID = Employee::find($empID)->activity_id;
+                $business = Business::find($busID);
+                $activity = Activity::find($actID);
+                $numOfSlots = $activity->num_of_slots;
 
                 $startTime = Carbon::createFromTime($hour, 0);
 
                 $booking = Booking::create([
                     'date' => $date->toDateString(),
                     'start_time' => $startTime->toTimeString(),
-                    'activity' => $activity->activity_name,
                     'customer_id' => $cusID,
                     'business_id' => $busID,
                     'employee_id' => $empID,
@@ -50,7 +50,7 @@ class BookingsTableSeeder extends Seeder
 
                 for($k=0; $k<$numOfSlots; $k++)
                 {
-                    \App\Slot::create([
+                    Slot::create([
                         'slot_time' => $startTime->toTimeString(),
                         'booking_id' => $booking->booking_id
                     ]);

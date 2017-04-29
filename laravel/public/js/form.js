@@ -98,6 +98,8 @@ $('#service').change(function(){
         success: function(response) {
             var res = JSON.parse(response);
 
+            // hide the dropdown list
+            $('#employee-list').hide();
             // hide all staff
             $('.employee-option').hide();
 
@@ -106,19 +108,18 @@ $('#service').change(function(){
             {
                 // reset staff selection
                 $('#employee').val('0');
-
                 // display available staff
                 res.forEach(function(staff, index, array) {
                     var id = staff['employee_id'];
                     $('#employee-'+id).show();
                 })
             }
-            // if it's empty
+            // if it's empty, set to not available
             else
-            {
-                // set to not available
                 $('#employee').val('-1');
-            }
+
+            // show the dropdown list
+            $('#employee-list').show();
 
         }
     }).error(function(res){

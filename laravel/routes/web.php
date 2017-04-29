@@ -28,7 +28,7 @@ Route::get('/booking/summary', 'BookingController@showBookingSummary');
 Route::get('/booking/owner', function(){ return view('businessBooking');});
 // Form submission
 Route::post('/book', 'BookingController@addBookingForm');
-Route::post('/booking/submit', 'BookingController@addBooking');
+Route::post('/booking', 'BookingController@addBooking');
 // AJAX
 Route::get('/booking/get/byDate', 'SlotController@getSlotsByDate');
 
@@ -57,3 +57,10 @@ Route::get('/roster/summary', 'RosterController@showRoster');
 Route::post('/roster/add/submit', 'RosterController@addRoster');
 // AJAX
 Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity');
+
+
+
+Route::get('hi', function(){
+   $time = new \Carbon\Carbon('10:00:00');
+    dd($time->toTimeString());
+});

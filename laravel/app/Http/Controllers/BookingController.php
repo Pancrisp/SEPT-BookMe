@@ -8,6 +8,7 @@ use App\Booking;
 use App\Business;
 use App\Customer;
 use App\Employee;
+use App\Slot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,8 @@ class BookingController
 
         // get all bookings with customer details for this business from today onwards
         $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->join('employees', 'employees.employee_id', 'bookings.employee_id')
+            ->join('activities', 'employees.activity_id', 'activities.activity_id')
             ->where('bookings.business_id', $businessID)
             ->where('bookings.date', '>=', $today)
             ->orderBy('bookings.date')
@@ -45,6 +48,8 @@ class BookingController
 
         // get new bookings with customer details for this business made today
         $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->join('employees', 'employees.employee_id', 'bookings.employee_id')
+            ->join('activities', 'employees.activity_id', 'activities.activity_id')
             ->where('bookings.business_id', $businessID)
             ->whereDate('bookings.created_at', $today)
             ->orderBy('bookings.date')
@@ -89,10 +94,6 @@ class BookingController
                 ->withErrors($validator);
         }
 
-        // get attributes from request
-        $businessID = $request['business'];
-        $date = $request['date'];
-
         // get customer when submitting by business owner
         if($type == 'business')
         {
@@ -104,6 +105,54 @@ class BookingController
             // save customer_id into request
             $request['customer'] = $customer->customer_id;
         }
+
+        // load the form when validation passed
+        return $this->loadBookingForm($request);
+    }
+
+    /**
+     * called when submitting add booking form
+     * validate incoming request
+     *
+     * when validation fails, redirect back to the form by returning the view
+     * when validation passes, save to DB and return a confirmation page
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function addBooking(Request $request)
+    {
+        $validator = $this->creatingBookingValidator($request->all());
+
+        // when validation fails, load booking form with error
+        if($validator->fails() || !$this->slotBookedValidator($request->all())) {
+            $error = 'Slot selected is not valid';
+            return $this->loadBookingForm($request, $error);
+        }
+
+        // save the booking to DB when validation passes
+        $booking = $this->saveBooking($request->all());
+
+        // when booking is successfully saved, return confirmation page
+        if($booking)
+            return $this->loadConfirmationPage($booking);
+    }
+
+    /**
+     * load booking form using request passed in
+     * can be accessed by authenticated user when looking for bookings (post)
+     * also accessed by showing error after posting add booking form (get)
+     *
+     * @param $request
+     * @param string $error
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param $type
+     */
+    private function loadBookingForm($request, $error="")
+    {
+        // get attributes from request
+        $businessID = $request['business'];
+        $date = $request['date'];
 
         // get employees working on that day for this business
         $employees = Employee::select('employees.employee_id', 'employees.employee_name')
@@ -125,7 +174,7 @@ class BookingController
             $bookings[$activity['activity_id']]
                 = Booking::join('employees', 'bookings.employee_id', 'employees.employee_id')
                 ->where('bookings.business_id', $businessID)
-                ->where('bookings.activity', $activity['activity_name'])
+                ->where('employees.activity_id', $activity['activity_id'])
                 ->where('bookings.date', $date)
                 ->orderBy('bookings.employee_id')
                 ->get();
@@ -134,15 +183,27 @@ class BookingController
         // get the business
         $business = Business::find($businessID);
 
-        return view('newBooking', compact('request', 'employees', 'activities', 'bookings', 'business'));
+        return view('newBooking', compact('request', 'employees', 'activities', 'bookings', 'business', 'error'));
     }
 
     /**
-     * @param Request $request
+     * load a confirmation page after booking created successfully
+     * display: date, time, activity, staff
+     *
+     * @param $bookingSaved
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function addBooking(Request $request)
+    private function loadConfirmationPage($bookingSaved)
     {
+        // retrieve booking with more details by joining tables
+        $booking = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
+            ->join('activities', 'activities.activity_id', 'employees.activity_id')
+            ->find($bookingSaved->booking_id);
 
+        // retrieve business from DB
+        $business = Business::find($bookingSaved->business_id);
+
+        return view('confirmation', compact('business', 'booking'));
     }
 
     /**
@@ -173,5 +234,109 @@ class BookingController
             'business'  => 'required',
             'date'      => 'required|date|after:today'
         ]);
+    }
+
+    /**
+     * validate incoming data for creating a new booking
+     *
+     * @param array $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    private function creatingBookingValidator(array $data)
+    {
+        $validator = Validator::make($data, [
+            'customer'  => 'required',
+            'business'  => 'required',
+            'date'      => 'required|date|after:today',
+            'service'   => 'required',
+            'employee'  => 'required',
+            'time'      => 'required'
+        ]);
+
+        return $validator;
+    }
+
+    /**
+     * validate if slot already booked when creating new booking
+     *
+     * @param array $data
+     * @return bool
+     */
+    private function slotBookedValidator(array $data)
+    {
+        // get slot of same date, time, and employee, if exists
+        $slot = Slot::join('bookings', 'bookings.booking_id', 'slots.booking_id')
+            ->where('bookings.date', $data['date'])
+            ->where('bookings.employee_id', $data['employee'])
+            ->where('slots.slot_time', $data['time'].':00')
+            ->get();
+
+        // return false if such slot already booked
+        if(count($slot))
+            return false;
+        else
+            return true;
+    }
+
+    /**
+     * called when adding booking is validated
+     * save booking to DB
+     *
+     * @param array $data
+     * @return Booking
+     */
+    private function saveBooking(array $data)
+    {
+        // create booking and save to DB
+        $booking =  Booking::create([
+            'date' => $data['date'],
+            'start_time' => $data['time'].':00',
+            'customer_id' => $data['customer'],
+            'business_id' => $data['business'],
+            'employee_id' => $data['employee']
+        ]);
+
+        $this->saveSlots($data, $booking);
+
+        return $booking;
+    }
+
+    /**
+     * save slots to DB according to booking created
+     *
+     * @param array $data
+     * @param $booking
+     */
+    private function saveSlots(array $data, $booking)
+    {
+        // retrieving data
+        $time = $data['time'].':00';
+        $businessID = $data['business'];
+        $employeeID = $data['employee'];
+
+        // retrieve activity from DB and get num_of_slots
+        $activity = Activity::join('employees', 'activities.activity_id', 'employees.activity_id')
+            ->where('employees.employee_id', $employeeID)
+            ->first();
+        $numOfSlots = $activity->num_of_slots;
+
+        // retrieve business
+        $business = Business::find($businessID);
+
+        // set start time
+        $startTime = new Carbon($time);
+
+        // save each slot to DB
+        for($k=0; $k<$numOfSlots; $k++)
+        {
+            // create the slot
+            Slot::create([
+                'slot_time' => $startTime->toTimeString(),
+                'booking_id' => $booking->booking_id
+            ]);
+
+            // increment time period according to config from DB
+            $startTime->addMinute($business->slot_period);
+        }
     }
 }

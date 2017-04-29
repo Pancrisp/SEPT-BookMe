@@ -17,6 +17,7 @@
                     <th>Date</th>
                     <th>Start Time</th>
                     <th>Activity</th>
+                    <th>Staff</th>
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
@@ -28,7 +29,8 @@
                         <td>{{ $booking['booking_id'] }}</td>
                         <td>{{ $booking['date'] }}</td>
                         <td>{{ $booking['start_time'] }}</td>
-                        <td>{{ $booking['activity'] }}</td>
+                        <td>{{ $booking['activity_name'] }}</td>
+                        <td>{{ $booking['employee_name'] }}</td>
                         <td>{{ $booking['customer_name'] }}</td>
                         <td>{{ $booking['mobile_phone'] }}</td>
                         <td>{{ $booking['email_address'] }}</td>
@@ -49,6 +51,7 @@
                     <th>Date</th>
                     <th>Start Time</th>
                     <th>Activity</th>
+                    <th>Staff</th>
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
@@ -60,7 +63,8 @@
                     <td>{{ $booking['booking_id'] }}</td>
                     <td>{{ $booking['date'] }}</td>
                     <td>{{ $booking['start_time'] }}</td>
-                    <td>{{ $booking['activity'] }}</td>
+                    <td>{{ $booking['activity_name'] }}</td>
+                    <td>{{ $booking['employee_name'] }}</td>
                     <td>{{ $booking['customer_name'] }}</td>
                     <td>{{ $booking['mobile_phone'] }}</td>
                     <td>{{ $booking['email_address'] }}</td>
