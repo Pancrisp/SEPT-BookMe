@@ -15,7 +15,6 @@
     </head>
     <body>
         <div class="container">
-            <div><a href="/logout">Logout</a></div>
             @yield('content')
         </div>
 

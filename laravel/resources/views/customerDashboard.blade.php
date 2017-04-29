@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    @include('includes.return')
+    
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>
         <h2>Please fill out the form below to make a booking with us</h2>
