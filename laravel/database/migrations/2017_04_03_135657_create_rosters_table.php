@@ -11,7 +11,6 @@ class CreateRostersTable extends Migration
      *
      * roster_id (pk)
      * date
-     * shift
      * employee_id (fk)
      *
      * @return void
@@ -21,7 +20,6 @@ class CreateRostersTable extends Migration
         Schema::create('rosters', function (Blueprint $table) {
             $table->increments('roster_id');
             $table->string('date');
-            $table->string('shift');
             $table->integer('employee_id')->unsigned();
             $table->timestamps();
         });

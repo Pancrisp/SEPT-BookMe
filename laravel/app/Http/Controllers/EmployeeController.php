@@ -152,21 +152,21 @@ class EmployeeController
 
     /**
      * called by ajax only
-     * return availability of a certain employee by empID
+     * return availability and activity of a certain employee by empID
      *
      * @param Request $request
      */
-    Public function getAvailability(Request $request)
+    Public function getEmployeeDetails(Request $request)
     {
         // defence 1st, make sure this is only accessible by AJAX request
         if( ! $request->ajax() ) { die; }
 
-        // get employee from db by empID and get working days
-        $employee = Employee::find($request['empID']);
-        $availability = $employee->available_days;
+        // get employee from db by empID
+        $employee = Employee::join('activities', 'employees.activity_id', 'activities.activity_id')
+            ->find($request['empID']);
 
         // pass result back to ajax by json
-        print_r(json_encode($availability));
+        print_r(json_encode($employee));
     }
 
     /**

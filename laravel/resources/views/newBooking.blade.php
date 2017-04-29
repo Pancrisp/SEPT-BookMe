@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('includes.return')
 
     <nav>
         <a href="{{ URL::previous() }}">Pick another one</a>
@@ -12,9 +13,8 @@
 
     <div class="dashboard">
         <h1>Welcome to {{ $business['business_name'] }}</h1>
-        <div class="success">{{ $errors->first('result') }}</div>
 
-        <form action="booking/submit" method="post">
+        <form action="/booking" method="post">
             {{ csrf_field() }}
             <input id="business" name="business" value="{{ $request['business'] }}" hidden>
             <input id="customer" name="customer" value="{{ $request['customer'] }}" hidden>
@@ -22,29 +22,32 @@
 
             <!-- displays a drop down list of available services by this business -->
             <label for="service">Service required</label>
-            <div class="error">{{ $errors->first('service') }}</div>
-            <select id="service" name="service">
-                <option value="" selected disabled>Choose service</option>
+            <select id="service" name="service" required>
+                <option value="0" selected disabled>Choose service</option>
                 @foreach($activities as $activity)
                     <option value="{{ $activity['activity_id'] }}">{{ $activity['activity_name'] }}</option>
                 @endforeach
             </select>
 
             <!-- displays a drop down list of available employees of this business -->
-            <label for="employee">Preferred staff</label>
-            <div class="error">{{ $errors->first('employee') }}</div>
-            <select id="employee" name="employee">
-                <option value="" selected disabled>Choose staff</option>
-                @foreach($employees as $employee)
-                    <option value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
-                @endforeach
-            </select>
+            <div id="employee-list" hidden>
+                <label for="employee">Preferred staff</label>
+                <select id="employee" name="employee" required>
+                    <option value="0" selected disabled>Choose staff</option>
+                    @foreach($employees as $employee)
+                        <option class="employee-option" id="employee-{{ $employee['employee_id'] }}" value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
+                    @endforeach
+                    <option value="-1" hidden disabled>No staff available</option>
+                </select>
+            </div>
 
             <!-- input field to enter booking time -->
             <label for="time">Time</label>
-            <div class="error">{{ $errors->first('time') }}</div>
-            <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00">
+            <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00" required>
 
+            @if($error != "")
+                <div class="error">{{ $error }}</div>
+            @endif
             <button type="submit">Make Booking</button>
         </form>
 

@@ -1,5 +1,8 @@
 <?php
 
+use App\Activity;
+use App\Employee;
+use App\Roster;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -7,31 +10,38 @@ class RostersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * generate roster for next 7 days
+     * roster one employee for each activity
      *
      * @return void
      */
     public function run()
     {
+        // get today's date
         $date = Carbon::today();
-        $noOfEmployees = \App\Employee::count();
+        // get activities from DB
+        $activities = Activity::all();
 
+        // roster for next week
         for($i=0; $i<7; $i++)
         {
-            $employee1 = rand(1, $noOfEmployees);
-            $employee2 = rand(1, $noOfEmployees);
+            // roster starts from tomorrow and increment a day in each iteration
             $date = $date->addDay();
 
-            \App\Roster::create([
-                'date' => $date->toDateString(),
-                'shift' => 'Day',
-                'employee_id' => $employee1
-            ]);
+            // roster an employee for each activity
+            foreach ($activities as $activity)
+            {
+                // select a random employee who's in charge of this activity from DB
+                $employee = Employee::where('activity_id', $activity->activity_id)
+                    ->inRandomOrder()
+                    ->first();
 
-            \App\Roster::create([
-                'date' => $date->toDateString(),
-                'shift' => 'Night',
-                'employee_id' => $employee2
-            ]);
+                // create and save this roster
+                Roster::create([
+                    'date' => $date->toDateString(),
+                    'employee_id' => $employee->employee_id
+                ]);
+            }
         }
     }
 }

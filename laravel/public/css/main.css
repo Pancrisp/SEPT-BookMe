@@ -28,6 +28,30 @@ nav {
     margin-bottom: 24px;
 }
 
+nav div {
+    display: inline;
+}
+
+nav .right {
+    float: right;
+}
+
+nav .btn {
+    margin: 16px 32px 16px 0;
+    padding: 8px 24px;
+    color: #6699ff;
+    text-decoration: none;
+    line-height: 2.5;
+    box-sizing: border-box;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+nav .btn:hover {
+    background-color: #f3f3f3;
+}
+
 form {
   margin: 0 auto;
   width: 320px;

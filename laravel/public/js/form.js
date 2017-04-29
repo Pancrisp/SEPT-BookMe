@@ -9,6 +9,13 @@ $(document).ready(function() {
     });
 });
 
+// appends the user's selected date onto the current bookings section
+$('#date').change(function() {
+    var date = document.querySelector('#date').value;
+    $('#date-selected').html('');
+    $('#date-selected').append(date);
+});
+
 // sets date value for roster date input field
 $('#roster-date').datepicker({
     minDate: 0,
@@ -29,56 +36,64 @@ $('#roster-select-employee').on('change', function() {
     var empID = $(this).val();
 
     $.ajax({
-        url: '/staff/availability/get',
+        url: '/staff/get',
         type: 'get',
         data: {
             'empID': empID
         },
         success: function(response) {
             var res = JSON.parse(response);
-            console.log(res);
+
+            // put the message to place and show div
+            $('#available-days').text(res['available_days']);
+            $('#activity-in-charge').text(res['activity_name']);
+            $('#employee-details').show();
         }
     }).error(function(res){
        alert("Unable to retrieve employee availability");
     });
-})
-
-// appends the user's selected date onto the current bookings section
-$('#date').change(function() {
-    var date = document.querySelector('#date').value;
-    $('#date-selected').html('');
-    $('#date-selected').append(date);
-    var businessId = document.querySelector('#business').value;
-    getBookingsByDate(date, businessId);
 });
 
-// AJAX request for viewing available booking slots
-function getBookingsByDate(date, id) {
-
-    // To reset all the slots
-    var allSlots = document.querySelectorAll('[class="slot"]');
-    allSlots.forEach(function(slot) {
-        slot.innerHTML = "";
-    });
+// AJAX to list staff according to activity selected
+$('#service').change(function(){
+    var activityID = $(this).val();
+    var date = $('#date').val();
 
     $.ajax({
-        url: '/booking/get/byDate',
+        url: '/roster/staff/get/byActivity',
         type: 'get',
         data: {
-            'date': date,
-            'id': id
+            'activityID': activityID,
+            'date': date
         },
         success: function(response) {
             var res = JSON.parse(response);
 
-            res.forEach(function(booking){
-                var id = 'slot-'+booking['slot_time'];
-                var slot = document.querySelector('[id="'+id+'"]');
-                slot.innerHTML = '[X]';
-            });
-            $('.booked-slots').show();
+            // hide the dropdown list
+            $('#employee-list').hide();
+            // hide all staff
+            $('.employee-option').hide();
+
+            // when array returned is not empty
+            if(res.length > 0)
+            {
+                // reset staff selection
+                $('#employee').val('0');
+                // display available staff
+                res.forEach(function(staff, index, array) {
+                    var id = staff['employee_id'];
+                    $('#employee-'+id).show();
+                })
+            }
+            // if it's empty, set to not available
+            else
+                $('#employee').val('-1');
+
+            // show the dropdown list
+            $('#employee-list').show();
+
         }
-    }).error(function(response) {
-        alert("Unable to retrieve bookings");
+    }).error(function(res){
+        alert("Unable to retrieve roster");
     });
-}
+});

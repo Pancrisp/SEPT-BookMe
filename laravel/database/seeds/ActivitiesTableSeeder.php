@@ -7,6 +7,7 @@ class ActivitiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * seed example activities to DB
      *
      * @return void
      */
