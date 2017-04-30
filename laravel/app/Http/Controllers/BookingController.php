@@ -259,15 +259,19 @@ class BookingController
      */
     private function loadConfirmationPage($bookingSaved)
     {
+        // get auth
+        $auth = Auth::user();
+
         // retrieve booking with more details by joining tables
         $booking = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
             ->join('activities', 'activities.activity_id', 'employees.activity_id')
             ->find($bookingSaved->booking_id);
 
-        // retrieve business from DB
+        // retrieve business and customer from DB
         $business = Business::find($bookingSaved->business_id);
+        $customer = Customer::find($bookingSaved->customer_id);
 
-        return view('confirmation', compact('business', 'booking'));
+        return view('confirmation', compact('business', 'customer', 'booking', 'auth'));
     }
 
     /**

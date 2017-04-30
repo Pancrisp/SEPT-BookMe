@@ -8,8 +8,13 @@
     @include('includes.return')
 
     <div class="dashboard">
-        <h1>Thank you for making a booking with {{ $business['business_name'] }}</h1>
-        <h2>Your booking details:</h2>
+        @if($auth['user_type'] == 'customer')
+            <h1>Thank you for making a booking with {{ $business['business_name'] }}</h1>
+            <h2>Your booking details:</h2>
+        @else
+            <h1>Booking for {{ $customer['customer_name'] }} ({{ $customer['username'] }}) has been made successfully</h1>
+            <h2>Customer's booking details:</h2>
+        @endif
         <table>
             <thead>
             <tr>
