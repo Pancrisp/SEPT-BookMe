@@ -5,8 +5,7 @@
 | dashboard/homepage related routes
 |--------------------------------------------------------------------------
  */
-Route::post('/', 'DashboardController@loadDashboard');
-Route::get('/', 'DashboardController@backToDashboard');
+Route::get('/', 'DashboardController@loadDashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +13,11 @@ Route::get('/', 'DashboardController@backToDashboard');
 |--------------------------------------------------------------------------
  */
 Route::get('/login', function(){ return view('login'); });
+Route::get('/register', function(){ return view('signup'); });
 Route::get('/logout', 'AuthenticationController@logout');
-Route::get('/signup', function(){ return view('signup'); });
 // Form submission
-Route::post('/register', 'RegistrationController@register');
+Route::post('/login/submit', 'AuthenticationController@login');
+Route::post('/register/submit', 'RegistrationController@register');
 
 /*
 |--------------------------------------------------------------------------

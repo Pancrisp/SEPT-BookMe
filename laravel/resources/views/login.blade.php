@@ -10,7 +10,7 @@
         <h1>Booking App</h1>
         <h3>Sign in to access your dashboard</h3>
 
-        <form action="/" method="post">
+        <form action="/login/submit" method="post">
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('username') }}</div>
             <input type="text" name="username" placeholder="Email/Username" value="{!! old('username') !!}" required>
@@ -20,7 +20,7 @@
         </form>
 
         <div class="registration">
-            <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+            <p>Don't have an account? <a href="/register">Sign up here</a></p>
         </div>
     </div>
 
