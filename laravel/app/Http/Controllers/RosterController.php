@@ -124,7 +124,7 @@ class RosterController
             ->join('employees', 'employees.employee_id', 'rosters.employee_id')
             ->where('employees.business_id', $businessID)
             ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
-            ->orderBy('rosters.date', 'asc')
+            ->orderBy('rosters.date')
             ->groupBy('date')
             ->get();
 

@@ -15,7 +15,7 @@
                 </div>
                 <h2>Your booking has been received!</h2>
                 <h2>Thank you for ordering with {{ $business['business_name'] }}</h2>
-                <h3>Booking details</h4>
+                <h3>Booking details</h3>
                 <p class="receipt-info">Date</p>
                 {{ $booking['date'] }}
                 <p class="receipt-info">Time</p>

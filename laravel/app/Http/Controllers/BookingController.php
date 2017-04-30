@@ -171,7 +171,7 @@ class BookingController
             ->join('employees', 'employees.employee_id', 'rosters.employee_id')
             ->where('employees.business_id', $businessID)
             ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
-            ->orderBy('rosters.date', 'asc')
+            ->orderBy('rosters.date')
             ->groupBy('rosters.date')
             ->get();
 
@@ -183,6 +183,7 @@ class BookingController
             ->join('activities', 'activities.activity_id', 'employees.activity_id')
             ->where('employees.business_id', $businessID)
             ->where('rosters.date', $dateSelected)
+            ->orderBy('employees.activity_id')
             ->get();
 
         // loop through each employee to get bookings
@@ -195,7 +196,7 @@ class BookingController
                 ->join('customers', 'customers.customer_id', 'bookings.customer_id')
                 ->where('bookings.employee_id', $employee['employee_id'])
                 ->where('bookings.date', $dateSelected)
-                ->orderBy('bookings.start_time', 'asc')
+                ->orderBy('bookings.start_time')
                 ->get();
         }
 
@@ -241,6 +242,7 @@ class BookingController
                 ->where('employees.activity_id', $activity['activity_id'])
                 ->where('bookings.date', $date)
                 ->orderBy('bookings.employee_id')
+                ->orderBy('bookings.start_time')
                 ->get();
         }
 
@@ -332,18 +334,32 @@ class BookingController
      */
     private function canBeBooked(array $data)
     {
-        // get slot of same date, time, and employee, if exists
+        // convert the start time to carbon and get string
+        $carbonStartTime = new Carbon($data['time']);
+        $startTime = $carbonStartTime->toTimeString();
+
+        // get the activity from DB and num_of_slots
+        $activity = Activity::find($data['service']);
+        $numOfSlots = $activity->num_of_slots;
+
+        // get the business from DB and slot_period
+        $business = Business::find($data['business']);
+        $slotPeriod = $business->slot_period;
+
+        // get end time of the booking
+        $carbonEndTime = $carbonStartTime->addMinute($numOfSlots * $slotPeriod);
+        $endTime = $carbonEndTime->toTimeString();
+
+        // get slot of same date, employee, for the time period, if exists
         $slot = Slot::join('bookings', 'bookings.booking_id', 'slots.booking_id')
             ->where('bookings.date', $data['date'])
             ->where('bookings.employee_id', $data['employee'])
-            ->where('slots.slot_time', $data['time'].':00')
+            ->where('slots.slot_time', '>=', $startTime)
+            ->where('slots.slot_time', '<', $endTime)
             ->get();
 
-        // return false if such slot already booked
-        if(count($slot))
-            return false;
-        else
-            return true;
+        // return if such slot already booked
+        return (count($slot) == 0);
     }
 
     /**
