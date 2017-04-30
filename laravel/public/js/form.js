@@ -83,15 +83,21 @@ $('#service').change(function(){
                 res.forEach(function(staff, index, array) {
                     var id = staff['employee_id'];
                     $('#employee-'+id).show();
-                })
+                });
+
+                // show the dropdown list
+                $('#employee-list').show();
+
+                // display time picker and hide unavailable message
+                $('#booking-time-picker').show();
+                $('#unavailable-message').hide();
             }
-            // if it's empty, set to not available
+            // if it's empty, hide time picker and display unavailable message
             else
-                $('#employee').val('-1');
-
-            // show the dropdown list
-            $('#employee-list').show();
-
+            {
+                $('#booking-time-picker').hide();
+                $('#unavailable-message').show();
+            }
         }
     }).error(function(res){
         alert("Unable to retrieve roster");

@@ -37,13 +37,20 @@
                     @foreach($employees as $employee)
                         <option class="employee-option" id="employee-{{ $employee['employee_id'] }}" value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
                     @endforeach
-                    <option value="-1" hidden disabled>No staff available</option>
                 </select>
             </div>
 
             <!-- input field to enter booking time -->
-            <label for="time">Time</label>
-            <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00" required>
+            <div id="booking-time-picker">
+                <label for="time">Time</label>
+                <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00" required>
+            </div>
+
+            <!-- unavailable message -->
+            <div id="unavailable-message" hidden>
+                <h3>Service selected is currently unavailable on {{ $request['date'] }}</h3>
+                <h3>Please select another service or pick another date</h3>
+            </div>
 
             @if($error != "")
                 <div class="error">{{ $error }}</div>
