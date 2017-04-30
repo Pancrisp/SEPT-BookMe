@@ -1,3 +1,254 @@
+ï»¿Ervin Chua joined Business Registrationyesterday at 11:58 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Add working time should check employee's availability from In Progress to Completed (Part B demo)yesterday at 11:58 PM
+Ervin Chua (ervinchua2)Ervin Chua completed front-end: disable unavailable days in calendar on Add working time should check employee's availabilityyesterday at 11:58 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Paginate availability page from In Progress to Completed (Part B demo)yesterday at 8:12 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Paginate availability pageyesterday at 7:33 PM
+Grace Zheng (gracezzzz)Grace Zheng added Paginate availability page to In Progressyesterday at 7:33 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Set datepicker for making bookings 1 day ahead of current date from In Progress to Completed (Part B demo)yesterday at 3:37 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Set datepicker for making bookings 1 day ahead of current dateyesterday at 3:37 PM
+Ervin Chua (ervinchua2)Ervin Chua added Set datepicker for making bookings 1 day ahead of current date to In Progressyesterday at 3:37 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Upload individual logging files to Google Drive from In Progress to Completed (Part B demo)yesterday at 11:12 AM
+Grace Zheng (gracezzzz)Grace Zheng renamed this board (from Part_ONE)yesterday at 6:00 AM
+Grace Zheng (gracezzzz)Grace Zheng added forms to Business Registrationyesterday at 5:56 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Refactor and Comment code from In Progress to Completed (Part B demo)yesterday at 5:55 AM
+Grace Zheng (gracezzzz)Grace Zheng completed seeders on Refactor and Comment codeyesterday at 5:55 AM
+Grace Zheng (gracezzzz)Grace Zheng completed front-end: display available days on Add working time should check employee's availabilityyesterday at 5:53 AM
+Grace Zheng (gracezzzz)Grace Zheng completed back-end: validation on Add working time should check employee's availabilityyesterday at 5:52 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Roster issues from In Progress to Completed (Part B demo)yesterday at 5:52 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Roster issues from Sprint Backlog to In Progressyesterday at 3:27 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Roster issuesyesterday at 3:27 AM
+Grace Zheng (gracezzzz)Grace Zheng added Roster issues to Sprint Backlogyesterday at 3:26 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Business Owner create bookings for customer using username/email from In Progress to Completed (Part B demo)yesterday at 3:26 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Customer create bookings from In Progress to Completed (Part B demo)yesterday at 3:26 AM
+Grace Zheng (gracezzzz)Grace Zheng completed booking validation on Customer create bookingsyesterday at 3:26 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Gather all required deliverables for submission from In Progress to Completed (Part B demo)yesterday at 1:26 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Add a LOGOUT button on top right from In Progress to Completed (Part B demo)yesterday at 12:55 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Business RegistrationApr 29 at 10:02 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Business RegistrationApr 29 at 10:02 PM
+Grace Zheng (gracezzzz)Grace Zheng added Business Registration to Sprint BacklogApr 29 at 10:02 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Add a LOGOUT button on top rightApr 29 at 9:41 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add a LOGOUT button on top right from Sprint Backlog to In ProgressApr 29 at 9:25 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Add a LOGOUT button on top rightApr 29 at 9:22 PM
+Grace Zheng (gracezzzz)Grace Zheng added Add a LOGOUT button on top right to Sprint BacklogApr 29 at 9:22 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Upload individual logging files to Google Drive
+@gracezzzz That works too, haha. In fact that's a better way of doing it lol
+Apr 29 at 9:21 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Upload individual logging files to Google Drive
+Instead of renaming the files, I created a folder for my logs... Being lazzzzzy ðŸ™ƒ
+Apr 29 at 9:20 PM
+Ervin Chua (ervinchua2)Ervin Chua added Paulo to Upload individual logging files to Google DriveApr 29 at 12:13 PM
+Ervin Chua (ervinchua2)Ervin Chua added Grace Zheng to Upload individual logging files to Google DriveApr 29 at 12:13 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Upload individual logging files to Google DriveApr 29 at 12:13 PM
+Ervin Chua (ervinchua2)Ervin Chua added Upload individual logging files to Google Drive to In ProgressApr 29 at 12:13 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Gather all required deliverables for submissionApr 29 at 12:12 PM
+Ervin Chua (ervinchua2)Ervin Chua added Gather all required deliverables for submission to In ProgressApr 29 at 12:12 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Write new user stories from In Progress to Completed (Part B demo)Apr 29 at 12:04 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Write project documentation in README file from In Progress to Completed (Part B demo)Apr 28 at 5:01 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Write project documentation in README fileApr 28 at 9:24 AM
+Ervin Chua (ervinchua2)Ervin Chua added Write project documentation in README file to In ProgressApr 28 at 9:24 AM
+Ervin Chua (ervinchua2)Ervin Chua archived Refactor CodeApr 28 at 9:05 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Booking availability should take into account num_of_slots from Completed (Part B demo) to Completed (before ANZAC)Apr 28 at 1:02 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Booking availability should take into account num_of_slots from In Progress to Completed (Part B demo)Apr 28 at 1:02 AM
+Grace Zheng (gracezzzz)Grace Zheng completed add necessary elements to the form on Customer create bookingsApr 28 at 1:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Add working time should check employee's availabilityApr 27 at 10:33 PM
+Grace Zheng (gracezzzz)Grace Zheng completed migrations on Refactor and Comment codeApr 27 at 10:25 PM
+Grace Zheng (gracezzzz)Grace Zheng completed controllers on Refactor and Comment codeApr 27 at 10:06 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement authentication using innate Auth for security check from In Progress to Completed (Part B demo)Apr 27 at 10:06 PM
+Grace Zheng (gracezzzz)Grace Zheng completed adjust request and data passed to views on Implement authentication using innate Auth for security checkApr 27 at 10:06 PM
+Grace Zheng (gracezzzz)Grace Zheng completed clear up security check on Implement authentication using innate Auth for security checkApr 27 at 9:45 PM
+Grace Zheng (gracezzzz)Grace Zheng completed adjust customer and business accordingly on Implement authentication using innate Auth for security checkApr 27 at 8:22 PM
+Grace Zheng (gracezzzz)Grace Zheng completed create user model on Implement authentication using innate Auth for security checkApr 27 at 8:22 PM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Implement authentication using innate Auth for security checkApr 27 at 8:21 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement authentication using innate Auth for security checkApr 27 at 8:21 PM
+Grace Zheng (gracezzzz)Grace Zheng added Implement authentication using innate Auth for security check to In ProgressApr 27 at 8:21 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Business Owner create bookings for customer using username/email from Sprint Backlog to In ProgressApr 26 at 12:45 AM
+Grace Zheng (gracezzzz)Grace Zheng completed routes on Refactor and Comment codeApr 26 at 12:29 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Refactor and Comment codeApr 26 at 12:28 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Refactor and Comment code from Sprint Backlog to In ProgressApr 26 at 12:28 AM
+Grace Zheng (gracezzzz)Grace Zheng removed Checklist from Add/update staff working days/times laterApr 26 at 12:10 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Add/update staff working days/times later from In Progress to Completed (before ANZAC)Apr 26 at 12:10 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Add/update staff working days/times laterApr 25 at 10:23 PM
+Grace Zheng (gracezzzz)Grace Zheng added Completed (Part B demo) to this boardApr 25 at 8:16 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add/update staff working days/times later from Sprint Backlog to In ProgressApr 25 at 8:14 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Add working time should check employee's availability
+@ervinchua2 the ajax has been built. When employee is selected, the available days will be passed back as response. Please modify the datepicker accordingly. Cheers.
+Apr 25 at 8:06 PM
+PPaulo joined Refactored testsApr 25 at 3:31 PM
+PPaulo added Refactored tests to Completed (before ANZAC)Apr 25 at 3:30 PM
+PPaulo joined Implemented sessionApr 25 at 3:30 PM
+PPaulo added Implemented session to Completed (before ANZAC)Apr 25 at 3:30 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Refactor and Comment codeApr 24 at 8:18 PM
+Grace Zheng (gracezzzz)Grace Zheng added Refactor and Comment code to Sprint BacklogApr 24 at 8:18 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Booking availability should take into account num_of_slots from Sprint Backlog to In ProgressApr 24 at 4:01 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Booking availability should take into account num_of_slots
+I need another booking_summary table to assist showing booking summary.
+
+BOOKINGS
+-booking_id (pk)
+-date
+-start_time
+-activity
+-customer_id (foreign key)
+-business_id (foreign key)
+-employee_id (fk)
+
+SLOTS
+-slot_id(pk)
+-slot_time
+-booking_id(fk)
+Apr 24 at 3:58 PM (edited)
+Grace Zheng (gracezzzz)
+Grace Zheng on Booking availability should take into account num_of_slots
+instead of saving num_of_slots into bookings table, each booking should create num_of_slots rows of booking in bookings table. Says, a Express booking made, one row; a Normal booking made, 2 rows, with the specific timing; and so on. Each booking slot timing addition is set in the business config.
+Apr 24 at 3:03 PM
+PPaulo joined UC_09: Business owner makes booking for a registered customerApr 24 at 10:05 AM
+Ervin Chua (ervinchua2)Ervin Chua archived list Completed (week 6 demo)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Tests for Employee related functions from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Fix testing framework. Adopt LeanTesting from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Implement adding working time/dates for employee for the next month (by business owner) -> rostering from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Implement adding new employee (by business owner) from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Modify user-type to be determined by account name or email from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Design and implement database for employee and its working time/dates from Completed (week 6 demo) to Completed (week 1-6)Apr 24 at 2:12 AM
+Ervin Chua (ervinchua2)Ervin Chua moved A page that allow business owner to add bookings for customers (using username/email) from In Progress to Completed (before ANZAC)Apr 23 at 8:50 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Refactor Code from In Progress to Completed (before ANZAC)Apr 23 at 2:19 PM
+PPaulo added UC_09: Business owner makes booking for a registered customer to User StoriesApr 23 at 7:52 AM
+PPaulo moved Tests cases new functionality from Sprint Backlog to In ProgressApr 23 at 7:39 AM
+PPaulo moved Write new user stories from Sprint Backlog to In ProgressApr 23 at 7:39 AM
+Ervin Chua (ervinchua2)Ervin Chua moved A page that allow business owner to add bookings for customers (using username/email) from Sprint Backlog to In ProgressApr 22 at 9:08 PM
+Ervin Chua (ervinchua2)Ervin Chua archived list Completed (week 5 demo)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Add seeders needed for demo wk5 from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Implement Booking related functions from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Improve authentication according to channel from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Move login error messages to appropriate places from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Add customer details to booking summary page from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Create prototypes for customer and business dashboards from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Create brief that denotes user flow between pages from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Add radio buttons for selecting between customer or business accounts on sign in form from Completed (week 5 demo) to Completed (week 1-5)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua archived list Completed (week 4 demo)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Build UI for login/registration page from Completed (week 4 demo) to Completed (week 1-3)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Implement user registration from Completed (week 4 demo) to Completed (week 1-3)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Design and implement database for customers, business owners and bookings from Completed (week 4 demo) to Completed (week 1-3)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Implement user authentication from Completed (week 4 demo) to Completed (week 1-3)Apr 20 at 8:03 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Logging capability from In Progress to Completed (before ANZAC)Apr 20 at 7:38 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Merging old changes from master to dev branch from In Progress to Completed (before ANZAC)Apr 19 at 12:36 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Merging old changes from master to dev branchApr 19 at 12:22 PM
+Ervin Chua (ervinchua2)Ervin Chua added Merging old changes from master to dev branch to In ProgressApr 19 at 12:22 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Logging capability
+log4php - https://logging.apache.org/log4php/
+Apr 19 at 12:21 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Booking availability should take into account num_of_slotsApr 18 at 2:19 AM
+Grace Zheng (gracezzzz)Grace Zheng added Booking availability should take into account num_of_slots to Sprint BacklogApr 18 at 2:19 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Missing businessID in getBookingsByDate in BookingController from In Progress to Completed (before ANZAC)Apr 18 at 2:17 AM
+Grace Zheng (gracezzzz)Grace Zheng completed modify ajax on Missing businessID in getBookingsByDate in BookingControllerApr 18 at 2:16 AM
+Grace Zheng (gracezzzz)Grace Zheng completed modify controller on Missing businessID in getBookingsByDate in BookingControllerApr 18 at 2:11 AM
+Grace Zheng (gracezzzz)Grace Zheng completed update form on Missing businessID in getBookingsByDate in BookingControllerApr 18 at 2:10 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Missing businessID in getBookingsByDate in BookingControllerApr 18 at 1:51 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Missing businessID in getBookingsByDate in BookingController from Sprint Backlog to In ProgressApr 18 at 1:50 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Order booking summary by date from In Progress to Completed (before ANZAC)Apr 18 at 1:48 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Order booking summary by date from Sprint Backlog to In ProgressApr 18 at 1:41 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Add working time should check employee's availability from Sprint Backlog to In ProgressApr 18 at 1:41 AM
+Grace Zheng (gracezzzz)Grace Zheng moved SOLVE: how to keep track of tables from In Progress to Completed (before ANZAC)Apr 18 at 1:41 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on SOLVE: how to keep track of tables
+SOLUTION: No more tables. Each staff takes care of one activity for a certain period of time
+Apr 18 at 1:41 AM
+Grace Zheng (gracezzzz)Grace Zheng moved SOLVE: how to keep track of tables from Sprint Backlog to In ProgressApr 18 at 1:40 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Employee no longer has role but the type of activity in charge from In Progress to Completed (before ANZAC)Apr 18 at 1:39 AM
+Grace Zheng (gracezzzz)Grace Zheng completed update form on Employee no longer has role but the type of activity in chargeApr 18 at 1:39 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Define activities that take different times from In Progress to Completed (before ANZAC)Apr 18 at 1:16 AM
+Grace Zheng (gracezzzz)Grace Zheng completed modify table on Employee no longer has role but the type of activity in chargeApr 18 at 1:10 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Employee no longer has role but the type of activity in chargeApr 18 at 1:10 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Employee no longer has role but the type of activity in charge from Sprint Backlog to In ProgressApr 18 at 1:09 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Employee no longer has role but the type of activity in chargeApr 18 at 1:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added Employee no longer has role but the type of activity in charge to Sprint BacklogApr 18 at 1:09 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Define activities that take different times
+Idea: create an activities table that has business_id as foreign key and record name of the activities and num_of_slots needed
+
+ACTIVITIES
+
+activity_id
+activity_name
+num_of_slots
+business_id (fk)
+Apr 18 at 12:45 AM (edited)
+Grace Zheng (gracezzzz)Grace Zheng moved Define activities that take different times from Sprint Backlog to In ProgressApr 18 at 12:43 AM
+Grace Zheng (gracezzzz)Grace Zheng added Checklist to Customer create bookingsApr 18 at 12:42 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Customer create bookings from Sprint Backlog to In ProgressApr 18 at 12:42 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Add column emp_id to table bookings from In Progress to Completed (before ANZAC)Apr 18 at 12:42 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Change table bookings: end_time -> num_of_slots from In Progress to Completed (before ANZAC)Apr 18 at 12:42 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Add config: default slot period (30 min in this case) from In Progress to Completed (before ANZAC)Apr 18 at 12:39 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Add config: default slot period (30 min in this case)
+resolved by adding an extra column to businesses table
+Apr 18 at 12:36 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Add column emp_id to table bookings from Sprint Backlog to In ProgressApr 18 at 12:35 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Add config: default slot period (30 min in this case) from Sprint Backlog to In ProgressApr 18 at 12:35 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Change table bookings: end_time -> num_of_slots from Sprint Backlog to In ProgressApr 18 at 12:35 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Redirect to login page whenever try to access pages without logining
+@paulo795 Please test it again and let me know if it's not fixed yet... cheers
+Apr 14 at 10:50 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Redirect to login page whenever try to access pages without logining from Sprint Backlog to Completed (before ANZAC)Apr 14 at 10:49 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Refactor Code from Sprint Backlog to In ProgressApr 14 at 12:23 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Logging capability from Sprint Backlog to In ProgressApr 14 at 12:23 PM
+Ervin Chua (ervinchua2)Ervin Chua changed the background of this boardApr 12 at 7:33 AM
+Grace Zheng (gracezzzz)Grace Zheng archived list BUGsApr 11 at 3:27 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Order booking summary by date from BUGs to Sprint BacklogApr 11 at 3:27 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add working time should check employee's availability from BUGs to Sprint BacklogApr 11 at 3:27 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Redirect to login page whenever try to access pages without logining from BUGs to Sprint BacklogApr 11 at 3:27 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Missing businessID in getBookingsByDate in BookingController from BUGs to Sprint BacklogApr 11 at 3:27 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Missing businessID in getBookingsByDate in BookingController from Sprint Backlog to BUGsApr 11 at 1:22 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Order booking summary by date from Sprint Backlog to BUGsApr 11 at 1:22 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Add working time should check employee's availability from Sprint Backlog to BUGsApr 11 at 1:22 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Redirect to login page whenever try to access pages without logining from Sprint Backlog to BUGsApr 11 at 1:22 PM
+Grace Zheng (gracezzzz)Grace Zheng added BUGs to this boardApr 11 at 1:22 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Business Owner create bookings for customer using username/emailApr 11 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Customer create bookingsApr 11 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Define activities that take different timesApr 11 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Add/update staff working days/times laterApr 11 at 11:07 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Logging capabilityApr 11 at 11:07 AM
+Grace Zheng (gracezzzz)Grace Zheng added Business Owner create bookings for customer using username/email to Sprint BacklogApr 11 at 10:39 AM
+Grace Zheng (gracezzzz)Grace Zheng added Customer create bookings to Sprint BacklogApr 11 at 10:38 AM
+Grace Zheng (gracezzzz)Grace Zheng added Define activities that take different times to Sprint BacklogApr 11 at 10:37 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Redirect to login page whenever try to access pages without loginingApr 11 at 10:30 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Redirect to login page whenever try to access pages without logining from Completed (week 7 demo) to Sprint BacklogApr 11 at 10:29 AM
+Grace Zheng (gracezzzz)Grace Zheng added Add/update staff working days/times later to Sprint BacklogApr 11 at 10:25 AM
+PPaulo left Refactor CodeApr 11 at 10:22 AM
+PPaulo added Ervin Chua to Refactor CodeApr 11 at 10:22 AM
+Grace Zheng (gracezzzz)Grace Zheng joined SOLVE: how to keep track of tablesApr 11 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Add column emp_id to table bookingsApr 11 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to A page that allow business owner to add bookings for customers (using username/email)Apr 11 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Add config: default slot period (30 min in this case)Apr 11 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Change table bookings: end_time -> num_of_slotsApr 11 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng added A page that allow business owner to add bookings for customers (using username/email) to Sprint BacklogApr 11 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng added SOLVE: how to keep track of tables to Sprint BacklogApr 11 at 10:14 AM
+Grace Zheng (gracezzzz)Grace Zheng added Add column emp_id to table bookings to Sprint BacklogApr 11 at 10:13 AM
+Grace Zheng (gracezzzz)Grace Zheng added Add config: default slot period (30 min in this case) to Sprint BacklogApr 11 at 10:10 AM
+Grace Zheng (gracezzzz)Grace Zheng added Change table bookings: end_time -> num_of_slots to Sprint BacklogApr 11 at 10:10 AM
+PPaulo joined Tests cases new functionalityApr 11 at 10:01 AM
+PPaulo added Tests cases new functionality to Sprint BacklogApr 11 at 10:01 AM
+PPaulo joined Write new user storiesApr 11 at 10:01 AM
+PPaulo added Write new user stories to Sprint BacklogApr 11 at 10:00 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Add working time should check employee's availabilityApr 11 at 9:45 AM
+PPaulo joined Refactor CodeApr 11 at 9:38 AM
+PPaulo added Logging capability to Sprint BacklogApr 11 at 9:38 AM
+PPaulo added Refactor Code to Sprint BacklogApr 11 at 9:37 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Missing businessID in getBookingsByDate in BookingControllerApr 11 at 1:14 AM
+Grace Zheng (gracezzzz)Grace Zheng added Missing businessID in getBookingsByDate in BookingController to Sprint BacklogApr 11 at 1:14 AM
+Grace Zheng (gracezzzz)Grace Zheng added Completed (week 8) to this boardApr 11 at 1:03 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Order booking summary by dateApr 11 at 1:03 AM
+Grace Zheng (gracezzzz)Grace Zheng added Order booking summary by date to Sprint BacklogApr 11 at 1:03 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Add working time should check employee's availabilityApr 10 at 4:51 PM
+Grace Zheng (gracezzzz)Grace Zheng added Add working time should check employee's availability to Sprint Backlog
+
+#### ARCHIVE - Part A ####
 Ervin Chua moved Write up user documentation from In Progress to Completed (week 7 demo)7 minutes ago
 Grace Zheng (gracezzzz)Grace Zheng moved Integrate business owner functionalities from In Progress to Completed (week 7 demo)22 minutes ago
 Grace Zheng (gracezzzz)Grace Zheng completed if the shift already has someone on Integrate business owner functionalities22 minutes ago
@@ -114,11 +365,11 @@ Grace Zheng (gracezzzz)Grace Zheng completed employees on Write seeders for empl
 Grace Zheng (gracezzzz)Grace Zheng added Checklist to Write seeders for employees and rosters tablesApr 4 at 7:29 PM
 Grace Zheng (gracezzzz)Grace Zheng joined Write seeders for employees and rosters tablesApr 4 at 6:13 PM
 Grace Zheng (gracezzzz)Grace Zheng added Write seeders for employees and rosters tables to In ProgressApr 4 at 6:13 PM
-Grace Zheng (gracezzzz)Grace Zheng moved Implement showing all workers’ availability for the next 7 days (view by business owner) from In Progress to Completed (week 7 demo)Apr 4 at 6:11 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement showing all workersâ€™ availability for the next 7 days (view by business owner) from In Progress to Completed (week 7 demo)Apr 4 at 6:11 PM
 Grace Zheng (gracezzzz)Grace Zheng added Paulo to Write up user documentationApr 4 at 5:25 PM
 Grace Zheng (gracezzzz)Grace Zheng added Write up user documentation to Sprint BacklogApr 4 at 5:25 PM
 Grace Zheng (gracezzzz)Grace Zheng moved Design view available slots page/section (customer) from Blocked to In ProgressApr 4 at 5:24 PM
-Grace Zheng (gracezzzz)Grace Zheng moved Implement showing all workers’ availability for the next 7 days (view by business owner) from Sprint Backlog to In ProgressApr 4 at 5:23 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Implement showing all workersâ€™ availability for the next 7 days (view by business owner) from Sprint Backlog to In ProgressApr 4 at 5:23 PM
 Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Integrate business owner functionalitiesApr 4 at 5:19 PM
 Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Integrate customer functionalitiesApr 4 at 5:18 PM
 Grace Zheng (gracezzzz)Grace Zheng joined Integrate business owner functionalitiesApr 4 at 5:16 PM
@@ -153,11 +404,11 @@ Grace Zheng (gracezzzz)Grace Zheng added Checklist to Modify user-type to be det
 Grace Zheng (gracezzzz)Grace Zheng moved Modify user-type to be determined by account name or email from Sprint Backlog to In ProgressApr 3 at 10:44 PM
 Grace Zheng (gracezzzz)Grace Zheng joined Modify user-type to be determined by account name or emailApr 3 at 10:36 PM
 Grace Zheng (gracezzzz)Grace Zheng joined Implement adding working time/dates for employee for the next month (by business owner) -> rosteringApr 3 at 10:36 PM
-Grace Zheng (gracezzzz)Grace Zheng joined Implement showing all workers’ availability for the next 7 days (view by business owner)Apr 3 at 10:36 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Implement showing all workersâ€™ availability for the next 7 days (view by business owner)Apr 3 at 10:36 PM
 Grace Zheng (gracezzzz)Grace Zheng joined Implement adding new employee (by business owner)Apr 3 at 10:36 PM
 Grace Zheng (gracezzzz)Grace Zheng added Modify user-type to be determined by account name or email to Sprint BacklogApr 3 at 10:35 PM
 Grace Zheng (gracezzzz)Grace Zheng added Implement adding working time/dates for employee for the next month (by business owner) -> rostering to Sprint BacklogApr 3 at 10:35 PM
-Grace Zheng (gracezzzz)Grace Zheng added Implement showing all workers’ availability for the next 7 days (view by business owner) to Sprint BacklogApr 3 at 10:35 PM
+Grace Zheng (gracezzzz)Grace Zheng added Implement showing all workersâ€™ availability for the next 7 days (view by business owner) to Sprint BacklogApr 3 at 10:35 PM
 Grace Zheng (gracezzzz)Grace Zheng added Implement adding new employee (by business owner) to Sprint BacklogApr 3 at 10:35 PM
 Grace Zheng (gracezzzz)Grace Zheng added Checklist to Design and implement database for employee and its working time/datesApr 3 at 2:07 PM
 Ervin Chua (ervinchua2)Ervin Chua moved Design business owner dashboard from Sprint Backlog to In ProgressApr 3 at 11:53 AM

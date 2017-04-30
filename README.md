@@ -42,7 +42,7 @@ laravel
 Logging information for errors are captured and time-stamped using Laravel's built-in Monolog library.
 The error logs are generated and stored on a day-by-day basis.
 
-These can be found in `../laravel/storage/logs`
+These can be found in `deliverables/log_files`
 
 ### Deliverables
 Deliverables can all be found in the *deliverables* folder in the project's root directory.
@@ -55,6 +55,7 @@ These include:
 * Tests documentation
 * Class diagram
 * Database diagram
+* Error logging files
 
 ### Collaboration Tools
 * Trello - https://trello.com/b/8ds7YfU7/part-one (tutor is already invited)
@@ -194,7 +195,7 @@ php artisan db:seed --class=RostersTableSeeder
 
 In case some class not found errors arise after executing the seeding, please run:
 `composer dump-autoload` and rerun the seeder commands.
- 
+
 ### SETUP TESTING WITH DUSK
 To run the browser automated tests, dusk utilises Chrome Driver which is a server that implements WebDriver protocol. It works with Chrome or Chromium browser.
 
