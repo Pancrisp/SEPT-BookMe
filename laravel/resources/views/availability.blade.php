@@ -11,7 +11,6 @@
 
         <!-- more dates selection as pagination -->
         <hr>
-        {{--<h2>More dates</h2>--}}
         @foreach($dates as $date)
             <span class="
                 @if($date['date'] == $dateSelected)
@@ -53,7 +52,6 @@
             </table>
             @endif
         @endforeach
-
 
     </div>
 
