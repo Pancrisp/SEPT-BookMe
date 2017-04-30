@@ -9,7 +9,21 @@
 
     <div class="dashboard">
 
-        <h2>Bookings on {{ $dateSelected }}</h2>
+        <!-- more dates selection as pagination -->
+        <hr>
+        {{--<h2>More dates</h2>--}}
+        @foreach($dates as $date)
+            <span class="
+                @if($date['date'] == $dateSelected)
+                    list-dates-selected
+                @else
+                    list-dates
+                @endif
+            ">
+                <a href="/booking/availability?date={{ $date['date'] }}">{{ $date['date'] }}</a>
+            </span>
+        @endforeach
+
         @foreach($employees as $employee)
             <!-- to calculate the length of this activity -->
             <?php $period = $business['slot_period'] * $employee['num_of_slots'] ?>
@@ -39,17 +53,7 @@
             </table>
             @endif
         @endforeach
-        <br><hr>
 
-        <!-- more dates selection as pagination -->
-        <h2>More dates</h2>
-        <div class="row">
-            @foreach($dates as $date)
-                <span id="list-dates">
-                    <a href="/booking/availability?date={{ $date['date'] }}">{{ $date['date'] }}</a>
-                </span>
-            @endforeach
-        </div>
 
     </div>
 
