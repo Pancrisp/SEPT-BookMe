@@ -19,13 +19,9 @@ class EmployeeRosterTest extends DuskTestCase
 	*/
 	public function owner_not_authenticated_roster_employee()
 	{
-		$business_id = 1;
-		// Retrieving a business owner		
-		$owner = \App\Business::where('business_id',$business_id)->first();
-
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/newroster')    
-			    ->assertPathIs('/')   
+		$this->browse(function ($browser) {
+		    $browser->visit('/roster/add')    
+			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
 		});
 	}
@@ -57,7 +53,7 @@ class EmployeeRosterTest extends DuskTestCase
 		$toAdd =1;
 		$start_day = date('D', strtotime('+'.$toAdd.' day'));
 		$next_available = $availability[random_int(0, count($availability)-1)];
-		
+		// FIXME replace while 
 		while(strcmp($start_day, $next_available) !==0){
 			$toAdd++;
 			$start_day = date('D', strtotime('+'.$toAdd.' day'));
@@ -68,42 +64,41 @@ class EmployeeRosterTest extends DuskTestCase
 		// If there is an employee
 		if (isset($employee)){
 		$this->browse(function ($browser) use ($owner, $employee, $future_date, $shift) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Add employee working time')
-			    ->assertPathIs('/newroster')
+			    ->assertPathIs('/')   
+			    ->assertSee($owner->business_name)
+			    ->clickLink('New Roster')
+			    ->assertPathIs('/roster/add')
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
-			    ->radio('shift',$shift)
+			    //->radio('shift',$shift)
 			    //->press('submit')
-			    ->click("button[name='submit'")
-			    ->assertSee('Roster added successfully!')
+			    ->click("button[name='submit']")
+			    ->assertSee('Staff rostered successfully!')
 
  				;
 		});
 		
 		// Asserting in database
 		$criteria = ['date' => $future_date,
-				'employee_id' => $employee->employee_id,
-				'shift' => $shift ];
+				'employee_id' => $employee->employee_id];
 		$this->assertDatabaseHas('rosters', $criteria);
 		// Delete from database
 		$deletedRows = \App\Roster::where($criteria)->delete();
 		
 		}else{
 		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Add employee working time')
-			    ->assertPathIs('/newroster');
+			    ->assertPathIs('/')   
+			    ->assertSee($owner->business_name)
+			    ->clickLink('New Roster')
+			    ->assertPathIs('/roster/add');
 		});
 		}
 		
@@ -116,7 +111,7 @@ class EmployeeRosterTest extends DuskTestCase
 
   	/**
 	*  @test 
-	*  @group accepted
+	*  @group pending
 	*  @group roster
 	*	
 	*  Unit test for updating the shift in a roster on the same day
@@ -126,8 +121,7 @@ class EmployeeRosterTest extends DuskTestCase
 	public function owner_roster_employee_existing_update()
 	{
 		$business_id = 1;
-		$shift = 'Day';
-		$other_shift = 'Night';
+			
 		
 		// Retrieving the first business owner		
 		$owner = \App\Business::where('business_id',$business_id)->first();
@@ -151,48 +145,46 @@ class EmployeeRosterTest extends DuskTestCase
 
 		// If there is an employee
 		if (isset($employee)){
-		$this->browse(function ($browser) use ($owner, $employee, $future_date, $shift, $other_shift) {
-		    $browser->visit('/')    
+		$this->browse(function ($browser) use ($owner, $employee, $future_date) {
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Add employee working time')
-			    ->assertPathIs('/newroster')
+			    ->assertPathIs('/')   
+			    ->assertSee($owner->business_name)
+			    ->clickLink('New Roster')
+			    ->assertPathIs('/roster/add')
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
-			    ->radio('shift',$shift)
-			    ->press('submit')
-			    ->assertSee('Roster added successfully!')
+			    ->click("button[name='submit']")
+			    ->assertSee('Staff rostered successfully!')
 			    // Attempting to submit the same information
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
-			    ->radio('shift',$other_shift)
 			    ->press('submit')
 			    ->assertPathIs('/newroster')
-			    ->assertSee('Roster added successfully!')
+			    ->assertSee('Staff rostered successfully!')
  				;
 		});
 		
 		// Asserting in database the updated shift
 		$criteria = ['date' => $future_date,
-				'employee_id' => $employee->employee_id,
-				'shift' => $other_shift ];
+				'employee_id' => $employee->employee_id
+				 ];
 		$this->assertDatabaseHas('rosters', $criteria);
 		// Delete from database
 		$deletedRows = \App\Roster::where($criteria)->delete();
 		
 		}else{
 		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Add employee working time')
-			    ->assertPathIs('/newroster');
+			    ->assertPathIs('/')   
+			    ->assertSee($owner->business_name)
+			    ->clickLink('New Roster')
+			    ->assertPathIs('/roster/add');
 		});
 		}
 		
@@ -200,7 +192,7 @@ class EmployeeRosterTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group bug#8
+	*  @group accepted
 	*  @group roster
 	*	
 	*  Unit test for a roster on an invalid day that is not 
@@ -211,7 +203,7 @@ class EmployeeRosterTest extends DuskTestCase
 	public function owner_roster_employee_not_in_availability()
 	{
 		$business_id = 1;
-		$shift = 'Day';
+		
 		
 		// Retrieving the first business owner		
 		$owner = \App\Business::where('business_id',$business_id)->first();
@@ -247,27 +239,26 @@ class EmployeeRosterTest extends DuskTestCase
 
 		// If there is an employee
 		if (isset($employee)){
-		$this->browse(function ($browser) use ($owner, $employee, $future_date, $shift) {
-		    $browser->visit('/')    
+		$this->browse(function ($browser) use ($owner, $employee, $future_date) {
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Add employee working time')
-			    ->assertPathIs('/newroster')
+			    ->assertPathIs('/')   
+			    ->assertSee($owner->business_name)
+			    ->clickLink('New Roster')
+			    ->assertPathIs('/roster/add')
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
-			    ->radio('shift',$shift)
-			    //->press('submit')
-			    ->click("button[name='submit'")
+			    ->pause(2000)->click("select[name='employee_id']")
+			    ->pause(5000)->click("button[name='submit']")
  				;
 		});
 		
 		// Asserting in database, should be null
 		$criteria = ['date' => $future_date,
-				'employee_id' => $employee->employee_id,
-				'shift' => $shift ];
+				'employee_id' => $employee->employee_id
+				];
 		$should_be_null = \App\Roster::where($criteria)->first();
 		$this->assertNull($should_be_null);
 		
@@ -276,14 +267,14 @@ class EmployeeRosterTest extends DuskTestCase
 		
 		}else{
 		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Add employee working time')
-			    ->assertPathIs('/newroster');
+			    ->assertPathIs('/')   
+			    ->assertSee($owner->business_name)
+			    ->clickLink('New Roster')
+			    ->assertPathIs('/roster/add');
 		});
 		}
 		

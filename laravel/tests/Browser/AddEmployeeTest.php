@@ -22,12 +22,10 @@ class AddEmployeeTest extends DuskTestCase
 	*/
 	public function add_employee_not_authenticated()
 	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
 
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/newstaff')    
-			    ->assertPathIs('/')     
+		$this->browse(function ($browser) {
+		    $browser->visit('/staff/add')    
+			    ->assertPathIs('/login')     
 			    ->assertSee('Sign in to access');
 		});
 	}
@@ -42,32 +40,41 @@ class AddEmployeeTest extends DuskTestCase
 	*/
 	public function add_employee_successful()
 	{
-		$business_id = 1;		
+		// Test variables		
+		$business_id = 1;
+		$days = ['Tue','Fri'];
+		
+		// Retrieving first activity
+		$activity = \App\Activity::where('business_id',$business_id)->first();
+		
 		// Retrieving an existing business owner 		
 		$owner = \App\Business::where('business_id',$business_id)->first();
 		
 		// Generating fake employee data		
 		$employee = factory(\App\Employee::class)->make();
 
-		$this->browse(function ($browser) use ($owner, $employee) {
-		    $browser->visit('/')    
+		$this->browse(function ($browser) 
+			use ($owner, $employee, $activity, $days) {
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')  
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->owner_name)
-			    ->clickLink('Add new employee')
-			    ->assertPathIs('/newstaff')
+			    ->clickLink('New Staff')
+			    ->assertPathIs('/staff/add')
 			    ->type('fullname',$employee->employee_name)
 			    ->type('phone',$employee->mobile_phone)
 		    	    ->type('taxfileno', $employee->TFN)
-		    	    ->select('activity', "1")
-			    ->check("input[name='availability[]'][value='Tue']")
-			    ->check("input[name='availability[]'][value='Fri']")
+		    	    ->select('activity', $activity->activity_id)
+			    ->check("input[name='availability[]'][value='".$days[0]."']")
+			    ->check("input[name='availability[]'][value='".$days[1]."']")
 			    ->press('submit')
 			    ->assertSee('Staff added successfully')
  				;
 		});
+	// TODO Make sure new employee is removed
+		
 	}
     
 
@@ -82,61 +89,70 @@ class AddEmployeeTest extends DuskTestCase
 	*/
 	public function add_employee_existing_TFN()
 	{
-		$business_id = 1;		
+		// Test variables		
+		$business_id = 1;
+		$days = ['Tue','Fri'];
+
+		// Retrieving first activity
+		$activity = \App\Activity::where('business_id',$business_id)->first();
+		
 		// Retrieving an existing business owner 		
 		$owner = \App\Business::where('business_id',$business_id)->first();
 		
 		// Getting first employee 
 		$employee = \App\Employee::where('business_id',$business_id)->first();
-		// If there is an employee
+		
+		// If there exist an employee
 		if (isset($employee)){
-			$this->browse(function ($browser) use ($owner, $employee) {
-		    	$browser->visit('/')    
+		    $this->browse(function ($browser) 
+			use ($owner, $employee, $activity, $days) {
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')  
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->owner_name)
-			    ->clickLink('Add new employee')
-			    ->assertPathIs('/newstaff')			    
-			    ->type('fullname','other_employee_name')
-			    ->type('phone',0410000111)
+			    ->clickLink('New Staff')
+			    ->assertPathIs('/staff/add')
+			    ->type('fullname',$employee->employee_name)
+			    ->type('phone',$employee->mobile_phone)
 		    	    ->type('taxfileno', $employee->TFN)
-			    ->check("input[name='availability[]'][value='Tue']")
-			    ->check("input[name='availability[]'][value='Fri']")
-			    ->select('activity', '1') // If random sometimes chooses placeholder
+		    	    ->select('activity', $activity->activity_id)
+			    ->check("input[name='availability[]'][value='".$days[0]."']")
+			    ->check("input[name='availability[]'][value='".$days[1]."']")
 			    ->press('submit')
-			    ->assertPathIs('/newstaff')
+			    ->assertPathIs('/staff/add')
 			    ->assertSee('The TFN you have entered is already registered')
  				;
 			});
 		}else { // If there is not an employee, create one and test it
-			$new_employee = factory(\App\Employee::class)->make();
+		    $new_employee = factory(\App\Employee::class)->make();
 
-			$this->browse(function ($browser) use ($owner, $new_employee) {
-			    $browser->visit('/')    
+		    $this->browse(function ($browser) 
+				use ($owner, $new_employee, $activity, $days) {
+			    $browser->visit('/login')    
 				    ->type('username',$owner->username)
 				    ->type('password', 'secret')  
 				    ->press('login')
-				    ->assertPathIs('/dashboard')   
+				    ->assertPathIs('/')   
 				    ->assertSee('Hello, '.$owner->owner_name)
-				    ->clickLink('Add new employee')
-				    ->assertPathIs('/newstaff')
+				    ->clickLink('New Staff')
+				    ->assertPathIs('/staff/add')
 				    ->type('fullname',$new_employee->employee_name)
 				    ->type('phone',$new_employee->mobile_phone)
 			    	    ->type('taxfileno', $new_employee->TFN)
-			    	    ->select('activity','1')
-				    ->check("input[name='availability[]'][value='Fri']")
-				    ->press('submit')
+			    	    ->select('activity', $activity->activity_id)
+				    ->check("input[name='availability[]'][value='".$days[0]."']")
+			    	    ->press('submit')
 				    ->assertSee('Staff added successfully')
 				    // Attempting existing TFN
 				    ->type('fullname','other_employee_name')
 				    ->type('phone',0410000111)
 			    	    ->type('taxfileno', $new_employee->TFN)
-			    	    ->select('activity','1')
-				    ->check("input[name='availability[]'][value='Tue']")
+			    	    ->select('activity', $activity->activity_id)
+				    ->check("input[name='availability[]'][value='".$days[0]."']")
 				    ->press('submit')
-				    ->assertPathIs('/newstaff')
+				    ->assertPathIs('/staff/add')
 				    ->assertSee('The TFN you have entered is already registered')
 					;			
 			    });
@@ -155,22 +171,29 @@ class AddEmployeeTest extends DuskTestCase
 	*/
 	public function add_employee_mandatory_fields()
 	{
-		$business_id = 1;		
+		// Test variables		
+		$business_id = 1;
+		$days = ['Tue','Fri'];
+		
+		// Retrieving first activity
+		$activity = \App\Activity::where('business_id',$business_id)->first();
+		
 		// Retrieving an existing business owner 		
 		$owner = \App\Business::where('business_id',$business_id)->first();
 		
 		// Generating fake employee data		
 		$employee = factory(\App\Employee::class)->make();
 
-		$this->browse(function ($browser) use ($owner, $employee) {
-		    $browser->visit('/')    
+		$this->browse(function ($browser) 
+			use ($owner, $employee, $activity, $days) {
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')  
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->owner_name)
-			    ->clickLink('Add new employee')
-			    ->assertPathIs('/newstaff')
+			    ->clickLink('New Staff')
+			    ->assertPathIs('/staff/add')
 			    // passing blank mandatory fields
 			    ->press('submit')
 			    ->assertDontSee('Staff added successfully')
@@ -183,7 +206,7 @@ class AddEmployeeTest extends DuskTestCase
 		    	    ->type('taxfileno', $employee->TFN)
 			    ->press('submit')
 			    ->assertDontSee('Staff added successfully')
-		    	    ->select('activity', '1')
+		    	    ->select('activity', $activity->activity_id)
 			    ->press('submit')
 			    ->assertDontSee('Staff added successfully')
 			    ->assertSee('The availability field is required')

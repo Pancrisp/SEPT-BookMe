@@ -23,13 +23,10 @@ class CheckBookingSummariesTest extends DuskTestCase
 	*/
 	public function business_owner_not_authenticated_booking_summary()
 	{
-		$business_id = 1;		
-		// Retrieving an existing business id		
-		$owner = \App\Business::where('business_id',$business_id)->first();
 
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/bookings/summary')    
-			    ->assertPathIs('/')   
+		$this->browse(function ($browser) {
+		    $browser->visit('/booking/summary')    
+			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
 		});
 	}
@@ -51,14 +48,14 @@ class CheckBookingSummariesTest extends DuskTestCase
 		$owner = \App\Business::where('business_id',$business_id)->first();
 
 		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->customer_name)
 			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/bookings/summary')
+			    ->assertPathIs('/booking/summary')
 			    
  				;
 		});
@@ -85,14 +82,14 @@ class CheckBookingSummariesTest extends DuskTestCase
 		$bookingCount = \App\Booking::where('business_id',$business_id)->count();
 
 		$this->browse(function ($browser) use ($owner,$bookingCount) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')   
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->customer_name)
 			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/bookings/summary');
+			    ->assertPathIs('/booking/summary');
 			if ($bookingCount == 0){
 				$browser->assertSee('Currently no booking.');
 			}else if ($bookingCount > 0){

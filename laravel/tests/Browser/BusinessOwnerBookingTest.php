@@ -11,7 +11,7 @@ class BusinessOwnerBookingTest extends DuskTestCase
     
 	/**
 	*  @test 
-	*  @group accepted
+	*  @group bug#7
 	*  @group ownerBooking
 	*	
 	*  Unit test for unauthenticated business owner attempting to make a  		*  booking.
@@ -23,7 +23,8 @@ class BusinessOwnerBookingTest extends DuskTestCase
 	public function business_owner_booking_not_authenticated()
 	{
 		$this->browse(function ($browser) {
-		    $browser->visit('/staffbooking')
+		    $browser->visit('/booking/owner')
+			    ->assertPathIs('/login')
 			    ->assertSee('Sign in to access');
 		});
 	}
@@ -40,21 +41,82 @@ class BusinessOwnerBookingTest extends DuskTestCase
 	*/
 	public function business_owner_booking_successful()
 	{
-		$business_id = 1;		
-		// Retrieving an existing business id		
-		$owner = \App\Business::where('business_id',$business_id)->first();
+		
+		$tomorrow = date('Y-m-d', strtotime('+2 day'));
+		$booking_time = "16:00";
 
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
-			    ->type('username',$owner->username)
+		// Retieving existing business
+		$business = \App\Business::first();
+				
+		// Retrieving existing customer
+		$customer = \App\Customer::first();
+
+		// Retrieving existing employee
+		$employee = \App\Employee::
+				where('business_id',$business->business_id)
+				->first();
+	
+		// Retrieving existing service/activity
+		$service = $employee->activity_id;
+		
+		// Retrieving roster
+		$roster = \App\Roster::
+				where('date','>',$tomorrow)
+				->where('employee_id',$employee->employee_id)
+				->first();
+		
+		// Retrieving if booking exists
+		$booking = \App\Booking::where('date',$roster->date)
+			// Booking query needs an extra '00' in the start_time 
+					->where('start_time', $booking_time.':00')
+					->where('customer_id',$customer->customer_id)
+					->where('business_id',$business->business_id)
+					->where('employee_id',$employee->employee_id)
+					->first();
+
+		if ( !isset($booking)){
+		$this->browse(function ($browser) 
+			use ($customer, $business, $tomorrow, $service, 
+				$employee, $booking_time, $roster) {
+		    $browser->visit('/login')    
+			    ->type('username',$business->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Make a new booking for customers')
-			    ->assertPathIs('/staffbooking')
+			    ->assertPathIs('/')
+			    ->assertSee($business->business_name)
+			    ->clickLink('New Booking')
+			    ->assertPathIs('/booking/owner')	
+			    ->type("input[id='roster-date']",$roster->date)
+			    ->click("input[name='username']")
+			    ->type('username', $customer->username)
+			    ->click("button[type='submit']")
+			    ->assertPathIs('/book')
+			    ->select('service',$service)
 			    
- 				;
+			    // Workaround to set input time 
+->script(["document.querySelector('#time').value = '".$booking_time."'"])
+			    //->type("input[id='time']",$booking_time)
+			    //->click("select[id='service']")
+			;
+		
+		    $browser->pause(500)
+			    ->select('employee',$employee->employee_id)
+			    ->click("button[type='submit']")		
+			    ->assertSee('made successfully')
+ 			;
 		});
+		
+		// Asserting existence of booking		
+		$criteria = ['date'=>$roster->date,
+				'start_time'=> $booking_time.':00',
+				'customer_id'=> $customer->customer_id,
+				'business_id'=> $business->business_id,
+				'employee_id'=> $employee->employee_id];
+
+		$this->assertDatabaseHas('bookings', $criteria);
+		// Delete from database
+		$deletedRows = \App\Booking::where($criteria)->delete();
+		}
+
 	}
 }
