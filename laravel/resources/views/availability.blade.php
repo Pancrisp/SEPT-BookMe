@@ -45,7 +45,7 @@
         <h2>More dates</h2>
         <div class="row">
             @foreach($dates as $date)
-                <span style="padding-right: 20px; font-size: 17px;">
+                <span id="list-dates">
                     <a href="/booking/availability?date={{ $date['date'] }}">{{ $date['date'] }}</a>
                 </span>
             @endforeach
