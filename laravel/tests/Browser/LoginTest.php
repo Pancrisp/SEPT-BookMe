@@ -28,13 +28,13 @@ class LoginTest extends DuskTestCase
     {
         // Retrieving an existing customer
 	$customer = \App\Customer::where('customer_id',1)->first();
-	// FIXME Create a special user for testing which we are out the password
+	
         $this->browse(function ($browser) use ($customer) {
-            $browser->visit('/')    
+            $browser->visit('/login')    
 		    ->type('username',$customer->username)
 		    ->type('password', 'secret')   
 		    ->press('login')
-		    ->assertPathIs('/dashboard')   
+		    ->assertPathIs('/')   
 		    ->assertSee('Hello, '.$customer->customer_name);
 	});
     }
@@ -50,13 +50,13 @@ class LoginTest extends DuskTestCase
     {
         // Retrieving an existing customer
 	$owner = \App\Business::where('business_id',1)->first();
-	// FIXME Create a special user for testing with we know the password
+	
         $this->browse(function ($browser) use ($owner) {
-            $browser->visit('/')    
+            $browser->visit('/login')    
 		    ->type('username',$owner->username)
 		    ->type('password', 'secret')   
 		    ->press('login')
-		    ->assertPathIs('/dashboard')   
+		    ->assertPathIs('/')   
 		    ->assertSee('Hello, '.$owner->owner_name.' from '.$owner->business_name);
 	});
     }
@@ -75,11 +75,11 @@ class LoginTest extends DuskTestCase
 	$customer = \App\Customer::where('customer_id',2)->first();
 
         $this->browse(function ($browser) use ($customer) {
-            $browser->visit('/')   
+            $browser->visit('/login')   
 		    ->type('username',$customer->username)
 		    ->type('password', 'other_password')   
 		    ->press('login')
-		    ->assertPathIs('/')
+		    ->assertPathIs('/login')
 		    ->assertSee('Incorrect password. Please try again!');
 	});
 
@@ -100,11 +100,11 @@ class LoginTest extends DuskTestCase
        	]);
 
 	$this->browse(function ($browser) use ($customer) {
-            $browser->visit('/')   
+            $browser->visit('/login')   
 		    ->type('username',$customer->username)
 		    ->type('password', 'copsicus123')  
 		    ->press('login')
-		    ->assertPathIs('/')
+		    ->assertPathIs('/login')
 		    ->assertSee('Account not found.');
 	});
     }
@@ -121,11 +121,11 @@ class LoginTest extends DuskTestCase
     {
 	
         $this->browse(function ($browser) {
-            $browser->visit('/')   
+            $browser->visit('/login')   
 		    ->type('username','unexisting_customer')
 		    ->type('password', 'copsicus123') 
 		    ->press('login')
-		    ->assertPathIs('/')
+		    ->assertPathIs('/login')
 		    ->assertSee('Account not found.');
 	});
     }
@@ -145,8 +145,8 @@ class LoginTest extends DuskTestCase
 	
 	// Dummy test
 	$this->browse(function ($browser) use ($customer) {
-            $browser->visit('/')  
-		    ->assertPathIs('/');
+            $browser->visit('/login')  
+		    ->assertPathIs('/login');
 		    
 	});
 	// TODO Missing implementation	

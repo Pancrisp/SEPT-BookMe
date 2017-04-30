@@ -37,7 +37,7 @@ class RegistrationTest extends DuskTestCase
 			    ->type('phone',$customer->mobile_phone)
 			    ->type('address',$customer->address)	   
 			    ->press('signup')
-			    ->assertPathIs('/')
+			    ->assertPathIs('/login')
 			    ;
 		});
 		
@@ -69,16 +69,19 @@ class RegistrationTest extends DuskTestCase
 		// Retrieving an existing customer		
 		$customer = \App\Customer::where('customer_id',1)->first();
 
-	
-		$this->browse(function ($browser) use ($customer) {
+		$customer_new = factory(\App\Customer::class)->make([ 
+			'password' => bcrypt('copsicus123')
+		]);
+
+		$this->browse(function ($browser) use ($customer, $customer_new) {
 		    $browser->visit('/signup')  
-			    ->type('fullname',$customer->customer_name)  
+			    ->type('fullname',$customer_new->customer_name)  
 			    ->type('username',$customer->username)
 			    ->type('password','secret')
 			    ->type('password_confirmation','secret')
-			    ->type('email',$customer->email_address)
-			    ->type('phone',$customer->mobile_phone)
-			   ->type('address',$customer->address)			   
+			    ->type('email',$customer_new->email_address)
+			    ->type('phone',$customer_new->mobile_phone)
+			   ->type('address',$customer_new->address)	   
 			    ->press('signup')
 			    ->assertPathIs('/signup')   
 			    ->assertSee('The username has already been taken');

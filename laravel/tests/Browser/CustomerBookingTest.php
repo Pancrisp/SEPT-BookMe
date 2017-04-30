@@ -26,15 +26,15 @@ class CustomerBookingTest extends DuskTestCase
 		
 	
 		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/dashboard')
-			    ->assertPathIs('/')   
+		    $browser->visit('/book')
+			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
 		});
 	} 
     
 	/**
 	*  @test 
-	*  @group accepted
+	*  @group current
 	*  @group customerBooking
 	*	
 	*  Unit test for checking whether authenticated customers
@@ -45,18 +45,47 @@ class CustomerBookingTest extends DuskTestCase
     
 	public function bookingCustomerAuthenticated()
 	{
-		$customer_id = 1;
-		// Retrieving an existing customer		
-		$customer = \App\Customer::where('customer_id',$customer_id)->first();
-		
+		$tomorrow = date('Y-m-d', strtotime('+1 day'));
+		$booking_time = "09:00";
+
+		// Retieving existing business
+		$business = \App\Business::first();
+				
+		// Retrieving existing customer
+		$customer = \App\Customer::first();
+
+		// Retrieving existing service/activity
+		$service = \App\Activity::
+				where('business_id',$business->business_id)->first();
+
+		// Retrieving existing employee
+		$employee = \App\Employee::
+				where('business_id',$business->business_id)
+				->where('activity_id',$service->activity_id)
+				->first();
 	
-		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/')    
+		$this->browse(function ($browser) 
+			use ($customer, $business, $tomorrow, $service, 
+				$employee, $booking_time) {
+		    $browser->visit('/login')    
 			    ->type('username',$customer->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard') ;
+			    ->assertPathIs('/')
+			    ->select('business',$business->business_id)
+			    ->type("input[id='roster-date']",$tomorrow)
+			    ->click("button[type='submit']")
+			    ->assertPathIs('/book')
+			    ->select('service',$service->activity_id)
+			    ->pause(2000)
+			    ->type("time",$booking_time)
+			    ->pause(1000)
+			    ->select('employee',$employee->employee_id)
+			    
+			    ->pause(2000)
+ 			;
 		});
+		
 	} 
 
 	/**
