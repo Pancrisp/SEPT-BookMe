@@ -19,7 +19,7 @@ class CustomerBookingTest extends DuskTestCase
 	*  @return void
 	*/
     
-	public function bookingCustomerNotAuthenticated()
+	public function customer_booking_Not_Authenticated()
 	{	
 		// Retrieving an existing customer		
 		$customer = \App\Customer::where('customer_id',2)->first();
@@ -34,19 +34,19 @@ class CustomerBookingTest extends DuskTestCase
     
 	/**
 	*  @test 
-	*  @group current
+	*  @group accepted
 	*  @group customerBooking
 	*	
 	*  Unit test for checking whether authenticated customers
-	*  are allowed to visit booking dashboard
+	*  are allowed to make bookings
 	*
 	*  @return void
 	*/
     
-	public function bookingCustomerAuthenticated()
+	public function customer_successful_booking()
 	{
 		$tomorrow = date('Y-m-d', strtotime('+1 day'));
-		$booking_time = "09:00";
+		$booking_time = "11:00";
 
 		// Retieving existing business
 		$business = \App\Business::first();
@@ -63,7 +63,17 @@ class CustomerBookingTest extends DuskTestCase
 				where('business_id',$business->business_id)
 				->where('activity_id',$service->activity_id)
 				->first();
-	
+		
+		// Retrieving if booking exists
+		$booking = \App\Booking::where('date',$tomorrow)
+			// Booking query needs an extra '00' in the start_time 
+					->where('start_time', $booking_time.':00')
+					->where('customer_id',$customer->customer_id)
+					->where('business_id',$business->business_id)
+					->where('employee_id',$employee->employee_id)
+					->first();
+				
+		if ( !isset($booking)){
 		$this->browse(function ($browser) 
 			use ($customer, $business, $tomorrow, $service, 
 				$employee, $booking_time) {
@@ -77,95 +87,149 @@ class CustomerBookingTest extends DuskTestCase
 			    ->click("button[type='submit']")
 			    ->assertPathIs('/book')
 			    ->select('service',$service->activity_id)
-			    ->pause(2000)
-			    ->type("time",$booking_time)
-			    ->pause(1000)
 			    ->select('employee',$employee->employee_id)
-			    
-			    ->pause(2000)
+			    // Workaround to set input time 
+			    ->script([
+            			"document.querySelector('#time').value = '".$booking_time."'"])
+			;
+		
+		    $browser->pause(500)
+			    ->click("button[type='submit']")		
+			    ->assertSee('Thank you for making a booking')
  			;
 		});
 		
-	} 
+		// Asserting existence of booking		
+		$criteria = ['date'=>$tomorrow,
+				'start_time'=> $booking_time.':00',
+				'customer_id'=> $customer->customer_id,
+				'business_id'=> $business->business_id,
+				'employee_id'=> $employee->employee_id];
 
-	/**
-	*  @test 
-	*  @group pending
-	*  @group customerBooking
-	*
-	* Session is considered as an authenticated user
-	* Test for a successful customer booking.
-	* @return void
-	* TODO Revise table and time selection. 
-	*/
-    public function successfulBooking()
-    {	
-	$customer_id = 1;
-        // Retrieving an existing customer		
-	$customer = \App\Customer::where('customer_id',$customer_id)->first();
+		$this->assertDatabaseHas('bookings', $criteria);
+		// Delete from database
+		$deletedRows = \App\Booking::where($criteria)->delete();
+		}
 		
-
-        $this->browse(function ($browser) use ($customer) {
-		$browser->visit('/')   
-		    ->type('username',$customer->username)
-		    ->type('password', 'secret')  
-		    ->press('login')
-		    ->type(date("Y-m-d"),'date')
-		    ->press('search')
-		    ->press('Start Time')
-		    ->press('End Time')
-		    ->press('Book')
-		    ->assertSee('Table booked successfully')
-		    ->assertPathIs('/dashboard');
-		});
-    }
+	} 
     
 
     	/**
 	*  @test 
-	*  @group pending
+	*  @group accepted
 	*  @group customerBooking
 	*
-	* Test for an invalid customer attempt to make 
-	* a booking.
+	* Test for a customer attempting to make a booking at an unavailable  
+	* time slot.
 	* @return void
 	*/
-    public function invalidBooking()
-    {
+    public function customer_booking_invalid()
+    	{
 	
-	$customer_id = 1;
-        // Retrieving an existing customer		
-	$customer = \App\Customer::where('customer_id',$customer_id)->first();
+		$tomorrow = date('Y-m-d', strtotime('+1 day'));
+		$booking_time = "11:00";
+		$do_test = false;
+
+		// Retieving existing business
+		$business = \App\Business::first();
+				
+		// Retrieving existing customer
+		$customer = \App\Customer::first();
+
+		// Retrieving existing service/activity
+		$service = \App\Activity::
+				where('business_id',$business->business_id)->first();
+
+		// Retrieving existing employee
+		$employee = \App\Employee::
+				where('business_id',$business->business_id)
+				->where('activity_id',$service->activity_id)
+				->first();
 		
-	/*First attempt a successful booking*/
-        $this->browse(function ($browser) use ($customer) {
-		$browser->visit('/')   
-		    ->type('username',$customer->username)
-		    ->type('password', 'secret')
-		    ->press('login')
-	    	    ->type(date("Y-m-d"),'date')
-		    ->press('search')
-		    ->press('Start Time')
-		    ->press('End Time')
-		    ->press('Book')
-		    ->assertSee('Table booked successfully')
-		    ->assertPathIs('/dashboard');
-		});
+		// Retrieving first existing booking
+		$booking = \App\Booking::where('date','>=',$tomorrow)
+			// Booking query needs an extra '00' in the start_time 
+					->where('customer_id',$customer->customer_id)
+					->where('business_id',$business->business_id)
+					->where('employee_id',$employee->employee_id)
+					->first();
 
-	/*Attempting to book the same table at the same time*/
+		// if booking does not exist, create it for the test
+		if (!isset($booking)){	
+		$this->browse(function ($browser) 
+			use ($customer, $business, $tomorrow, $service, 
+				$employee, $booking_time) {
+		    $browser->visit('/login')    
+			    ->type('username',$customer->username)
+			    ->type('password', 'secret')
+			    ->press('login')
+			    ->assertPathIs('/')
+			    ->select('business',$business->business_id)
+			    ->type("input[id='roster-date']",$tomorrow)
+			    ->click("button[type='submit']")
+			    ->assertPathIs('/book')
+			    ->select('service',$service->activity_id)
+			    ->select('employee',$employee->employee_id)
+			    // Workaround to set input time 
+			    ->script([
+            			"document.querySelector('#time').value = '".$booking_time."'"])
+			;
+		
+		    $browser->pause(500)
+			    ->click("button[type='submit']")		
+			    ->assertSee('Thank you for making a booking')
 
-        $this->browse(function ($browser) use ($customer) {
-		$browser->visit('/')   
-		    ->type('username',$customer->username)
-		    ->type('password', 'secret')
-		    ->press('login')
-	    	    ->type(date("Y-m-d"),'date')
-		    ->press('search')
-		    ->press('Start Time')
-		    ->press('End Time')
-		    ->press('Book')
-		    ->assertSee('Table unavailable')
-		    ->assertPathIs('/dashboard');
+ 			;
 		});
+		
+		// Updating content of $booking
+		$booking = \App\Booking::where('date','>=',$tomorrow)
+			// Booking query needs an extra '00' in the start_time 
+					->where('customer_id',$customer->customer_id)
+					->where('business_id',$business->business_id)
+					->where('employee_id',$employee->employee_id)
+					->first();
+		 
+		$do_test = true;
+		}		
+		
+		if ( isset($booking) || $do_test){
+		$this->browse(function ($browser) 
+			use ($customer, $business, $tomorrow, $service, 
+				$employee, $booking) {
+		    $browser->visit('/login')    
+			    ->type('username',$customer->username)
+			    ->type('password', 'secret')
+			    ->press('login')
+			    ->assertPathIs('/')
+			    ->select('business',$business->business_id)
+			    ->type("input[id='roster-date']",$booking->date)
+			    ->click("button[type='submit']")
+			    ->assertPathIs('/book')
+			    ->select('service',$service->activity_id)
+			    ->select('employee',$employee->employee_id)
+			    // Workaround to set input time 
+			    ->script([
+            			"document.querySelector('#time').value = '".substr($booking->start_time, 0, -3)."'"])
+			;
+		
+		    $browser->pause(500)
+			    ->click("button[type='submit']")		
+			    ->assertSee('Slot selected is not valid')
+ 			;
+		});
+		
+		// Asserting existence of booking		
+		$criteria = ['date'=>$tomorrow,
+				'start_time'=> $booking->start_time,
+				'customer_id'=> $customer->customer_id,
+				'business_id'=> $business->business_id,
+				'employee_id'=> $employee->employee_id];
+
+		$this->assertDatabaseHas('bookings', $criteria);
+		// Delete from database
+		$deletedRows = \App\Booking::where($criteria)->delete();
+		}
+		
     }
 }
