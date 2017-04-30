@@ -56,3 +56,10 @@ Route::get('/roster/summary', 'RosterController@showRoster');
 Route::post('/roster/add/submit', 'RosterController@addRoster');
 // AJAX
 Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity');
+
+
+Route::get('hi', function(\Illuminate\Http\Request $request){
+    $number = isset($request['hi'])? $request['hi'] : 0;
+
+    dd($number);
+});

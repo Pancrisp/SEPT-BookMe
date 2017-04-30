@@ -8,6 +8,7 @@ use App\Booking;
 use App\Business;
 use App\Customer;
 use App\Employee;
+use App\Roster;
 use App\Slot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -142,9 +143,13 @@ class BookingController
      * display bookings based on date and employee
      * only accessible by business owner
      *
+     * date is passed in the request, if not by default tomorrow
+     * employees should be those rostered on the date
+     *
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAvailability()
+    public function showAvailability(Request $request)
     {
         // redirect to login page if not authenticated, or incorrect user type
         if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
@@ -161,37 +166,40 @@ class BookingController
         // get business
         $business = Business::find($businessID);
 
-        // get dates of next 7 days from booking table of this business
-        $dates = Booking::select('date')
-            ->where('business_id', $businessID)
-            ->whereBetween('date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
-            ->orderBy('date', 'asc')
-            ->groupBy('date')
-            ->get();
-
-        // get employees of this business
-        $employees = Employee::join('activities', 'activities.activity_id', 'employees.activity_id')
+        // get dates of next 7 days from roster table of this business
+        $dates = Roster::select('rosters.date')
+            ->join('employees', 'employees.employee_id', 'rosters.employee_id')
             ->where('employees.business_id', $businessID)
+            ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
+            ->orderBy('rosters.date', 'asc')
+            ->groupBy('rosters.date')
             ->get();
 
-        // loop through each employee of each date to get bookings
+        // get date selected from request, if not set, by default tomorrow
+        $dateSelected = isset($request['date'])? $request['date']: $tomorrow->toDateString();
+
+        // get employees rostered on the date selected
+        $employees = Employee::join('rosters', 'rosters.employee_id', 'employees.employee_id')
+            ->join('activities', 'activities.activity_id', 'employees.activity_id')
+            ->where('employees.business_id', $businessID)
+            ->where('rosters.date', $dateSelected)
+            ->get();
+
+        // loop through each employee to get bookings
         $bookings = [];
         foreach ($employees as $employee)
         {
-            foreach ($dates as $date)
-            {
-                $bookings[$employee['employee_id']][$date['date']]
-                    = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
-                    ->join('activities', 'activities.activity_id', 'employees.activity_id')
-                    ->join('customers', 'customers.customer_id', 'bookings.customer_id')
-                    ->where('bookings.employee_id', $employee['employee_id'])
-                    ->where('bookings.date', $date['date'])
-                    ->orderBy('bookings.start_time', 'asc')
-                    ->get();
-            }
+            $bookings[$employee['employee_id']]
+                = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
+                ->join('activities', 'activities.activity_id', 'employees.activity_id')
+                ->join('customers', 'customers.customer_id', 'bookings.customer_id')
+                ->where('bookings.employee_id', $employee['employee_id'])
+                ->where('bookings.date', $dateSelected)
+                ->orderBy('bookings.start_time', 'asc')
+                ->get();
         }
 
-        return view('availability', compact('bookings', 'employees', 'dates', 'business'));
+        return view('availability', compact('bookings', 'employees', 'dates', 'business', 'dateSelected'));
     }
 
     /**
