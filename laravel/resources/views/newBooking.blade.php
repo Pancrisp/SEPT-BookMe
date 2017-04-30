@@ -66,7 +66,7 @@
             @else
                 <table>
                     <thead>
-                        <th>Time</th>
+                        <th id="table-time">Time</th>
                         <th>Staff</th>
                     </thead>
                     @foreach(($bookings[$activity['activity_id']]) as $booking)

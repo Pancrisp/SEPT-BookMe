@@ -18,7 +18,7 @@ $('#date').change(function() {
 
 // sets date value for roster date input field
 $('#roster-date').datepicker({
-    minDate: 0,
+    minDate: 1,
     maxDate: '+1M',
     dateFormat: 'yy-mm-dd',
     onSelect: function() {

@@ -246,3 +246,7 @@ table {
 #note {
     margin-top: 16px;
 }
+
+#table-time {
+    width: 240px;
+}
