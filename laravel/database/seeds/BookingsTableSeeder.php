@@ -29,7 +29,6 @@ class BookingsTableSeeder extends Seeder
         // get number of some elements from DB
         $numOfCustomers = Customer::count();
         $numOfBusinesses = Business::count();
-        $numOfEmployees = Employee::count();
 
         // create bookings for the next 5 days
         for($i=0; $i<5; $i++)
@@ -42,16 +41,24 @@ class BookingsTableSeeder extends Seeder
             // create max 3 bookings for a day
             for($j=0; $j<3; $j++)
             {
-                // randomly pick employee, customer, business
-                $empID = rand(1, $numOfEmployees);
-                $cusID = rand(1, $numOfCustomers);
-                $busID = rand(1, $numOfBusinesses);
+                // randomly pick customer, business
+                $customerID = rand(1, $numOfCustomers);
+                $businessID = rand(1, $numOfBusinesses);
+                $business = Business::find($businessID);
 
-                // get attributes needed based on the random inputs
-                $actID = Employee::find($empID)->activity_id;
-                $business = Business::find($busID);
-                $activity = Activity::find($actID);
+                // randomly pick an activity of this business and get its id
+                $activity = Activity::where('business_id', $businessID)
+                    ->inRandomOrder()
+                    ->first();
+                $activityID = $activity->activity_id;
                 $numOfSlots = $activity->num_of_slots;
+
+                // get employee from roster based on activity
+                $employee = Employee::join('rosters', 'employees.employee_id', 'rosters.employee_id')
+                    ->where('rosters.date', $date->toDateString())
+                    ->where('employees.activity_id', $activityID)
+                    ->first();
+                $employeeID = $employee->employee_id;
 
                 // carbon the start time, prepare for calculation later
                 $startTime = Carbon::createFromTime($hour, 0);
@@ -60,9 +67,9 @@ class BookingsTableSeeder extends Seeder
                 $booking = Booking::create([
                     'date' => $date->toDateString(),
                     'start_time' => $startTime->toTimeString(),
-                    'customer_id' => $cusID,
-                    'business_id' => $busID,
-                    'employee_id' => $empID,
+                    'customer_id' => $customerID,
+                    'business_id' => $businessID,
+                    'employee_id' => $employeeID,
                 ]);
 
                 // create slots according to booking created

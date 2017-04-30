@@ -1,5 +1,7 @@
 <?php
 
+use App\Activity;
+use App\Business;
 use App\Employee;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +15,26 @@ class EmployeesTableSeeder extends Seeder
      */
     public function run()
     {
+        // get the number of businesses
+        $numOfBusinesses = Business::count();
+
         // generate 10 employees
         for($i=0;$i<10;$i++)
         {
+            // randomly pick a business
+            $businessID = rand(1, $numOfBusinesses);
+
+            // randomly pick an activity of this business and get its id
+            $activity = Activity::where('business_id', $businessID)
+                ->inRandomOrder()
+                ->first();
+            $activityID = $activity->activity_id;
+
             // generate employees using factory faker
             $employee = factory(\App\Employee::class)->make([
-                'TFN' => rand(100000000,999999999)
+                'TFN' => rand(100000000,999999999),
+                'activity_id' => $activityID,
+                'business_id' => $businessID
             ]);
 
             // create employee and save to BD
