@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#date-selected').html(currentDate);
 
     $(function() {
-        $('#date').datepicker({minDate: 0, maxDate: '+1M', dateFormat: 'yy-mm-dd'});
+        $('#date').datepicker({minDate: 1, maxDate: '+1M', dateFormat: 'yy-mm-dd'});
     });
 });
 
