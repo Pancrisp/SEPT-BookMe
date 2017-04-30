@@ -7,6 +7,6 @@
     @endif
 
     <div class="right">
-        <a class="btn" href="/logout">Logout</a>
+        <a class="btn no-pad" href="/logout">Logout</a>
     </div>
 </nav>
