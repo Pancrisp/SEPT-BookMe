@@ -87,7 +87,7 @@ input[type="checkbox"] {
 }
 
 select {
-    width: inherit;
+    width: 320px;
     margin: 0.8rem 0;
     padding: 15px;
     font-family: 'Open Sans', sans-serif;
