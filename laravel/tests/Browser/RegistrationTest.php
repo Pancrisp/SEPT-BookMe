@@ -28,7 +28,7 @@ class RegistrationTest extends DuskTestCase
 
 
 		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/signup')  
+		    $browser->visit('/register')  
 			    ->type('fullname',$customer->customer_name)  
 			    ->type('username',$customer->username)
 			    ->type('password','copsic')
@@ -74,7 +74,7 @@ class RegistrationTest extends DuskTestCase
 		]);
 
 		$this->browse(function ($browser) use ($customer, $customer_new) {
-		    $browser->visit('/signup')  
+		    $browser->visit('/register')  
 			    ->type('fullname',$customer_new->customer_name)  
 			    ->type('username',$customer->username)
 			    ->type('password','secret')
@@ -83,7 +83,7 @@ class RegistrationTest extends DuskTestCase
 			    ->type('phone',$customer_new->mobile_phone)
 			   ->type('address',$customer_new->address)	   
 			    ->press('signup')
-			    ->assertPathIs('/signup')   
+			    ->assertPathIs('/register')   
 			    ->assertSee('The username has already been taken');
 		});
 	}  
@@ -102,9 +102,9 @@ class RegistrationTest extends DuskTestCase
 	{
 		
 		$this->browse(function ($browser) {
-		    $browser->visit('/signup')
+		    $browser->visit('/register')
 			    ->press('signup')
-			    ->assertPathIs('/signup')  
+			    ->assertPathIs('/register')  
 			    ->assertSee('The fullname field is required')
 			    ->assertSee('The password field is required')
 			    ->assertSee('The username field is required')
@@ -131,13 +131,13 @@ class RegistrationTest extends DuskTestCase
 		]);
 	
 		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/signup')  
+		    $browser->visit('/register')  
 			    ->type('fullname',$customer->customer_name)  
 			    ->type('username',$customer->username)
 			    ->type('password','1234')
 			    ->type('password_confirmation','1234')
 			    ->press('signup')
-			    ->assertPathIs('/signup')   
+			    ->assertPathIs('/register')   
 			   ->assertSee('The password must be at least 6 characters');
 		});
 	}
@@ -159,13 +159,13 @@ class RegistrationTest extends DuskTestCase
 		]);
 	
 		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/signup')  
+		    $browser->visit('/register')  
 			    ->type('fullname',$customer->customer_name)  
 			    ->type('username',$customer->username)
 			    ->type('password','1234567')
 			    ->type('password_confirmation','123456')
 			    ->press('signup')
-			    ->assertPathIs('/signup')   
+			    ->assertPathIs('/register')   
 			   ->assertSee('The password confirmation does not match');
 		});
 	}
@@ -187,14 +187,14 @@ class RegistrationTest extends DuskTestCase
 		]);
 	
 		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/signup')  
+		    $browser->visit('/register')  
 			    ->type('fullname',$customer->customer_name)  
 			    ->type('username',$customer->username)
 			    ->type('password','123456')
 			    ->type('password_confirmation','123456')
 			    ->type('phone',123456789)
 			    ->press('signup')
-			    ->assertPathIs('/signup')   
+			    ->assertPathIs('/register')   
 			   ->assertSee('The phone must be 10 digits');
 		});
 	}

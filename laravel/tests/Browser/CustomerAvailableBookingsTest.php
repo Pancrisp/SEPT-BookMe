@@ -29,8 +29,8 @@ class CustomerAvailableBookingsTest extends DuskTestCase
 		
 	
 		$this->browse(function ($browser) use ($customer) {
-		    $browser->visit('/dashboard')
-			    ->assertPathIs('/')   
+		    $browser->visit('/')
+			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
 		});
 	} 

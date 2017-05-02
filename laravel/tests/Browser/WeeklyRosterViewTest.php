@@ -29,8 +29,8 @@ class WeeklyRosterViewTest extends DuskTestCase
 		$owner = \App\Business::where('business_id',$business_id)->first();
 
 		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/viewroster')    
-			    ->assertPathIs('/')   
+		    $browser->visit('/roster/summary')    
+			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
 		});
 	}
@@ -52,14 +52,14 @@ class WeeklyRosterViewTest extends DuskTestCase
 		$owner = \App\Business::where('business_id',$business_id)->first();
 
 		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Show all employees')
-			    ->assertPathIs('/viewroster')
+			    ->clickLink('Show roster')
+			    ->assertPathIs('/roster/summary')
 			    
  				;
 		});
@@ -90,14 +90,14 @@ class WeeklyRosterViewTest extends DuskTestCase
 		$rosterCount = \App\Roster::where('employee_id',$employee->employee_id)->whereBetween('date',array($tomorrow, $weekAfter))->count();
 
 		$this->browse(function ($browser) use ($owner,$rosterCount,$employee) {
-		    $browser->visit('/')    
+		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')   
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
+			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Show all employees')
-			    ->assertPathIs('/viewroster');
+			    ->clickLink('Show roster')
+			    ->assertPathIs('/roster/summary');
 			if ($rosterCount > 0){
 				$browser->assertVisible('table');
 				$browser->with('table', function ($table) use($employee) {
