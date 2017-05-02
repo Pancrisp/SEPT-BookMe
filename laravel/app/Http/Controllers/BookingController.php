@@ -43,6 +43,7 @@ class BookingController
             ->join('activities', 'employees.activity_id', 'activities.activity_id')
             ->where('bookings.business_id', $businessID)
             ->where('bookings.date', '>=', $today)
+            ->select('bookings.*', 'customers.*', 'activities.activity_name', 'employees.employee_name')
             ->orderBy('bookings.date')
             ->orderBy('bookings.start_time')
             ->get();
@@ -53,6 +54,7 @@ class BookingController
             ->join('activities', 'employees.activity_id', 'activities.activity_id')
             ->where('bookings.business_id', $businessID)
             ->whereDate('bookings.created_at', $today)
+            ->select('bookings.*', 'customers.*', 'activities.activity_name', 'employees.employee_name')
             ->orderBy('bookings.date')
             ->orderBy('bookings.start_time')
             ->get();
@@ -201,6 +203,21 @@ class BookingController
         }
 
         return view('availability', compact('bookings', 'employees', 'dates', 'business', 'dateSelected'));
+    }
+
+    /**
+     * showing the booking form for business owner to make booking for customer
+     * only accessible by business owner
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function makeBookingByBusinessOwner()
+    {
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check()  || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
+
+        return view('businessBooking');
     }
 
     /**
