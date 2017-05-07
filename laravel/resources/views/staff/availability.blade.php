@@ -20,7 +20,7 @@
                         list-dates
                     @endif
                 ">
-                    <a href="/booking/availability?date={{ $date['date'] }}">{{ $date['date'] }}</a>
+                    <a href="/staff/availability?date={{ $date['date'] }}">{{ $date['date'] }}</a>
                 </span>
             @endforeach
 
