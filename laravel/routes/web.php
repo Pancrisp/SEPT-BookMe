@@ -26,9 +26,11 @@ Route::post('/register/submit', 'RegistrationController@register');
  */
 Route::get('/booking/summary', 'BookingController@showBookingSummary');
 Route::get('/booking/make', 'BookingController@makeBooking');
+Route::get('/booking/cancel/{id}', 'BookingController@cancelBookingForm');
 // Form submission
 Route::post('/book', 'BookingController@addBookingForm');
 Route::post('/booking', 'BookingController@addBooking');
+Route::post('/booking/cancel/submit', 'BookingController@cancelBooking');
 
 /*
 |--------------------------------------------------------------------------

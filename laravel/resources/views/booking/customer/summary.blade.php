@@ -8,40 +8,6 @@
     @include('includes.return')
 
     <div class="dashboard">
-        <h2>New Bookings Today</h2>
-        @if(count($newBookings))
-            <table>
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>Business</th>
-                    <th>Activity</th>
-                    <th>Staff</th>
-                    <th>Address</th>
-                    <th>Contact</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($newBookings AS $booking)
-                    <tr>
-                        <td>{{ $booking['date'] }}</td>
-                        <td>{{ $booking['start_time'] }}</td>
-                        <td>{{ $booking['business_name'] }}</td>
-                        <td>{{ $booking['activity_name'] }}</td>
-                        <td>{{ $booking['employee_name'] }}</td>
-                        <td>{{ $booking['address'] }}</td>
-                        <td>{{ $booking['mobile_phone'] }}</td>
-                        <td>{{ $booking['email_address'] }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        @else
-            <div>No new booking today.</div>
-        @endif
-
         <h2>Booking Summary</h2>
         @if(count($allBookings))
             <table>
@@ -55,6 +21,7 @@
                     <th>Address</th>
                     <th>Contact</th>
                     <th>Email</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,6 +35,7 @@
                         <td>{{ $booking['address'] }}</td>
                         <td>{{ $booking['mobile_phone'] }}</td>
                         <td>{{ $booking['email_address'] }}</td>
+                        <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">cancel</a></td>
                     </tr>
                 @endforeach
                 </tbody>

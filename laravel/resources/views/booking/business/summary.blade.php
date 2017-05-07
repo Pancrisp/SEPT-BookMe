@@ -21,6 +21,7 @@
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                         <td>{{ $booking['customer_name'] }}</td>
                         <td>{{ $booking['mobile_phone'] }}</td>
                         <td>{{ $booking['email_address'] }}</td>
+                        <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">cancel</a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -55,6 +57,7 @@
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,6 +71,7 @@
                     <td>{{ $booking['customer_name'] }}</td>
                     <td>{{ $booking['mobile_phone'] }}</td>
                     <td>{{ $booking['email_address'] }}</td>
+                    <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">cancel</a></td>
                 </tr>
                 @endforeach
                 </tbody>

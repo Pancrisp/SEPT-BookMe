@@ -118,6 +118,30 @@ class BookingController
     }
 
     /**
+     * using id passed in to display the cancel booking form
+     * contains details of the booking wanted to be cancelled
+     * only accessible by authenticated users
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function cancelBookingForm($id)
+    {
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
+            return Redirect::to('/login');
+
+        // retrieve booking according to id
+        $booking = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->join('employees', 'employees.employee_id', 'bookings.employee_id')
+            ->join('activities', 'employees.activity_id', 'activities.activity_id')
+            ->join('businesses', 'businesses.business_id', 'bookings.business_id')
+            ->find($id);
+
+        return view('booking.cancel', compact('booking'));
+    }
+
+    /**
      * called when submitting add booking form
      * validate incoming request
      *
@@ -170,6 +194,22 @@ class BookingController
 
             return view('booking.customer.form' , compact('businesses'));
         }
+    }
+
+    public function cancelBooking(Request $request)
+    {
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
+            return Redirect::to('/login');
+
+        // retrieve booking id from form submitted
+        $bookingID = $request['booking'];
+
+        // remove this booking from DB
+        Booking::find($bookingID)->delete();
+
+        // redirect back to booking summary
+        return Redirect::to('/booking/summary');
     }
 
     /**
