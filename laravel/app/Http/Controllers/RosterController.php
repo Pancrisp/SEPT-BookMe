@@ -36,7 +36,7 @@ class RosterController
             = Employee::where('business_id', $businessID)
             ->get();
 
-        return view('newRoster', compact('employees'));
+        return view('roster.new', compact('employees'));
     }
 
     /**
@@ -155,7 +155,7 @@ class RosterController
             }
         }
 
-        return view('showRoster', compact('dates', 'activities', 'rosters'));
+        return view('roster.summary', compact('dates', 'activities', 'rosters'));
     }
 
     /**

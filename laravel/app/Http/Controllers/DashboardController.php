@@ -27,19 +27,13 @@ class DashboardController
 		$id = $auth['foreign_id'];
         $type = $auth['user_type'];
 
-        // return view according to the type of user
+        // get user according to user type
         if($type == 'business')
-        {
             $user = Business::find($id);
-
-            return view($type.'Dashboard', compact('user'));
-        }
         else
-        {
-            $businesses = Business::all();
             $user = Customer::find($id);
 
-            return view($type.'Dashboard', compact('user', 'businesses'));
-        }
+        // return view dynamically
+        return view('dashboard.'.$type, compact('user'));
     }
 }

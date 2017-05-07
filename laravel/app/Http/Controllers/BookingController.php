@@ -8,7 +8,6 @@ use App\Booking;
 use App\Business;
 use App\Customer;
 use App\Employee;
-use App\Roster;
 use App\Slot;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -26,41 +25,46 @@ class BookingController
      */
     public function showBookingSummary()
     {
-        // redirect to login page if not authenticated, or incorrect user type
-        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
             return Redirect::to('/login');
 
         // get auth and business ID
         $auth = Auth::user();
-        $businessID = $auth['foreign_id'];
+        $userID = $auth['foreign_id'];
+        $userType = $auth['user_type'];
 
         // get today's date using Carbon
         $today = Carbon::now()->toDateString();
 
-        // get all bookings with customer details for this business from today onwards
-        $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+        // custom attribute needed for different user type
+        if($userType == 'business')
+            $customAttr = 'customers.*';
+        else
+            $customAttr = 'businesses.*';
+
+        // join tables needed, only related to this user
+        $bookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->join('employees', 'employees.employee_id', 'bookings.employee_id')
             ->join('activities', 'employees.activity_id', 'activities.activity_id')
-            ->where('bookings.business_id', $businessID)
-            ->where('bookings.date', '>=', $today)
-            ->select('bookings.*', 'customers.*', 'activities.activity_name', 'employees.employee_name')
+            ->join('businesses', 'businesses.business_id', 'bookings.business_id')
+            ->where('bookings.'.$userType.'_id', $userID)
+            ->select('bookings.*', $customAttr, 'activities.activity_name', 'employees.employee_name')
             ->orderBy('bookings.date')
-            ->orderBy('bookings.start_time')
+            ->orderBy('bookings.start_time');
+
+        // get all bookings from today onwards
+        $allBookings = $bookings
+            ->where('bookings.date', '>=', $today)
             ->get();
 
-        // get new bookings with customer details for this business made today
-        $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
-            ->join('employees', 'employees.employee_id', 'bookings.employee_id')
-            ->join('activities', 'employees.activity_id', 'activities.activity_id')
-            ->where('bookings.business_id', $businessID)
+        // get new bookings made today
+        $newBookings = $bookings
             ->whereDate('bookings.created_at', $today)
-            ->select('bookings.*', 'customers.*', 'activities.activity_name', 'employees.employee_name')
-            ->orderBy('bookings.date')
-            ->orderBy('bookings.start_time')
             ->get();
 
         // return the view with data required
-        return view('bookingSummary', compact('allBookings', 'newBookings'));
+        return view('booking.'.$userType.'.summary', compact('allBookings', 'newBookings'));
     }
 
     /**
@@ -142,82 +146,30 @@ class BookingController
     }
 
     /**
-     * display bookings based on date and employee
-     * only accessible by business owner
-     *
-     * date is passed in the request, if not by default tomorrow
-     * employees should be those rostered on the date
-     *
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showAvailability(Request $request)
-    {
-        // redirect to login page if not authenticated, or incorrect user type
-        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
-            return Redirect::to('/login');
-
-        // get auth and business ID
-        $auth = Auth::user();
-        $businessID = $auth['foreign_id'];
-
-        // get start and end date of next 7 days
-        $tomorrow = Carbon::now()->addDay();
-        $aWeekLater = Carbon::now()->addWeek();
-
-        // get business
-        $business = Business::find($businessID);
-
-        // get dates of next 7 days from roster table of this business
-        $dates = Roster::select('rosters.date')
-            ->join('employees', 'employees.employee_id', 'rosters.employee_id')
-            ->where('employees.business_id', $businessID)
-            ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
-            ->orderBy('rosters.date')
-            ->groupBy('rosters.date')
-            ->get();
-
-        // get date selected from request, if not set, by default tomorrow
-        $dateSelected = isset($request['date'])? $request['date']: $tomorrow->toDateString();
-
-        // get employees rostered on the date selected
-        $employees = Employee::join('rosters', 'rosters.employee_id', 'employees.employee_id')
-            ->join('activities', 'activities.activity_id', 'employees.activity_id')
-            ->where('employees.business_id', $businessID)
-            ->where('rosters.date', $dateSelected)
-            ->orderBy('employees.activity_id')
-            ->get();
-
-        // loop through each employee to get bookings
-        $bookings = [];
-        foreach ($employees as $employee)
-        {
-            $bookings[$employee['employee_id']]
-                = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
-                ->join('activities', 'activities.activity_id', 'employees.activity_id')
-                ->join('customers', 'customers.customer_id', 'bookings.customer_id')
-                ->where('bookings.employee_id', $employee['employee_id'])
-                ->where('bookings.date', $dateSelected)
-                ->orderBy('bookings.start_time')
-                ->get();
-        }
-
-        return view('availability', compact('bookings', 'employees', 'dates', 'business', 'dateSelected'));
-    }
-
-    /**
      * showing the booking form for business owner to make booking for customer
-     * only accessible by business owner
+     * only accessible by authenticated users
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function makeBookingByBusinessOwner()
+    public function makeBooking()
     {
-        // redirect to login page if not authenticated, or incorrect user type
-        if ( ! Auth::check()  || Auth::user()['user_type'] != 'business')
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
             return Redirect::to('/login');
 
-        return view('businessBooking');
+        // get user type
+        $userType = Auth::user()['user_type'];
+
+        // return view according to user type
+        if( $userType == 'business')
+            return view('booking.business.form');
+        else
+        {
+            // retrieve all businesses from DB
+            $businesses = Business::all();
+
+            return view('booking.customer.form' , compact('businesses'));
+        }
     }
 
     /**
@@ -266,7 +218,7 @@ class BookingController
         // get the business
         $business = Business::find($businessID);
 
-        return view('newBooking', compact('request', 'employees', 'activities', 'bookings', 'business', 'error'));
+        return view('booking.new', compact('request', 'employees', 'activities', 'bookings', 'business', 'error'));
     }
 
     /**
@@ -290,7 +242,7 @@ class BookingController
         $business = Business::find($bookingSaved->business_id);
         $customer = Customer::find($bookingSaved->customer_id);
 
-        return view('confirmation', compact('business', 'customer', 'booking', 'auth'));
+        return view('booking.confirmation', compact('business', 'customer', 'booking', 'auth'));
     }
 
     /**

@@ -12,9 +12,8 @@
 
         <div class="overview">
             <h3>BOOKINGS</h3>
-            <a class="block" href="/booking/owner">New Booking</a>
-            <a class="block" href="/booking/summary" >Bookings Overview</a>
-            <a class="block" href="/booking/availability" >Availability</a>
+            <a class="block" href="/booking/make">New Booking</a>
+            <a class="block" href="/booking/summary">Bookings Overview</a>
         </div>
 
         <div class="overview">
@@ -22,6 +21,7 @@
             <a class="block" href="/staff/add">New Staff</a>
             <a class="block" href="/staff/update">Update staff working days</a>
             <a class="block" href="/staff/summary">Staff Summary</a>
+            <a class="block" href="/staff/availability">Availability</a>
         </div>
 
         <div class="overview">

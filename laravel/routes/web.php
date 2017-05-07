@@ -13,7 +13,7 @@ Route::get('/', 'DashboardController@loadDashboard');
 |--------------------------------------------------------------------------
  */
 Route::get('/login', function(){ return view('login'); });
-Route::get('/register', function(){ return view('signup'); });
+Route::get('/register', function(){ return view('registration'); });
 Route::get('/logout', 'AuthenticationController@logout');
 // Form submission
 Route::post('/login/submit', 'AuthenticationController@login');
@@ -25,8 +25,7 @@ Route::post('/register/submit', 'RegistrationController@register');
 |--------------------------------------------------------------------------
  */
 Route::get('/booking/summary', 'BookingController@showBookingSummary');
-Route::get('/booking/owner', 'BookingController@makeBookingByBusinessOwner');
-Route::get('/booking/availability', 'BookingController@showAvailability');
+Route::get('/booking/make', 'BookingController@makeBooking');
 // Form submission
 Route::post('/book', 'BookingController@addBookingForm');
 Route::post('/booking', 'BookingController@addBooking');
@@ -39,6 +38,7 @@ Route::post('/booking', 'BookingController@addBooking');
 Route::get('/staff/add', 'EmployeeController@addStaffForm');
 Route::get('/staff/summary', 'EmployeeController@viewStaffSummary');
 Route::get('/staff/update', 'EmployeeController@showStaffUpdateForm');
+Route::get('/staff/availability', 'EmployeeController@showAvailability');
 // Form submission
 Route::post('/staff/add/submit', 'EmployeeController@addStaff');
 Route::post('/staff/update/submit', 'EmployeeController@updateStaffAvailableDays');
@@ -56,3 +56,13 @@ Route::get('/roster/summary', 'RosterController@showRoster');
 Route::post('/roster/add/submit', 'RosterController@addRoster');
 // AJAX
 Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity');
+
+/*
+|--------------------------------------------------------------------------
+| customer related routes
+|--------------------------------------------------------------------------
+ */
+Route::get('/profile/view', 'CustomerController@');
+Route::get('/profile/update', 'CustomerController@');
+// Form submission
+Route::post('/profile/update/submit', 'CustomerController@');
