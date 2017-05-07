@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      * -id (pk)
      * -email (unique)
      * -password
+     * -wrong_password_count
      * -user_type (customer/business)
      * -foreign_id (fk)
      *
@@ -24,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
+            $table->tinyInteger('wrong_password_count')->unsigned()->default(0);
             $table->string('user_type');
             $table->integer('foreign_id')->unsigned();
             $table->rememberToken();
