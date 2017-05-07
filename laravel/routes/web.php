@@ -12,12 +12,12 @@ Route::get('/', 'DashboardController@loadDashboard');
 | authentication and registration related routes
 |--------------------------------------------------------------------------
  */
-Route::get('/login', function(){ return view('login'); });
-Route::get('/register', function(){ return view('registration'); });
+Route::get('/login', 'AuthenticationController@loadLoginForm');
 Route::get('/logout', 'AuthenticationController@logout');
+Route::get('/register/{type}', 'RegistrationController@loadRegistrationForm');
 // Form submission
 Route::post('/login/submit', 'AuthenticationController@login');
-Route::post('/register/submit', 'RegistrationController@register');
+Route::post('/register/submit/{type}', 'RegistrationController@register');
 
 /*
 |--------------------------------------------------------------------------

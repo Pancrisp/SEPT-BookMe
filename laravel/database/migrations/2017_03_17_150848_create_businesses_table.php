@@ -18,6 +18,7 @@ class CreateBusinessesTable extends Migration
      * -mobile_phone
      * -address
      * -slot_period (in minutes)
+     * -ready (boolean)
      *
      * @return void
      */
@@ -31,7 +32,8 @@ class CreateBusinessesTable extends Migration
             $table->string('mobile_phone');
             $table->string('email_address')->unique();
             $table->text('address');
-            $table->integer('slot_period')->unsigned();
+            $table->integer('slot_period')->unsigned()->default(0);
+            $table->boolean('ready')->default(false);
             $table->timestamps();
         });
     }

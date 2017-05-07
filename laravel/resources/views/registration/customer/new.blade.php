@@ -9,7 +9,7 @@
     <div class='box'>
         <h1>Booking App</h1>
 
-        <form action="/register/submit" method="post">
+        <form action="/register/submit/customer" method="post">
             {{ csrf_field() }}
             <div class="error">{{ $errors->first('fullname') }}</div>
             <input type="text" name="fullname" placeholder="Your Name" value="{!! old('fullname') !!}">
@@ -28,7 +28,8 @@
         </form>
 
         <div class="login">
-            <p>Already have an account? <a href="/">Sign in here</a></p>
+            <p>Already have an account? <a href="/login">Sign in here</a></p>
+            <p>Join as a business? <a href="/register/business">Sign up here</a></p>
         </div>
     </div>
 

@@ -189,19 +189,25 @@ class BookingController
             return view('booking.business.form');
         else
         {
-            // retrieve all businesses from DB
-            $businesses = Business::all();
+            // retrieve all ready businesses from DB
+            $businesses
+                = Business::where('ready', true)
+                ->get();
 
             return view('booking.customer.form' , compact('businesses'));
         }
     }
 
+    /**
+     * called when cancel booking form is submitted
+     * request contains the booking id awaited to be cancelled
+     * delete the booking from DB and redirect back to summary page
+     *
+     * @param Request $request
+     * @return mixed
+     */
     public function cancelBooking(Request $request)
     {
-        // redirect to login page if not authenticated
-        if ( ! Auth::check() )
-            return Redirect::to('/login');
-
         // retrieve booking id from form submitted
         $bookingID = $request['booking'];
 

@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Redirect;
 class AuthenticationController
 {
     /**
+     * this loads the login form
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function loadLoginForm()
+    {
+        return view('login');
+    }
+
+    /**
      * This is called when login form is submitted
      * It checks if the user exists
      * Then check if password is correct

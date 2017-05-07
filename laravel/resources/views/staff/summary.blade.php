@@ -34,8 +34,7 @@
             </table>
         @else
             <div>
-                There is no staff.
-                <a class="block" href="/staff/add?id={{ $businessID }}">Add new staff</a>
+                There is no staff. <a href="/staff/add">Add new staff</a>
             </div>
         @endif
     </div>
