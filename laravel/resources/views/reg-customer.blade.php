@@ -1,0 +1,31 @@
+@extends('layouts.template')
+
+@section('title')
+    Booking App
+@endsection
+
+@section('content')
+
+    <div class='box'>
+        <h1>Booking App</h1>
+
+        <form action="/register/submit" method="post">
+            {{ csrf_field() }}
+            <div class="error">{{ $errors->first('fullname') }}</div>
+            <input type="text" name="fullname" placeholder="Your Name" value="{!! old('fullname') !!}">
+            <div class="error">{{ $errors->first('username') }}</div>
+            <input type="text" name="username" placeholder="Username" value="{!! old('username') !!}">
+            <div class="error">{{ $errors->first('password') }}</div>
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password_confirmation" placeholder="Confirm Password">
+            <div class="error">{{ $errors->first('email') }}</div>
+            <input type="text" name="email" placeholder="Email" value="{!! old('email') !!}">
+            <div class="error">{{ $errors->first('phone') }}</div>
+            <input type="text" name="phone" placeholder="Contact No" value="{!! old('phone') !!}">
+            <div class="error">{{ $errors->first('address') }}</div>
+            <input type="text" name="address" placeholder="Address" value="{!! old('address') !!}">
+            <button type="submit" name="signup">Sign Up</button>
+        </form>
+    </div>
+
+@endsection
