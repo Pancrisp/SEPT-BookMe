@@ -9,6 +9,7 @@ use App\Business;
 use App\Employee;
 use App\Roster;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -119,8 +120,8 @@ class EmployeeController
         $businessID = $auth['foreign_id'];
 
         // get start and end date of next 7 days
-        $tomorrow = Carbon::now()->addDay();
-        $aWeekLater = Carbon::now()->addWeek();
+        $tomorrow = Carbon::now(new DateTimeZone('Australia/Melbourne'))->addDay();
+        $aWeekLater = Carbon::now(new DateTimeZone('Australia/Melbourne'))->addWeek();
 
         // get business
         $business = Business::find($businessID);
