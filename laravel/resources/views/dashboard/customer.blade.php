@@ -13,7 +13,7 @@
         <div class="overview">
             <h3>BOOKINGS</h3>
             <a class="block" href="/booking/make">New Booking</a>
-            <a class="block" href="/booking/summary/upcoming">Bookings Overview</a>
+            <a class="block" href="/booking/summary/today">Bookings Overview</a>
         </div>
 
         <div class="overview">

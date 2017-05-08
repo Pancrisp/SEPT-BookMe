@@ -35,7 +35,10 @@
                     <th>Customer Name</th>
                     <th>Customer Contact</th>
                     <th>Customer Email</th>
-                    <th></th>
+                    <!-- disabling cancel on history and today page -->
+                    @if($typeSelected != 'history' && $typeSelected != 'today')
+                        <th></th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +52,10 @@
                         <td>{{ $booking['customer_name'] }}</td>
                         <td>{{ $booking['mobile_phone'] }}</td>
                         <td>{{ $booking['email_address'] }}</td>
-                        <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">cancel</a></td>
+                        <!-- disabling cancel on history page -->
+                        @if($typeSelected != 'history' && $typeSelected != 'today')
+                            <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">cancel</a></td>
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>

@@ -465,6 +465,10 @@ class BookingController
         // initialise types for both customer and business owners
         $types = [
             [
+                'type' => 'today',
+                'title' => 'Today\'s Bookings',
+            ],
+            [
                 'type' => 'upcoming',
                 'title' => 'Upcoming Bookings',
             ],
@@ -480,10 +484,6 @@ class BookingController
                 [
                     'type' => 'recent',
                     'title' => 'Recent Bookings',
-                ],
-                [
-                    'type' => 'today',
-                    'title' => 'Today\'s Bookings',
                 ],
             ], $types);
 
