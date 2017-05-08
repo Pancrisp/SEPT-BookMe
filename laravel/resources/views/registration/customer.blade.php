@@ -7,7 +7,7 @@
 @section('content')
 
     <div class='box'>
-        <h1>Booking App</h1>
+        <h1>Sign up as a Customer</h1>
 
         <form action="/register/submit/customer" method="post">
             {{ csrf_field() }}

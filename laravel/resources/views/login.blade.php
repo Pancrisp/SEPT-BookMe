@@ -20,7 +20,7 @@
         </form>
 
         <div class="registration">
-            <p>Don't have an account? <a href="/register/customer">Sign up here</a></p>
+            <p>Don't have an account? <a href="/register/pathway">Sign up here</a></p>
         </div>
     </div>
 

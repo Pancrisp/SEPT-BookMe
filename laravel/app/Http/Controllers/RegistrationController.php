@@ -20,7 +20,7 @@ class RegistrationController
      */
     public function loadRegistrationForm($type)
     {
-        return view('registration.'.$type.'.new');
+        return view('registration.'.$type);
     }
 
     /**
