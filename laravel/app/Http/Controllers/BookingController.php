@@ -10,6 +10,7 @@ use App\Customer;
 use App\Employee;
 use App\Slot;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -21,9 +22,10 @@ class BookingController
      * show booking summary for certain business
      * only accessible when logged in
      *
+     * @param $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showBookingSummary()
+    public function showBookingSummary($type)
     {
         // redirect to login page if not authenticated
         if ( ! Auth::check() )
@@ -34,8 +36,12 @@ class BookingController
         $userID = $auth['foreign_id'];
         $userType = $auth['user_type'];
 
+        // get summary types and save type selected
+        $types = $this->getSummaryType($userType);
+        $typeSelected = $type;
+
         // get today's date using Carbon
-        $today = Carbon::now()->toDateString();
+        $today = Carbon::now(new DateTimeZone('Australia/Melbourne'))->toDateString();
 
         // custom attribute needed for different user type
         if($userType == 'business')
@@ -53,18 +59,26 @@ class BookingController
             ->orderBy('bookings.date')
             ->orderBy('bookings.start_time');
 
-        // get all bookings from today onwards
-        $allBookings = $bookings
-            ->where('bookings.date', '>=', $today)
-            ->get();
-
-        // get new bookings made today
-        $newBookings = $bookings
-            ->whereDate('bookings.created_at', $today)
-            ->get();
+        // get bookings according to type passed in the url
+        if($type == 'recent')
+            $bookings = $bookings
+                ->whereDate('bookings.created_at', $today)
+                ->get();
+        elseif($type == 'today')
+            $bookings = $bookings
+                ->where('bookings.date', '=', $today)
+                ->get();
+        elseif($type == 'upcoming')
+            $bookings = $bookings
+                ->where('bookings.date', '>', $today)
+                ->get();
+        elseif($type == 'history')
+            $bookings = $bookings
+                ->where('bookings.date', '<', $today)
+                ->get();
 
         // return the view with data required
-        return view('booking.'.$userType.'.summary', compact('allBookings', 'newBookings'));
+        return view('booking.'.$userType.'.summary', compact('typeSelected', 'types', 'bookings'));
     }
 
     /**
@@ -437,5 +451,42 @@ class BookingController
             // increment time period according to config from DB
             $startTime->addMinute($business->slot_period);
         }
+    }
+
+    /**
+     * used in booking summary
+     * return array of type and page titles
+     *
+     * @param $userType
+     * @return array
+     */
+    private function getSummaryType($userType)
+    {
+        // initialise types for both customer and business owners
+        $types = [
+            [
+                'type' => 'upcoming',
+                'title' => 'Upcoming Bookings',
+            ],
+            [
+                'type' => 'history',
+                'title' => 'Booking History',
+            ]
+        ];
+
+        // add types specifically for business owner only
+        if($userType == 'business')
+            $types = array_merge([
+                [
+                    'type' => 'recent',
+                    'title' => 'Recent Bookings',
+                ],
+                [
+                    'type' => 'today',
+                    'title' => 'Today\'s Bookings',
+                ],
+            ], $types);
+
+        return $types;
     }
 }

@@ -7,13 +7,7 @@
 @section('content')
 
     <div class='box'>
-        <!--
-        profile will display:
-        - customer username
-        - customer name
-        - customer booking history
-        -->
-        <form class="" action="index.html" method="post">
+        <form action="/profile/update/submit" method="post">
             <!--
             form will update:
             - customer e-mail

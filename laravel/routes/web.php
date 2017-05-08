@@ -24,7 +24,7 @@ Route::post('/register/submit/{type}', 'RegistrationController@register');
 | booking related routes
 |--------------------------------------------------------------------------
  */
-Route::get('/booking/summary', 'BookingController@showBookingSummary');
+Route::get('/booking/summary/{type}', 'BookingController@showBookingSummary');
 Route::get('/booking/make', 'BookingController@makeBooking');
 Route::get('/booking/cancel/{id}', 'BookingController@cancelBookingForm');
 // Form submission
@@ -64,7 +64,7 @@ Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity'
 | customer related routes
 |--------------------------------------------------------------------------
  */
-Route::get('/profile/view', 'CustomerController@');
-Route::get('/profile/update', 'CustomerController@');
+Route::get('/profile/view', 'CustomerController@displayProfile');
+Route::get('/profile/update', 'CustomerController@loadUpdateForm');
 // Form submission
-Route::post('/profile/update/submit', 'CustomerController@');
+Route::post('/profile/update/submit', 'CustomerController@update');

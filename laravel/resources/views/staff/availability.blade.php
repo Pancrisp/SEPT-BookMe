@@ -15,9 +15,9 @@
             @foreach($dates as $date)
                 <span class="
                     @if($date['date'] == $dateSelected)
-                        list-dates-selected
+                        list-page-selected
                     @else
-                        list-dates
+                        list-page
                     @endif
                 ">
                     <a href="/staff/availability?date={{ $date['date'] }}">{{ $date['date'] }}</a>

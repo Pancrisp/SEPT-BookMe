@@ -8,8 +8,22 @@
     @include('includes.return')
 
     <div class="dashboard">
-        <h2>Booking Summary</h2>
-        @if(count($allBookings))
+
+        <hr>
+        @foreach($types as $type)
+            <span class="
+                @if($type['type'] == $typeSelected)
+                    list-page-selected
+                @else
+                    list-page
+                @endif
+                    ">
+                <a href="/booking/summary/{{ $type['type'] }}">{{ $type['title'] }}</a>
+            </span>
+        @endforeach
+        <br><br>
+
+        @if(count($bookings))
             <table>
                 <thead>
                 <tr>
@@ -25,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($allBookings AS $booking)
+                @foreach($bookings AS $booking)
                     <tr>
                         <td>{{ $booking['date'] }}</td>
                         <td>{{ $booking['start_time'] }}</td>
@@ -41,7 +55,7 @@
                 </tbody>
             </table>
         @else
-            <div>Currently no booking.</div>
+            <div>No booking.</div>
         @endif
     </div>
 
