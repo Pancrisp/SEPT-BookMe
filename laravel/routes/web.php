@@ -15,6 +15,9 @@ Route::get('/', 'DashboardController@loadDashboard');
 Route::get('/login', 'AuthenticationController@loadLoginForm');
 Route::get('/logout', 'AuthenticationController@logout');
 Route::get('/register/{type}', 'RegistrationController@loadRegistrationForm');
+Route::get('/register', function () {
+    return view('registration');
+});
 // Form submission
 Route::post('/login/submit', 'AuthenticationController@login');
 Route::post('/register/submit/{type}', 'RegistrationController@register');

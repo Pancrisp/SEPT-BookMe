@@ -6,7 +6,7 @@
         <title>@yield('title')</title>
 
         <!-- Font Awesome -->
-        <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Source+Sans+Pro" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Source+Sans+Pro" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">

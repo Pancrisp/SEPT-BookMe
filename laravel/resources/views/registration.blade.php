@@ -11,28 +11,32 @@
 
         <div class="reg-selection">
             <div class="card-register">
-                <div class="card-bg">
-
-                </div>
-                <div class="card-info">
-                    <h2>Customer</h2>
-                    <ul>
-                        <li><p>Place bookings and make appointments</p></li>
-                        <li><p>View bookings and so on</p></li>
-                    </ul>
-                </div>
+                <a class="card-link" href="/register/customer">
+                    <div class="card-bg">
+                        <img src="/img/customer-bg.png" alt="">
+                    </div>
+                    <div class="card-info">
+                        <h2>Customer</h2>
+                        <ul>
+                            <li><p>Place bookings and make appointments</p></li>
+                            <li><p>View booking summary and history</p></li>
+                        </ul>
+                    </div>
+                </a>
             </div>
             <div class="card-register">
-                <div class="card-bg">
-
-                </div>
-                <div class="card-info">
-                    <h2>Business Owner</h2>
-                    <ul>
-                        <li><p>Manage your online bookings</p></li>
-                        <li><p>Arrange working schedules for your staff</p></li>
-                    </ul>
-                </div>
+                <a class="card-link" href="/register/business">
+                    <div class="card-bg">
+                        <img src="/img/business-bg.jpg" alt="">
+                    </div>
+                    <div class="card-info">
+                        <h2>Business Owner</h2>
+                        <ul>
+                            <li><p>Manage your online bookings</p></li>
+                            <li><p>Arrange working schedules for your staff</p></li>
+                        </ul>
+                    </div>
+                </a>
             </div>
         </div>
 

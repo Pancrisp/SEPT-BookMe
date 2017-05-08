@@ -139,7 +139,7 @@ table {
 
 .container {
   margin: 0 auto;
-  padding: 50px 0;
+  padding: 40px 0;
   background-color: #ff8754;
 }
 
@@ -241,6 +241,59 @@ table {
     margin: 24px 0 8px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.reg-selection {
+    display: flex;
+    max-width: 960px;
+    margin: 3rem auto;
+}
+
+.card-register {
+    flex: 1;
+    margin: 0 32px;
+    background-color: #efefef;
+    border-radius: 4px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.15);
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
+    overflow: hidden;
+    text-align: left;
+}
+
+.card-register:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+}
+
+.card-link {
+    height: 100%;
+    display: block;
+    text-decoration: none;
+}
+
+.card-info {
+    padding: 1.5em;
+}
+
+.card-info h2 {
+    margin: 0;
+}
+
+.card-info ul {
+    margin: 0;
+    padding: 0;
+}
+
+.card-info p {
+    margin: 16px 0 0;
+}
+
+.card-bg {
+    height: 420px;
+}
+
+.card-bg img {
+    height: 420px;
 }
 
 #circle {
