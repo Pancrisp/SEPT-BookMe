@@ -66,4 +66,4 @@ Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity'
  */
 Route::get('/profile/{type}', 'ProfileController@profile');
 // Form submission
-Route::post('/profile/update/submit', 'ProfileController@update');
+Route::post('/profile/update/submit', 'ProfileController@updateProfile');
