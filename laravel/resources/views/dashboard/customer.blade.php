@@ -18,7 +18,7 @@
 
         <div class="overview">
             <h3>PROFILE</h3>
-            <a class="block" href="/profile/view">View Profile</a>
+            <a class="block" href="/profile/display">View Profile</a>
             <a class="block" href="/profile/update">Update Details</a>
         </div>
     </div>

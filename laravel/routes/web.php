@@ -61,10 +61,9 @@ Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity'
 
 /*
 |--------------------------------------------------------------------------
-| customer related routes
+| profile related routes
 |--------------------------------------------------------------------------
  */
-Route::get('/profile/view', 'CustomerController@displayProfile');
-Route::get('/profile/update', 'CustomerController@loadUpdateForm');
+Route::get('/profile/{type}', 'ProfileController@profile');
 // Form submission
-Route::post('/profile/update/submit', 'CustomerController@update');
+Route::post('/profile/update/submit', 'ProfileController@update');

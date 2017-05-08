@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @include('includes.return')
 
     <div class='box'>
         <form action="/profile/update/submit" method="post">
