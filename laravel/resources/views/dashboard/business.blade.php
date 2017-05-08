@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Business Owner Dashboard - Booking App
 @endsection
 
 @section('content')
@@ -12,28 +12,28 @@
 
         <div class="overview">
             <h3>BOOKINGS</h3>
-            <a class="block" href="/booking/make">New Booking</a>
-            <a class="block" href="/booking/summary/recent">Bookings Overview</a>
+            <a class="block" href="/booking/make">New booking</a>
+            <a class="block" href="/booking/summary/recent">Bookings overview</a>
         </div>
 
         <div class="overview">
             <h3>STAFF</h3>
-            <a class="block" href="/staff/add">New Staff</a>
+            <a class="block" href="/staff/add">New staff</a>
             <a class="block" href="/staff/update">Update staff working days</a>
-            <a class="block" href="/staff/summary">Staff Summary</a>
+            <a class="block" href="/staff/summary">Staff summary</a>
             <a class="block" href="/staff/availability">Availability</a>
         </div>
 
         <div class="overview">
             <h3>ROSTER</h3>
-            <a class="block" href="/roster/add">New Roster</a>
+            <a class="block" href="/roster/add">New roster</a>
             <a class="block" href="/roster/summary">Show roster</a>
         </div>
 
         <div class="overview">
             <h3>PROFILE</h3>
-            <a class="block" href="/profile/display">View Profile</a>
-            <a class="block" href="/profile/update">Update Details</a>
+            <a class="block" href="/profile/display">View profile</a>
+            <a class="block" href="/profile/update">Update profile</a>
         </div>
     </div>
 

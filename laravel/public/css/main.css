@@ -137,6 +137,10 @@ table {
     width: 100%;
 }
 
+hr {
+    margin: 24px 0;
+}
+
 .container {
   margin: 0 auto;
   padding: 40px 0;
@@ -210,7 +214,7 @@ table {
 }
 
 .list-page a {
-    margin: 0 10px;
+    margin: 24px 24px 0 0;
     padding: 8px 12px;
     color: #6699ff;
     background-color: #fff;
@@ -221,12 +225,8 @@ table {
     box-sizing: border-box;
 }
 
-.list-page a:hover {
-    background-color: #e5e5e5;
-}
-
 .list-page-selected a {
-    margin: 0 10px;
+    margin: 24px 24px 0 0;
     padding: 8px 12px;
     color: #fff;
     background-color: #6699ff;
@@ -235,6 +235,10 @@ table {
     border: 1px solid #afafaf;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.list-page a:hover {
+    background-color: #e5e5e5;
 }
 
 .receipt-info {

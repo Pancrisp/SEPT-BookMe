@@ -9,7 +9,7 @@
 
     <div class='box'>
         <h1>Hi {{ $user['customer_name'] }}</h1>
-        <h2>Please modify the field needed to be update</h2>
+        <h2>Please modify the fields that require updating</h2>
 
         <div class="success">{{ $errors->first('result') }}</div>
 

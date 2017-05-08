@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Create an account - Booking App
 @endsection
 
 @section('content')
@@ -29,7 +29,6 @@
 
         <div class="login">
             <p>Already have an account? <a href="/login">Sign in here</a></p>
-            <p>Join as a business? <a href="/register/business">Sign up here</a></p>
         </div>
     </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Register your business - Booking App
 @endsection
 
 @section('content')

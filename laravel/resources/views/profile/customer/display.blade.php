@@ -28,7 +28,7 @@
         </table>
 
         <div>
-            <p>Details changed? <a href="/profile/update">Update here</a></p>
+            <p>Recently changed your contact details? <a href="/profile/update">Update them here</a></p>
         </div>
     </div>
 
