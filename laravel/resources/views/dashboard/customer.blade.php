@@ -18,8 +18,7 @@
 
         <div class="overview">
             <h3>PROFILE</h3>
-            <a class="block" href="/profile/display">View profile</a>
-            <a class="block" href="/profile/update">Update profile</a>
+            <a class="block" href="/profile">Your details</a>
         </div>
     </div>
 @endsection

@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class ProfileController
 {
     /**
-     * to display or update user profile
-     * depending on action type passed in url
+     * to display user profile
+     * also allow user to update their details on the page
      *
-     * @param $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function profile($type)
+    public function profile()
     {
         // redirect to login page if not authenticated
         if ( ! Auth::check() )
@@ -36,7 +35,7 @@ class ProfileController
         else
             $user = Business::find($userID);
 
-        return view('profile.'.$userType.'.'.$type, compact('user'));
+        return view('profile.'.$userType, compact('user'));
     }
 
     /**
@@ -92,7 +91,7 @@ class ProfileController
         // add extra rule in case of business
         if($userType == 'business')
             $rules = array_merge($rules, [
-                'business_name' => 'required|max:255|unique:businesses'
+                'business_name' => 'required|max:255'
             ]);
 
         // return validator according to rules set
@@ -167,10 +166,27 @@ class ProfileController
         // updating business name for business only
         if($userType == 'business' && $user->business_name != $data['business_name'])
         {
-            $user->business_name = $data['business_name'];
-            $result = array_merge($result, [
-                'business_name' => 'Business name updated'
+            // validate business name to be unique
+            $validator = Validator::make($data, [
+                'business_name' => 'unique:businesses'
             ]);
+
+            // if validation fails, write error message
+            if($validator->fails())
+            {
+                $result = array_merge($result, [
+                    'business_name' => 'The business name has already been taken.'
+                ]);
+            }
+
+            // when validation passes, update business name
+            else
+            {
+                $user->business_name = $data['business_name'];
+                $result = array_merge($result, [
+                    'business_name' => 'Business name updated'
+                ]);
+            }
         }
 
         // if nothing has been changed
