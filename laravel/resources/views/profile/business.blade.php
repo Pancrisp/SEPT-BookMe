@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Profile Settings - Booking App
+    Profile Settings - BookMe
 @endsection
 
 @section('content')

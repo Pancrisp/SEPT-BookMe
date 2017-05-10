@@ -1,13 +1,13 @@
 @extends('layouts.template')
 
 @section('title')
-    Sign up for an account - Booking App
+    Sign up for an account - BookMe
 @endsection
 
 @section('content')
 
     <div class='box'>
-        <h1>Booking App</h1>
+        <h1>BookMe</h1>
 
         <div class="reg-selection">
             <div class="card-register">

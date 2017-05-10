@@ -1,12 +1,12 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Create a booking - BookMe
 @endsection
 
 @section('content')
     @include('includes.return')
-    
+
     <div class="dashboard">
         <h2>Make a Booking</h2>
 

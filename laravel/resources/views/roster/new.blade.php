@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Create a new roster - BookMe
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@
         @endif
 
     </div>
-    
+
 @endsection
 
 @section('pageSpecificJs')

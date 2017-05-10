@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Customer Dashboard - Booking App
+    Customer Dashboard - BookMe
 @endsection
 
 @section('content')

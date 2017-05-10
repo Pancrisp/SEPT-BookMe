@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Create an account - Booking App
+    Create an account - BookMe
 @endsection
 
 @section('content')

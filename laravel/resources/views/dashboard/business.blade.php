@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Business Owner Dashboard - Booking App
+    Business Owner Dashboard - BookMe
 @endsection
 
 @section('content')

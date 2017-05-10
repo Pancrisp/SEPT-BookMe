@@ -1,13 +1,13 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Home - BookMe
 @endsection
 
 @section('content')
 
     <div class="box">
-        <h1>Booking App</h1>
+        <h1>BookMe</h1>
         <h3>Sign in to access your dashboard</h3>
 
         <form action="/login/submit" method="post">

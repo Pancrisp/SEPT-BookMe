@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Roster overview - BookMe
 @endsection
 
 @section('content')

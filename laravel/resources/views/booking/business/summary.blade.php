@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Booking App
+    Booking Summary - BookMe
 @endsection
 
 @section('content')
@@ -54,7 +54,7 @@
                         <td>{{ $booking['email_address'] }}</td>
                         <!-- disabling cancel on history page -->
                         @if($typeSelected != 'history' && $typeSelected != 'today')
-                            <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">cancel</a></td>
+                            <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">Cancel</a></td>
                         @endif
                     </tr>
                 @endforeach
