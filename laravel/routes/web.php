@@ -65,5 +65,11 @@ Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity'
 |--------------------------------------------------------------------------
  */
 Route::get('/profile', 'ProfileController@profile');
+Route::get('/business/hour', 'BusinessController@businessHour');
+Route::get('/business/hour/register', 'BusinessHourController@registerBusinessHourForm');
+Route::get('/business/activity', 'ActivityController@businessActivity');
+Route::get('/business/activity/register', 'ActivityController@registerBusinessActivityForm');
 // Form submission
 Route::post('/profile/update/submit', 'ProfileController@updateProfile');
+Route::post('/business/hour/register/submit', 'BusinessHourController@registerBusinessHour');
+Route::post('/business/activity/register/submit/{action}', 'ActivityController@registerBusinessActivity');

@@ -4,12 +4,16 @@
     Create a new booking - BookMe
 @endsection
 
-@section('content')
-    @include('includes.return')
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
+@endsection
 
-    <nav>
+@section('content')
+
+    <div>
         <a href="{{ URL::previous() }}">Pick another one</a>
-    </nav>
+    </div>
 
     <div class="dashboard">
         <h1>Welcome to {{ $business['business_name'] }}</h1>

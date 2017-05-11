@@ -74,7 +74,7 @@ class EmployeeController
 
     /**
      * view staff summary
-     * includes name, TFN, contact, activity, available days
+     * nav name, TFN, contact, activity, available days
      * only accessible by business owner
      *
      * get employees and their activities from DB and return to view

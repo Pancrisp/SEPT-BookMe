@@ -4,12 +4,16 @@
     Cancel a booking - BookMe
 @endsection
 
-@section('content')
-    @include('includes.return')
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
+@endsection
 
-    <nav>
+@section('content')
+
+    <div>
         <a href="{{ URL::previous() }}">Cancel another one</a>
-    </nav>
+    </div>
 
     <div class="dashboard">
         <h1>Confirm to cancel the following order</h1>

@@ -1,11 +1,15 @@
 @extends('layouts.template')
 
 @section('title')
-    BookMe
+    Staff Availability - BookMe
+@endsection
+
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
 @endsection
 
 @section('content')
-    @include('includes.return')
 
     <div class="dashboard">
 

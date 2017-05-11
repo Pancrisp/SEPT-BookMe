@@ -4,9 +4,12 @@
     New Booking for Customer - BookMe
 @endsection
 
-@section('content')
-    @include('includes.return')
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
+@endsection
 
+@section('content')
     <div class="dashboard">
         <h2>Fill out the form below to make a booking for customer</h2>
 

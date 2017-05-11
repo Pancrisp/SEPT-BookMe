@@ -15,6 +15,7 @@
     </head>
     <body>
         <div class="container">
+            <nav>@yield('nav')</nav>
             @yield('content')
         </div>
 

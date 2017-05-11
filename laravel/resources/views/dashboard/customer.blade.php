@@ -4,8 +4,11 @@
     Customer Dashboard - BookMe
 @endsection
 
+@section('nav')
+    @include('nav.logout')
+@endsection
+
 @section('content')
-    @include('includes.return')
 
     <div class="dashboard">
         <div id="greeting">Hello, {{ $user['customer_name'] }}!</div>

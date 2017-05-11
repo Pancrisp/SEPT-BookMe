@@ -4,8 +4,12 @@
     Profile Settings - BookMe
 @endsection
 
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
+@endsection
+
 @section('content')
-    @include('includes.return')
 
     <div class='box'>
         <h1>Hi {{ $user['owner_name'] }}</h1>

@@ -4,8 +4,12 @@
     Booking Confirmation - BookMe
 @endsection
 
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
+@endsection
+
 @section('content')
-    @include('includes.return')
 
     <div class="dashboard">
         @if($auth['user_type'] == 'customer')

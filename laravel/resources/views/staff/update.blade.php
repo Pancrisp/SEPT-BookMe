@@ -1,11 +1,15 @@
 @extends('layouts.template')
 
 @section('title')
-    BookMe
+    Update staff availability - BookMe
+@endsection
+
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
 @endsection
 
 @section('content')
-    @include('includes.return')
 
     <div class="box">
         <h1>Update Staff Available Days</h1>

@@ -1,11 +1,15 @@
 @extends('layouts.template')
 
 @section('title')
-    BookMe
+    Add new staff - BookMe
+@endsection
+
+@section('nav')
+    @include('nav.dashboard')
+    @include('nav.logout')
 @endsection
 
 @section('content')
-    @include('includes.return')
 
     <div class="box">
         <h1>New Employee Registration</h1>
