@@ -33,9 +33,9 @@
                         {{ $day['full'] }}
                     </label>
                     <div id="opening-hour-{{ $day['short'] }}" hidden>
-                        <input type="time" name="opening_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800" required>
+                        <input id="opening-time-{{ $day['short'] }}" type="time" name="opening_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800">
                         to
-                        <input type="time" name="closing_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800" required>
+                        <input id="closing-time-{{ $day['short'] }}" type="time" name="closing_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800">
                         <div class="error">{{ $errors->first('opening_time_'.$day['short']) }}</div>
                         <div class="error">{{ $errors->first('closing_time_'.$day['short']) }}</div>
                         <div class="error">{{ $errors->first('opening_hour_'.$day['short']) }}</div>
