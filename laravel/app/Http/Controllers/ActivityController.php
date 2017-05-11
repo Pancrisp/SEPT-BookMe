@@ -36,4 +36,29 @@ class ActivityController
     {
 
     }
+
+    public function updateBusinessActivity()
+    {
+
+    }
+
+    private function registerValidator(array $data)
+    {
+
+    }
+
+    private function updateValidator(array $data)
+    {
+
+    }
+
+    private function save(array $data)
+    {
+
+    }
+
+    private function update(array $data)
+    {
+
+    }
 }

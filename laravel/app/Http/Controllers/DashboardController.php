@@ -27,13 +27,22 @@ class DashboardController
 		$id = $auth['foreign_id'];
         $type = $auth['user_type'];
 
-        // get user according to user type
-        if($type == 'business')
-            $user = Business::find($id);
-        else
+        // get user according to user type, and return view dynamically
+        if($type == 'customer')
+        {
             $user = Customer::find($id);
+            return view('dashboard.'.$type, compact('user'));
+        }
+        else
+        {
+            $user = Business::find($id);
 
-        // return view dynamically
-        return view('dashboard.'.$type, compact('user'));
+            // check if this business has been fully set up
+            if($user->ready)
+                return view('dashboard.'.$type, compact('user'));
+            else
+                // if not set up, redirect to set up pages
+                return Redirect::to('/business/hour/register');
+        }
     }
 }

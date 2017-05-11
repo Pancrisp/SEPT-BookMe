@@ -71,5 +71,7 @@ Route::get('/business/activity', 'ActivityController@businessActivity');
 Route::get('/business/activity/register', 'ActivityController@registerBusinessActivityForm');
 // Form submission
 Route::post('/profile/update/submit', 'ProfileController@updateProfile');
+Route::get('/business/hour/submit', 'BusinessController@updateBusinessHour');
+Route::get('/business/activity/submit', 'ActivityController@updateBusinessActivity');
 Route::post('/business/hour/register/submit', 'BusinessHourController@registerBusinessHour');
 Route::post('/business/activity/register/submit/{action}', 'ActivityController@registerBusinessActivity');
