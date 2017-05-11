@@ -61,7 +61,7 @@ Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity'
 
 /*
 |--------------------------------------------------------------------------
-| profile related routes
+| setting related routes
 |--------------------------------------------------------------------------
  */
 Route::get('/profile', 'ProfileController@profile');

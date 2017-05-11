@@ -31,8 +31,10 @@
         </div>
 
         <div class="overview">
-            <h3>PROFILE</h3>
-            <a class="block" href="/profile">Your details</a>
+            <h3>SETTINGS</h3>
+            <a class="block" href="/profile">Profile</a>
+            <a class="block" href="/business/hour">Opening hours</a>
+            <a class="block" href="/business/activity">Business services</a>
         </div>
     </div>
 
