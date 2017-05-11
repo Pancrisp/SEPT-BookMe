@@ -10,8 +10,8 @@ class CreateBusinessHoursTable extends Migration
      * Run the migrations.
      *
      * -business_hour_id (pk)
-     * -opening_hour
-     * -closing_hour
+     * -opening_time
+     * -closing_time
      * -business_id (fk)
      *
      * @return void
@@ -21,8 +21,8 @@ class CreateBusinessHoursTable extends Migration
         Schema::create('business_hours', function (Blueprint $table) {
             $table->increments('business_hour_id');
             $table->string('day');
-            $table->string('opening_hour')->default('00:00:00');
-            $table->string('closing_hour')->default('00:00:00');
+            $table->string('opening_time')->default('00:00:00');
+            $table->string('closing_time')->default('00:00:00');
             $table->integer('business_id')->unsigned();
             $table->timestamps();
         });
