@@ -301,13 +301,6 @@ hr {
     height: 420px;
 }
 
-#circle {
-  width: 48px;
-  height: 48px;
-  background: red;
-  border-radius: 50px;
-}
-
 #left {
   margin-left: 0;
 }
@@ -324,19 +317,6 @@ hr {
 #roster-date {
     width: 320px;
     box-sizing: border-box;
-}
-
-#search-button {
-    width: 6%;
-    margin: 0.8rem 0;
-    border-radius: 0;
-}
-
-#search-icon {
-    max-width: 60%;
-    height: auto;
-    vertical-align: middle;
-    padding: 8px;
 }
 
 #note {

@@ -186,10 +186,11 @@ php artisan migrate:reset
 php artisan migrate
 php artisan db:seed --class=CustomersTableSeeder
 php artisan db:seed --class=BusinessesTableSeeder
-php artisan db:seed --class=EmployeesTableSeeder
 php artisan db:seed --class=ActivitiesTableSeeder
-php artisan db:seed --class=BookingsTableSeeder
+php artisan db:seed --class=EmployeesTableSeeder
 php artisan db:seed --class=RostersTableSeeder
+php artisan db:seed --class=BookingsTableSeeder
+
 
 ```
 
