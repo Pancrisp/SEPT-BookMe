@@ -21,7 +21,7 @@
             @if($slotPeriod == 0)
                 <input type="number" min="0" name="slot_period" placeholder="Slot Period" value="{!! old('slot_period') !!}" required>
             @else
-                <input type="text" value="{{ $slotPeriod }}" readonly required>
+                <input id="readonly" type="text" value="{{ $slotPeriod }}" readonly required>
             @endif
             <div class="error">{{ $errors->first('slot_period') }}</div>
 
@@ -34,7 +34,7 @@
             <div class="error">{{ $errors->first('num_of_slots') }}</div>
 
             <button type="submit" name="add-another-one" formaction="/business/activity/register/submit/next">Add Service</button>
-            <button type="submit" name="done" formaction="/business/activity/register/submit/done">Finish</button>
+            <button id="end-submit" type="submit" name="done" formaction="/business/activity/register/submit/done">Finish Updating</button>
         </form>
 
     </div>

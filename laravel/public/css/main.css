@@ -113,7 +113,7 @@ button {
   font-size: 15px;
   color: #fff;
   letter-spacing: 1px;
-  line-height: 3em;
+  line-height: 3;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -347,4 +347,22 @@ hr {
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
+}
+
+#readonly {
+    background-color: #cecece;
+}
+
+#end-submit {
+    display: block;
+    margin: 24px 0 16px 0;
+    width: 100%;
+    align-items: center;
+    text-decoration: none;
+    color: #6699ff;
+    line-height: 3;
+    box-sizing: border-box;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    background-color: #fff;
 }
