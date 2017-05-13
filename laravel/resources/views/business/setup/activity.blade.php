@@ -33,8 +33,8 @@
             <input type="number" min="0" name="num_of_slots" placeholder="Number of Slots" value="{!! old('num_of_slots') !!}" required>
             <div class="error">{{ $errors->first('num_of_slots') }}</div>
 
-            <button type="submit" name="add-another-one" formaction="/business/activity/register/submit/next">Add Another One</button>
-            <button type="submit" name="done" formaction="/business/activity/register/submit/done">Done</button>
+            <button type="submit" name="add-another-one" formaction="/business/activity/register/submit/next">Add Service</button>
+            <button type="submit" name="done" formaction="/business/activity/register/submit/done">Finish</button>
         </form>
 
     </div>

@@ -70,7 +70,8 @@ label {
 
 input[type="text"],
 input[type="password"],
-input[type="time"] {
+input[type="time"],
+input[type="number"] {
   margin: 0.8rem 0;
   padding: 15px;
   width: 100%;
@@ -299,6 +300,18 @@ hr {
 
 .card-bg img {
     height: 420px;
+}
+
+.hrs {
+    margin: 8px;
+}
+
+.hrs > label {
+    margin: 0;
+}
+
+.business-hrs {
+    display: flex;
 }
 
 #left {

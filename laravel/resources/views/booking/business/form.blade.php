@@ -19,10 +19,11 @@
 
             <!-- input field to fill up customer's username -->
             <div class="error">{{ $errors->first('username') }}</div>
+            <label>Customer username</label>
             <input type="text" name="username" placeholder="Customer username" value="{!! old('username') !!}">
 
             <!-- displays a calendar for date picking -->
-            <label for="date">Date</label>
+            <label>Date</label>
             <input id="roster-date" type="text" placeholder="Select date" value="">
             <input id="dateHidden" type="hidden" name="date" value="">
 
