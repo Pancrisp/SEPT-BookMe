@@ -168,6 +168,12 @@ class BusinessHourController
         return $validator;
     }
 
+    /**
+     * validate if closing time is after opening time
+     *
+     * @param array $data
+     * @return mixed
+     */
     private function updateValidator(array $data)
     {
         // initialising validator
@@ -236,6 +242,12 @@ class BusinessHourController
         return count($businessHours) == 7;
     }
 
+    /**
+     * update DB according to day input in url
+     *
+     * @param array $data
+     * @return bool
+     */
     private function update(array $data)
     {
         // get data needed
@@ -280,6 +292,12 @@ class BusinessHourController
         return true;
     }
 
+    /**
+     * return an array of days
+     *
+     * @param $type
+     * @return array
+     */
     private function getDays($type)
     {
         $days = [

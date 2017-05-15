@@ -5,6 +5,8 @@
 | dashboard/homepage related routes
 |--------------------------------------------------------------------------
  */
+use Carbon\Carbon;
+
 Route::get('/', 'DashboardController@loadDashboard');
 
 /*

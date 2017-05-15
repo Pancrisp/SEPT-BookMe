@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Booking;
 use App\Business;
+use App\BusinessHour;
 use App\Customer;
 use App\Employee;
 use App\Slot;
@@ -278,7 +279,18 @@ class BookingController
         // get the business
         $business = Business::find($businessID);
 
-        return view('booking.new', compact('request', 'employees', 'activities', 'bookings', 'business', 'error'));
+        // get the day of the date
+        $carbon = new Carbon($date);
+        $day = $carbon->format('l');
+        $day = substr($day, 0, 3);
+
+        // get the business hour from DB
+        $businessHour
+            = BusinessHour::where('business_id', $businessID)
+            ->where('day', $day)
+            ->first();
+
+        return view('booking.new', compact('request', 'employees', 'activities', 'bookings', 'business', 'businessHour', 'error'));
     }
 
     /**
@@ -379,6 +391,16 @@ class BookingController
         $carbonEndTime = $carbonStartTime->addMinute($numOfSlots * $slotPeriod);
         $endTime = $carbonEndTime->toTimeString();
 
+        // get the business hour
+        $businessHour
+            = BusinessHour::where('business_id', $data['business'])
+            ->where('day', $data['day'])
+            ->first();
+
+        // check if booking is within business hour
+        if($startTime < $businessHour['opening_time'].':00' || $endTime > $businessHour['closing_time'].':00')
+            return false;
+
         // get slot of same date, employee, for the time period, if exists
         $slot = Slot::join('bookings', 'bookings.booking_id', 'slots.booking_id')
             ->where('bookings.date', $data['date'])
@@ -387,8 +409,11 @@ class BookingController
             ->where('slots.slot_time', '<', $endTime)
             ->get();
 
-        // return if such slot already booked
-        return (count($slot) == 0);
+        // check if there is any slot booked
+        if(count($slot) != 0)
+            return false;
+
+        return true;
     }
 
     /**

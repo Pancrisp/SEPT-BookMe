@@ -23,6 +23,7 @@
             <input id="business" name="business" value="{{ $request['business'] }}" hidden>
             <input id="customer" name="customer" value="{{ $request['customer'] }}" hidden>
             <input id="date" name="date" value="{{ $request['date'] }}" hidden>
+            <input id="day" name="day" value="{{ $businessHour['day'] }}" hidden>
 
             <!-- displays a drop down list of available services by this business -->
             <label for="service">Service required</label>
@@ -39,7 +40,11 @@
                 <select id="employee" name="employee" required>
                     <option value="0" selected disabled>Choose staff</option>
                     @foreach($employees as $employee)
-                        <option class="employee-option" id="employee-{{ $employee['employee_id'] }}" value="{{ $employee['employee_id'] }}">{{ $employee['employee_name'] }}</option>
+                        <option class="employee-option"
+                                id="employee-{{ $employee['employee_id'] }}"
+                                value="{{ $employee['employee_id'] }}">
+                            {{ $employee['employee_name'] }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -47,7 +52,11 @@
             <!-- input field to enter booking time -->
             <div id="booking-time-picker">
                 <label for="time">Time</label>
-                <input id="time" type="time" name="time" min="09:00" max="18:00" step="1800" placeholder="09:00" required>
+                <input id="time" type="time" name="time"
+                       min="{{ $businessHour['opening_time'] }}"
+                       max="{{ $businessHour['closing_time'] }}"
+                       step="{{ $business['slot_period'] * 60 }}"
+                       required>
             </div>
 
             <!-- unavailable message -->
@@ -66,8 +75,7 @@
         <h2>Current bookings on {{ $request['date'] }}</h2>
         @foreach($activities as $activity)
             <!-- to calculate the length of this activity -->
-            <?php $period = $business['slot_period'] * $activity['num_of_slots'] ?>
-            <h3>{{ $activity['activity_name'] }} ({{ $period }} minutes) Booked</h3>
+            <h3>{{ $activity['activity_name'] }} ({{ $business['slot_period'] * $activity['num_of_slots'] }} minutes) Booked</h3>
 
             <!-- When there is no this type of booking, return message -->
             @if(!count($bookings[$activity['activity_id']]))
