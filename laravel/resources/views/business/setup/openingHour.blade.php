@@ -40,7 +40,7 @@
                         <input id="checkbox-{{ $day['short'] }}" class="checkbox" type="checkbox" name="special_days[]" value="{{ $day['short'] }}">
                         {{ $day['full'] }}
                     </label>
-                    <div class="business-hrs" id="opening-hour-{{ $day['short'] }}" hidden>
+                    <div id="opening-hour-{{ $day['short'] }}" hidden>
                         <div class="hrs" id="open">
                             <label>Opening</label>
                             <input id="opening-time-{{ $day['short'] }}" type="time" name="opening_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800" placeholder="hh:mm">

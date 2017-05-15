@@ -7,6 +7,7 @@ $('.checkbox').change(function(){
 
         if(dayCheckbox[0].checked)
         {
+            openingHour.addClass('business-hrs');
             openingHour.show();
             $('#opening-time-' + currentValue).attr('required',true);
             $('#closing-time-' + currentValue).attr('required',true);
