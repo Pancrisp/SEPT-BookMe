@@ -11,9 +11,33 @@ use Illuminate\Support\Facades\Redirect;
 
 class BusinessHourController
 {
+    /**
+     * display business hours where update is possible
+     * only accessible by business owner
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function businessHour()
     {
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
 
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+
+        // get full days
+        $days = $this->getDays('full');
+
+        // get all business hours of this business
+        foreach($days as $shortDay => $longDay)
+            $businessHours[$shortDay]
+                = BusinessHour::where('business_id', $businessID)
+                ->where('day', $shortDay)
+                ->first();
+
+        return view('business.display.openingHour', compact('days', 'businessHours'));
     }
 
     /**
@@ -69,9 +93,40 @@ class BusinessHourController
         }
     }
 
-    public function updateBusinessHour()
+    /**
+     * called when update form is submitted
+     * validate incoming input
+     * take an extra input from url: the day, or all
+     * redirect back when successfully updated
+     *
+     * @param Request $request
+     * @param $day
+     * @return mixed
+     */
+    public function updateBusinessHour(Request $request, $day)
     {
+        // save the url day into request
+        $request['url_day'] = $day;
 
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+        $request['business_id'] = $businessID;
+
+        // this validates the data
+        $validator = $this->updateValidator($request->all());
+
+        // when validation fails, redirect back with input and error messages
+        if(!$validator['valid']) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator['message']);
+        }
+
+        // redirect back after update DB
+        if($this->update($request->all())) {
+            return Redirect::back();
+        }
     }
 
     /**
@@ -115,7 +170,21 @@ class BusinessHourController
 
     private function updateValidator(array $data)
     {
+        // initialising validator
+        $validator['valid'] = true;
+        $validator['message'] = [];
 
+        // retrieve day submitted in the form
+        $submittedDay = $data['day'];
+
+        // to check closing time is after opening time
+        if ($data['closing_time_'.$submittedDay] < $data['opening_time_'.$submittedDay])
+        {
+            $validator['valid'] = false;
+            $validator['message']['opening_hour_'.$submittedDay] = 'The closing time should be later than the opening time';
+        }
+
+        return $validator;
     }
 
     /**
@@ -169,40 +238,58 @@ class BusinessHourController
 
     private function update(array $data)
     {
+        // get data needed
+        $submittedDay = $data['day'];
+        $urlDay = $data['url_day'];
+        $businessID = $data['business_id'];
+        $openingTime = $data['opening_time_'.$submittedDay];
+        $closingTime = $data['closing_time_'.$submittedDay];
 
+        // if not update all
+        if($urlDay != 'all')
+        {
+            // get specific business hour from DB
+            $businessHour
+                = BusinessHour::where('business_id', $businessID)
+                ->where('day', $submittedDay)
+                ->first();
+
+            // update accordingly and save
+            $businessHour->opening_time = $openingTime;
+            $businessHour->closing_time = $closingTime;
+            $businessHour->save();
+        }
+
+        // if update all
+        else
+        {
+            // get all business hours for this business from DB
+            $businessHours
+                = BusinessHour::where('business_id', $businessID)
+                ->get();
+
+            // update each one and save
+            foreach($businessHours as $businessHour)
+            {
+                $businessHour->opening_time = $openingTime;
+                $businessHour->closing_time = $closingTime;
+                $businessHour->save();
+            }
+        }
+
+        return true;
     }
 
     private function getDays($type)
     {
         $days = [
-            [
-                'short' => 'Mon',
-                'full'  => 'Monday'
-            ],
-            [
-                'short' => 'Tue',
-                'full'  => 'Tuesday'
-            ],
-            [
-                'short' => 'Wed',
-                'full'  => 'Wednesday'
-            ],
-            [
-                'short' => 'Thu',
-                'full'  => 'Thursday'
-            ],
-            [
-                'short' => 'Fri',
-                'full'  => 'Friday'
-            ],
-            [
-                'short' => 'Sat',
-                'full'  => 'Saturday'
-            ],
-            [
-                'short' => 'Sun',
-                'full'  => 'Sunday'
-            ],
+            'Mon' => 'Monday',
+            'Tue' => 'Tuesday',
+            'Wed' => 'Wednesday',
+            'Thu' => 'Thursday',
+            'Fri' => 'Friday',
+            'Sat' => 'Saturday',
+            'Sun' => 'Sunday'
         ];
 
         if($type == 'full')
@@ -210,8 +297,8 @@ class BusinessHourController
         else
         {
             $shortDays = [];
-            foreach ($days as $day)
-                array_push($shortDays, $day['short']);
+            foreach ($days as $key => $value)
+                array_push($shortDays, $key);
 
             return $shortDays;
         }

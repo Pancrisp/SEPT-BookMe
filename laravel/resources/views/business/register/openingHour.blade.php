@@ -44,20 +44,20 @@
             <h2>Special Days</h2>
             <h4>Enter 00:00 for both to indicate a closed day</h4>
             <div>
-                @foreach($days as $day)
+                @foreach($days as $shortDay => $fullDay)
                     <label>
-                        <input id="checkbox-{{ $day['short'] }}"
+                        <input id="checkbox-{{ $shortDay }}"
                                class="checkbox" type="checkbox"
                                name="special_days[]"
-                               value="{{ $day['short'] }}"
-                            @if($errors->first('opening_hour_'.$day['short']))
+                               value="{{ $shortDay }}"
+                            @if($errors->first('opening_hour_'.$shortDay))
                                checked
                             @endif
                         >
-                        {{ $day['full'] }}
+                        {{ $fullDay }}
                     </label>
-                    <div id="opening-hour-{{ $day['short'] }}"
-                         @if(!$errors->first('opening_hour_'.$day['short']))
+                    <div id="opening-hour-{{ $shortDay }}"
+                         @if(!$errors->first('opening_hour_'.$shortDay))
                             hidden
                          @else
                             class="business-hrs"
@@ -65,24 +65,24 @@
                     >
                         <div class="hrs" id="open">
                             <label>Opening</label>
-                            <input id="opening-time-{{ $day['short'] }}" type="time"
-                                   name="opening_time_{{ $day['short'] }}"
+                            <input id="opening-time-{{ $shortDay }}" type="time"
+                                   name="opening_time_{{ $shortDay }}"
                                    min="00:00" max="23:59" step="1800"
                                    placeholder="hh:mm"
-                                   value="{!! old('opening_time_'.$day['short']) !!}">
+                                   value="{!! old('opening_time_'.$shortDay) !!}">
                         </div>
                         <div class="hrs" id="close">
                             <label>Closing</label>
-                            <input id="closing-time-{{ $day['short'] }}" type="time"
-                                   name="closing_time_{{ $day['short'] }}"
+                            <input id="closing-time-{{ $shortDay }}" type="time"
+                                   name="closing_time_{{ $shortDay }}"
                                    min="00:00" max="23:59" step="1800"
                                    placeholder="hh:mm"
-                                   value="{!! old('closing_time_'.$day['short']) !!}">
+                                   value="{!! old('closing_time_'.$shortDay) !!}">
                         </div>
                     </div>
-                    <div class="error">{{ $errors->first('opening_time_'.$day['short']) }}</div>
-                    <div class="error">{{ $errors->first('closing_time_'.$day['short']) }}</div>
-                    <div class="error">{{ $errors->first('opening_hour_'.$day['short']) }}</div>
+                    <div class="error">{{ $errors->first('opening_time_'.$shortDay) }}</div>
+                    <div class="error">{{ $errors->first('closing_time_'.$shortDay) }}</div>
+                    <div class="error">{{ $errors->first('opening_hour_'.$shortDay) }}</div>
                 @endforeach
             </div>
 

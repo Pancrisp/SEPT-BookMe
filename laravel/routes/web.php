@@ -76,7 +76,7 @@ Route::post('/profile/update/submit', 'ProfileController@updateProfile');
 Route::get('/business/hour', 'BusinessHourController@businessHour');
 Route::get('/business/hour/register', 'BusinessHourController@registerBusinessHourForm');
 // Form submission
-Route::post('/business/hour/update/submit', 'BusinessHourController@updateBusinessHour');
+Route::post('/business/hour/update/submit/{day}', 'BusinessHourController@updateBusinessHour');
 Route::post('/business/hour/register/submit', 'BusinessHourController@registerBusinessHour');
 
 /*

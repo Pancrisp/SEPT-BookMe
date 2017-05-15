@@ -94,5 +94,5 @@
 @endsection
 
 @section('pageSpecificJs')
-    <script src="{{ asset('js/opening-hour.js') }}"></script>
+    <script src="{{ asset('opeopening-hour-register.jster.js') }}"></script>
 @endsection
