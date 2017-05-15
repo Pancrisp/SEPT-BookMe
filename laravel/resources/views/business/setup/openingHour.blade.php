@@ -21,11 +21,21 @@
             <div class="business-hrs">
                 <div class="hrs">
                     <label>Opening</label>
-                    <input id="open-hrs" type="time" name="opening_time_all" min="00:00" max="24:00" step="1800" placeholder="hh:mm" required>
+                    <input id="open-hrs" type="time"
+                           name="opening_time_all"
+                           min="00:00" max="24:00" step="1800"
+                           placeholder="hh:mm"
+                           value="{!! old('opening_time_all') !!}"
+                           required>
                 </div>
                 <div class="hrs">
                     <label>Closing</label>
-                    <input id="close-hrs" type="time" name="closing_time_all" min="00:00" max="24:00" step="1800" placeholder="hh:mm" required>
+                    <input id="close-hrs" type="time"
+                           name="closing_time_all"
+                           min="00:00" max="24:00" step="1800"
+                           placeholder="hh:mm"
+                           value="{!! old('closing_time_all') !!}"
+                           required>
                 </div>
             </div>
             <div class="error">{{ $errors->first('opening_time_all') }}</div>
@@ -37,22 +47,43 @@
             <div>
                 @foreach($days as $day)
                     <label>
-                        <input id="checkbox-{{ $day['short'] }}" class="checkbox" type="checkbox" name="special_days[]" value="{{ $day['short'] }}">
+                        <input id="checkbox-{{ $day['short'] }}"
+                               class="checkbox" type="checkbox"
+                               name="special_days[]"
+                               value="{{ $day['short'] }}"
+                            @if($errors->first('opening_hour_'.$day['short']))
+                               checked
+                            @endif
+                        >
                         {{ $day['full'] }}
                     </label>
-                    <div id="opening-hour-{{ $day['short'] }}" hidden>
+                    <div id="opening-hour-{{ $day['short'] }}"
+                         @if(!$errors->first('opening_hour_'.$day['short']))
+                            hidden
+                         @else
+                            class="business-hrs"
+                         @endif
+                    >
                         <div class="hrs" id="open">
                             <label>Opening</label>
-                            <input id="opening-time-{{ $day['short'] }}" type="time" name="opening_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800" placeholder="hh:mm">
+                            <input id="opening-time-{{ $day['short'] }}" type="time"
+                                   name="opening_time_{{ $day['short'] }}"
+                                   min="00:00" max="24:00" step="1800"
+                                   placeholder="hh:mm"
+                                   value="{!! old('opening_time_'.$day['short']) !!}">
                         </div>
                         <div class="hrs" id="close">
                             <label>Closing</label>
-                            <input id="closing-time-{{ $day['short'] }}" type="time" name="closing_time_{{ $day['short'] }}" min="00:00" max="24:00" step="1800" placeholder="hh:mm">
+                            <input id="closing-time-{{ $day['short'] }}" type="time"
+                                   name="closing_time_{{ $day['short'] }}"
+                                   min="00:00" max="24:00" step="1800"
+                                   placeholder="hh:mm"
+                                   value="{!! old('closing_time_'.$day['short']) !!}">
                         </div>
-                        <div class="error">{{ $errors->first('opening_time_'.$day['short']) }}</div>
-                        <div class="error">{{ $errors->first('closing_time_'.$day['short']) }}</div>
-                        <div class="error">{{ $errors->first('opening_hour_'.$day['short']) }}</div>
                     </div>
+                    <div class="error">{{ $errors->first('opening_time_'.$day['short']) }}</div>
+                    <div class="error">{{ $errors->first('closing_time_'.$day['short']) }}</div>
+                    <div class="error">{{ $errors->first('opening_hour_'.$day['short']) }}</div>
                 @endforeach
             </div>
 
