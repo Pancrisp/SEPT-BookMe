@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Activity;
 use App\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class ActivityController
 {
@@ -29,12 +31,37 @@ class ActivityController
         $business = Business::find($businessID);
         $slotPeriod = $business->slot_period;
 
-        return view('business.setup.activity', compact('business' , 'slotPeriod'));
+        return view('business.setup.activity', compact('business', 'slotPeriod'));
     }
 
     public function registerBusinessActivity(Request $request, $action)
     {
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+        $request['business_id'] = $businessID;
 
+        // this validates the data
+        $validator = $this->registerValidator($request->all());
+
+        // when validation fails, redirect back with input and error messages
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        // redirect according to action after saving to DB
+        if($this->save($request->all())) {
+            if($action == 'next')
+                return Redirect::back();
+            elseif($action == 'done')
+            {
+                // set business ready and redirect back to dashboard
+                $this->setBusinessReady($businessID);
+                return Redirect::to('/');
+            }
+        }
     }
 
     public function updateBusinessActivity()
@@ -44,7 +71,11 @@ class ActivityController
 
     private function registerValidator(array $data)
     {
-
+        return Validator::make($data, [
+            'slot_period'   => 'required',
+            'num_of_slots'  => 'required|numeric',
+            'activity_name' => 'required'
+        ]);
     }
 
     private function updateValidator(array $data)
@@ -54,11 +85,31 @@ class ActivityController
 
     private function save(array $data)
     {
+        // get business from DB and save slot period
+        $business = Business::find($data['business_id']);
+        $business->slot_period = $data['slot_period'];
+        $business->save();
 
+        // create and save activity to DB
+        return Activity::create([
+            'activity_name' => $data['activity_name'],
+            'num_of_slots'  => $data['num_of_slots'],
+            'business_id'   => $data['business_id']
+        ]);
     }
 
     private function update(array $data)
     {
 
+    }
+
+    private function setBusinessReady($id)
+    {
+        // get business from DB
+        $business = Business::find($id);
+
+        // set business ready and save to DB
+        $business->ready = true;
+        $business->save();
     }
 }
