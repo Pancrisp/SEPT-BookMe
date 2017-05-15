@@ -42,6 +42,15 @@ class BusinessHourController
         return view('business.setup.openingHour', compact('business', 'days'));
     }
 
+    /**
+     * called when register business hour form is submitted
+     * validate incoming data
+     * redirect back when validation fails
+     * save to DB and redirect to next registration page otherwise
+     *
+     * @param Request $request
+     * @return Redirect
+     */
     public function registerBusinessHour(Request $request)
     {
         // this validates the data
@@ -109,6 +118,14 @@ class BusinessHourController
 
     }
 
+    /**
+     * save business hours accordingly
+     * specifically for special days
+     * generally for all other days
+     *
+     * @param array $data
+     * @return bool
+     */
     private function save(array $data)
     {
         // get auth and business ID
@@ -142,6 +159,7 @@ class BusinessHourController
             ]);
         }
 
+        // get all the instance created, and check if it's 7
         $businessHours
             = BusinessHour::where('business_id', $businessID)
             ->get();
