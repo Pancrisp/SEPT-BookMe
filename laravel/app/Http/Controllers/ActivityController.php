@@ -54,7 +54,8 @@ class ActivityController
         // redirect according to action after saving to DB
         if($this->save($request->all())) {
             if($action == 'next')
-                return Redirect::back();
+                return Redirect::back()
+                    ->withErrors(array('result' => 'Service added successfully! Please enter the next one:'));
             elseif($action == 'done')
             {
                 // set business ready and redirect back to dashboard

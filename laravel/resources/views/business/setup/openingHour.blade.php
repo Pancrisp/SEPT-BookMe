@@ -5,7 +5,6 @@
 @endsection
 
 @section('nav')
-    @include('nav.dashboard')
     @include('nav.logout')
 @endsection
 
