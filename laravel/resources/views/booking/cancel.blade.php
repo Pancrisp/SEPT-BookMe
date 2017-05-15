@@ -11,11 +11,11 @@
 
 @section('content')
 
-    <div>
-        <a href="{{ URL::previous() }}">Cancel another one</a>
-    </div>
-
     <div class="dashboard">
+        <div>
+            <a href="{{ URL::previous() }}">Cancel another one</a>
+        </div>
+
         <h1>Confirm to cancel the following order</h1>
 
         @if(\Illuminate\Support\Facades\Auth::user()['user_type'] == 'customer')

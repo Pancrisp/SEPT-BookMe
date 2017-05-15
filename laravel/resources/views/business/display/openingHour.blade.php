@@ -1,10 +1,11 @@
 @extends('layouts.template')
 
 @section('title')
-    Register business hours - BookMe
+    Update business hours - BookMe
 @endsection
 
 @section('nav')
+    @include('nav.dashboard')
     @include('nav.logout')
 @endsection
 
@@ -22,7 +23,7 @@
                     <label>Opening</label>
                     <input id="open-hrs" type="time"
                            name="opening_time_all"
-                           min="00:00" max="24:00" step="1800"
+                           min="00:00" max="23:59" step="1800"
                            placeholder="hh:mm"
                            value="{!! old('opening_time_all') !!}"
                            required>
@@ -31,7 +32,7 @@
                     <label>Closing</label>
                     <input id="close-hrs" type="time"
                            name="closing_time_all"
-                           min="00:00" max="24:00" step="1800"
+                           min="00:00" max="23:59" step="1800"
                            placeholder="hh:mm"
                            value="{!! old('closing_time_all') !!}"
                            required>
@@ -67,7 +68,7 @@
                             <label>Opening</label>
                             <input id="opening-time-{{ $day['short'] }}" type="time"
                                    name="opening_time_{{ $day['short'] }}"
-                                   min="00:00" max="24:00" step="1800"
+                                   min="00:00" max="23:59" step="1800"
                                    placeholder="hh:mm"
                                    value="{!! old('opening_time_'.$day['short']) !!}">
                         </div>
@@ -75,7 +76,7 @@
                             <label>Closing</label>
                             <input id="closing-time-{{ $day['short'] }}" type="time"
                                    name="closing_time_{{ $day['short'] }}"
-                                   min="00:00" max="24:00" step="1800"
+                                   min="00:00" max="23:59" step="1800"
                                    placeholder="hh:mm"
                                    value="{!! old('closing_time_'.$day['short']) !!}">
                         </div>

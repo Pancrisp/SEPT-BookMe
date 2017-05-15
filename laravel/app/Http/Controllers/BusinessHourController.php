@@ -39,7 +39,7 @@ class BusinessHourController
         // get days array
         $days = $this->getDays('full');
 
-        return view('business.setup.openingHour', compact('business', 'days'));
+        return view('business.register.openingHour', compact('business', 'days'));
     }
 
     /**

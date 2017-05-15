@@ -61,17 +61,33 @@ Route::get('/roster/staff/get/byActivity', 'RosterController@getStaffByActivity'
 
 /*
 |--------------------------------------------------------------------------
-| setting related routes
+| profile related routes
 |--------------------------------------------------------------------------
  */
 Route::get('/profile', 'ProfileController@profile');
-Route::get('/business/hour', 'BusinessController@businessHour');
-Route::get('/business/hour/register', 'BusinessHourController@registerBusinessHourForm');
-Route::get('/business/activity', 'ActivityController@businessActivity');
-Route::get('/business/activity/register', 'ActivityController@registerBusinessActivityForm');
 // Form submission
 Route::post('/profile/update/submit', 'ProfileController@updateProfile');
-Route::get('/business/hour/submit', 'BusinessController@updateBusinessHour');
-Route::get('/business/activity/submit', 'ActivityController@updateBusinessActivity');
+
+/*
+|--------------------------------------------------------------------------
+| business hour related routes
+|--------------------------------------------------------------------------
+ */
+Route::get('/business/hour', 'BusinessHourController@businessHour');
+Route::get('/business/hour/register', 'BusinessHourController@registerBusinessHourForm');
+// Form submission
+Route::post('/business/hour/update/submit', 'BusinessHourController@updateBusinessHour');
 Route::post('/business/hour/register/submit', 'BusinessHourController@registerBusinessHour');
-Route::post('/business/activity/register/submit/{action}', 'ActivityController@registerBusinessActivity');
+
+/*
+|--------------------------------------------------------------------------
+| business activity related routes
+|--------------------------------------------------------------------------
+ */
+Route::get('/business/activity', 'ActivityController@businessActivity');
+Route::get('/business/activity/{action}', 'ActivityController@addBusinessActivityForm');
+Route::get('/business/activity/{action}/{id}', 'ActivityController@changeBusinessActivityForm');
+// Form submission
+Route::post('/business/activity/submit/{action}', 'ActivityController@addBusinessActivity');
+Route::post('/business/activity/update/submit', 'ActivityController@updateBusinessActivity');
+Route::post('/business/activity/delete/submit', 'ActivityController@deleteBusinessActivity');

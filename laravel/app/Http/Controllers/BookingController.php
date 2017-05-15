@@ -229,7 +229,7 @@ class BookingController
         Booking::find($bookingID)->delete();
 
         // redirect back to booking summary
-        return Redirect::to('/booking/summary');
+        return Redirect::to('/booking/summary/today');
     }
 
     /**

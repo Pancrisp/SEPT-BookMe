@@ -34,8 +34,8 @@
             <input type="text" name="activity_name" placeholder="Service Name" value="{!! old('activity_name') !!}" required>
             <div class="error">{{ $errors->first('activity_name') }}</div>
 
-            <button type="submit" name="add-another-one" formaction="/business/activity/register/submit/next">Add another Service</button>
-            <button id="end-submit" type="submit" name="done" formaction="/business/activity/register/submit/done">Done</button>
+            <button type="submit" name="add-another-one" formaction="/business/activity/submit/next">Add another Service</button>
+            <button id="end-submit" type="submit" name="done" formaction="/business/activity/submit/done">Done</button>
         </form>
 
     </div>
