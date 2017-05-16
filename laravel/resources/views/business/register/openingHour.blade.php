@@ -4,10 +4,6 @@
     Register business hours - BookMe
 @endsection
 
-@section('nav')
-    @include('nav.logout')
-@endsection
-
 @section('content')
 
     <div class="box">
@@ -18,19 +14,17 @@
 
             <h2 for="time">Business Hours</h2>
             <div class="business-hrs">
-                <div class="hrs">
+                <div class="hrs-open">
                     <label>Opening</label>
-                    <input id="open-hrs" type="time"
-                           name="opening_time_all"
+                    <input type="time" name="opening_time_all"
                            min="00:00" max="23:59" step="1800"
                            placeholder="hh:mm"
                            value="{!! old('opening_time_all') !!}"
                            required>
                 </div>
-                <div class="hrs">
+                <div class="hrs-close">
                     <label>Closing</label>
-                    <input id="close-hrs" type="time"
-                           name="closing_time_all"
+                    <input type="time" name="closing_time_all"
                            min="00:00" max="23:59" step="1800"
                            placeholder="hh:mm"
                            value="{!! old('closing_time_all') !!}"
@@ -63,7 +57,7 @@
                             class="business-hrs"
                          @endif
                     >
-                        <div class="hrs" id="open">
+                        <div class="hrs-open">
                             <label>Opening</label>
                             <input id="opening-time-{{ $shortDay }}" type="time"
                                    name="opening_time_{{ $shortDay }}"
@@ -71,7 +65,7 @@
                                    placeholder="hh:mm"
                                    value="{!! old('opening_time_'.$shortDay) !!}">
                         </div>
-                        <div class="hrs" id="close">
+                        <div class="hrs-close">
                             <label>Closing</label>
                             <input id="closing-time-{{ $shortDay }}" type="time"
                                    name="closing_time_{{ $shortDay }}"
@@ -86,7 +80,7 @@
                 @endforeach
             </div>
 
-            <button type="submit" name="next">next</button>
+            <button type="submit" name="next">Next</button>
         </form>
 
     </div>

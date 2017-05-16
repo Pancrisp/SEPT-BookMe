@@ -4,10 +4,6 @@
     Register services - BookMe
 @endsection
 
-@section('nav')
-    @include('nav.logout')
-@endsection
-
 @section('content')
 
     <div class="box">
