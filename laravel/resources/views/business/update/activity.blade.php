@@ -12,11 +12,7 @@
 @section('content')
 
     <div class="box">
-        <div>
-            <a href="{{ URL::previous() }}">Update another one</a>
-        </div>
-
-        <h1>Update Business Services</h1>
+        <h1>Update Business Services for {{ $business['business_name'] }}</h1>
 
         <form action="/business/activity/update/submit" method="post">
             {{ csrf_field() }}
@@ -36,7 +32,11 @@
             <input type="number" min="0" name="slot_period" placeholder="Slot Period" value="{{ $business['slot_period'] }}" required>
             <div class="error">{{ $errors->first('slot_period') }}</div>
 
-            <button type="submit">Update</button>
+            <div class="form-controls">
+                <a class="btn-back" href="/business/activity">Back</a>
+                <button class="btn-update" type="submit">Update</button>
+            </div>
+
         </form>
 
     </div>
