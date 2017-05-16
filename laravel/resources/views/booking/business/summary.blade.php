@@ -5,14 +5,16 @@
 @endsection
 
 @section('nav')
-    @include('nav.dashboard')
-    @include('nav.logout')
+
 @endsection
 
 @section('content')
 
-    <div class="dashboard">
-
+    <div class="dashboard" id="booking-summary">
+        <nav id="nav-summary">
+            @include('nav.dashboard')
+            @include('nav.logout')
+        </nav>
         <hr>
         @foreach($types as $type)
             <span class="

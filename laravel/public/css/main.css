@@ -94,7 +94,7 @@ input[type="checkbox"] {
 select {
     width: 320px;
     margin: 0.8rem 0;
-    padding: 15px;
+    padding: 12px 16px;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.9rem;
     background-color: #f9f9f9;
@@ -119,24 +119,22 @@ button {
     box-sizing: border-box;
 }
 
-table, th, tr, td {
-    border: 1px solid black;
-}
-
-td {
-    padding: 5px;
-    text-align: left;
-    background-color: #e5e5e5;
-}
-
-th {
-    padding: 5px;
-    text-align: left;
-    background-color: #adadad;
-}
-
 table {
     width: 100%;
+    border: 1px solid #afafaf;
+    border-collapse: collapse;
+}
+
+th, tr, td {
+    border: 1px solid #afafaf;
+    border-left: none;
+    border-right: none;
+}
+
+td, th {
+    padding: 12px;
+    text-align: left;
+    background-color: #e5e5e5;
 }
 
 hr {
@@ -376,6 +374,10 @@ hr {
   margin-left: 0;
 }
 
+#booking-summary, #nav-summary {
+    max-width: 1280px;
+}
+
 #greeting {
     font-size: 2.5rem;
 }
@@ -399,7 +401,7 @@ hr {
 }
 
 #day {
-    font-size: 20px;    
+    font-size: 20px;
 }
 
 #receipt {
