@@ -259,6 +259,10 @@ hr {
     display: flex;
 }
 
+.update-controls {
+    margin: 0 0 24px 0;
+}
+
 .btn-back {
     flex: 1;
     margin: 24px 8px 0 0;
@@ -276,7 +280,14 @@ hr {
     background-color: #fff;
     border: 1px solid #afafaf;
     border-radius: 4px;
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
     box-sizing: border-box;
+}
+
+.btn-back:hover {
+    color: #fff;
+    background-color: #6699ff;
+    border: 1px solid #6699ff;
 }
 
 .btn-delete {
@@ -385,6 +396,10 @@ hr {
 
 #table-time {
     width: 240px;
+}
+
+#day {
+    font-size: 20px;    
 }
 
 #receipt {

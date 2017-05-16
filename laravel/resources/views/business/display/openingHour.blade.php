@@ -45,12 +45,10 @@
                      hidden
                      @endif
                 >
-                    <label>
+                    <label id="day">
                         <input id="checkbox-{{ $shortDay }}"
-                               type="checkbox"
-                               name="day"
-                               value="{{ $shortDay }}"
-                               hidden
+                               type="checkbox" name="day"
+                               value="{{ $shortDay }}" hidden
                                @if($errors->first('opening_hour_'.$shortDay))
                                checked
                                 @endif
@@ -58,7 +56,7 @@
                         {{ $fullDay }}
                     </label>
                     <div class="business-hrs">
-                        <div class="hrs" id="open">
+                        <div class="hrs-open">
                             <label>Opening</label>
                             <input id="opening-time-{{ $shortDay }}" type="time"
                                    name="opening_time_{{ $shortDay }}"
@@ -66,7 +64,7 @@
                                    placeholder="hh:mm"
                                    value="{{ $businessHours[$shortDay]['opening_time'] }}">
                         </div>
-                        <div class="hrs" id="close">
+                        <div class="hrs-close">
                             <label>Closing</label>
                             <input id="closing-time-{{ $shortDay }}" type="time"
                                    name="closing_time_{{ $shortDay }}"
@@ -78,8 +76,8 @@
                     <div class="error">{{ $errors->first('opening_time_'.$shortDay) }}</div>
                     <div class="error">{{ $errors->first('closing_time_'.$shortDay) }}</div>
                     <div class="error">{{ $errors->first('opening_hour_'.$shortDay) }}</div>
-                    <button type="submit" formaction="/business/hour/update/submit/{{ $shortDay }}">Update</button>
-                    <button type="submit" formaction="/business/hour/update/submit/all">Update All</button>
+                    <button class="update-controls" type="submit" formaction="/business/hour/update/submit/{{ $shortDay }}">Update</button>
+                    <button class="update-controls" type="submit" formaction="/business/hour/update/submit/all">Update All</button>
                 </div>
             @endforeach
         </form>
