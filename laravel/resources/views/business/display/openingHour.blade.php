@@ -17,9 +17,9 @@
         <table>
             <thead>
             <tr>
-                <th></th>
+                <th>Day</th>
                 <th>Opening Hours</th>
-                <th></th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
