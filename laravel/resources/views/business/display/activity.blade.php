@@ -30,8 +30,8 @@
                     <td>{{ $activity['num_of_slots'] }}</td>
                     <td>{{ $activity['num_of_slots'] * $business['slot_period'] }} minutes</td>
                     <td>
-                        <a href="/business/activity/update/{{ $activity['activity_id'] }}">update</a>
-                        <a href="/business/activity/delete/{{ $activity['activity_id'] }}">delete</a>
+                        <a class="icons" href="/business/activity/update/{{ $activity['activity_id'] }}"><img id="edit" src="/img/edit.png" alt="edit"></a>
+                        <a class="icons" href="/business/activity/delete/{{ $activity['activity_id'] }}"><img id="delete" src="/img/delete.png" alt="delete"></a>
                     </td>
                 </tr>
             @endforeach

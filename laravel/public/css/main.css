@@ -261,6 +261,10 @@ hr {
     margin: 0 0 24px 0;
 }
 
+.icons {
+    margin-right: 4px;
+}
+
 .btn-back {
     flex: 1;
     margin: 24px 8px 0 0;
@@ -404,14 +408,15 @@ hr {
     font-size: 20px;
 }
 
-#delete {
+#delete, #edit {
     width: 16px;
     padding: 4px;
     border-radius: 50%;
     border: 1px solid #d2d2d2;
+    cursor: pointer;
 }
 
-#delete:hover {
+#delete:hover, #edit:hover {
     background-color: #e0e0e0;
 }
 

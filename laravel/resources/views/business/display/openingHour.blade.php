@@ -31,7 +31,7 @@
                     @else
                         <td>Closed</td>
                     @endif
-                    <td><span class="update-business-hour" data-day="{{ $shortDay }}">update</span></td>
+                    <td><span class="update-business-hour" data-day="{{ $shortDay }}"><img id="edit" src="/img/edit.png" alt="edit"></span></td>
                 </tr>
             @endforeach
             </tbody>
