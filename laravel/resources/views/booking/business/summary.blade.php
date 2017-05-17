@@ -60,7 +60,9 @@
                         <td>{{ $booking['email_address'] }}</td>
                         <!-- disabling cancel on history page -->
                         @if($typeSelected != 'history' && $typeSelected != 'today')
-                            <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">Cancel</a></td>
+                            <td><a href="/booking/cancel/{{ $booking['booking_id'] }}">
+                                <img id="delete" src="/img/delete.png" alt="delete">
+                            </a></td>
                         @endif
                     </tr>
                 @endforeach

@@ -121,12 +121,12 @@ button {
 
 table {
     width: 100%;
-    border: 1px solid #afafaf;
+    border: 2px solid #6699ff;
     border-collapse: collapse;
 }
 
 th, tr, td {
-    border: 1px solid #afafaf;
+    border: 1px solid #d2d2d2;
     border-left: none;
     border-right: none;
 }
@@ -134,7 +134,7 @@ th, tr, td {
 td, th {
     padding: 12px;
     text-align: left;
-    background-color: #e5e5e5;
+    background-color: #f2f2f2;
 }
 
 hr {
@@ -402,6 +402,17 @@ hr {
 
 #day {
     font-size: 20px;
+}
+
+#delete {
+    width: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    border: 1px solid #d2d2d2;
+}
+
+#delete:hover {
+    background-color: #e0e0e0;
 }
 
 #receipt {
