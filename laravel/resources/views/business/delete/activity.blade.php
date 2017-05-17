@@ -12,7 +12,7 @@
 @section('content')
 
     <div class="dashboard">
-        <h1>Deletion confirmation</h1>
+        <h1>Delete confirmation</h1>
 
         <table>
             <thead>

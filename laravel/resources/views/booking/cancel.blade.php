@@ -12,11 +12,7 @@
 @section('content')
 
     <div class="dashboard">
-        <div>
-            <a href="{{ URL::previous() }}">Cancel another one</a>
-        </div>
-
-        <h1>Confirm to cancel the following order</h1>
+        <h1>Cancel confirmation</h1>
 
         @if(\Illuminate\Support\Facades\Auth::user()['user_type'] == 'customer')
             <table>
@@ -77,8 +73,12 @@
         <form action="/booking/cancel/submit" method="post">
             {{ csrf_field() }}
             <input id="booking" name="booking" value="{{ $booking['booking_id'] }}" hidden>
-            <button type="submit">Confirm to Cancel</button>
+            <div class="form-controls">
+                <a class="btn-back" href="/booking">Back</a>
+                <button class="btn-delete" type="submit">Cancel</button>
+            </div>
         </form>
+    </div>
 
 @endsection
 
