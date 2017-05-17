@@ -119,6 +119,10 @@ button {
     box-sizing: border-box;
 }
 
+button:hover {
+    background-color: #548dff;
+}
+
 table {
     width: 100%;
     border: 2px solid #6699ff;
@@ -298,7 +302,12 @@ hr {
     color: #fff;
     background-color: #d30;
     border-radius: 4px;
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
     box-sizing: border-box;
+}
+
+.btn-delete:hover {
+    background-color: #bc0000;
 }
 
 .btn-update {

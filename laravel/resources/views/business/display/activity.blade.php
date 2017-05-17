@@ -39,7 +39,6 @@
         </table>
 
         <a href="/business/activity/add"><button>Add New Service</button></a>
-
     </div>
 
 @endsection
