@@ -37,8 +37,9 @@
                 </tbody>
             </table>
         @else
-            <div>
-                There is no staff. <a href="/staff/add">Add new staff</a>
+            <div class="empty-state">
+                <h3>There is no staff.</h3>
+                <a class="btn-state" href="/roster/add">Add staff</a>
             </div>
         @endif
     </div>

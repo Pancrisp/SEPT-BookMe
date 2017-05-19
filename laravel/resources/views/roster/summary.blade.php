@@ -41,8 +41,9 @@
                 @endforeach
             </table>
         @else
-            <div>
-                There is no roster. <a href="/roster/add">Add new roster</a>
+            <div class="empty-state">
+                <h3>There is no roster.</h3>
+                <a class="btn-state" href="/roster/add">Add roster</a>
             </div>
         @endif
     </div>

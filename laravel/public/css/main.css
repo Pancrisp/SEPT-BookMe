@@ -256,6 +256,9 @@ hr {
     max-width: 960px;
     margin: 3rem auto;
 }
+.icons {
+    margin-right: 4px;
+}
 
 .form-controls {
     display: flex;
@@ -265,8 +268,26 @@ hr {
     margin: 0 0 24px 0;
 }
 
-.icons {
-    margin-right: 4px;
+.empty-state {
+    text-align: center;
+}
+
+.btn-state {
+    padding: 8px 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 1.5px;
+    line-height: 5;
+    color: #6699ff;
+    background-color: #fff;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
+    box-sizing: border-box;
 }
 
 .btn-back {
@@ -290,7 +311,7 @@ hr {
     box-sizing: border-box;
 }
 
-.btn-back:hover {
+.btn-back:hover, .btn-state:hover {
     color: #fff;
     background-color: #6699ff;
     border: 1px solid #6699ff;
