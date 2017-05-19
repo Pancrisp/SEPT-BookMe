@@ -160,6 +160,14 @@ hr {
     margin: 0 auto;
 }
 
+.overview-container {
+    display: flex;
+}
+
+.overview {
+    flex: 1;
+}
+
 .form-booking {
     margin: 0;
 }
