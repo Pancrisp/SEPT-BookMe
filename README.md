@@ -68,7 +68,7 @@ Note: commands used in this installation tutorial have been tested in Ubuntu.
 
 ## INSTALLING USING DOCKER - LARADOCK
 
-### GETTING BOOKME! 
+### GETTING BOOKME!
 Clone this project's repository from Github.
 ```
 git clone https://github.com/Pancrisp/SEPT-Copsicus.git
@@ -83,7 +83,7 @@ Edit .env so the database host points at 'mysql'
 ```DB_HOST=mysql```
 
 ## SETTING UP TESTING ENVIRONMENT
-To run dusk tests with selenium, edit the file 'tests/DuskTestCase.php' 
+To run dusk tests with selenium, edit the file 'tests/DuskTestCase.php'
 Find and replace the function 'driver()' so it returns a driver pointing at selenium server.
 ```
     return RemoteWebDriver::create(
@@ -97,22 +97,21 @@ Go into laravel folder. Copy and rename .env
 Edit '.env.dusk.local' so the APP_URL points at 'nginx'
 ```APP_URL=http://nginx```
 
-
 ### DOCKER
 
-### Docker installation 
+### Docker installation
 The first step is to install docker. It can be found here, depending on your operative system:
 [DOCKER] (https://www.docker.com/get-docker)
 
 
-### GETTING LARADOCK UP AND RUNNING 
+### GETTING LARADOCK UP AND RUNNING
 
-### SETTING UP DOCKER 
+### SETTING UP DOCKER
 
 Install docker-composer in case is missing
 ```sudo apt-get install docker-compose```
 
-Update your user and permissions 
+Update your user and permissions
 Add your user to www-data group and update permissions to grant access
 ```
 sudo usermod -a -G www-data {your_user}
@@ -130,7 +129,7 @@ Enter the Workspace container from laradock folder
 
 Inside this bash, it is possible to run php commands that affect directly our BookMe! project.
 
-Let's update the project dependencies. 
+Let's update the project dependencies.
 ```composer update```
 
 Install laravel dusk to run the tests.
@@ -157,20 +156,12 @@ To run the tests go into the workspace container bash and run:
 ```php artisan dusk```
 
 In this ocasion there won't be any Gui for the tests since it is running in the selenium container.
- 
+
 ### ENJOY
 Visit localhost in your web browser and our BookeMe app should be running.
 
 
 ## STANDALONE INSTALLATION
-To run the project there are a few dependencies that need to be installed:
-* PHP
-* MYSQL
-* LARAVEL
-
-
-## APP INSTALLATION
-
 To run the project there are a few dependencies that need to be installed:
 * PHP
 * MYSQL
@@ -297,8 +288,6 @@ php artisan db:seed --class=ActivitiesTableSeeder
 php artisan db:seed --class=EmployeesTableSeeder
 php artisan db:seed --class=RostersTableSeeder
 php artisan db:seed --class=BookingsTableSeeder
-
-
 ```
 
 In case some class not found errors arise after executing the seeding, please run:
