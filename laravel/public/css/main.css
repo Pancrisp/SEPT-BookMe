@@ -70,9 +70,10 @@ label {
 
 input[type="text"],
 input[type="password"],
-input[type="time"] {
+input[type="time"],
+input[type="number"] {
   margin: 0.8rem 0;
-  padding: 15px;
+  padding: 12px 16px;
   width: 100%;
   font-family: 'Open Sans', sans-serif;
   font-size: 0.9rem;
@@ -93,7 +94,7 @@ input[type="checkbox"] {
 select {
     width: 320px;
     margin: 0.8rem 0;
-    padding: 15px;
+    padding: 12px 16px;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.9rem;
     background-color: #f9f9f9;
@@ -102,45 +103,52 @@ select {
 }
 
 button {
-  width: 100%;
-  margin-top: 20px;
-  background-color: #6699ff;
-  border: none;
-  border-radius: 4px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  color: #fff;
-  letter-spacing: 1px;
-  line-height: 3em;
-  text-transform: uppercase;
-  cursor: pointer;
+    width: 100%;
+    margin-top: 24px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 2.5;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background-color: #6699ff;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-table, th, tr, td {
-    border: 1px solid black;
-}
-
-td {
-    padding: 5px;
-    text-align: left;
-    background-color: #e5e5e5;
-}
-
-th {
-    padding: 5px;
-    text-align: left;
-    background-color: #adadad;
+button:hover {
+    background-color: #548dff;
 }
 
 table {
     width: 100%;
+    border: 2px solid #6699ff;
+    border-collapse: collapse;
+}
+
+th, tr, td {
+    border: 1px solid #d2d2d2;
+    border-left: none;
+    border-right: none;
+}
+
+td, th {
+    padding: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+hr {
+    margin: 24px 0;
 }
 
 .container {
   margin: 0 auto;
-  padding: 50px 0;
-  background-color: #ff8754;
+  padding: 16px 0 32px 0;
+  background-color: rgba(255, 135, 84, 0.8);
 }
 
 .box {
@@ -150,6 +158,14 @@ table {
 .dashboard {
     max-width: 960px;
     margin: 0 auto;
+}
+
+.overview-container {
+    display: flex;
+}
+
+.overview {
+    flex: 1;
 }
 
 .form-booking {
@@ -209,8 +225,8 @@ table {
     background: #4280ff;
 }
 
-.list-dates a {
-    margin: 0 10px;
+.list-page a {
+    margin: 24px 24px 0 0;
     padding: 8px 12px;
     color: #6699ff;
     background-color: #fff;
@@ -221,12 +237,8 @@ table {
     box-sizing: border-box;
 }
 
-.list-dates a:hover {
-    background-color: #e5e5e5;
-}
-
-.list-dates-selected a {
-    margin: 0 10px;
+.list-page-selected a {
+    margin: 24px 24px 0 0;
     padding: 8px 12px;
     color: #fff;
     background-color: #6699ff;
@@ -237,21 +249,175 @@ table {
     box-sizing: border-box;
 }
 
+.list-page a:hover {
+    background-color: #e5e5e5;
+}
+
 .receipt-info {
     margin: 24px 0 8px;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-#circle {
-  width: 48px;
-  height: 48px;
-  background: red;
-  border-radius: 50px;
+.reg-selection {
+    display: flex;
+    max-width: 960px;
+    margin: 3rem auto;
+}
+.icons {
+    margin-right: 4px;
+}
+
+.form-controls {
+    display: flex;
+}
+
+.update-controls {
+    margin: 0 0 24px 0;
+}
+
+.empty-state {
+    text-align: center;
+}
+
+.btn-state {
+    padding: 8px 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 1.5px;
+    line-height: 5;
+    color: #6699ff;
+    background-color: #fff;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
+    box-sizing: border-box;
+}
+
+.btn-back {
+    flex: 1;
+    margin: 24px 8px 0 0;
+    padding: 1px 6px;
+    height: 42px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: 1.5px;
+    line-height: 2.5;
+    color: #6699ff;
+    background-color: #fff;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
+    box-sizing: border-box;
+}
+
+.btn-back:hover, .btn-state:hover {
+    color: #fff;
+    background-color: #6699ff;
+    border: 1px solid #6699ff;
+}
+
+.btn-delete {
+    flex: 1;
+    margin-left: 8px;
+    color: #fff;
+    background-color: #d30;
+    border-radius: 4px;
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
+    box-sizing: border-box;
+}
+
+.btn-delete:hover {
+    background-color: #bc0000;
+}
+
+.btn-update {
+    flex: 1;
+    margin-left: 8px;
+}
+
+.hrs-open {
+    flex: 1;
+    margin-right: 8px;
+}
+
+.hrs-close {
+    flex: 1;
+    margin-left: 8px;
+}
+
+.hrs-open label,
+.hrs-close label {
+    margin: 0;
+}
+
+.business-hrs {
+    display: flex;
+    margin: 24px 0;
+}
+
+.card-register {
+    flex: 1;
+    margin: 0 32px;
+    background-color: #efefef;
+    border-radius: 4px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.15);
+    transition: all 200ms cubic-bezier(.02, .01, .47, 1);
+    overflow: hidden;
+    text-align: left;
+}
+
+.card-register:hover {
+    transform: scale(1.03);
+    box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+}
+
+.card-link {
+    height: 100%;
+    display: block;
+    text-decoration: none;
+}
+
+.card-info {
+    padding: 1.5em;
+    color: #111;
+}
+
+.card-info h2 {
+    margin: 0;
+}
+
+.card-info ul {
+    margin: 0;
+    padding: 0;
+}
+
+.card-info p {
+    margin: 16px 0 0;
+}
+
+.card-bg {
+    height: 420px;
+}
+
+.card-bg img {
+    height: 420px;
 }
 
 #left {
   margin-left: 0;
+}
+
+#booking-summary, #nav-summary {
+    max-width: 1280px;
 }
 
 #greeting {
@@ -268,25 +434,28 @@ table {
     box-sizing: border-box;
 }
 
-#search-button {
-    width: 6%;
-    margin: 0.8rem 0;
-    border-radius: 0;
-}
-
-#search-icon {
-    max-width: 60%;
-    height: auto;
-    vertical-align: middle;
-    padding: 8px;
-}
-
 #note {
     margin-top: 16px;
 }
 
 #table-time {
     width: 240px;
+}
+
+#day {
+    font-size: 20px;
+}
+
+#delete, #edit {
+    width: 16px;
+    padding: 4px;
+    border-radius: 50%;
+    border: 1px solid #d2d2d2;
+    cursor: pointer;
+}
+
+#delete:hover, #edit:hover {
+    background-color: #e0e0e0;
 }
 
 #receipt {
@@ -296,4 +465,22 @@ table {
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
+}
+
+#readonly {
+    background-color: #cecece;
+}
+
+#end-submit {
+    display: block;
+    margin: 24px 0 16px 0;
+    width: 100%;
+    align-items: center;
+    text-decoration: none;
+    color: #6699ff;
+    line-height: 3;
+    box-sizing: border-box;
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    background-color: #fff;
 }

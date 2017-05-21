@@ -18,7 +18,7 @@ class RostersTableSeeder extends Seeder
     public function run()
     {
         // get today's date
-        $date = Carbon::today();
+        $date = Carbon::today(new DateTimeZone('Australia/Melbourne'));
         // get activities from DB
         $activities = Activity::all();
 

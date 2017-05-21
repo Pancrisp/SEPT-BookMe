@@ -24,14 +24,14 @@ class BookingsTableSeeder extends Seeder
     public function run()
     {
         // get today's date
-        $date = Carbon::today();
+        $date = Carbon::today(new DateTimeZone('Australia/Melbourne'));
 
         // get number of some elements from DB
         $numOfCustomers = Customer::count();
         $numOfBusinesses = Business::count();
 
-        // create bookings for the next 5 days
-        for($i=0; $i<5; $i++)
+        // create bookings for the next 7 days
+        for($i=0; $i<7; $i++)
         {
             // randomly pick a starting time for the 1st booking
             $hour = rand(9, 11);

@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 
 use App\Activity;
+use App\Booking;
+use App\Business;
 use App\Employee;
+use App\Roster;
+use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -35,7 +40,7 @@ class EmployeeController
             = Activity::where('business_id', $businessID)
             ->get();
 
-        return view('newStaff', compact('activities', 'businessID'));
+        return view('staff.new', compact('activities', 'businessID'));
     }
 
     /**
@@ -69,7 +74,7 @@ class EmployeeController
 
     /**
      * view staff summary
-     * includes name, TFN, contact, activity, available days
+     * nav name, TFN, contact, activity, available days
      * only accessible by business owner
      *
      * get employees and their activities from DB and return to view
@@ -91,7 +96,71 @@ class EmployeeController
             ->where('employees.business_id', $businessID)
             ->get();
 
-        return view('staffSummary', compact('employees'));
+        return view('staff.summary', compact('employees'));
+    }
+
+    /**
+     * display bookings based on date and employee
+     * only accessible by business owner
+     *
+     * date is passed in the request, if not by default tomorrow
+     * employees should be those rostered on the date
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAvailability(Request $request)
+    {
+        // redirect to login page if not authenticated, or incorrect user type
+        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+            return Redirect::to('/login');
+
+        // get auth and business ID
+        $auth = Auth::user();
+        $businessID = $auth['foreign_id'];
+
+        // get start and end date of next 7 days
+        $tomorrow = Carbon::now(new DateTimeZone('Australia/Melbourne'))->addDay();
+        $aWeekLater = Carbon::now(new DateTimeZone('Australia/Melbourne'))->addWeek();
+
+        // get business
+        $business = Business::find($businessID);
+
+        // get dates of next 7 days from roster table of this business
+        $dates = Roster::select('rosters.date')
+            ->join('employees', 'employees.employee_id', 'rosters.employee_id')
+            ->where('employees.business_id', $businessID)
+            ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
+            ->orderBy('rosters.date')
+            ->groupBy('rosters.date')
+            ->get();
+
+        // get date selected from request, if not set, by default tomorrow
+        $dateSelected = isset($request['date'])? $request['date']: $tomorrow->toDateString();
+
+        // get employees rostered on the date selected
+        $employees = Employee::join('rosters', 'rosters.employee_id', 'employees.employee_id')
+            ->join('activities', 'activities.activity_id', 'employees.activity_id')
+            ->where('employees.business_id', $businessID)
+            ->where('rosters.date', $dateSelected)
+            ->orderBy('employees.activity_id')
+            ->get();
+
+        // loop through each employee to get bookings
+        $bookings = [];
+        foreach ($employees as $employee)
+        {
+            $bookings[$employee['employee_id']]
+                = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
+                ->join('activities', 'activities.activity_id', 'employees.activity_id')
+                ->join('customers', 'customers.customer_id', 'bookings.customer_id')
+                ->where('bookings.employee_id', $employee['employee_id'])
+                ->where('bookings.date', $dateSelected)
+                ->orderBy('bookings.start_time')
+                ->get();
+        }
+
+        return view('staff.availability', compact('bookings', 'employees', 'dates', 'business', 'dateSelected'));
     }
 
     /**
@@ -117,7 +186,7 @@ class EmployeeController
             Employee::where('business_id', $businessID)
             ->get();
 
-        return view('updateStaff', compact('employees', 'businessID'));
+        return view('staff.update', compact('employees', 'businessID'));
     }
 
     /**

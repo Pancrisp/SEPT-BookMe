@@ -16,7 +16,7 @@ class AddEmployeeTest extends DuskTestCase
 	*  @group accepted
 	*  @group addEmployee
 	*	
-	*  Unit test for unauthenticated business owner attempting to add a 		*  new employee.
+	*  Unit test for unauthenticated business owner attempting to add a new employee.
 	*
 	*  @return void
 	*/
@@ -61,7 +61,7 @@ class AddEmployeeTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->owner_name)
-			    ->clickLink('New Staff')
+			    ->clickLink('New staff')
 			    ->assertPathIs('/staff/add')
 			    ->type('fullname',$employee->employee_name)
 			    ->type('phone',$employee->mobile_phone)
@@ -112,7 +112,7 @@ class AddEmployeeTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->owner_name)
-			    ->clickLink('New Staff')
+			    ->clickLink('New staff')
 			    ->assertPathIs('/staff/add')
 			    ->type('fullname',$employee->employee_name)
 			    ->type('phone',$employee->mobile_phone)
@@ -136,7 +136,7 @@ class AddEmployeeTest extends DuskTestCase
 				    ->press('login')
 				    ->assertPathIs('/')   
 				    ->assertSee('Hello, '.$owner->owner_name)
-				    ->clickLink('New Staff')
+				    ->clickLink('New staff')
 				    ->assertPathIs('/staff/add')
 				    ->type('fullname',$new_employee->employee_name)
 				    ->type('phone',$new_employee->mobile_phone)
@@ -192,7 +192,7 @@ class AddEmployeeTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->owner_name)
-			    ->clickLink('New Staff')
+			    ->clickLink('New staff')
 			    ->assertPathIs('/staff/add')
 			    // passing blank mandatory fields
 			    ->press('submit')

@@ -6,7 +6,7 @@
         <title>@yield('title')</title>
 
         <!-- Font Awesome -->
-        <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Source+Sans+Pro" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:400,600" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="{{ asset('css/main.css') }}" type="text/css" rel="stylesheet">
@@ -15,6 +15,7 @@
     </head>
     <body>
         <div class="container">
+            <nav>@yield('nav')</nav>
             @yield('content')
         </div>
 

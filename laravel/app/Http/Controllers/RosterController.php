@@ -6,6 +6,7 @@ use App\Activity;
 use App\Employee;
 use App\Roster;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -36,7 +37,7 @@ class RosterController
             = Employee::where('business_id', $businessID)
             ->get();
 
-        return view('newRoster', compact('employees'));
+        return view('roster.new', compact('employees'));
     }
 
     /**
@@ -116,8 +117,8 @@ class RosterController
         $businessID = $auth['foreign_id'];
 
         // get start and end date of next 7 days
-        $tomorrow = Carbon::now()->addDay();
-        $aWeekLater = Carbon::now()->addWeek();
+        $tomorrow = Carbon::now(new DateTimeZone('Australia/Melbourne'))->addDay();
+        $aWeekLater = Carbon::now(new DateTimeZone('Australia/Melbourne'))->addWeek();
 
         // get dates of next 7 days from roster table of this business
         $dates = Roster::select('date')
@@ -155,7 +156,7 @@ class RosterController
             }
         }
 
-        return view('showRoster', compact('dates', 'activities', 'rosters'));
+        return view('roster.summary', compact('dates', 'activities', 'rosters'));
     }
 
     /**

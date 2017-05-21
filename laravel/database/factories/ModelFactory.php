@@ -23,6 +23,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+/**
+ * Customer model factory generator  
+ **/
 $factory->define(App\Customer::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -36,6 +39,26 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
     ];
 });
 
+/**
+ * Business model factory generator  
+ **/
+$factory->define(App\Business::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'business_name' => $faker->company,
+	'owner_name' => $faker->name,
+	'username' => $faker->unique()->userName,
+        'mobile_phone' => '04'.rand(10000000,99999999),
+        'email_address' => $faker->unique()->safeEmail,
+	'address' => $faker->streetAddress,
+    ];
+});
+
+
+/**
+ * Employee model factory generator  
+ **/
 $factory->define(App\Employee::class, function (Faker\Generator $faker) {
 
     $weekdays = array(

@@ -5,12 +5,23 @@ namespace App\Http\Controllers;
 
 use App\Business;
 use App\Customer;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class AuthenticationController
 {
+    /**
+     * this loads the login form
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function loadLoginForm()
+    {
+        return view('login');
+    }
+
     /**
      * This is called when login form is submitted
      * It checks if the user exists
@@ -42,19 +53,35 @@ class AuthenticationController
         // when user is found
         else
         {
-            // if successfully authenticated, redirect to dashboard
+            // if successfully authenticated
             if(Auth::attempt(['email' => $email, 'password' => $data['password']]))
             {
-                return Redirect::to('/');
+                // get the count
+                $result = $this->passwordCount($email, 'get');
+
+                // when count is less than 5, reset count and redirect to dashboard
+                if($result['count'] < 5)
+                {
+                    $this->passwordCount($email, 'reset');
+                    return Redirect::to('/');
+                }
+                // when count is more than 5, redirect back to ask to contact admin
+                else
+                    return Redirect::back()
+                        ->withInput()
+                        ->withErrors(array('password' => $result['message']));
             }
 
             // when authentication fails
             else
             {
+                // increment the count
+                $result = $this->passwordCount($email, 'increment');
+
                 // redirect back with input and error message
                 return Redirect::back()
                     ->withInput()
-                    ->withErrors(array('password' => 'Incorrect password. Please try again!'));
+                    ->withErrors(array('password' => $result['message']));
             }
         }
     }
@@ -106,5 +133,44 @@ class AuthenticationController
             $email = $business->email_address;
 
         return $email;
+    }
+
+    /**
+     * carry out specified action when user trying to login
+     *
+     * reset wrong_password_count when successfully login
+     * increment the count when authentication fails
+     *
+     * return the count and error message accordingly
+     *
+     * @param $email
+     * @param $action
+     * @return array
+     */
+    private function passwordCount($email, $action)
+    {
+        // get the user according to email
+        $user = User::where('email', $email)->first();
+
+        // change the count according to action input
+        if($action == 'reset')
+            $user->wrong_password_count = 0;
+        elseif($action == 'increment')
+            $user->wrong_password_count++;
+
+        // save to DB
+        $user->save();
+
+        // prepare result, consisting count and error message
+        $result = [];
+        $result['count'] = $user->wrong_password_count;
+
+        // customise error message according to count
+        if($result['count'] < 5)
+            $result['message'] = 'Incorrect password. Please try again!';
+        else
+            $result['message'] = 'This account has been locked. Please contact admin to reset password.';
+
+        return $result;
     }
 }

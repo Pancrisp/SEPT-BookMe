@@ -6,11 +6,12 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Booking;
 use App\Business;
+use App\BusinessHour;
 use App\Customer;
 use App\Employee;
-use App\Roster;
 use App\Slot;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -22,43 +23,63 @@ class BookingController
      * show booking summary for certain business
      * only accessible when logged in
      *
+     * @param $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showBookingSummary()
+    public function showBookingSummary($type)
     {
-        // redirect to login page if not authenticated, or incorrect user type
-        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
             return Redirect::to('/login');
 
         // get auth and business ID
         $auth = Auth::user();
-        $businessID = $auth['foreign_id'];
+        $userID = $auth['foreign_id'];
+        $userType = $auth['user_type'];
+
+        // get summary types and save type selected
+        $types = $this->getSummaryType($userType);
+        $typeSelected = $type;
 
         // get today's date using Carbon
-        $today = Carbon::now()->toDateString();
+        $today = Carbon::now(new DateTimeZone('Australia/Melbourne'))->toDateString();
 
-        // get all bookings with customer details for this business from today onwards
-        $allBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+        // custom attribute needed for different user type
+        if($userType == 'business')
+            $customAttr = 'customers.*';
+        else
+            $customAttr = 'businesses.*';
+
+        // join tables needed, only related to this user
+        $bookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
             ->join('employees', 'employees.employee_id', 'bookings.employee_id')
             ->join('activities', 'employees.activity_id', 'activities.activity_id')
-            ->where('bookings.business_id', $businessID)
-            ->where('bookings.date', '>=', $today)
+            ->join('businesses', 'businesses.business_id', 'bookings.business_id')
+            ->where('bookings.'.$userType.'_id', $userID)
+            ->select('bookings.*', $customAttr, 'activities.activity_name', 'employees.employee_name')
             ->orderBy('bookings.date')
-            ->orderBy('bookings.start_time')
-            ->get();
+            ->orderBy('bookings.start_time');
 
-        // get new bookings with customer details for this business made today
-        $newBookings = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
-            ->join('employees', 'employees.employee_id', 'bookings.employee_id')
-            ->join('activities', 'employees.activity_id', 'activities.activity_id')
-            ->where('bookings.business_id', $businessID)
-            ->whereDate('bookings.created_at', $today)
-            ->orderBy('bookings.date')
-            ->orderBy('bookings.start_time')
-            ->get();
+        // get bookings according to type passed in the url
+        if($type == 'recent')
+            $bookings = $bookings
+                ->whereDate('bookings.created_at', $today)
+                ->get();
+        elseif($type == 'today')
+            $bookings = $bookings
+                ->where('bookings.date', '=', $today)
+                ->get();
+        elseif($type == 'upcoming')
+            $bookings = $bookings
+                ->where('bookings.date', '>', $today)
+                ->get();
+        elseif($type == 'history')
+            $bookings = $bookings
+                ->where('bookings.date', '<', $today)
+                ->get();
 
         // return the view with data required
-        return view('bookingSummary', compact('allBookings', 'newBookings'));
+        return view('booking.'.$userType.'.summary', compact('typeSelected', 'types', 'bookings'));
     }
 
     /**
@@ -112,6 +133,30 @@ class BookingController
     }
 
     /**
+     * using id passed in to display the cancel booking form
+     * contains details of the booking wanted to be cancelled
+     * only accessible by authenticated users
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function cancelBookingForm($id)
+    {
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
+            return Redirect::to('/login');
+
+        // retrieve booking according to id
+        $booking = Booking::join('customers', 'bookings.customer_id', 'customers.customer_id')
+            ->join('employees', 'employees.employee_id', 'bookings.employee_id')
+            ->join('activities', 'employees.activity_id', 'activities.activity_id')
+            ->join('businesses', 'businesses.business_id', 'bookings.business_id')
+            ->find($id);
+
+        return view('booking.cancel', compact('booking'));
+    }
+
+    /**
      * called when submitting add booking form
      * validate incoming request
      *
@@ -140,67 +185,52 @@ class BookingController
     }
 
     /**
-     * display bookings based on date and employee
-     * only accessible by business owner
+     * showing the booking form for business owner to make booking for customer
+     * only accessible by authenticated users
      *
-     * date is passed in the request, if not by default tomorrow
-     * employees should be those rostered on the date
-     *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showAvailability(Request $request)
+    public function makeBooking()
     {
-        // redirect to login page if not authenticated, or incorrect user type
-        if ( ! Auth::check() || Auth::user()['user_type'] != 'business')
+        // redirect to login page if not authenticated
+        if ( ! Auth::check() )
             return Redirect::to('/login');
 
-        // get auth and business ID
-        $auth = Auth::user();
-        $businessID = $auth['foreign_id'];
+        // get user type
+        $userType = Auth::user()['user_type'];
 
-        // get start and end date of next 7 days
-        $tomorrow = Carbon::now()->addDay();
-        $aWeekLater = Carbon::now()->addWeek();
-
-        // get business
-        $business = Business::find($businessID);
-
-        // get dates of next 7 days from roster table of this business
-        $dates = Roster::select('rosters.date')
-            ->join('employees', 'employees.employee_id', 'rosters.employee_id')
-            ->where('employees.business_id', $businessID)
-            ->whereBetween('rosters.date', array($tomorrow->toDateString(), $aWeekLater->toDateString()))
-            ->orderBy('rosters.date')
-            ->groupBy('rosters.date')
-            ->get();
-
-        // get date selected from request, if not set, by default tomorrow
-        $dateSelected = isset($request['date'])? $request['date']: $tomorrow->toDateString();
-
-        // get employees rostered on the date selected
-        $employees = Employee::join('rosters', 'rosters.employee_id', 'employees.employee_id')
-            ->join('activities', 'activities.activity_id', 'employees.activity_id')
-            ->where('employees.business_id', $businessID)
-            ->where('rosters.date', $dateSelected)
-            ->orderBy('employees.activity_id')
-            ->get();
-
-        // loop through each employee to get bookings
-        $bookings = [];
-        foreach ($employees as $employee)
+        // return view according to user type
+        if( $userType == 'business')
+            return view('booking.business.form');
+        else
         {
-            $bookings[$employee['employee_id']]
-                = Booking::join('employees', 'employees.employee_id', 'bookings.employee_id')
-                ->join('activities', 'activities.activity_id', 'employees.activity_id')
-                ->join('customers', 'customers.customer_id', 'bookings.customer_id')
-                ->where('bookings.employee_id', $employee['employee_id'])
-                ->where('bookings.date', $dateSelected)
-                ->orderBy('bookings.start_time')
+            // retrieve all ready businesses from DB
+            $businesses
+                = Business::where('ready', true)
                 ->get();
-        }
 
-        return view('availability', compact('bookings', 'employees', 'dates', 'business', 'dateSelected'));
+            return view('booking.customer.form' , compact('businesses'));
+        }
+    }
+
+    /**
+     * called when cancel booking form is submitted
+     * request contains the booking id awaited to be cancelled
+     * delete the booking from DB and redirect back to summary page
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function cancelBooking(Request $request)
+    {
+        // retrieve booking id from form submitted
+        $bookingID = $request['booking'];
+
+        // remove this booking from DB
+        Booking::find($bookingID)->delete();
+
+        // redirect back to booking summary
+        return Redirect::to('/booking/summary/today');
     }
 
     /**
@@ -249,7 +279,18 @@ class BookingController
         // get the business
         $business = Business::find($businessID);
 
-        return view('newBooking', compact('request', 'employees', 'activities', 'bookings', 'business', 'error'));
+        // get the day of the date
+        $carbon = new Carbon($date);
+        $day = $carbon->format('l');
+        $day = substr($day, 0, 3);
+
+        // get the business hour from DB
+        $businessHour
+            = BusinessHour::where('business_id', $businessID)
+            ->where('day', $day)
+            ->first();
+
+        return view('booking.new', compact('request', 'employees', 'activities', 'bookings', 'business', 'businessHour', 'error'));
     }
 
     /**
@@ -273,7 +314,7 @@ class BookingController
         $business = Business::find($bookingSaved->business_id);
         $customer = Customer::find($bookingSaved->customer_id);
 
-        return view('confirmation', compact('business', 'customer', 'booking', 'auth'));
+        return view('booking.confirmation', compact('business', 'customer', 'booking', 'auth'));
     }
 
     /**
@@ -350,6 +391,16 @@ class BookingController
         $carbonEndTime = $carbonStartTime->addMinute($numOfSlots * $slotPeriod);
         $endTime = $carbonEndTime->toTimeString();
 
+        // get the business hour
+        $businessHour
+            = BusinessHour::where('business_id', $data['business'])
+            ->where('day', $data['day'])
+            ->first();
+
+        // check if booking is within business hour
+        if($startTime < $businessHour['opening_time'].':00' || $endTime > $businessHour['closing_time'].':00')
+            return false;
+
         // get slot of same date, employee, for the time period, if exists
         $slot = Slot::join('bookings', 'bookings.booking_id', 'slots.booking_id')
             ->where('bookings.date', $data['date'])
@@ -358,8 +409,11 @@ class BookingController
             ->where('slots.slot_time', '<', $endTime)
             ->get();
 
-        // return if such slot already booked
-        return (count($slot) == 0);
+        // check if there is any slot booked
+        if(count($slot) != 0)
+            return false;
+
+        return true;
     }
 
     /**
@@ -422,5 +476,42 @@ class BookingController
             // increment time period according to config from DB
             $startTime->addMinute($business->slot_period);
         }
+    }
+
+    /**
+     * used in booking summary
+     * return array of type and page titles
+     *
+     * @param $userType
+     * @return array
+     */
+    private function getSummaryType($userType)
+    {
+        // initialise types for both customer and business owners
+        $types = [
+            [
+                'type' => 'today',
+                'title' => 'Today\'s Bookings',
+            ],
+            [
+                'type' => 'upcoming',
+                'title' => 'Upcoming Bookings',
+            ],
+            [
+                'type' => 'history',
+                'title' => 'Booking History',
+            ]
+        ];
+
+        // add types specifically for business owner only
+        if($userType == 'business')
+            $types = array_merge([
+                [
+                    'type' => 'recent',
+                    'title' => 'Recent Bookings',
+                ],
+            ], $types);
+
+        return $types;
     }
 }

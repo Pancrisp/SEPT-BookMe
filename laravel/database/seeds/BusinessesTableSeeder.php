@@ -25,7 +25,8 @@ class BusinessesTableSeeder extends Seeder
             'email_address' => $email,
             'mobile_phone' => '0411222333',
             'address' => '124 La Trobe St, Melbourne VIC 3000',
-            'slot_period' => 30
+            'slot_period' => 30,
+            'ready' => true
         ]);
 
         // create the user saving foreign key, this is for authentication
