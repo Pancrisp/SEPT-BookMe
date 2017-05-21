@@ -1,4 +1,227 @@
-﻿Ervin Chua joined Business Registrationyesterday at 11:58 PM
+﻿Ervin Chua (ervinchua2)Ervin Chua moved Allow business to customise GUI from In Progress to Completed (Part C)2 minutes ago
+Grace Zheng (gracezzzz)Grace Zheng moved Use a clear complex Design Pattern from Sprint Backlog to In Progress16 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua archived list Completed (before ANZAC)32 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Refactored tests from Completed (before ANZAC) to Completed (Part B)32 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved A page that allow business owner to add bookings for customers (using username/email) from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Implemented session from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Logging capability from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Order booking summary by date from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Merging old changes from master to dev branch from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved SOLVE: how to keep track of tables from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Employee no longer has role but the type of activity in charge from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Define activities that take different times from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Add column emp_id to table bookings from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Add config: default slot period (30 min in this case) from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Change table bookings: end_time -> num_of_slots from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Redirect to login page whenever try to access pages without logining from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Add/update staff working days/times later from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Missing businessID in getBookingsByDate in BookingController from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Booking availability should take into account num_of_slots from Completed (before ANZAC) to Completed (Part B)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua archived list Completed (week 1-6)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Tests for Employee related functions from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Fix testing framework. Adopt LeanTesting from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Implement adding working time/dates for employee for the next month (by business owner) -> rostering from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Implement adding new employee (by business owner) from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Design and implement database for employee and its working time/dates from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Modify user-type to be determined by account name or email from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Design customer dashboard from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Add seeders needed for demo wk5 from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Implement Booking related functions from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Add customer details to booking summary page from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Improve authentication according to channel from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Move login error messages to appropriate places from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Add radio buttons for selecting between customer or business accounts on sign in form from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Create prototypes for customer and business dashboards from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Create brief that denotes user flow between pages from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Design and implement database for customers, business owners and bookings from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Build UI for login/registration page from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Implement user authentication from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Implement user registration from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved set up git environment from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Build test units based on user story "Customer wants to register for an account" from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved set up Laravel environment from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Build test units based on user story "user wants to login to the system" from Completed (week 1-6) to Completed (Part A)33 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Project pitch video from Sprint Backlog to In Progress34 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Project Post-Mortem from Sprint Backlog to In Progress34 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Release Notes from Sprint Backlog to In Progress34 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Further user stories from In Progress to Completed (Before 16/05/2017)34 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved More test cases from In Progress to Completed (Before 16/05/2017)34 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Further user stories from Sprint Backlog to In Progress35 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved More test cases from Sprint Backlog to In Progress35 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Provide automated builds from In Progress to Completed (Before 16/05/2017)35 minutes ago
+Ervin Chua (ervinchua2)Ervin Chua moved Redesign dashboard from In Progress to Completed (Before 16/05/2017)May 19 at 10:35 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Allow business to customise GUI
+Just all the sudden thought of allowing them to change the background colour lol... if that's counted..
+May 17 at 9:52 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Improve table design from In Progress to Completed (Before 16/05/2017)May 17 at 7:01 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Improve button designs and hover transitions from In Progress to Completed (Before 16/05/2017)May 17 at 7:01 PM
+Ervin Chua (ervinchua2)Ervin Chua joined Improve button designs and hover transitionsMay 17 at 10:16 AM
+Ervin Chua (ervinchua2)Ervin Chua added Improve button designs and hover transitions to In ProgressMay 17 at 10:16 AM
+Ervin Chua (ervinchua2)Ervin Chua joined Redesign dashboardMay 17 at 10:16 AM
+Ervin Chua (ervinchua2)Ervin Chua joined Improve table designMay 17 at 10:15 AM
+Ervin Chua (ervinchua2)Ervin Chua added Redesign dashboard to In ProgressMay 17 at 10:15 AM
+Ervin Chua (ervinchua2)Ervin Chua added Improve table design to In ProgressMay 17 at 10:15 AM
+Ervin Chua (ervinchua2)Ervin Chua marked the due date on Opt for scaled marks for assessment 3 completeMay 16 at 3:39 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Opt for scaled marks for assessment 3 from Blocked to Completed (Before 16/05/2017)May 16 at 3:39 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Allow business to customise GUI from Sprint Backlog to In ProgressMay 16 at 11:13 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Allow business to customise GUIMay 16 at 11:13 AM
+Grace Zheng (gracezzzz)Grace Zheng sent Allow business to customise GUI to the boardMay 16 at 11:13 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Business Registration from In Progress to Completed (Before 16/05/2017)May 16 at 12:27 AM
+Grace Zheng (gracezzzz)Grace Zheng completed business hours on Business RegistrationMay 16 at 12:27 AM
+Grace Zheng (gracezzzz)Grace Zheng completed activity on Business RegistrationMay 15 at 10:33 PM
+Grace Zheng (gracezzzz)Grace Zheng archived Allow business to customise GUIMay 15 at 4:59 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Provide automated builds from Sprint Backlog to In ProgressMay 14 at 12:23 PM
+Ervin Chua (ervinchua2)Ervin Chua completed make 'readonly' more obvious on Business RegistrationMay 14 at 11:35 AM
+Ervin Chua (ervinchua2)Ervin Chua completed activity & slot period form on Business RegistrationMay 14 at 11:35 AM
+Ervin Chua (ervinchua2)Ervin Chua completed better design the 2 submit buttons on Business RegistrationMay 14 at 3:08 AM
+Ervin Chua (ervinchua2)Ervin Chua completed standardise box size of input type="number" on Business RegistrationMay 14 at 12:28 AM
+Ervin Chua (ervinchua2)Ervin Chua completed business hours form on Business RegistrationMay 13 at 11:13 PM
+Ervin Chua (ervinchua2)Ervin Chua completed make [00:00] to [00:00] to fit in one line on Business RegistrationMay 13 at 11:12 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Opt for scaled marks for assessment 3 from In Progress to BlockedMay 12 at 12:42 PM
+Ervin Chua (ervinchua2)Ervin Chua added Opt for scaled marks for assessment 3 to In ProgressMay 12 at 11:00 AM
+Grace Zheng (gracezzzz)Grace Zheng moved Allow users to update their profiles from In Progress to Completed (Before 16/05/2017)May 12 at 12:19 AM
+Grace Zheng (gracezzzz)Grace Zheng added Business Hours Form (/business/hour/register) to Business RegistrationMay 12 at 12:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Activity Form (/business/activity/register) to Business RegistrationMay 11 at 10:54 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Provide automated builds
+We'll be using either:
+
+Laradock
+npm scripts
+May 10 at 3:19 PM (edited)
+Ervin Chua (ervinchua2)Ervin Chua moved Name for the app - BookMe from In Progress to Completed (Before 16/05/2017)May 10 at 12:44 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Project Post-Mortem
+http://brolik.com/blog/project-post-mortem-template/
+May 10 at 12:43 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Project Post-Mortem
+So this is really just a project debrief. So we'll write a report on the outcome of what we did and what could be improved. Things we've learned from the project and so on.
+May 10 at 12:16 PM
+P
+Paulo on Name for the app - BookMe
+Locked in!!!
+May 10 at 12:15 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Name for the app - BookMe
+@paulo795 what do you think?
+May 10 at 12:11 PM
+Ervin Chua (ervinchua2)
+Ervin Chua on Name for the app - BookMe
+@gracezzzz Ok, BookMe! Done! I'll switch over all the names in our code.
+May 10 at 12:05 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Name for the app - BookMe from Sprint Backlog to In ProgressMay 9 at 9:58 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Name for the app - BookMe
+BookMe :)
+May 9 at 9:58 PM
+PPaulo joined UC_10: User updates his/her profileMay 9 at 8:32 AM
+PPaulo added UC_10: User updates his/her profile to User StoriesMay 9 at 8:31 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Project Post-MortemMay 9 at 12:09 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Project Post-MortemMay 9 at 12:09 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Project Post-MortemMay 9 at 12:09 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Allow users to update their profiles
+The backend is done. Both customer and business owner can view and update their details.
+May 8 at 9:24 PM
+Grace Zheng (gracezzzz)Grace Zheng moved paginate booking summary page from In Progress to Completed (Before 16/05/2017)May 8 at 4:55 PM
+Grace Zheng (gracezzzz)Grace Zheng archived Refactor BookingControllerMay 8 at 3:52 PM
+Grace Zheng (gracezzzz)Grace Zheng joined paginate booking summary pageMay 8 at 3:52 PM
+Grace Zheng (gracezzzz)Grace Zheng added paginate booking summary page to In ProgressMay 8 at 3:52 PM
+Grace Zheng (gracezzzz)Grace Zheng completed registration pathway on Business RegistrationMay 8 at 3:42 PM
+Grace Zheng (gracezzzz)Grace Zheng archived Business Registration pagesMay 8 at 3:41 PM
+Grace Zheng (gracezzzz)
+Grace Zheng on Business Registration pages
+This has been combined to another card and hence archived
+May 8 at 3:41 PM
+Grace Zheng (gracezzzz)Grace Zheng completed registration on Business RegistrationMay 8 at 3:41 PM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Business RegistrationMay 8 at 3:41 PM
+Grace Zheng (gracezzzz)Grace Zheng added pages/forms to Business RegistrationMay 8 at 3:40 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Validate name and address from In Progress to Completed (Before 16/05/2017)May 8 at 11:49 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Allow users to update their profiles
+just thought we should also allow businesses to update their profiles
+May 7 at 11:34 PM
+Grace Zheng (gracezzzz)Grace Zheng completed Registration form on Business Registration pagesMay 7 at 11:31 PM
+Grace Zheng (gracezzzz)Grace Zheng completed registration on Business RegistrationMay 7 at 11:31 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Allow business owner and customer to cancel booking from In Progress to Completed (Before 16/05/2017)May 7 at 10:38 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Business Registration from Sprint Backlog to In ProgressMay 7 at 10:12 PM
+Grace Zheng (gracezzzz)Grace Zheng added backend to Business RegistrationMay 7 at 10:10 PM
+Grace Zheng (gracezzzz)Grace Zheng removed codes from Business RegistrationMay 7 at 10:10 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Lock account after 5 times wrong password from In Progress to Completed (Before 16/05/2017)May 7 at 8:51 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Allow customer to view booking summary from In Progress to Completed (Before 16/05/2017)May 7 at 8:04 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Allow business owner and customer to cancel booking from Sprint Backlog to In ProgressMay 7 at 8:04 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Lock account after 5 times wrong password from Sprint Backlog to In ProgressMay 7 at 6:27 PM
+Grace Zheng (gracezzzz)Grace Zheng changed the background of this boardMay 7 at 6:25 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Refactor BookingController from Sprint Backlog to In ProgressMay 7 at 6:24 PM
+Grace Zheng (gracezzzz)Grace Zheng moved Allow customer to view booking summary from Sprint Backlog to In ProgressMay 7 at 6:23 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Allow users to update their profiles from Sprint Backlog to In ProgressMay 6 at 10:40 PM
+Ervin Chua (ervinchua2)Ervin Chua moved Validate name and address from Sprint Backlog to In ProgressMay 6 at 10:39 PM
+Grace Zheng (gracezzzz)Grace Zheng joined Refactor BookingControllerMay 2 at 11:17 AM
+Grace Zheng (gracezzzz)Grace Zheng added Refactor BookingController to Sprint BacklogMay 2 at 11:17 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to More test casesMay 2 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Further user storiesMay 2 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng added More test cases to Sprint BacklogMay 2 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng added Further user stories to Sprint BacklogMay 2 at 11:08 AM
+Grace Zheng (gracezzzz)Grace Zheng left Validate name and addressMay 2 at 11:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Validate name and addressMay 2 at 11:02 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Validate name and addressMay 2 at 10:59 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Lock account after 5 times wrong passwordMay 2 at 10:59 AM
+Grace Zheng (gracezzzz)Grace Zheng added Validate name and address to Sprint BacklogMay 2 at 10:59 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Lock account after 5 times wrong password
+contact customer service of the app to unlock account
+May 2 at 10:58 AM
+Grace Zheng (gracezzzz)Grace Zheng added Lock account after 5 times wrong password to Sprint BacklogMay 2 at 10:57 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Allow users to update their profilesMay 2 at 10:55 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Allow users to update their profilesMay 2 at 10:55 AM
+Grace Zheng (gracezzzz)Grace Zheng added Allow users to update their profiles to Sprint BacklogMay 2 at 10:55 AM
+Ervin Chua (ervinchua2)
+Ervin Chua on Business Registration pages
+Registration Form
+User flow will start at login screen with link that redirects users to a page that prompts users to register either as a customer or a business owner before bringing them to their respective forms.
+May 2 at 10:31 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Name for the app - BookMeMay 2 at 10:31 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Name for the app - BookMeMay 2 at 10:31 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Name for the app - BookMeMay 2 at 10:31 AM
+Grace Zheng (gracezzzz)Grace Zheng added Name for the app - BookMe to Sprint BacklogMay 2 at 10:31 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Release NotesMay 2 at 10:30 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Release NotesMay 2 at 10:30 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Project pitch videoMay 2 at 10:29 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Project pitch videoMay 2 at 10:29 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Project pitch videoMay 2 at 10:29 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Use a clear complex Design PatternMay 2 at 10:29 AM
+Grace Zheng (gracezzzz)Grace Zheng added Paulo to Provide automated buildsMay 2 at 10:29 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Provide automated buildsMay 2 at 10:28 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Allow business to customise GUIMay 2 at 10:28 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Allow business owner and customer to cancel bookingMay 2 at 10:28 AM
+Grace Zheng (gracezzzz)Grace Zheng joined Allow customer to view booking summaryMay 2 at 10:28 AM
+Grace Zheng (gracezzzz)Grace Zheng removed codes from Business Registration pagesMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)Grace Zheng added Ervin Chua to Business Registration pagesMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)Grace Zheng left Business Registration pagesMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)Grace Zheng removed Ervin Chua from Business Registration pagesMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)Grace Zheng removed pages from Business RegistrationMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)Grace Zheng removed Ervin Chua from Business RegistrationMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)Grace Zheng copied Business Registration pages from Business Registration in list Sprint BacklogMay 2 at 10:21 AM
+Grace Zheng (gracezzzz)
+Grace Zheng on Business Registration
+In successful register page, prompt user to login to dashboard to enter further details in order to have business shown up in the booking app
+May 2 at 10:18 AM
+Grace Zheng (gracezzzz)Grace Zheng added Completed (Part C demo) to this boardMay 2 at 10:06 AM
+Grace Zheng (gracezzzz)Grace Zheng copied Project pitch video from Project pitch video in list Sprint BacklogMay 2 at 10:06 AM
+Grace Zheng (gracezzzz)Grace Zheng copied Project Post-Mortem from Project Post-Mortem in list Sprint BacklogMay 2 at 10:06 AM
+Grace Zheng (gracezzzz)Grace Zheng copied Release Notes from Release Notes in list Sprint BacklogMay 2 at 10:06 AM
+Grace Zheng (gracezzzz)Grace Zheng added Project pitch video to DeliverablesMay 2 at 10:06 AM
+Grace Zheng (gracezzzz)Grace Zheng added Project Post-Mortem to DeliverablesMay 2 at 10:05 AM
+Grace Zheng (gracezzzz)Grace Zheng added Release Notes to DeliverablesMay 2 at 10:05 AM
+Grace Zheng (gracezzzz)Grace Zheng added Use a clear complex Design Pattern to Sprint BacklogMay 2 at 10:03 AM
+Grace Zheng (gracezzzz)Grace Zheng added Provide automated builds to Sprint BacklogMay 2 at 10:02 AM
+Grace Zheng (gracezzzz)Grace Zheng added Allow business owner and customer to cancel booking to Sprint BacklogMay 2 at 10:00 AM
+Grace Zheng (gracezzzz)Grace Zheng added Allow customer to view booking summary to Sprint BacklogMay 2 at 10:00 AM
+Grace Zheng (gracezzzz)Grace Zheng added Allow business to customise GUI to Sprint BacklogMay 2 at 9:59 AM
+Ervin Chua (ervinchua2)Ervin Chua moved Tests cases new functionality from In Progress to Completed (Part B demo)
+Ervin Chua joined Business Registrationyesterday at 11:58 PM
 Ervin Chua (ervinchua2)Ervin Chua moved Add working time should check employee's availability from In Progress to Completed (Part B demo)yesterday at 11:58 PM
 Ervin Chua (ervinchua2)Ervin Chua completed front-end: disable unavailable days in calendar on Add working time should check employee's availabilityyesterday at 11:58 PM
 Grace Zheng (gracezzzz)Grace Zheng moved Paginate availability page from In Progress to Completed (Part B demo)yesterday at 8:12 PM
