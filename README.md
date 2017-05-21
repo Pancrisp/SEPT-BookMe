@@ -61,9 +61,119 @@ These include:
 * Trello - https://trello.com/b/8ds7YfU7/part-one (tutor is already invited)
 * Slack - https://sept-copsicus.slack.com (anyone with an RMIT email can join)
 
+
+## PROJECT INSTALLATION
+This manual offers a couple of alternatives to set up the project: Docker and Stand-alone version.
+Note: commands used in this installation tutorial have been tested in Ubuntu.
+
+## INSTALLING USING DOCKER - LARADOCK
+
+### GETTING BOOKME! 
+Clone this project's repository from Github.
+```
+git clone https://github.com/Pancrisp/SEPT-Copsicus.git
+```
+
+There are still a few modifications needed to run the docker containers.
+
+Go into laravel folder. Copy and rename .env.example
+```cp .env.example .env```
+
+Edit .env so the database host points at 'mysql'
+```DB_HOST=mysql```
+
+## SETTING UP TESTING ENVIRONMENT
+To run dusk tests with selenium, edit the file 'tests/DuskTestCase.php' 
+Find and replace the function 'driver()' so it returns a driver pointing at selenium server.
+```
+    return RemoteWebDriver::create(
+	'http://selenium:4444/wd/hub', DesiredCapabilities::chrome()
+    );
+```
+
+Go into laravel folder. Copy and rename .env
+```cp .env .env.dusk.local```
+
+Edit '.env.dusk.local' so the APP_URL points at 'nginx'
+```APP_URL=http://nginx```
+
+
+### DOCKER
+
+### Docker installation 
+The first step is to install docker. It can be found here, depending on your operative system:
+```
+[DOCKER] (https://www.docker.com/get-docker)
+```
+
+### GETTING LARADOCK UP AND RUNNING 
+Go into Laravel folder of the project and clone laradock repository.
+```git clone https://github.com/Laradock/laradock.git```
+
+### SETTING UP DOCKER 
+
+Install docker-composer in case is missing
+```sudo apt-get install docker-compose```
+
+Update your user and permissions 
+Add your user to www-data group and update permissions to grant access
+```
+sudo usermod -a -G www-data {your_user}
+sudo chgrp -R www-data storage bootstrap/cache
+sudo chmod -R ug+rwx storage bootstrap/cache
+```
+
+Build and run the necessary containers. This might take long specially the first time.
+```sudo docker-compose up -d nginx mysql selenium```
+
+### CONFIGURING PROJECT
+Enter the Workspace container from laradock folder
+
+```sudo docker-compose exec workspace bash```
+
+Inside this bash, it is possible to run php commands that affect directly our BookMe! project.
+
+Let's update the project dependencies. 
+```composer update```
+
+Install laravel dusk to run the tests.
+```composer require laravel/dusk```
+
+Set up a key
+```php artisan key:generate```
+
+Run database migrations and seeding
+```
+php artisan migrate:reset
+php artisan migrate
+php artisan db:seed --class=CustomersTableSeeder
+php artisan db:seed --class=BusinessesTableSeeder
+php artisan db:seed --class=BusinessHoursTableSeeder
+php artisan db:seed --class=ActivitiesTableSeeder
+php artisan db:seed --class=EmployeesTableSeeder
+php artisan db:seed --class=RostersTableSeeder
+php artisan db:seed --class=BookingsTableSeeder
+```
+
+### TESTS
+To run the tests go into the workspace container bash and run:
+```php artisan dusk```
+
+In this ocasion there won't be any Gui for the tests since it is running in the selenium container.
+ 
+### ENJOY
+Visit localhost in your web browser and our BookeMe app should be running.
+
+
+## STANDALONE INSTALLATION
+To run the project there are a few dependencies that need to be installed:
+* PHP
+* MYSQL
+* LARAVEL
+
+
 ## APP INSTALLATION
 
-Note: commands used in this installation tutorial have been tested in Ubuntu 16.04 LTS
 To run the project there are a few dependencies that need to be installed:
 * PHP
 * MYSQL
