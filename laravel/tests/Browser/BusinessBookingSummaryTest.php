@@ -25,7 +25,7 @@ class CheckBookingSummariesTest extends DuskTestCase
 	{
 
 		$this->browse(function ($browser) {
-		    $browser->visit('/booking/summary')    
+		    $browser->visit('/booking/summary/recent')
 			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
 		});
@@ -54,8 +54,8 @@ class CheckBookingSummariesTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/booking/summary')
+			    ->clickLink('Bookings overview')
+			    ->assertPathIs('/booking/summary/recent')
 			    
  				;
 		});
@@ -88,10 +88,11 @@ class CheckBookingSummariesTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Bookings Overview')
-			    ->assertPathIs('/booking/summary');
+			    ->clickLink('Bookings overview')
+			    ->assertPathIs('/booking/summary/recent')
+			    ->clickLink('Booking History');
 			if ($bookingCount == 0){
-				$browser->assertSee('Currently no booking.');
+				$browser->assertSee('No booking.');
 			}else if ($bookingCount > 0){
 				$browser->assertVisible('table');
 			}

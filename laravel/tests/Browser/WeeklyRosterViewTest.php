@@ -24,11 +24,8 @@ class WeeklyRosterViewTest extends DuskTestCase
 	*/
 	public function business_owner_view_roster_not_authenticated()
 	{
-		$business_id = 1;		
-		// Retrieving an existing business id		
-		$owner = \App\Business::where('business_id',$business_id)->first();
 
-		$this->browse(function ($browser) use ($owner) {
+		$this->browse(function ($browser) {
 		    $browser->visit('/roster/summary')    
 			    ->assertPathIs('/login')   
 			    ->assertSee('Sign in to access');
@@ -73,7 +70,8 @@ class WeeklyRosterViewTest extends DuskTestCase
 	*  @group accepted
 	*  @group viewRoster
 	*	
-	*  Unit test that checks the first employee shift count for a given business 		*  and asserts the presence of table with the name of such employee if valid. 
+	*  Unit test that checks the first employee shift count for a given business
+ 	*  and asserts the presence of table with the name of such employee if valid. 
 	*
 	*  @return void
 	*/
@@ -81,15 +79,19 @@ class WeeklyRosterViewTest extends DuskTestCase
 	{
 		$business_id = 1;
 		$tomorrow = date('Y-m-d', strtotime('+1 day')); 
-		$weekAfter = date('Y-m-d', strtotime('+7 day'));	
+		$weekAfter = date('Y-m-d', strtotime('+5 day'));	
 		// Retrieving an existing business id		
 		$owner = \App\Business::where('business_id',$business_id)->first();
-		$employee = \App\Employee::where('business_id', $business_id)->first();
+
+		// Find employees ids for first business	
+		$employees = \App\Employee::where('business_id',$owner->business_id)->pluck('employee_id');
 		
 		// Retrieving shifts count from the first employee for the next week
-		$rosterCount = \App\Roster::where('employee_id',$employee->employee_id)->whereBetween('date',array($tomorrow, $weekAfter))->count();
+		$rosteredEmployeesCount = \App\Roster::whereIn('employee_id', $employees)
+				->whereBetween('date',array($tomorrow, $weekAfter))->pluck('employee_id');
 
-		$this->browse(function ($browser) use ($owner,$rosterCount,$employee) {
+
+		$this->browse(function ($browser) use ($owner,$rosteredEmployeesCount,$employees) {
 		    $browser->visit('/login')    
 			    ->type('username',$owner->username)
 			    ->type('password', 'secret')   
@@ -98,10 +100,14 @@ class WeeklyRosterViewTest extends DuskTestCase
 			    ->assertSee('Hello, '.$owner->customer_name)
 			    ->clickLink('Show roster')
 			    ->assertPathIs('/roster/summary');
-			if ($rosterCount > 0){
+			if (sizeof($rosteredEmployeesCount) > 0){
 				$browser->assertVisible('table');
-				$browser->with('table', function ($table) use($employee) {
-    				$table->assertSee($employee->employee_name);
+				$browser->with('table', function ($table) use($rosteredEmployeesCount) {
+					foreach($rosteredEmployeesCount as $emp){
+					$emp_name = \App\Employee::where('employee_id',$emp)
+							->pluck('employee_name')->first();
+    					$table->assertSee($emp_name);
+					}
 				});
 			}
 		});

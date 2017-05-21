@@ -29,7 +29,7 @@ class EmployeeRosterTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group accepted
+	*  @group pending
 	*  @group roster
 	*	
 	*  Unit test for a successful employee roster
@@ -70,7 +70,7 @@ class EmployeeRosterTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee($owner->business_name)
-			    ->clickLink('New Roster')
+			    ->clickLink('New roster')
 			    ->assertPathIs('/roster/add')
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
@@ -152,7 +152,7 @@ class EmployeeRosterTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee($owner->business_name)
-			    ->clickLink('New Roster')
+			    ->clickLink('New roster')
 			    ->assertPathIs('/roster/add')
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
@@ -183,7 +183,7 @@ class EmployeeRosterTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee($owner->business_name)
-			    ->clickLink('New Roster')
+			    ->clickLink('New roster')
 			    ->assertPathIs('/roster/add');
 		});
 		}
@@ -192,7 +192,7 @@ class EmployeeRosterTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group accepted
+	*  @group pending
 	*  @group roster
 	*	
 	*  Unit test for a roster on an invalid day that is not 
@@ -246,7 +246,7 @@ class EmployeeRosterTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee($owner->business_name)
-			    ->clickLink('New Roster')
+			    ->clickLink('New roster')
 			    ->assertPathIs('/roster/add')
 			    ->select('employee_id',$employee->employee_id."")
 			    ->type("input[id='roster-date']",$future_date)
@@ -273,7 +273,7 @@ class EmployeeRosterTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')   
 			    ->assertSee($owner->business_name)
-			    ->clickLink('New Roster')
+			    ->clickLink('New roster')
 			    ->assertPathIs('/roster/add');
 		});
 		}

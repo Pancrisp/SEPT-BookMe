@@ -23,7 +23,7 @@ class BusinessOwnerBookingTest extends DuskTestCase
 	public function business_owner_booking_not_authenticated()
 	{
 		$this->browse(function ($browser) {
-		    $browser->visit('/booking/owner')
+		    $browser->visit('/booking/make')
 			    ->assertPathIs('/login')
 			    ->assertSee('Sign in to access');
 		});
@@ -84,8 +84,8 @@ class BusinessOwnerBookingTest extends DuskTestCase
 			    ->press('login')
 			    ->assertPathIs('/')
 			    ->assertSee($business->business_name)
-			    ->clickLink('New Booking')
-			    ->assertPathIs('/booking/owner')	
+			    ->clickLink('New booking')
+			    ->assertPathIs('/booking/make')	
 			    ->type("input[id='roster-date']",$roster->date)
 			    ->click("input[name='username']")
 			    ->type('username', $customer->username)
@@ -94,10 +94,7 @@ class BusinessOwnerBookingTest extends DuskTestCase
 			    ->select('service',$service)
 			    
 			    // Workaround to set input time 
-->script(["document.querySelector('#time').value = '".$booking_time."'"])
-			    //->type("input[id='time']",$booking_time)
-			    //->click("select[id='service']")
-			;
+			    ->script(["document.querySelector('#time').value = '".$booking_time."'"]);
 		
 		    $browser->pause(500)
 			    ->select('employee',$employee->employee_id)

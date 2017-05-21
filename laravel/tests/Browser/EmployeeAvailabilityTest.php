@@ -12,88 +12,66 @@ class EmployeeAvailabilityTest extends DuskTestCase
 
 	/**
 	*  @test 
-	*  @group pending
+	*  @group accepted
 	*  @group employeeAvailable
 	*	
-	*  Unit test for checking employee availability.
-	*
-	*  @return void
-	*/
-	public function employeeAvailabilitySuccessful()
-	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
-		// TODO use ::Find employee availability and compare to displayed
-
-
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/')    
-			    ->type('username',$owner->username)
-			    ->type('password', 'secret')   
-			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Staff availability')
-			    ->assertPathIs('/staffAvailability')
-			    ->type('name','testEmployee')
-			    ->press('search')
-			    ->assertSee('testEmployee availability')
- 				;
-		});
-	}
-    
-
-	/**
-	*  @test 
-	*  @group pending
-	*  @group employeeAvailable
-	*	
-	*  Unit test for unauthenticated business owner attempting to check 		*  employee availability.
+	*  Test for unauthenticated business owner attempting to check 		
+	*  employee availability.
 	*
 	*  @return void
 	*/
 	public function employeeAvailabilityNotAuthenticated()
 	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
 
-		$this->browse(function ($browser) use ($owner) {
-		    $browser->visit('/staffAvailability')    
-			    ->assertPathIs('/')    
+		$this->browse(function ($browser) {
+		    $browser->visit('/staff/availability')    
+			    ->assertPathIs('/login')    
 			    ->assertSee('Sign in to access');
 		});
 	}
 
 	/**
 	*  @test 
-	*  @group pending
+	*  @group accepted
 	*  @group employeeAvailable
 	*	
-	*  Unit test for checking unexisting employee availability.
+	*  Test for checking employee availability.
 	*
 	*  @return void
 	*/
-	public function employeeAvailabilityNotFound()
+	public function employeeAvailabilitySuccessful()
 	{
-		// Retrieving an existing customer		
-		$owner = \App\Business::where('business_id',3)->first();
-		// TODO use ::Find employee availability and compare to displayed
+		// Retrieving an existing business owner		
+		$owner = \App\Business::first();
 
+		$tomorrow = date('Y-m-d', strtotime('+1 day'));
+	
+		// Find employees ids for first business	
+		$employees = \App\Employee::where('business_id',$owner->business_id)->pluck('employee_id');
 
-		$this->browse(function ($browser) use ($owner) {
+		// Find employee availability and compare to displayed	
+		$available = \App\Roster::whereIn('employee_id', $employees)
+						->where('date', '=', $tomorrow)->count();
+
+		$this->browse(function ($browser) use ($owner, $available, $employees, $tomorrow) {
 		    $browser->visit('/')    
 			    ->type('username',$owner->username)
-			    ->type('password', 'secret') 
+			    ->type('password', 'secret')   
 			    ->press('login')
-			    ->assertPathIs('/dashboard')   
-			    ->assertSee('Hello, '.$owner->customer_name)
-			    ->clickLink('Staff availability')
-			    ->assertPathIs('/staffAvailability')
-			    ->type('name','testEmployee')
-			    ->press('search')
-			    ->assertSee('testEmployee not found')
- 				;
+			    ->assertPathIs('/')
+			    ->clickLink('Availability')
+			    ->assertPathIs('/staff/availability')
+			    ->clickLink($tomorrow);
+			    if (sizeof($employees) == 0){
+				$browser->assertSee('There is no staff.');
+			    }else if ($available == 0){
+				$browser->assertSee('There is no staff.');
+			    }else if ($available > 0){
+				$browser->assertVisible('table');
+			    }   
+
 		});
 	}
+    
 
 }
