@@ -102,13 +102,10 @@ Edit '.env.dusk.local' so the APP_URL points at 'nginx'
 
 ### Docker installation 
 The first step is to install docker. It can be found here, depending on your operative system:
-```
 [DOCKER] (https://www.docker.com/get-docker)
-```
+
 
 ### GETTING LARADOCK UP AND RUNNING 
-Go into Laravel folder of the project and clone laradock repository.
-```git clone https://github.com/Laradock/laradock.git```
 
 ### SETTING UP DOCKER 
 
@@ -123,7 +120,7 @@ sudo chgrp -R www-data storage bootstrap/cache
 sudo chmod -R ug+rwx storage bootstrap/cache
 ```
 
-Build and run the necessary containers. This might take long specially the first time.
+Go into laradock folder, then build and run the necessary containers. This might take long specially the first time.
 ```sudo docker-compose up -d nginx mysql selenium```
 
 ### CONFIGURING PROJECT
