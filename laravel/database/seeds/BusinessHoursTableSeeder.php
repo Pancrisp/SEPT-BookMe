@@ -26,7 +26,7 @@ class BusinessHoursTableSeeder extends Seeder
             // creating business hour everyday
             foreach($days as $day)
                 BusinessHour::create([
-                    'business_id'  => $i,
+                    'business_id'  => $i+1,
                     'day'          => $day,
                     'opening_time' => '09:00',
                     'closing_time' => '17:00'
