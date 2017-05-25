@@ -43,6 +43,7 @@ class BookingController
 
         // get today's date using Carbon
         $today = Carbon::now(new DateTimeZone('Australia/Melbourne'))->toDateString();
+        $dbToday = Carbon::now()->toDateString();
 
         // custom attribute needed for different user type
         if($userType == 'business')
@@ -63,7 +64,7 @@ class BookingController
         // get bookings according to type passed in the url
         if($type == 'recent')
             $bookings = $bookings
-                ->whereDate('bookings.created_at', $today)
+                ->whereDate('bookings.created_at', $dbToday)
                 ->get();
         elseif($type == 'today')
             $bookings = $bookings
